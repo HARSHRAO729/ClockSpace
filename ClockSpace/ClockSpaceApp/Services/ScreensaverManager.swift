@@ -168,30 +168,87 @@ final class ScreensaverManager: ObservableObject {
 
             @objc(\(saverName.replacingOccurrences(of: "-", with: "_"))View)
             class \(saverName.replacingOccurrences(of: "-", with: "_"))View: ScreenSaverView {
+                private var timeAngle: CGFloat = 0
+
                 override init?(frame: NSRect, isPreview: Bool) {
                     super.init(frame: frame, isPreview: isPreview)
-                    animationTimeInterval = 1.0
+                    animationTimeInterval = 1.0 / 60.0
                 }
                 required init?(coder: NSCoder) { fatalError() }
 
                 override func draw(_ rect: NSRect) {
-                    let bg = NSColor(calibratedWhite: 0.05, alpha: 1.0)
-                    bg.set(); rect.fill()
+                    guard let ctx = NSGraphicsContext.current?.cgContext else { return }
+                    
+                    // Dark futuristic background
+                    NSColor(calibratedRed: 0.02, green: 0.04, blue: 0.08, alpha: 1.0).setFill()
+                    rect.fill()
+                    
+                    let cw = bounds.width
+                    let ch = bounds.height
+                    let center = CGPoint(x: cw / 2, y: ch / 2)
+                    
+                    // 1. Draw Vector Grid (Sci-Fi Environment)
+                    ctx.setStrokeColor(NSColor(calibratedRed: 0.0, green: 0.8, blue: 1.0, alpha: 0.08).cgColor)
+                    ctx.setLineWidth(1.0)
+                    let gridSize: CGFloat = 80.0
+                    for i in 0...Int(cw/gridSize) {
+                        ctx.move(to: CGPoint(x: CGFloat(i)*gridSize, y: 0))
+                        ctx.addLine(to: CGPoint(x: CGFloat(i)*gridSize, y: ch))
+                    }
+                    for i in 0...Int(ch/gridSize) {
+                        ctx.move(to: CGPoint(x: 0, y: CGFloat(i)*gridSize))
+                        ctx.addLine(to: CGPoint(x: cw, y: CGFloat(i)*gridSize))
+                    }
+                    ctx.strokePath()
+
+                    // Rotate animation state
+                    timeAngle += 0.015
+                    
+                    // 2. Central HUD rings (Sci-Fi Vector Look)
+                    ctx.saveGState()
+                    ctx.translateBy(x: center.x, y: center.y)
+                    
+                    // Outer cyan dashed ring
+                    ctx.rotate(by: timeAngle * 0.8)
+                    let r1 = cw * 0.22
+                    let ringRect1 = CGRect(x: -r1, y: -r1, width: r1*2, height: r1*2)
+                    ctx.setStrokeColor(NSColor.cyan.withAlphaComponent(0.5).cgColor)
+                    ctx.setLineWidth(3.0)
+                    ctx.setLineDash(phase: 0, lengths: [40, 15, 5, 15])
+                    ctx.strokeEllipse(in: ringRect1)
+                    
+                    // Inner magenta geometric ring
+                    ctx.rotate(by: -timeAngle * 1.8)
+                    let r2 = cw * 0.18
+                    let ringRect2 = CGRect(x: -r2, y: -r2, width: r2*2, height: r2*2)
+                    ctx.setStrokeColor(NSColor.magenta.withAlphaComponent(0.4).cgColor)
+                    ctx.setLineWidth(1.5)
+                    ctx.setLineDash(phase: 0, lengths: [60, 20])
+                    ctx.strokeEllipse(in: ringRect2)
+                    
+                    ctx.restoreGState()
+                    
+                    // 3. Render 3D-styled Glowing Time
+                    ctx.setShadow(offset: .zero, blur: 20, color: NSColor.cyan.cgColor)
                     
                     let formatter = DateFormatter()
                     formatter.dateFormat = "HH:mm:ss"
                     let timeStr = formatter.string(from: Date())
                     
+                    let font = NSFont.monospacedDigitSystemFont(ofSize: cw / 10, weight: .bold)
                     let attrs: [NSAttributedString.Key: Any] = [
-                        .font: NSFont.systemFont(ofSize: bounds.width / 10, weight: .ultraLight),
+                        .font: font,
                         .foregroundColor: NSColor.white
                     ]
                     
                     let size = timeStr.size(withAttributes: attrs)
-                    let point = NSPoint(x: (bounds.width - size.width) / 2, y: (bounds.height - size.height) / 2)
+                    let point = NSPoint(x: center.x - size.width / 2, y: center.y - size.height / 2.2)
                     timeStr.draw(at: point, withAttributes: attrs)
                 }
-                override func animateOneFrame() { setNeedsDisplay(bounds) }
+
+                override func animateOneFrame() { 
+                    setNeedsDisplay(bounds) 
+                }
             }
             """
             let sourceURL = tempDir.appendingPathComponent("\(saverName).swift")
@@ -206,6 +263,13 @@ final class ScreensaverManager: ObservableObject {
             let compileResult = runShellCommand(compileCmd)
             if compileResult.status != 0 {
                 throw ScreensaverInstallError.unknown("Compiler Error: \(compileResult.output)")
+            }
+            
+            // Generate basic thumbnail to override macOS default whirlpool icon
+            let resourcesDir = stubURL.appendingPathComponent("Contents/Resources")
+            try fileManager.createDirectory(at: resourcesDir, withIntermediateDirectories: true)
+            if let iconData = Data(base64Encoded: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==") {
+                try? iconData.write(to: resourcesDir.appendingPathComponent("thumbnail.png"))
             }
             
             // Update Plist with PrincipalClass
