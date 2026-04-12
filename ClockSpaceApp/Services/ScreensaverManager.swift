@@ -205,7 +205,7 @@ final class ScreensaverManager: ObservableObject {
             let compileCmd = "swiftc -dynamiclib -o \(binaryURL.path) \(sourceURL.path) -target arm64-apple-macosx14.4 -sdk $(xcrun --show-sdk-path)"
             let compileResult = runShellCommand(compileCmd)
             if compileResult.status != 0 {
-                throw ScreensaverInstallError.unknown("Compiler Error: \\(compileResult.output)")
+                throw ScreensaverInstallError.unknown("Compiler Error: \(compileResult.output)")
             }
             
             // Update Plist with PrincipalClass
