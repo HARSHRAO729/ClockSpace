@@ -115,32 +115,42 @@ struct ExploreView: View {
     
     private var tagCloud: some View {
         VStack(alignment: .leading, spacing: 12) {
-            // Row 1: Resolutions
+            // Row 1: Resolutions & Format
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
-                    tagPill("Ultrawide (21:9)")
-                    tagPill("Landscape (16:9)")
-                    tagPill("HD (1920x1080)")
-                    tagPill("4K (3840x2160)", active: true)
+                    tagPill("Retina")
+                    tagPill("4K (3840×2160)", active: true)
+                    tagPill("Dynamic Resolution")
+                    tagPill("5K+")
                 }
             }
             
-            // Row 2: Themes
+            // Row 2: Content categories
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
-                    tagPill("Nature")
-                    tagPill("Space")
-                    tagPill("Anime")
-                    tagPill("Cars")
-                    tagPill("City")
-                    tagPill("Video Games")
-                    tagPill("Fantasy")
-                    tagPill("Cats")
-                    tagPill("Monochrome (B&W)")
+                    tagPill("Clocks")
+                    tagPill("Apple Inspired")
+                    tagPill("Sci-Fi")
+                    tagPill("Retro")
+                    tagPill("Developer")
+                    tagPill("Graphics")
+                    tagPill("Aquarium")
+                    tagPill("Video Game")
+                    tagPill("Collections")
                 }
             }
             
-            tagPill("Lockscreen Exclusive", isNew: true)
+            // Row 3: Style tags
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    tagPill("Generative Art", isNew: true)
+                    tagPill("Minimal")
+                    tagPill("Animated")
+                    tagPill("AI-Powered", isNew: true)
+                    tagPill("Open Source")
+                    tagPill("Interactive")
+                }
+            }
         }
     }
     
