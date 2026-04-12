@@ -162,46 +162,36 @@ final class ScreensaverManager: ObservableObject {
             try fileManager.createDirectory(at: stubURL, withIntermediateDirectories: true)
             
             // ── COMPILATION: Create a real functional binary ──
-            // We'll write a small Swift source and compile it into the bundle.
             let swiftSource = """
             import ScreenSaver
             import AppKit
 
+            @objc(\(saverName.replacingOccurrences(of: "-", with: "_"))View)
             class \(saverName.replacingOccurrences(of: "-", with: "_"))View: ScreenSaverView {
-                private var timeLabel = NSTextField(labelWithString: "")
-
                 override init?(frame: NSRect, isPreview: Bool) {
                     super.init(frame: frame, isPreview: isPreview)
-                    animationTimeInterval = 1/60
-                    setupUI()
+                    animationTimeInterval = 1.0
                 }
                 required init?(coder: NSCoder) { fatalError() }
-
-                private func setupUI() {
-                    timeLabel.font = .systemFont(ofSize: 120, weight: .ultraLight)
-                    timeLabel.textColor = .white
-                    timeLabel.alignment = .center
-                    addSubview(timeLabel)
-                }
 
                 override func draw(_ rect: NSRect) {
                     let bg = NSColor(calibratedWhite: 0.05, alpha: 1.0)
                     bg.set(); rect.fill()
                     
-                    // Draw subtle radial glow
-                    let center = NSPoint(x: bounds.midX, y: bounds.midY)
-                    let gradient = NSGradient(starting: NSColor.white.withAlphaComponent(0.05), ending: .clear)
-                    gradient?.draw(fromCenter: center, radius: 0, toCenter: center, radius: bounds.width/2.5, options: [])
-                }
-
-                override func animateOneFrame() {
                     let formatter = DateFormatter()
                     formatter.dateFormat = "HH:mm:ss"
-                    timeLabel.stringValue = formatter.string(from: Date())
+                    let timeStr = formatter.string(from: Date())
                     
-                    let size = timeLabel.intrinsicContentSize
-                    timeLabel.frame = NSRect(x: (bounds.width - size.width)/2, y: (bounds.height - size.height)/2, width: size.width, height: size.height)
+                    let attrs: [NSAttributedString.Key: Any] = [
+                        .font: NSFont.systemFont(ofSize: bounds.width / 10, weight: .ultraLight),
+                        .foregroundColor: NSColor.white
+                    ]
+                    
+                    let size = timeStr.size(withAttributes: attrs)
+                    let point = NSPoint(x: (bounds.width - size.width) / 2, y: (bounds.height - size.height) / 2)
+                    timeStr.draw(at: point, withAttributes: attrs)
                 }
+                override func animateOneFrame() { setNeedsDisplay(bounds) }
             }
             """
             let sourceURL = tempDir.appendingPathComponent("\(saverName).swift")
@@ -213,7 +203,10 @@ final class ScreensaverManager: ObservableObject {
             let binaryURL = binaryDir.appendingPathComponent("\(saverName)")
             
             let compileCmd = "swiftc -dynamiclib -o \(binaryURL.path) \(sourceURL.path) -target arm64-apple-macosx14.4 -sdk $(xcrun --show-sdk-path)"
-            _ = runShellCommand(compileCmd)
+            let compileResult = runShellCommand(compileCmd)
+            if compileResult.status != 0 {
+                throw ScreensaverInstallError.unknown("Compiler Error: \\(compileResult.output)")
+            }
             
             // Update Plist with PrincipalClass
             let plistURL = stubURL.appendingPathComponent("Contents/Info.plist")
