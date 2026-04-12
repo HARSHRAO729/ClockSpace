@@ -141,10 +141,8 @@ struct ScreensaverCard: View {
     private var badgeOverlay: some View {
         if screensaver.isPremium {
             vibrantBadge(text: "PREMIUM", icon: "crown.fill", bg: CSTheme.premiumGold, fg: .black)
-        } else if screensaver.category == .custom {
-            vibrantBadge(text: "CUSTOM", icon: "paintbrush.pointed.fill", bg: CSTheme.violet, fg: .white)
         } else {
-            vibrantBadge(text: "FREE", icon: "gift.fill", bg: CSTheme.accent, fg: .white)
+            vibrantBadge(text: "FREE", icon: "gift.fill", bg: screensaver.category.tintColor, fg: .white)
         }
     }
     
