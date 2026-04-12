@@ -10,86 +10,90 @@
 import SwiftUI
 
 struct ScreensaverCard: View {
-    
-    let screensaver: Screensaver
+       let screensaver: Screensaver
+    @EnvironmentObject var apiManager: APIManager
     @StateObject private var manager = ScreensaverManager.shared
     @State private var isHovering: Bool = false
     
-    /// Derived install state
-    private var installState: InstallState {
-        if manager.activeID == screensaver.id {
-            return .active
-        } else if manager.isInstalling(screensaver) {
-            return .installing
-        } else if manager.isInstalled(screensaver) {
-            return .installed
-        } else {
-            return .ready
-        }
-    }
-    
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            // ── Thumbnail ──
-            thumbnailView
-            
-            // ── Info ──
-            infoSection
+        Button(action: {
+            withAnimation(CSTheme.Animation.standard) {
+                apiManager.detailedScreensaver = screensaver
+            }
+        }) {
+            VStack(alignment: .leading, spacing: 0) {
+                // ── Thumbnail ──
+                thumbnailView
+                
+                // ── Info ──
+                infoSection
+            }
+            .background(
+                RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
+                    .fill(CSTheme.surface.opacity(0.5))
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
+                    .stroke(
+                        isHovering ? screensaver.category.tintColor.opacity(0.35) : Color.white.opacity(0.06),
+                        lineWidth: isHovering ? 1.0 : 0.5
+                    )
+            )
+            .clipShape(RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous))
+            .scaleEffect(isHovering ? 1.03 : 1.0)
+            .shadow(
+                color: isHovering ? screensaver.category.tintColor.opacity(0.15) : Color.black.opacity(0.2),
+                radius: isHovering ? 24 : 12,
+                y: isHovering ? 10 : 4
+            )
+            .animation(CSTheme.Animation.spring, value: isHovering)
         }
-        .background(
-            RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
-                .fill(CSTheme.surface.opacity(0.5))
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
-                .stroke(
-                    isHovering ? screensaver.category.tintColor.opacity(0.35) : Color.white.opacity(0.06),
-                    lineWidth: isHovering ? 1.0 : 0.5
-                )
-        )
-        .clipShape(RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous))
-        .scaleEffect(isHovering ? 1.03 : 1.0)
-        .shadow(
-            color: isHovering ? screensaver.category.tintColor.opacity(0.15) : Color.black.opacity(0.2),
-            radius: isHovering ? 24 : 12,
-            y: isHovering ? 10 : 4
-        )
-        .animation(CSTheme.Animation.spring, value: isHovering)
+        .buttonStyle(.plain)
         .onHover { hovering in
             isHovering = hovering
         }
         .contentShape(Rectangle())
-        // Error alert
-        .alert(
-            "Installation Error",
-            isPresented: .init(
-                get: { manager.lastError != nil },
-                set: { if !$0 { manager.lastError = nil } }
-            )
-        ) {
-            Button("OK") { manager.lastError = nil }
-        } message: {
-            Text(manager.lastError?.localizedDescription ?? "Unknown error")
-        }
     }
     
     // MARK: - Thumbnail (16pt radius enforced)
     
     private var thumbnailView: some View {
         ZStack(alignment: .topLeading) {
-            // Gradient placeholder
-            RoundedRectangle(cornerRadius: 0)
-                .fill(gradient(for: screensaver))
+            // Live Preview Simulation (Animates on hover)
+            gradient(for: screensaver)
+                .scaleEffect(isHovering ? 1.4 : 1.0)
+                .rotationEffect(Angle.degrees(isHovering ? 10 : 0))
+                .animation(Animation.linear(duration: 8.0).repeatForever(autoreverses: true), value: isHovering)
                 .frame(height: 160)
                 .overlay(
-                    Image(systemName: "sparkles")
-                        .font(.system(size: 32, weight: .ultraLight))
-                        .foregroundColor(.white.opacity(0.1))
+                    Image(systemName: isHovering ? "play.circle.fill" : "sparkles")
+                        .font(.system(size: isHovering ? 48 : 32, weight: .ultraLight))
+                        .foregroundColor(.white.opacity(0.2))
+                        .scaleEffect(isHovering ? 1.1 : 1.0)
+                        .animation(.easeInOut(duration: 1.0).repeatForever(), value: isHovering)
                 )
             
             // Overlapping badge (Wallspace style)
             badgeOverlay
                 .offset(x: -4, y: -4)
+            
+            // Heart/Like Toggle (Quick Action)
+            HStack {
+                Spacer()
+                Button(action: {
+                    withAnimation(.spring()) {
+                        apiManager.toggleLiked(screensaver)
+                    }
+                }) {
+                    Image(systemName: apiManager.isLiked(screensaver) ? "heart.fill" : "heart")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(apiManager.isLiked(screensaver) ? .red : .white.opacity(0.6))
+                        .padding(8)
+                        .background(Circle().fill(Color.black.opacity(0.3)).background(.ultraThinMaterial))
+                }
+                .buttonStyle(.plain)
+                .padding(CSTheme.Spacing.sm)
+            }
             
             // "NEW" Badge (Wallspace style)
             if screensaver.isNew {
@@ -102,6 +106,7 @@ struct ScreensaverCard: View {
                         Capsule().fill(Color.blue)
                     )
                     .padding(CSTheme.Spacing.sm)
+                    .offset(y: 30) // Push below the heart
             }
             
             // Rank Number (Wallspace popular style)
@@ -114,7 +119,7 @@ struct ScreensaverCard: View {
             }
             
             // Installed/Active checkmark overlay (top-right)
-            if installState == .installed || installState == .active {
+            if manager.isInstalled(screensaver) || manager.activeID == screensaver.id {
                 HStack {
                     Spacer()
                     Image(systemName: "checkmark.circle.fill")
@@ -122,6 +127,7 @@ struct ScreensaverCard: View {
                         .foregroundColor(CSTheme.accent)
                         .shadow(color: CSTheme.accent.opacity(0.5), radius: 8)
                         .padding(CSTheme.Spacing.sm)
+                        .offset(y: 40) // Below heart
                 }
             }
         }
@@ -178,16 +184,10 @@ struct ScreensaverCard: View {
                 .font(.system(size: 11, weight: .regular))
                 .foregroundColor(CSTheme.textTertiary)
             
-            // Rating + Downloads
+            // Resolution + Downloads
             HStack(spacing: CSTheme.Spacing.lg) {
-                // Stars
-                HStack(spacing: 1) {
-                    ForEach(Array(screensaver.starIcons.prefix(5).enumerated()), id: \.offset) { _, icon in
-                        Image(systemName: icon)
-                            .font(.system(size: 8))
-                            .foregroundColor(CSTheme.premiumGold)
-                    }
-                    
+                // Metadata Label
+                HStack(spacing: 6) {
                     if let res = screensaver.resolution {
                         Text(res)
                             .font(.system(size: 9, weight: .medium))
@@ -202,11 +202,6 @@ struct ScreensaverCard: View {
                             .font(.system(size: 9, weight: .medium))
                             .foregroundColor(CSTheme.textTertiary)
                     }
-                    
-                    Text(String(format: "%.1f", screensaver.rating))
-                        .font(.system(size: 10, weight: .medium))
-                        .foregroundColor(CSTheme.textMuted)
-                        .padding(.leading, 2)
                 }
                 
                 Spacer()
@@ -223,7 +218,7 @@ struct ScreensaverCard: View {
                 }
             }
             
-            // Tags row + CTA
+            // Tags row + Action Indicator
             HStack {
                 HStack(spacing: CSTheme.Spacing.xs) {
                     ForEach(screensaver.tags.prefix(2), id: \.self) { tag in
@@ -241,113 +236,17 @@ struct ScreensaverCard: View {
                 
                 Spacer()
                 
-                // ── CTA Button (stateful) ──
-                installButton
+                // ── Preview CTA Indicator ──
+                HStack(spacing: 4) {
+                    Text("Preview")
+                        .font(.system(size: 11, weight: .semibold))
+                    Image(systemName: "arrow.up.right")
+                        .font(.system(size: 10, weight: .bold))
+                }
+                .foregroundColor(isHovering ? .white : CSTheme.textTertiary)
             }
         }
         .padding(CSTheme.Spacing.lg)
-    }
-    
-    // MARK: - Install Button (3-state)
-    
-    @ViewBuilder
-    private var installButton: some View {
-        switch installState {
-        case .ready:
-            // Default: "Install" or "$X.XX"
-            Button(action: {
-                Task {
-                    await manager.installFromMarketplace(screensaver)
-                }
-            }) {
-                Text(screensaver.isPremium ? screensaver.formattedPrice : "Install")
-                    .font(.system(size: 11, weight: .semibold))
-                    .foregroundColor(screensaver.isPremium ? .black : .white)
-                    .padding(.horizontal, CSTheme.Spacing.md)
-                    .padding(.vertical, 6)
-                    .background(
-                        Capsule()
-                            .fill(screensaver.isPremium ? CSTheme.premiumGold : CSTheme.accent)
-                    )
-            }
-            .buttonStyle(.plain)
-            
-        case .installing:
-            // Progress spinner
-            HStack(spacing: 6) {
-                ProgressView()
-                    .controlSize(.mini)
-                    .tint(.white)
-                
-                Text("Installing…")
-                    .font(.system(size: 10, weight: .medium))
-                    .foregroundColor(CSTheme.textMuted)
-            }
-            .padding(.horizontal, CSTheme.Spacing.md)
-            .padding(.vertical, 6)
-            .background(
-                Capsule()
-                    .fill(Color.white.opacity(0.08))
-            )
-            .overlay(
-                Capsule()
-                    .stroke(Color.white.opacity(0.1), lineWidth: 0.5)
-            )
-            
-        case .installed:
-            // Installed — show "Apply"
-            Button(action: {
-                // Determine raw system name and temp mock path
-                let saverName = screensaver.name
-                    .replacingOccurrences(of: " ", with: "-")
-                    .lowercased()
-                let saverPath = manager.screenSaversDirectory.appendingPathComponent("\(saverName).saver").path
-                
-                let success = manager.applyScreensaver(name: saverName, path: saverPath)
-                if success {
-                    manager.activeID = screensaver.id
-                } else {
-                    manager.lastError = ScreensaverInstallError.unknown("Failed to apply screensaver preferences.")
-                }
-            }) {
-                HStack(spacing: 4) {
-                    Text("Apply")
-                        .font(.system(size: 11, weight: .semibold))
-                }
-                .foregroundColor(.white)
-                .padding(.horizontal, CSTheme.Spacing.md)
-                .padding(.vertical, 6)
-                .background(
-                    Capsule()
-                        .fill(CSTheme.surfaceElevated)
-                )
-                .overlay(
-                    Capsule()
-                        .stroke(Color.white.opacity(0.1), lineWidth: 0.5)
-                )
-            }
-            .buttonStyle(.plain)
-            
-        case .active:
-            // Active checkmark state
-            HStack(spacing: 4) {
-                Image(systemName: "checkmark")
-                    .font(.system(size: 9, weight: .bold))
-                Text("Active")
-                    .font(.system(size: 11, weight: .semibold))
-            }
-            .foregroundColor(CSTheme.accent)
-            .padding(.horizontal, CSTheme.Spacing.md)
-            .padding(.vertical, 6)
-            .background(
-                Capsule()
-                    .fill(CSTheme.accent.opacity(0.12))
-            )
-            .overlay(
-                Capsule()
-                    .stroke(CSTheme.accent.opacity(0.3), lineWidth: 0.5)
-            )
-        }
     }
     
     // MARK: - Gradient Generator
@@ -364,14 +263,4 @@ struct ScreensaverCard: View {
         let index = abs(saver.name.hashValue) % gradients.count
         return gradients[index]
     }
-}
-
-// MARK: - Install State
-
-/// The three possible states of the install CTA button.
-enum InstallState {
-    case ready       // Default — show "Install" or price
-    case installing  // In progress — show spinner
-    case installed   // Done — show "Apply" button
-    case active      // Active on system — show "Active" checkmark
 }

@@ -15,45 +15,93 @@ struct ExploreView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 0) {
-                // ── Illustrated Hero Section ──
-                exploreHero
-                
-                VStack(spacing: CSTheme.Spacing.xxl) {
-                    // ── Tag Discovery Hub ──
-                    tagCloud
+                if let category = apiManager.selectedCategory {
+                    // ── Category Detail View ──
+                    categoryDetailView(for: category)
+                } else {
+                    // ── Standard Explore Content ──
+                    exploreHero
                     
-                    // ── Latest Wallpapers (3-Column Grid) ──
-                    exploreSection(
-                        title: "Latest Wallpapers",
-                        subtitle: "Browse the newest additions to our collection",
-                        items: apiManager.screensavers.filter { $0.isNew }
-                    )
-                    
-                    // ── Monochrome (B&W) Wallpapers ──
-                    exploreSection(
-                        title: "Monochrome Wallpapers",
-                        subtitle: "Black and white wallpapers",
-                        items: apiManager.screensavers.filter { $0.tags.contains("minimal") || $0.tags.contains("dark") }
-                    )
-                    
-                    // ── Categories Grid ──
-                    VStack(alignment: .leading, spacing: CSTheme.Spacing.lg) {
-                        Text("Categories")
-                            .font(CSTheme.Font.sectionTitle)
-                            .foregroundColor(.white)
+                    VStack(spacing: CSTheme.Spacing.xxl) {
+                        // ── Tag Discovery Hub ──
+                        tagCloud
                         
-                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
-                            ForEach(Category.allCases, id: \.self) { category in
-                                categoryCard(for: category)
+                        // ── Latest Wallpapers (3-Column Grid) ──
+                        exploreSection(
+                            title: "Latest Wallpapers",
+                            subtitle: "Browse the newest additions to our collection",
+                            items: apiManager.screensavers.filter { $0.isNew }
+                        )
+                        
+                        // ── Categories Grid ──
+                        VStack(alignment: .leading, spacing: CSTheme.Spacing.lg) {
+                            Text("Categories")
+                                .font(CSTheme.Font.sectionTitle)
+                                .foregroundColor(.white)
+                            
+                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
+                                ForEach(Category.allCases, id: \.self) { category in
+                                    Button(action: {
+                                        withAnimation(CSTheme.Animation.standard) {
+                                            apiManager.selectedCategory = category
+                                        }
+                                    }) {
+                                        categoryCard(for: category)
+                                    }
+                                    .buttonStyle(.plain)
+                                }
                             }
                         }
                     }
+                    .padding(.horizontal, CSTheme.Spacing.xxl)
+                    .padding(.top, CSTheme.Spacing.xxl)
+                    .padding(.bottom, CSTheme.Spacing.xxxl)
                 }
-                .padding(.horizontal, CSTheme.Spacing.xxl)
-                .padding(.top, CSTheme.Spacing.xxl)
-                .padding(.bottom, CSTheme.Spacing.xxxl)
             }
         }
+    }
+    
+    private func categoryDetailView(for category: Category) -> some View {
+        VStack(alignment: .leading, spacing: CSTheme.Spacing.xxl) {
+            // Header with Back button
+            HStack(spacing: 20) {
+                Button(action: {
+                    withAnimation(CSTheme.Animation.standard) {
+                        apiManager.selectedCategory = nil
+                    }
+                }) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "chevron.left")
+                        Text("Explore")
+                    }
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(CSTheme.accent)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .background(Capsule().fill(CSTheme.accent.opacity(0.1)))
+                }
+                .buttonStyle(.plain)
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(category.rawValue)
+                        .font(.system(size: 32, weight: .bold))
+                        .foregroundColor(.white)
+                    Text("Found \(apiManager.screensavers.filter { $0.category == category }.count) screensavers")
+                        .font(CSTheme.Font.caption)
+                        .foregroundColor(CSTheme.textTertiary)
+                }
+            }
+            .padding(.top, 40)
+            
+            // Grid
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
+                ForEach(apiManager.screensavers.filter { $0.category == category }) { saver in
+                    ScreensaverCard(screensaver: saver)
+                }
+            }
+        }
+        .padding(.horizontal, CSTheme.Spacing.xxl)
+        .padding(.bottom, 60)
     }
     
     // MARK: - Hero
@@ -86,10 +134,13 @@ struct ExploreView: View {
                     .multilineTextAlignment(.center)
                     .lineSpacing(4)
                 
-                Button(action: {}) {
+                Button(action: {
+                    // Quick jump to all
+                    withAnimation { selectedFilter = "Dynamic" }
+                }) {
                     HStack(spacing: 8) {
                         Image(systemName: "sparkles")
-                        Text("Coming Soon")
+                        Text("Discover All")
                     }
                     .font(.system(size: 13, weight: .bold))
                     .foregroundColor(.white)
@@ -102,13 +153,6 @@ struct ExploreView: View {
                 .padding(.top, 12)
             }
         }
-        .mask(
-            LinearGradient(
-                colors: [.white, .white, .white.opacity(0.5), .clear],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-        )
     }
     
     // MARK: - Tag Cloud
@@ -119,8 +163,8 @@ struct ExploreView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
                     tagPill("Retina")
-                    tagPill("4K (3840×2160)", active: true)
-                    tagPill("Dynamic Resolution")
+                    tagPill("4K", active: true)
+                    tagPill("Dynamic")
                     tagPill("5K+")
                 }
             }
@@ -128,15 +172,14 @@ struct ExploreView: View {
             // Row 2: Content categories
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
-                    tagPill("Clocks")
-                    tagPill("Apple Inspired")
-                    tagPill("Sci-Fi")
-                    tagPill("Retro")
-                    tagPill("Developer")
-                    tagPill("Graphics")
-                    tagPill("Aquarium")
-                    tagPill("Video Game")
-                    tagPill("Collections")
+                    ForEach(Category.allCases.prefix(8), id: \.self) { cat in
+                        Button(action: { 
+                            withAnimation { apiManager.selectedCategory = cat }
+                        }) {
+                            tagPill(cat.rawValue, active: apiManager.selectedCategory == cat)
+                        }
+                        .buttonStyle(.plain)
+                    }
                 }
             }
             
@@ -199,8 +242,8 @@ struct ExploreView: View {
                     .foregroundColor(CSTheme.textMuted)
             }
             
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
-                ForEach(items.prefix(6)) { saver in
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
+                ForEach(items.prefix(8)) { saver in
                     ScreensaverCard(screensaver: saver)
                 }
             }

@@ -18,7 +18,6 @@ struct Screensaver: Identifiable, Codable, Hashable {
     let isPremium: Bool
     let price: Double?
     let author: String
-    let rating: Double
     let downloadCount: Int
     let tags: [String]
     let createdAt: Date
@@ -28,6 +27,7 @@ struct Screensaver: Identifiable, Codable, Hashable {
     let resolution: String?   // "4K", "1920x1080"
     let fileSize: String?     // "23MB"
     let isNew: Bool           // To show "NEW" badge
+    let template: String?     // The code template to use (e.g., "matrix", "flip", "minimal")
     
     /// Formatted download count (e.g. "12.3K")
     var formattedDownloads: String {
@@ -44,22 +44,14 @@ struct Screensaver: Identifiable, Codable, Hashable {
         guard let price = price, isPremium else { return "Free" }
         return String(format: "$%.2f", price)
     }
-    
-    /// Star rating as an array of SF Symbol names for rendering
-    var starIcons: [String] {
-        var stars: [String] = []
-        let fullStars = Int(rating)
-        let hasHalf = (rating - Double(fullStars)) >= 0.5
-        
-        for _ in 0..<fullStars {
-            stars.append("star.fill")
-        }
-        if hasHalf {
-            stars.append("star.leadinghalf.filled")
-        }
-        while stars.count < 5 {
-            stars.append("star")
-        }
-        return stars
-    }
+}
+
+// MARK: - Install State
+
+/// The possible states of the install CTA button.
+enum InstallState {
+    case ready       // Default — show "Install" or price
+    case installing  // In progress — show spinner
+    case installed   // Done — show "Apply" button
+    case active      // Active on system — show "Active" checkmark
 }

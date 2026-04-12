@@ -16,7 +16,6 @@ struct DashboardView: View {
     // MARK: - Navigation State
     
     @State private var selectedTab: NavTab = .home
-    @State private var selectedCategory: Category? = nil
     @State private var searchText: String = ""
     
     // MARK: - Sheet / Overlay State
@@ -55,10 +54,16 @@ struct DashboardView: View {
             )
             .opacity(isSearchPresented ? 0 : 1)
             
-            // ── Immersive Search Overlay ──
             if isSearchPresented {
                 searchOverlay
                     .transition(.opacity)
+            }
+            
+            // ── Detailed Screensaver Overlay ──
+            if let saver = apiManager.detailedScreensaver {
+                ScreensaverDetailView(screensaver: saver)
+                    .transition(.opacity.combined(with: .scale(scale: 0.95)))
+                    .zIndex(100) // Ensure it floats above everything
             }
         }
         // ── Sheet Presentations ──
@@ -72,7 +77,7 @@ struct DashboardView: View {
         .task {
             await loadAllScreensavers()
         }
-        .onChange(of: selectedCategory) {
+        .onChange(of: apiManager.selectedCategory) {
             Task { await loadScreensavers() }
         }
     }
@@ -170,7 +175,7 @@ struct DashboardView: View {
                 .stroke(Color.white.opacity(0.08), lineWidth: 0.5)
         )
         .onTapGesture {
-            selectedCategory = category
+            apiManager.selectedCategory = category
             selectedTab = .explore
         }
     }
@@ -249,7 +254,7 @@ struct DashboardView: View {
     private var filteredScreensavers: [Screensaver] {
         var results = apiManager.screensavers
         
-        if let category = selectedCategory {
+        if let category = apiManager.selectedCategory {
             results = results.filter { $0.category == category }
         }
         
@@ -323,7 +328,7 @@ struct DashboardView: View {
     
     private func loadScreensavers() async {
         do {
-            _ = try await apiManager.fetchScreensavers(category: selectedCategory)
+            _ = try await apiManager.fetchScreensavers(category: apiManager.selectedCategory)
         } catch {
             apiManager.errorMessage = error.localizedDescription
         }

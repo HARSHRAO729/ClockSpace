@@ -7,16 +7,35 @@
 //
 
 import SwiftUI
+import Combine
 
 struct HeroView: View {
     
     let featuredScreensavers: [Screensaver]
+    @EnvironmentObject var apiManager: APIManager
     @State private var hoveredCard: UUID?
+    @State private var currentIndex: Int = 0
+    
+    let timer = Timer.publish(every: 8, on: .main, in: .common).autoconnect()
+    
+    var currentItem: Screensaver? {
+        guard !featuredScreensavers.isEmpty else { return nil }
+        return featuredScreensavers[currentIndex % featuredScreensavers.count]
+    }
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            // ── Featured Hero Image (gradient placeholder) ──
-            heroImage
+            // ── Featured Hero Image (animated transition) ──
+            Group {
+                if let item = currentItem {
+                    heroImage(for: item)
+                        .id(item.id)
+                        .transition(.opacity.combined(with: .scale(scale: 1.05)))
+                } else {
+                    heroPlaceholder
+                }
+            }
+            .animation(.easeInOut(duration: 1.2), value: currentIndex)
             
             // ── Overlapping Carousel (Selection Overlay) ──
             VStack(alignment: .leading, spacing: CSTheme.Spacing.md) {
@@ -29,11 +48,19 @@ struct HeroView: View {
                 // Horizontal carousel
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: CSTheme.Spacing.md) {
-                        ForEach(featuredScreensavers.prefix(6)) { saver in
-                            FeaturedThumbnail(
-                                screensaver: saver,
-                                isHovered: hoveredCard == saver.id
-                            )
+                        ForEach(Array(featuredScreensavers.prefix(6).enumerated()), id: \.offset) { index, saver in
+                            Button(action: {
+                                withAnimation(.easeInOut(duration: 0.8)) {
+                                    currentIndex = index
+                                }
+                            }) {
+                                FeaturedThumbnail(
+                                    screensaver: saver,
+                                    isHovered: hoveredCard == saver.id,
+                                    isActive: currentIndex == index
+                                )
+                            }
+                            .buttonStyle(.plain)
                             .onHover { hovering in
                                 withAnimation(CSTheme.Animation.spring) {
                                     hoveredCard = hovering ? saver.id : nil
@@ -47,73 +74,73 @@ struct HeroView: View {
             }
             .offset(y: 40) // Overlap the hero bottom edge
         }
+        .onReceive(timer) { _ in
+            withAnimation(.easeInOut(duration: 1.2)) {
+                currentIndex = (currentIndex + 1) % featuredScreensavers.count
+            }
+        }
     }
     
     // MARK: - Hero Image
     
-    private var heroImage: some View {
+    private func heroImage(for heroItem: Screensaver) -> some View {
         ZStack {
-            // Specific featured content (using the first item for mock)
-            let heroItem = featuredScreensavers.first
+            // Cinematic background gradient
+            gradient(for: heroItem)
+                .frame(height: 480)
             
-            // Massive gradient background simulating a cinematic featured image
-            LinearGradient(
-                colors: [
-                    Color(hex: 0x1E1B4B),
-                    Color(hex: 0x312E81),
-                    Color(hex: 0x4338CA).opacity(0.4),
-                    Color(hex: 0x0F0F23).opacity(0.0)
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .frame(height: 480)
-            
-            // Hero info overlay (Left Aligned like Wallspace)
+            // Hero info overlay
             VStack(alignment: .leading, spacing: CSTheme.Spacing.md) {
                 Spacer()
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text("FEATURED")
                         .font(.system(size: 11, weight: .black))
-                        .foregroundColor(CSTheme.textMuted)
+                        .foregroundColor(.white.opacity(0.6))
                         .tracking(3)
                     
-                    Text(heroItem?.name ?? "Midnight Aurora")
-                        .font(.system(size: 38, weight: .bold))
+                    Text(heroItem.name)
+                        .font(.system(size: 44, weight: .bold))
                         .foregroundColor(.white)
+                        .shadow(color: .black.opacity(0.3), radius: 10)
                     
                     HStack(spacing: 12) {
-                        Text(heroItem?.category.rawValue ?? "Nature")
-                        Text(heroItem?.resolution ?? "4K")
-                        Text(heroItem?.fileSize ?? "23MB")
+                        Text(heroItem.category.rawValue)
+                        Text(heroItem.resolution ?? "4K")
+                        Text(heroItem.fileSize ?? "Dynamic")
                     }
                     .font(.system(size: 13, weight: .medium))
-                    .foregroundColor(CSTheme.textTertiary)
+                    .foregroundColor(.white.opacity(0.8))
                 }
                 
                 HStack(spacing: 16) {
-                    Button(action: {}) {
+                    Button(action: {
+                        withAnimation(CSTheme.Animation.standard) {
+                            apiManager.detailedScreensaver = heroItem
+                        }
+                    }) {
                         HStack(spacing: 8) {
                             Text("View Screensaver")
+                                .font(.system(size: 13, weight: .bold))
                             Image(systemName: "arrow.up.right")
+                                .font(.system(size: 12, weight: .bold))
                         }
-                        .font(.system(size: 13, weight: .semibold))
                         .foregroundColor(.black)
-                        .padding(.horizontal, 24)
-                        .padding(.vertical, 12)
-                        .background(Color.white)
-                        .cornerRadius(6)
+                        .padding(.horizontal, 28)
+                        .padding(.vertical, 14)
+                        .background(RoundedRectangle(cornerRadius: 30).fill(Color.white))
                     }
                     .buttonStyle(.plain)
                     
-                    Button(action: {}) {
-                        Image(systemName: "heart")
-                            .font(.system(size: 18))
-                            .foregroundColor(.white)
-                            .frame(width: 44, height: 44)
-                            .background(Color.white.opacity(0.1))
-                            .clipShape(Circle())
+                    Button(action: {
+                        apiManager.toggleLiked(heroItem)
+                    }) {
+                        Image(systemName: apiManager.isLiked(heroItem) ? "heart.fill" : "heart")
+                            .font(.system(size: 20))
+                            .foregroundColor(apiManager.isLiked(heroItem) ? .red : .white)
+                            .frame(width: 52, height: 52)
+                            .background(Circle().fill(Color.white.opacity(0.1)))
+                            .overlay(Circle().stroke(Color.white.opacity(0.1), lineWidth: 1))
                     }
                     .buttonStyle(.plain)
                 }
@@ -123,20 +150,30 @@ struct HeroView: View {
             .padding(.bottom, 140)
         }
         .frame(height: 480)
-        // CRUCIAL: Gradient mask for seamless fade into background
         .mask(
             LinearGradient(
-                colors: [
-                    .white,
-                    .white,
-                    .white,
-                    .white.opacity(0.3),
-                    .clear
-                ],
+                colors: [.white, .white, .white, .white.opacity(0.3), .clear],
                 startPoint: .top,
                 endPoint: .bottom
             )
         )
+    }
+    
+    private var heroPlaceholder: some View {
+        CSTheme.surface
+            .frame(height: 480)
+            .shimmer()
+    }
+    
+    private func gradient(for saver: Screensaver) -> LinearGradient {
+        let gradients: [LinearGradient] = [
+            LinearGradient(colors: [Color(hex: 0x1E1B4B), Color(hex: 0x312E81), Color(hex: 0x4338CA).opacity(0.4)], startPoint: .top, endPoint: .bottom),
+            LinearGradient(colors: [Color(hex: 0x064E3B), Color(hex: 0x065F46), Color(hex: 0x047857).opacity(0.4)], startPoint: .top, endPoint: .bottom),
+            LinearGradient(colors: [Color(hex: 0x7C2D12), Color(hex: 0x9A3412), Color(hex: 0xB45309).opacity(0.4)], startPoint: .top, endPoint: .bottom),
+            LinearGradient(colors: [Color(hex: 0x4C1D95), Color(hex: 0x5B21B6), Color(hex: 0x6D28D9).opacity(0.4)], startPoint: .top, endPoint: .bottom),
+        ]
+        let index = abs(saver.name.hashValue) % gradients.count
+        return gradients[index]
     }
 }
 
@@ -146,6 +183,7 @@ struct FeaturedThumbnail: View {
     
     let screensaver: Screensaver
     let isHovered: Bool
+    let isActive: Bool
     
     var body: some View {
         VStack(alignment: .leading, spacing: CSTheme.Spacing.sm) {
@@ -155,45 +193,30 @@ struct FeaturedThumbnail: View {
                     .fill(thumbnailGradient)
                     .frame(width: 200, height: 130)
                     .overlay(
-                        // Subtle sparkle
-                        Image(systemName: "sparkles")
-                            .font(.system(size: 28, weight: .ultraLight))
-                            .foregroundColor(.white.opacity(0.12))
+                        RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
+                            .stroke(isActive ? Color.white : Color.clear, lineWidth: 3)
                     )
                 
-                // Badge (PREMIUM / NEW)
+                // Badge
                 badgeView
                     .offset(x: -6, y: -6)
             }
             
-            // Title
             Text(screensaver.name)
-                .font(.system(size: 13, weight: .semibold))
-                .foregroundColor(.white)
+                .font(.system(size: 13, weight: .bold))
+                .foregroundColor(isActive ? .white : CSTheme.textMuted)
                 .lineLimit(1)
-            
-            // Author (muted gray)
-            Text(screensaver.author)
-                .font(CSTheme.Font.caption)
-                .foregroundColor(CSTheme.textTertiary)
         }
         .frame(width: 200)
-        .scaleEffect(isHovered ? 1.04 : 1.0)
-        .shadow(
-            color: isHovered ? CSTheme.accent.opacity(0.2) : Color.clear,
-            radius: 16,
-            y: 6
-        )
-        .contentShape(Rectangle())
+        .scaleEffect(isHovered ? 1.05 : (isActive ? 1.02 : 1.0))
+        .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isHovered || isActive)
     }
-    
-    // MARK: - Badge
     
     @ViewBuilder
     private var badgeView: some View {
         if screensaver.isPremium {
             pillBadge(text: "PREMIUM", color: CSTheme.premiumGold, textColor: .black)
-        } else {
+        } else if screensaver.isNew {
             pillBadge(text: "NEW", color: CSTheme.accent, textColor: .white)
         }
     }
@@ -201,28 +224,13 @@ struct FeaturedThumbnail: View {
     private func pillBadge(text: String, color: Color, textColor: Color) -> some View {
         Text(text)
             .font(.system(size: 8, weight: .heavy))
-            .tracking(0.8)
-            .foregroundColor(textColor)
             .padding(.horizontal, 8)
             .padding(.vertical, 3)
-            .background(
-                Capsule().fill(color)
-            )
-            .shadow(color: color.opacity(0.4), radius: 6, y: 2)
+            .background(Capsule().fill(color))
+            .foregroundColor(textColor)
     }
     
-    // MARK: - Gradient
-    
     private var thumbnailGradient: LinearGradient {
-        let gradients: [LinearGradient] = [
-            LinearGradient(colors: [Color(hex: 0x0F172A), Color(hex: 0x1E3A5F), Color(hex: 0x0F766E)], startPoint: .topLeading, endPoint: .bottomTrailing),
-            LinearGradient(colors: [Color(hex: 0x1A1A2E), Color(hex: 0x16213E), Color(hex: 0x0F3460)], startPoint: .top, endPoint: .bottom),
-            LinearGradient(colors: [Color(hex: 0x2D1B69), Color(hex: 0x11998E)], startPoint: .topLeading, endPoint: .bottomTrailing),
-            LinearGradient(colors: [Color(hex: 0x0F0C29), Color(hex: 0x302B63), Color(hex: 0x24243E)], startPoint: .topLeading, endPoint: .bottomTrailing),
-            LinearGradient(colors: [Color(hex: 0x1F1C2C), Color(hex: 0x928DAB)], startPoint: .bottom, endPoint: .top),
-            LinearGradient(colors: [Color(hex: 0x0D324D), Color(hex: 0x7F5A83)], startPoint: .topLeading, endPoint: .bottomTrailing),
-        ]
-        let index = abs(screensaver.name.hashValue) % gradients.count
-        return gradients[index]
+        LinearGradient(colors: [Color.white.opacity(0.1), Color.white.opacity(0.05)], startPoint: .top, endPoint: .bottom)
     }
 }

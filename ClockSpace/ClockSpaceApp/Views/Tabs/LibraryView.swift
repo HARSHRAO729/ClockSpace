@@ -27,7 +27,12 @@ struct LibraryView: View {
                                 .foregroundColor(CSTheme.textTertiary)
                         }
                         Spacer()
-                        Button("Clear all") { }
+                        Button("Clear all") {
+                            withAnimation {
+                                apiManager.likedIDs.removeAll()
+                                UserDefaults.standard.removeObject(forKey: "cs_liked_ids")
+                            }
+                        }
                             .font(.system(size: 11, weight: .medium))
                             .foregroundColor(.white)
                             .padding(.horizontal, 16)
@@ -42,26 +47,32 @@ struct LibraryView: View {
                         createPlaylistCard
                         
                         // Existing Playlist Mock
-                        playlistCard(title: "Nature", color: Color.green.opacity(0.2))
+                        playlistCard(title: "Favorites", color: Color.red.opacity(0.2))
                         
                         Spacer()
                     }
                 }
                 
                 // ── Saved Wallpapers Section ──
+                let likedScreensavers = apiManager.screensavers.filter { apiManager.isLiked($0) }
+                
                 VStack(alignment: .leading, spacing: CSTheme.Spacing.lg) {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Saved Wallpapers")
                             .font(CSTheme.Font.sectionTitle)
                             .foregroundColor(.white)
-                        Text("Your collection of \(apiManager.screensavers.count) saved screensavers")
+                        Text("Your collection of \(likedScreensavers.count) favorited screensavers")
                             .font(CSTheme.Font.caption)
                             .foregroundColor(CSTheme.textTertiary)
                     }
                     
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
-                        ForEach(apiManager.screensavers.prefix(5)) { saver in
-                            ScreensaverCard(screensaver: saver)
+                    if likedScreensavers.isEmpty {
+                        emptySavedState
+                    } else {
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
+                            ForEach(likedScreensavers) { saver in
+                                ScreensaverCard(screensaver: saver)
+                            }
                         }
                     }
                 }
@@ -70,6 +81,20 @@ struct LibraryView: View {
             .padding(.top, CSTheme.Spacing.xl)
             .padding(.bottom, CSTheme.Spacing.xxxl)
         }
+    }
+    
+    private var emptySavedState: some View {
+        VStack(spacing: 20) {
+            Image(systemName: "heart.slash")
+                .font(.system(size: 40))
+                .foregroundColor(CSTheme.textTertiary)
+            Text("No saved wallpapers yet")
+                .font(CSTheme.Font.headline)
+                .foregroundColor(CSTheme.textMuted)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 40)
+        .background(RoundedRectangle(cornerRadius: 16).fill(Color.white.opacity(0.02)))
     }
     
     private var createPlaylistCard: some View {
