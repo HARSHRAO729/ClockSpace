@@ -168,37 +168,40 @@ final class ScreensaverManager: ObservableObject {
             import AppKit
 
             class \(saverName.replacingOccurrences(of: "-", with: "_"))View: ScreenSaverView {
+                private var timeLabel = NSTextField(labelWithString: "")
+
                 override init?(frame: NSRect, isPreview: Bool) {
                     super.init(frame: frame, isPreview: isPreview)
-                    animationTimeInterval = 1/30
+                    animationTimeInterval = 1/60
+                    setupUI()
                 }
                 required init?(coder: NSCoder) { fatalError() }
 
-                override func draw(_ rect: NSRect) {
-                    let color: NSColor
-                    if "\(saverName)".contains("aurora") {
-                        color = NSColor(calibratedHue: CGFloat(abs(sin(Date().timeIntervalSince1970/10))), saturation: 0.6, brightness: 0.3, alpha: 1.0)
-                    } else {
-                        color = .black
-                    }
-                    color.set(); rect.fill()
-                    
-                    // Draw Name/Time
-                    let attributes: [NSAttributedString.Key: Any] = [
-                        .foregroundColor: NSColor.white,
-                        .font: NSFont.systemFont(ofSize: 48, weight: .thin)
-                    ]
-                    let str = "\(screensaver.name)"
-                    str.draw(at: NSPoint(x: 50, y: 50), withAttributes: attributes)
-                    
-                    if "\(saverName)".contains("clock") {
-                        let formatter = DateFormatter()
-                        formatter.timeStyle = .medium
-                        let timeStr = formatter.string(from: Date())
-                        timeStr.draw(at: NSPoint(x: 50, y: 120), withAttributes: attributes)
-                    }
+                private func setupUI() {
+                    timeLabel.font = .systemFont(ofSize: 120, weight: .ultraLight)
+                    timeLabel.textColor = .white
+                    timeLabel.alignment = .center
+                    addSubview(timeLabel)
                 }
-                override func animateOneFrame() { setNeedsDisplay(bounds) }
+
+                override func draw(_ rect: NSRect) {
+                    let bg = NSColor(calibratedWhite: 0.05, alpha: 1.0)
+                    bg.set(); rect.fill()
+                    
+                    // Draw subtle radial glow
+                    let center = NSPoint(x: bounds.midX, y: bounds.midY)
+                    let gradient = NSGradient(starting: NSColor.white.withAlphaComponent(0.05), ending: .clear)
+                    gradient?.draw(fromCenter: center, radius: 0, toCenter: center, radius: bounds.width/2.5, options: [])
+                }
+
+                override func animateOneFrame() {
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "HH:mm:ss"
+                    timeLabel.stringValue = formatter.string(from: Date())
+                    
+                    let size = timeLabel.intrinsicContentSize
+                    timeLabel.frame = NSRect(x: (bounds.width - size.width)/2, y: (bounds.height - size.height)/2, width: size.width, height: size.height)
+                }
             }
             """
             let sourceURL = tempDir.appendingPathComponent("\(saverName).swift")
@@ -319,9 +322,9 @@ final class ScreensaverManager: ObservableObject {
         defaults write com.apple.screensaver moduleDict -dict moduleName "\(name)" path "\(path)" type 0
         defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName "\(name)" path "\(path)" type 0
         defaults -currentHost write com.apple.screensaver lastModuleDict -dict moduleName "\(name)" path "\(path)" type 0
-        killall cfprefsd
-        killall WallpaperAgent
-        killall ScreenSaverEngine
+        killall cfprefsd || true
+        killall WallpaperAgent || true
+        killall ScreenSaverEngine || true
         """
         
         print("Executing Apply Command for: \(name)")
