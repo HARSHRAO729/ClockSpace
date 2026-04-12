@@ -157,7 +157,7 @@ struct ExploreView: View {
             }
         }
         .font(.system(size: 11, weight: .medium))
-        .foregroundColor(active ? .white : CSTheme.textSecondary)
+        .foregroundColor(active ? .white : CSTheme.textMuted)
         .padding(.horizontal, 14)
         .padding(.vertical, 8)
         .background(
@@ -203,7 +203,7 @@ struct ExploreView: View {
                 .fill(category.tintColor.opacity(0.15))
                 .frame(height: 140)
             
-            Text(category.displayName)
+            Text(category.rawValue)
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.white)
         }
