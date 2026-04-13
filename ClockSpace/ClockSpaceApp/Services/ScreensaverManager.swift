@@ -60,8 +60,8 @@ final class ScreensaverManager: ObservableObject {
     static let shared = ScreensaverManager()
     
     private init() {
-        // On launch, scan for already-installed screensavers
-        scanInstalledScreensavers()
+        // Force clear all installed ClockSpace screensavers on launch for a fresh start
+        clearAllInstalled()
     }
     
     // MARK: - Installation Directory
