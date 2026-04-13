@@ -220,6 +220,14 @@ final class ScreensaverManager: ObservableObject {
                 throw ScreensaverInstallError.unknown("Compiler Error: \(errorOutput)")
             }
             
+            // Add ad-hoc codesigning to bypass Gatekeeper 15-second delay
+            let codesignCmd = "codesign --force --sign - \"\(stubURL.path)\""
+            let process2 = Process()
+            process2.executableURL = URL(fileURLWithPath: "/bin/zsh")
+            process2.arguments = ["-c", codesignCmd]
+            try process2.run()
+            process2.waitUntilExit()
+            
             // Generate actual thumbnail to be displayed in macOS System Settings
             let resourcesDir = stubURL.appendingPathComponent("Contents/Resources")
             try fileManager.createDirectory(at: resourcesDir, withIntermediateDirectories: true)
@@ -370,8 +378,23 @@ final class ScreensaverManager: ObservableObject {
             return false
         }
         
-        // Use modern macOS Sonoma Deep Link Handoff to Wallpaper settings
-        NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.Wallpaper-Settings.extension")!)
+        // ── Real Time Apply Attempt ──
+        // This tries to set it in the background before showing the UI
+        let script = """
+        defaults -currentHost write com.apple.screensaver moduleDict -dict-add moduleName "\(name)" path "\(path)" type 0
+        killall cfprefsd
+        """
+        
+        // Note: Running this from an app might fail if sandboxed. 
+        // We assume sandbox is disabled as per the instructions.
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/bin/zsh")
+        process.arguments = ["-c", script]
+        try? process.run()
+        process.waitUntilExit()
+
+        // Use modern macOS Sonoma Deep Link Handoff to ScreenSaver settings
+        NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.ScreenSaver-Settings.extension")!)
         return true
     }
     
