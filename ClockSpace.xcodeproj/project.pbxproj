@@ -6,7 +6,12 @@
 	objectVersion = 100;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		686EAD772F8D89AC00D1B7B6 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 686EAD762F8D89AC00D1B7B6 /* Secrets.xcconfig */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		686EAD762F8D89AC00D1B7B6 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		68B0E4FC2F8B1B2F00A63E1D /* ClockSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClockSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -32,6 +37,7 @@
 			children = (
 				68B0E4FE2F8B1B2F00A63E1D /* ClockSpaceApp */,
 				68B0E4FD2F8B1B2F00A63E1D /* Products */,
+				686EAD762F8D89AC00D1B7B6 /* Secrets.xcconfig */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 0;
@@ -104,6 +110,7 @@
 		68B0E4FA2F8B1B2F00A63E1D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
+				686EAD772F8D89AC00D1B7B6 /* Secrets.xcconfig in Resources */,
 			);
 		};
 /* End PBXResourcesBuildPhase section */
@@ -119,6 +126,7 @@
 /* Begin XCBuildConfiguration section */
 		68B0E5052F8B1B2F00A63E1D /* Debug configuration for PBXProject "ClockSpace" */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 686EAD762F8D89AC00D1B7B6 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -182,6 +190,7 @@
 		};
 		68B0E5062F8B1B2F00A63E1D /* Release configuration for PBXProject "ClockSpace" */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 686EAD762F8D89AC00D1B7B6 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -237,6 +246,7 @@
 		};
 		68B0E5082F8B1B2F00A63E1D /* Debug configuration for PBXNativeTarget "ClockSpace" */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 686EAD762F8D89AC00D1B7B6 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -269,6 +279,7 @@
 		};
 		68B0E5092F8B1B2F00A63E1D /* Release configuration for PBXNativeTarget "ClockSpace" */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 686EAD762F8D89AC00D1B7B6 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
