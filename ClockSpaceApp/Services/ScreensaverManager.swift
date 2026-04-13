@@ -147,16 +147,29 @@ final class ScreensaverManager: ObservableObject {
             // Handle local bundled savers
             if screensaver.downloadURL.hasPrefix("local://") {
                 let bundleFileName = String(screensaver.downloadURL.dropFirst(8))
-                guard let bundleURL = Bundle.main.url(forResource: (bundleFileName as NSString).deletingPathExtension, withExtension: "saver", subdirectory: "BundledSavers") else {
-                    throw ScreensaverInstallError.fileNotFound(URL(fileURLWithPath: "BundledSavers/\(bundleFileName)"))
+                let resourceName = (bundleFileName as NSString).deletingPathExtension
+                
+                // Try searching in BundledSavers subdirectory first
+                var bundleURL = Bundle.main.url(forResource: resourceName, withExtension: "saver", subdirectory: "BundledSavers")
+                
+                // Fallback: search in root Resources folder if flattened
+                if bundleURL == nil {
+                    bundleURL = Bundle.main.url(forResource: resourceName, withExtension: "saver")
                 }
                 
-                guard FileManager.default.fileExists(atPath: bundleURL.path) else {
-                    throw ScreensaverInstallError.fileNotFound(bundleURL)
+                guard let finalBundleURL = bundleURL else {
+                    let searchPath = Bundle.main.resourcePath ?? "Resources"
+                    throw ScreensaverInstallError.fileNotFound(URL(fileURLWithPath: "\(searchPath)/\(bundleFileName)"))
+                }
+                
+                let bundleURLResolved = finalBundleURL
+                
+                guard FileManager.default.fileExists(atPath: bundleURLResolved.path) else {
+                    throw ScreensaverInstallError.fileNotFound(bundleURLResolved)
                 }
                 
                 // Copy to Screen Savers directory
-                try installScreensaver(from: bundleURL)
+                try installScreensaver(from: bundleURLResolved)
                 
                 // Mark as installed
                 installedIDs.insert(id)
