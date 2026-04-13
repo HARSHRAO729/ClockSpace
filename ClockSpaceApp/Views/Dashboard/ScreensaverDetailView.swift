@@ -31,19 +31,43 @@ struct ScreensaverDetailView: View {
     }
     
     var body: some View {
-        ZStack {
-            // ── Live Preview Background ──
+        ZStack(alignment: .topLeading) {
+            // ── Live Preview Background (Full Screen) ──
             livePreviewBackground
                 .ignoresSafeArea()
+            
+            // ── Dedicated Close Button (Top Left) ──
+            Button(action: {
+                withAnimation(CSTheme.Animation.standard) {
+                    apiManager.detailedScreensaver = nil
+                }
+            }) {
+                HStack(spacing: 8) {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 14, weight: .bold))
+                    Text("Close Preview")
+                        .font(.system(size: 13, weight: .semibold))
+                }
+                .foregroundColor(.white)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
+                .background(Capsule().fill(Color.black.opacity(0.6)).background(.ultraThinMaterial))
+                .overlay(Capsule().stroke(Color.white.opacity(0.2), lineWidth: 1))
+            }
+            .buttonStyle(.plain)
+            .padding(.top, 24)
+            .padding(.leading, 24)
+            .transition(.move(edge: .top).combined(with: .opacity))
             
             // ── Floating Action Pill (Bottom) ──
             VStack {
                 Spacer()
                 
                 actionPill
-                    .padding(.bottom, 40)
+                    .padding(.bottom, 32)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .alert("Installation Error", isPresented: Binding(
             get: { manager.lastError != nil },
             set: { if !$0 { manager.lastError = nil } }
@@ -137,12 +161,9 @@ struct ScreensaverDetailView: View {
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(.white)
                     
-                    HStack(spacing: 6) {
-                        Image(systemName: "person.fill")
-                        Text(screensaver.author)
-                    }
-                    .font(.system(size: 10, weight: .medium))
-                    .foregroundColor(CSTheme.textTertiary)
+                    Text("by \(screensaver.author)")
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundColor(CSTheme.textTertiary)
                 }
             }
             
