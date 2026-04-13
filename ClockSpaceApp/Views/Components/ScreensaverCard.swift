@@ -214,4 +214,19 @@ struct ScreensaverCard: View {
         let index = abs(saver.name.hashValue) % gradients.count
         return gradients[index]
     }
+    
+    private var fallbackThumbnail: some View {
+        ZStack {
+            gradient(for: screensaver)
+            VStack(spacing: 8) {
+                Image(systemName: screensaver.category.iconName)
+                    .font(.system(size: 32))
+                Text(screensaver.category.rawValue.uppercased())
+                    .font(.system(size: 10, weight: .black))
+                    .tracking(2)
+            }
+            .foregroundColor(.white.opacity(0.3))
+        }
+        .frame(height: 160)
+    }
 }
