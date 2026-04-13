@@ -66,7 +66,17 @@ struct ScreensaverCard: View {
                     }
             } else if screensaver.thumbnailURL != "placeholder" {
                 Group {
-                    if let nsImage = NSImage(named: screensaver.thumbnailURL) ?? NSImage(contentsOfFile: "/Users/harshrao/ClockSpace/scratch/all_previews/" + screensaver.thumbnailURL) {
+                    let resourceName = (screensaver.thumbnailURL as NSString).deletingPathExtension
+                    let ext = (screensaver.thumbnailURL as NSString).pathExtension
+                    
+                    if let bundleURL = Bundle.main.url(forResource: resourceName, withExtension: ext, subdirectory: "Thumbnails"),
+                       let nsImage = NSImage(contentsOf: bundleURL) {
+                        Image(nsImage: nsImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(height: 160)
+                            .clipped()
+                    } else if let nsImage = NSImage(named: screensaver.thumbnailURL) {
                         Image(nsImage: nsImage)
                             .resizable()
                             .aspectRatio(contentMode: .fill)

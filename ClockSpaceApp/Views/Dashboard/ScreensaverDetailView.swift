@@ -55,8 +55,9 @@ struct ScreensaverDetailView: View {
                 .overlay(Capsule().stroke(Color.white.opacity(0.2), lineWidth: 1))
             }
             .buttonStyle(.plain)
-            .padding(.top, 24)
-            .padding(.leading, 24)
+            .padding(.top, 40) // Increased padding for better visibility
+            .padding(.leading, 40)
+            .zIndex(101) // Higher priority
             .transition(.move(edge: .top).combined(with: .opacity))
             
             // ── Floating Action Pill (Bottom) ──
@@ -64,8 +65,10 @@ struct ScreensaverDetailView: View {
                 Spacer()
                 
                 actionPill
-                    .padding(.bottom, 32)
+                    .padding(.bottom, 60) // Lift it up slightly
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .zIndex(102) // On top of close button even
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .alert("Installation Error", isPresented: Binding(
@@ -101,30 +104,26 @@ struct ScreensaverDetailView: View {
                     }
             } else {
                 ZStack {
-                    if screensaver.thumbnailURL != "placeholder",
-                       let nsImage = NSImage(named: screensaver.thumbnailURL) ?? NSImage(contentsOfFile: "/Users/harshrao/ClockSpace/scratch/all_previews/" + screensaver.thumbnailURL) {
-                        Image(nsImage: nsImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .ignoresSafeArea()
+                    if screensaver.thumbnailURL != "placeholder" {
+                        let resourceName = (screensaver.thumbnailURL as NSString).deletingPathExtension
+                        let ext = (screensaver.thumbnailURL as NSString).pathExtension
+                        
+                        if let bundleURL = Bundle.main.url(forResource: resourceName, withExtension: ext, subdirectory: "Thumbnails"),
+                           let nsImage = NSImage(contentsOf: bundleURL) {
+                            Image(nsImage: nsImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .ignoresSafeArea()
+                        } else if let nsImage = NSImage(named: screensaver.thumbnailURL) {
+                            Image(nsImage: nsImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .ignoresSafeArea()
+                        } else {
+                            fallbackBackground
+                        }
                     } else {
-                        // Base static gradient
-                        gradient(for: screensaver)
-                        
-                        // Shifting Mesh Gradient Simulation
-                        MeshGradientView(tintColor: screensaver.category.tintColor)
-                        
-                        // "Scanline" light sweep
-                        Rectangle()
-                            .fill(
-                                LinearGradient(
-                                    colors: [.clear, .white.opacity(0.05), .clear],
-                                    startPoint: .top,
-                                    endPoint: .bottom
-                                )
-                            )
-                            .frame(height: 200)
-                            .offset(y: isAnimating ? boundsHeight : -boundsHeight)
+                        fallbackBackground
                     }
                 }
             }
@@ -239,9 +238,17 @@ struct ScreensaverDetailView: View {
             
         case .installed:
             Button(action: {
-                let saverName = screensaver.name.replacingOccurrences(of: " ", with: "-").lowercased()
-                let saverPath = manager.screenSaversDirectory.appendingPathComponent("\(saverName).saver").path
-                let success = manager.applyScreensaver(name: saverName, path: saverPath)
+                // Determine the exact filename from downloadURL if possible, otherwise fallback to name
+                let fileName: String
+                if screensaver.downloadURL.hasPrefix("local://") {
+                    fileName = String(screensaver.downloadURL.dropFirst(8))
+                } else {
+                    let nameSlug = screensaver.name.replacingOccurrences(of: " ", with: "-").lowercased()
+                    fileName = "\(nameSlug).saver"
+                }
+                
+                let saverPath = manager.screenSaversDirectory.appendingPathComponent(fileName).path
+                let success = manager.applyScreensaver(name: screensaver.name, path: saverPath)
                 if success {
                     manager.activeID = screensaver.id
                 } else {
@@ -258,6 +265,7 @@ struct ScreensaverDetailView: View {
             }
             .buttonStyle(.plain)
 
+
             
         case .active:
             HStack(spacing: 6) {
@@ -271,6 +279,28 @@ struct ScreensaverDetailView: View {
             .padding(.vertical, 14)
             .background(Capsule().fill(CSTheme.accent.opacity(0.12)))
             .overlay(Capsule().stroke(CSTheme.accent.opacity(0.3), lineWidth: 1))
+        }
+    }
+    
+    private var fallbackBackground: some View {
+        ZStack {
+            // Base static gradient
+            gradient(for: screensaver)
+            
+            // Shifting Mesh Gradient Simulation
+            MeshGradientView(tintColor: screensaver.category.tintColor)
+            
+            // "Scanline" light sweep
+            Rectangle()
+                .fill(
+                    LinearGradient(
+                        colors: [.clear, .white.opacity(0.05), .clear],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
+                .frame(height: 200)
+                .offset(y: isAnimating ? boundsHeight : -boundsHeight)
         }
     }
     
