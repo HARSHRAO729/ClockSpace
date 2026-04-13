@@ -85,9 +85,17 @@ struct HeroView: View {
     
     private func heroImage(for heroItem: Screensaver) -> some View {
         ZStack {
-            // Cinematic background gradient
-            gradient(for: heroItem)
-                .frame(height: 480)
+            // Cinematic background (Image or gradient)
+            if heroItem.thumbnailURL != "placeholder",
+               let nsImage = NSImage(named: heroItem.thumbnailURL) ?? NSImage(contentsOfFile: "/Users/harshrao/ClockSpace/scratch/all_previews/" + heroItem.thumbnailURL) {
+                Image(nsImage: nsImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(height: 480)
+            } else {
+                gradient(for: heroItem)
+                    .frame(height: 480)
+            }
             
             // Hero info overlay
             VStack(alignment: .leading, spacing: CSTheme.Spacing.md) {
@@ -189,13 +197,24 @@ struct FeaturedThumbnail: View {
         VStack(alignment: .leading, spacing: CSTheme.Spacing.sm) {
             // Thumbnail image
             ZStack(alignment: .topLeading) {
-                RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
-                    .fill(thumbnailGradient)
-                    .frame(width: 200, height: 130)
-                    .overlay(
+                Group {
+                    if screensaver.thumbnailURL != "placeholder",
+                       let nsImage = NSImage(named: screensaver.thumbnailURL) ?? NSImage(contentsOfFile: "/Users/harshrao/ClockSpace/scratch/all_previews/" + screensaver.thumbnailURL) {
+                        Image(nsImage: nsImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 200, height: 130)
+                            .clipShape(RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous))
+                    } else {
                         RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
-                            .stroke(isActive ? Color.white : Color.clear, lineWidth: 3)
-                    )
+                            .fill(thumbnailGradient)
+                            .frame(width: 200, height: 130)
+                    }
+                }
+                .overlay(
+                    RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
+                        .stroke(isActive ? Color.white : Color.clear, lineWidth: 3)
+                )
                 
                 // Badge
                 badgeView

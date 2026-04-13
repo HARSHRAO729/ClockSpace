@@ -144,22 +144,41 @@ final class ScreensaverManager: ObservableObject {
         lastError = nil
         
         do {
-            // Simulate download time
-            try await Task.sleep(nanoseconds: 1_200_000_000) // 1.2s
-            
-            // Create a stub .saver placeholder in the temp directory
-            let tempDir = FileManager.default.temporaryDirectory
-            let saverName = screensaver.name
-                .replacingOccurrences(of: " ", with: "-")
-                .lowercased()
-            let stubURL = tempDir.appendingPathComponent("\(saverName).saver")
-            
-            // Create a minimal directory bundle to simulate a real .saver
-            let fileManager = FileManager.default
-            if fileManager.fileExists(atPath: stubURL.path) {
-                try fileManager.removeItem(at: stubURL)
-            }
-            try fileManager.createDirectory(at: stubURL, withIntermediateDirectories: true)
+            // Handle local bundled savers
+            if screensaver.downloadURL.hasPrefix("local://") {
+                let bundleFileName = String(screensaver.downloadURL.dropFirst(8))
+                guard let bundleURL = Bundle.main.url(forResource: (bundleFileName as NSString).deletingPathExtension, withExtension: "saver", subdirectory: "BundledSavers") else {
+                    throw ScreensaverInstallError.fileNotFound(URL(fileURLWithPath: "BundledSavers/\(bundleFileName)"))
+                }
+                
+                guard FileManager.default.fileExists(atPath: bundleURL.path) else {
+                    throw ScreensaverInstallError.fileNotFound(bundleURL)
+                }
+                
+                // Copy to Screen Savers directory
+                try installScreensaver(from: bundleURL)
+                
+                // Mark as installed
+                installedIDs.insert(id)
+                persistInstalledIDs()
+                
+            } else {
+                // Original stub/compilation logic for remote/template savers
+                try await Task.sleep(nanoseconds: 1_200_000_000) // 1.2s
+                
+                // Create a stub .saver placeholder in the temp directory
+                let tempDir = FileManager.default.temporaryDirectory
+                let saverName = screensaver.name
+                    .replacingOccurrences(of: " ", with: "-")
+                    .lowercased()
+                let stubURL = tempDir.appendingPathComponent("\(saverName).saver")
+                
+                // Create a minimal directory bundle to simulate a real .saver
+                let fileManager = FileManager.default
+                if fileManager.fileExists(atPath: stubURL.path) {
+                    try fileManager.removeItem(at: stubURL)
+                }
+                try fileManager.createDirectory(at: stubURL, withIntermediateDirectories: true)
             
             // ── COMPILATION: Create a functional binary based on the selected template ──
             let swiftSource = generateSwiftSource(for: screensaver, className: saverName.replacingOccurrences(of: "-", with: "_"))
@@ -270,9 +289,9 @@ final class ScreensaverManager: ObservableObject {
             installedIDs.insert(id)
             persistInstalledIDs()
             
-            // Clean up temp stub
-            try? fileManager.removeItem(at: stubURL)
-            
+                // Clean up temp stub
+                try? fileManager.removeItem(at: stubURL)
+            }
         } catch let error as ScreensaverInstallError {
             lastError = error
         } catch {

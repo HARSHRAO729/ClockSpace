@@ -64,19 +64,20 @@ struct ScreensaverCard: View {
                     .onAppear {
                         // Silent autoplay
                     }
+            } else if screensaver.thumbnailURL != "placeholder" {
+                Group {
+                    if let nsImage = NSImage(named: screensaver.thumbnailURL) ?? NSImage(contentsOfFile: "/Users/harshrao/ClockSpace/scratch/all_previews/" + screensaver.thumbnailURL) {
+                        Image(nsImage: nsImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(height: 160)
+                            .clipped()
+                    } else {
+                        fallbackThumbnail
+                    }
+                }
             } else {
-                gradient(for: screensaver)
-                    .scaleEffect(isHovering ? 1.4 : 1.0)
-                    .rotationEffect(Angle.degrees(isHovering ? 10 : 0))
-                    .animation(Animation.linear(duration: 8.0).repeatForever(autoreverses: true), value: isHovering)
-                    .frame(height: 160)
-                    .overlay(
-                        Image(systemName: isHovering ? "play.circle.fill" : "sparkles")
-                            .font(.system(size: isHovering ? 48 : 32, weight: .ultraLight))
-                            .foregroundColor(.white.opacity(0.2))
-                            .scaleEffect(isHovering ? 1.1 : 1.0)
-                            .animation(.easeInOut(duration: 1.0).repeatForever(), value: isHovering)
-                    )
+                fallbackThumbnail
             }
             
             // Overlapping badge (Wallspace style)

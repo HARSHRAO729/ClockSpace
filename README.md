@@ -5,10 +5,10 @@
 ### 🚀 Key Features
 
 *   **Cinematic Marketplace UI**: A flawlessly crafted Glassmorphism and SwiftUI design system with horizontal carousels, dynamic grids, and a full-screen blur focus mode.
-*   **Quartz Transformation Engine**: Say goodbye to basic widgets. ClockSpace dynamically compiles Swift UI and CoreGraphics code on-the-fly (`swiftc`) directly into executable `.saver` bundles.
-*   **Sci-Fi HUD Screensaver**: Features a state-of-the-art vector-style clock with neon cyan/magenta rotating rings, 3D typography, and a dark nebula environment.
-*   **Installation Bypass**: Secure App Sandbox traversal via intelligent `cfprefsd` and `defaults` shell interventions to gracefully hot-swap screensavers without needing System Preferences.
-*   **Community Hub**: An elite UI flow that prepares you to curate, drop, and publish 4K high-bitrate screensavers seamlessly back to the community via REST.
+*   **Vast Community Catalog**: Includes over 54 high-quality community-sourced screensavers pre-bundled, ranging from Matrix digital rains to minimalist flip clocks and WatchOS styles.
+*   **Quartz Transformation Engine**: Features the ability to dynamically compile Swift UI and CoreGraphics code on-the-fly (`swiftc`) directly into executable `.saver` bundles.
+*   **Seamless Application Flow**: A streamlined "Apply" workflow that installs bundles to `~/Library/Screen Savers/` and triggers a deep link to macOS System Settings for instant activation.
+*   **Live Previews**: Dynamic, visual-first browsing experience with actual preview images from the catalog rendered in the dashboard and detail views.
 
 ### 🛠️ Architecture
 
