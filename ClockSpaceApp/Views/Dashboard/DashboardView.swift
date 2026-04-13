@@ -52,6 +52,7 @@ struct DashboardView: View {
                 showSettings: $showSettings,
                 showAdd: $showAdd
             )
+            .zIndex(10)
             .opacity(isSearchPresented ? 0 : 1)
             
             if isSearchPresented {
@@ -62,10 +63,10 @@ struct DashboardView: View {
             // ── Detailed Screensaver Overlay ──
             if let saver = apiManager.detailedScreensaver {
                 ScreensaverDetailView(screensaver: saver)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .ignoresSafeArea()
+                    .frame(width: CSConstants.Layout.windowMaxWidth, height: CSConstants.Layout.windowMaxHeight)
+                    .clipped()
                     .transition(.opacity.combined(with: .scale(scale: 0.95)))
-                    .zIndex(100) // Ensure it floats above everything
+                    .zIndex(100)
             }
         }
         // ── Sheet Presentations ──
@@ -94,6 +95,16 @@ struct DashboardView: View {
                 
                 // ── Hero section with fading gradient ──
                 HeroView(featuredScreensavers: featuredItems)
+                    .frame(height: 480)
+                    .mask(
+                        LinearGradient(
+                            colors: [.white, .white, .white, .white.opacity(0.3), .clear],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
+                    .clipped()
+                    .padding(.bottom, 40)
                 
                 VStack(spacing: CSTheme.Spacing.xxl) {
                     // ── Latest Collection (Horizontal) ──

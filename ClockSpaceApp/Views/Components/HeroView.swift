@@ -92,6 +92,7 @@ struct HeroView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(height: 480)
+                    .clipped()
             } else {
                 gradient(for: heroItem)
                     .frame(height: 480)
@@ -102,14 +103,16 @@ struct HeroView: View {
                 Spacer()
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("FEATURED")
-                        .font(.system(size: 11, weight: .black))
-                        .foregroundColor(.white.opacity(0.6))
-                        .tracking(3)
-                    
                     Text(heroItem.name)
-                        .font(.system(size: 44, weight: .bold))
+                        .font(.system(size: 64, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
+                        .shadow(color: .black.opacity(0.3), radius: 20)
+                    
+                    Text(heroItem.category.rawValue.uppercased())
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(.white.opacity(0.6))
+                        .tracking(4)
+                        .padding(.top, -10)
                         .shadow(color: .black.opacity(0.3), radius: 10)
                     
                     HStack(spacing: 12) {
@@ -158,13 +161,6 @@ struct HeroView: View {
             .padding(.bottom, 140)
         }
         .frame(height: 480)
-        .mask(
-            LinearGradient(
-                colors: [.white, .white, .white, .white.opacity(0.3), .clear],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-        )
     }
     
     private var heroPlaceholder: some View {
