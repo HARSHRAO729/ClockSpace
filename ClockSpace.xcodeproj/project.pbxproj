@@ -30,7 +30,7 @@
 		68B0E4F32F8B1B2F00A63E1D = {
 			isa = PBXGroup;
 			children = (
-				68B0E4FE2F8B1B2F00A63E1D /* ClockSpace */,
+				68B0E4FE2F8B1B2F00A63E1D /* ClockSpaceApp */,
 				68B0E4FD2F8B1B2F00A63E1D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,7 +58,7 @@
 			buildRules = (
 			);
 			fileSystemSynchronizedGroups = (
-				68B0E4FE2F8B1B2F00A63E1D /* ClockSpace */,
+				68B0E4FE2F8B1B2F00A63E1D /* ClockSpaceApp */,
 			);
 			name = ClockSpace;
 			productName = ClockSpace;
