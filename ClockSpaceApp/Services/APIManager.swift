@@ -28,14 +28,23 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
     @Published var detailedScreensaver: Screensaver? = nil
     @Published var likedIDs: Set<UUID> = []
     @Published var selectedCategory: Category? = nil
+    @Published var playlists: [String] = ["Favorites"] // Mock playlists
     
     // MARK: - Singleton
     
     static let shared = APIManager()
     
     private init() {
-        // Mock some liked items
+        // Populate initially
+        self.screensavers = Self.mockScreensavers
         loadLikedItems()
+    }
+    
+    func clearLikedItems() {
+        likedIDs.removeAll()
+        playlists.removeAll() // Clear all user data
+        UserDefaults.standard.removeObject(forKey: "cs_liked_ids")
+        saveLikedItems()
     }
     
     func toggleLiked(_ saver: Screensaver) {
@@ -72,20 +81,22 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
         errorMessage = nil
         
         // Simulate network latency
-        try await Task.sleep(nanoseconds: 500_000_000) // 0.5s
+        try await Task.sleep(nanoseconds: 300_000_000) // 0.3s
         
         let allSavers = Self.mockScreensavers
-        let filtered: [Screensaver]
         
-        if let category = category {
-            filtered = allSavers.filter { $0.category == category }
-        } else {
-            filtered = allSavers
+        // Update global catalog if it's empty
+        if self.screensavers.isEmpty {
+            self.screensavers = allSavers
         }
         
-        screensavers = filtered
         isLoading = false
-        return filtered
+        
+        if let category = category {
+            return allSavers.filter { $0.category == category }
+        } else {
+            return allSavers
+        }
     }
     
     /// Search screensavers by name or tag.
@@ -154,12 +165,13 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
             author: "Yuji Adachi",
             downloadCount: 184_500,
             tags: ["clock", "flip", "retro", "minimal"],
-            createdAt: Date().addingTimeInterval(-86400 * 365),
+            createdAt: Date().addingTimeInterval(-86400 * 5),
             rank: 1,
             resolution: "Retina",
             fileSize: "3MB",
-            isNew: false,
-            template: "flip"
+            isNew: true,
+            template: "flip",
+            previewURL: "https://assets.mixkit.co/videos/preview/mixkit-mechanical-flip-clock-close-up-34538-large.mp4"
         ),
         
         Screensaver(
@@ -239,7 +251,8 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
             resolution: "Retina",
             fileSize: "2MB",
             isNew: false,
-            template: "flip"
+            template: "flip",
+            previewURL: "https://assets.mixkit.co/videos/preview/mixkit-mechanical-flip-clock-close-up-34538-large.mp4"
         ),
         
         Screensaver(
@@ -1048,6 +1061,46 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
             fileSize: "Dynamic",
             isNew: true,
             template: "nature"
+        ),
+        
+        Screensaver(
+            id: stableUUID("multiclock"),
+            name: "MultiClock",
+            description: "World clock displaying multiple time zones simultaneously.",
+            category: .clocks,
+            thumbnailURL: "multiclock",
+            downloadURL: "https://github.com/multiclock",
+            isPremium: false,
+            price: nil,
+            author: "Community",
+            downloadCount: 5_400,
+            tags: ["clock", "world", "time"],
+            createdAt: Date().addingTimeInterval(-86400 * 10),
+            rank: nil,
+            resolution: "Retina",
+            fileSize: "2MB",
+            isNew: true,
+            template: "minimal"
+        ),
+        
+        Screensaver(
+            id: stableUUID("screenmaze"),
+            name: "ScreenMaze",
+            description: "Classic Windows-inspired maze generator.",
+            category: .retro,
+            thumbnailURL: "screenmaze",
+            downloadURL: "https://github.com/screenmaze",
+            isPremium: false,
+            price: nil,
+            author: "Community",
+            downloadCount: 9_100,
+            tags: ["retro", "maze", "classic"],
+            createdAt: Date().addingTimeInterval(-86400 * 15),
+            rank: nil,
+            resolution: "Retina",
+            fileSize: "1MB",
+            isNew: true,
+            template: "generative"
         ),
     ]
 }

@@ -13,74 +13,79 @@ struct LibraryView: View {
     @State private var hoveredPlaylist: Int?
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack(spacing: CSTheme.Spacing.xxl) {
-                // ── Wallpaper Playlists Section ──
-                VStack(alignment: .leading, spacing: CSTheme.Spacing.lg) {
-                    HStack(alignment: .bottom) {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("Wallpaper Playlists")
-                                .font(CSTheme.Font.sectionTitle)
-                                .foregroundColor(.white)
-                            Text("Create playlists and auto-rotate your favorite screensavers")
-                                .font(CSTheme.Font.caption)
-                                .foregroundColor(CSTheme.textTertiary)
-                        }
-                        Spacer()
-                        Button("Clear all") {
-                            withAnimation {
-                                apiManager.likedIDs.removeAll()
-                                UserDefaults.standard.removeObject(forKey: "cs_liked_ids")
-                            }
-                        }
-                            .font(.system(size: 11, weight: .medium))
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                            .background(Color.white.opacity(0.1))
-                            .cornerRadius(6)
-                            .buttonStyle(.plain)
-                    }
-                    
-                    HStack(spacing: CSTheme.Spacing.lg) {
-                        // Create Playlist Card
-                        createPlaylistCard
-                        
-                        // Existing Playlist Mock
-                        playlistCard(title: "Favorites", color: Color.red.opacity(0.2))
-                        
-                        Spacer()
-                    }
-                }
-                
-                // ── Saved Wallpapers Section ──
-                let likedScreensavers = apiManager.screensavers.filter { apiManager.isLiked($0) }
-                
-                VStack(alignment: .leading, spacing: CSTheme.Spacing.lg) {
+        VStack(spacing: CSTheme.Spacing.xxl) {
+            // ── Wallpaper Playlists Section ──
+            VStack(alignment: .leading, spacing: CSTheme.Spacing.lg) {
+                HStack(alignment: .bottom) {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Saved Wallpapers")
+                        Text("Wallpaper Playlists")
                             .font(CSTheme.Font.sectionTitle)
                             .foregroundColor(.white)
-                        Text("Your collection of \(likedScreensavers.count) favorited screensavers")
+                        Text("Create playlists and auto-rotate your favorite screensavers")
+                            .font(CSTheme.Font.caption)
+                            .foregroundColor(CSTheme.textTertiary)
+                    }
+                    Spacer()
+                    Button("Clear all") {
+                        withAnimation {
+                            apiManager.clearLikedItems()
+                        }
+                    }
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(Color.white.opacity(0.1))
+                        .cornerRadius(6)
+                        .buttonStyle(.plain)
+                }
+                
+                HStack(spacing: CSTheme.Spacing.lg) {
+                    // Create Playlist Card
+                    createPlaylistCard
+                    
+                    // Existing Playlist Mock
+                    ForEach(apiManager.playlists, id: \.self) { playlist in
+                        playlistCard(title: playlist, color: Color.red.opacity(0.2))
+                    }
+                    
+                    if apiManager.playlists.isEmpty {
+                        Text("No playlists created.")
                             .font(CSTheme.Font.caption)
                             .foregroundColor(CSTheme.textTertiary)
                     }
                     
-                    if likedScreensavers.isEmpty {
-                        emptySavedState
-                    } else {
-                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
-                            ForEach(likedScreensavers) { saver in
-                                ScreensaverCard(screensaver: saver)
-                            }
+                    Spacer()
+                }
+            }
+            
+            // ── Saved Wallpapers Section ──
+            let likedScreensavers = apiManager.screensavers.filter { apiManager.isLiked($0) }
+            
+            VStack(alignment: .leading, spacing: CSTheme.Spacing.lg) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Saved Wallpapers")
+                        .font(CSTheme.Font.sectionTitle)
+                        .foregroundColor(.white)
+                    Text("Your collection of \(likedScreensavers.count) favorited screensavers")
+                        .font(CSTheme.Font.caption)
+                        .foregroundColor(CSTheme.textTertiary)
+                }
+                
+                if likedScreensavers.isEmpty {
+                    emptySavedState
+                } else {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
+                        ForEach(likedScreensavers) { saver in
+                            ScreensaverCard(screensaver: saver)
                         }
                     }
                 }
             }
-            .padding(.horizontal, CSTheme.Spacing.xxl)
-            .padding(.top, CSTheme.Spacing.xl)
-            .padding(.bottom, CSTheme.Spacing.xxxl)
         }
+        .padding(.horizontal, CSTheme.Spacing.xxl)
+        .padding(.top, CSTheme.Spacing.xl)
+        .padding(.bottom, CSTheme.Spacing.xxxl)
     }
     
     private var emptySavedState: some View {
