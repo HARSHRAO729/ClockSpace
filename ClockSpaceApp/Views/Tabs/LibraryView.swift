@@ -29,13 +29,14 @@ struct LibraryView: View {
                     Button("Clear all") {
                         withAnimation {
                             apiManager.clearLikedItems()
+                            ScreensaverManager.shared.clearAllInstalled()
                         }
                     }
                         .font(.system(size: 11, weight: .medium))
                         .foregroundColor(.white)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                        .background(Color.white.opacity(0.1))
+                        .background(Color.red.opacity(0.1))
                         .cornerRadius(6)
                         .buttonStyle(.plain)
                 }

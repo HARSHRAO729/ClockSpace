@@ -1,0 +1,4180 @@
+{
+  "dict" : {
+    "ac" : {
+      "code" : "ac",
+      "continent" : "ao",
+      "localName" : "Ascension Island",
+      "names" : {
+        "de" : "Ascension",
+        "en" : "Ascension Island",
+        "es" : "Isla de la Ascensión",
+        "fr" : "Île de l’Ascension",
+        "it" : "Isola di Ascensione",
+        "ru" : "о-в Вознесения"
+      },
+      "string" : "🇦🇨",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Ascension_Island"
+    },
+    "ad" : {
+      "code" : "ad",
+      "continent" : "eu",
+      "localName" : "Andorra",
+      "names" : {
+        "de" : "Andorra",
+        "en" : "Andorra",
+        "es" : "Andorra",
+        "fr" : "Andorre",
+        "it" : "Andorra",
+        "ru" : "Андорра"
+      },
+      "string" : "🇦🇩",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Andorra"
+    },
+    "ae" : {
+      "code" : "ae",
+      "continent" : "me",
+      "localName" : "الإمارات العربية المتحدة",
+      "names" : {
+        "de" : "Vereinigte Arabische Emirate",
+        "en" : "United Arab Emirates",
+        "es" : "Emiratos Árabes Unidos",
+        "fr" : "Émirats arabes unis",
+        "it" : "Emirati Arabi Uniti",
+        "ru" : "ОАЭ"
+      },
+      "string" : "🇦🇪",
+      "tags" : "UAE",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/United_Arab_Emirates"
+    },
+    "af" : {
+      "code" : "af",
+      "continent" : "as",
+      "localName" : "افغانستان",
+      "names" : {
+        "de" : "Afghanistan",
+        "en" : "Afghanistan",
+        "es" : "Afganistán",
+        "fr" : "Afghanistan",
+        "it" : "Afghanistan",
+        "ru" : "Афганистан"
+      },
+      "string" : "🇦🇫",
+      "tags" : "Afghanestan",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Afghanistan"
+    },
+    "ag" : {
+      "code" : "ag",
+      "continent" : "ca",
+      "localName" : "Antigua & Barbuda",
+      "names" : {
+        "de" : "Antigua und Barbuda",
+        "en" : "Antigua & Barbuda",
+        "es" : "Antigua y Barbuda",
+        "fr" : "Antigua-et-Barbuda",
+        "it" : "Antigua e Barbuda",
+        "ru" : "Антигуа и Барбуда"
+      },
+      "string" : "🇦🇬",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Antigua_and_Barbuda"
+    },
+    "ai" : {
+      "code" : "ai",
+      "continent" : "ca",
+      "localName" : "Anguilla",
+      "names" : {
+        "de" : "Anguilla",
+        "en" : "Anguilla",
+        "es" : "Anguila",
+        "fr" : "Anguilla",
+        "it" : "Anguilla",
+        "ru" : "Ангилья"
+      },
+      "string" : "🇦🇮",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Anguilla"
+    },
+    "al" : {
+      "code" : "al",
+      "continent" : "eu",
+      "localName" : "Shqipëri",
+      "names" : {
+        "de" : "Albanien",
+        "en" : "Albania",
+        "es" : "Albania",
+        "fr" : "Albanie",
+        "it" : "Albania",
+        "ru" : "Албания"
+      },
+      "string" : "🇦🇱",
+      "tags" : "Shqiperia",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Albania"
+    },
+    "am" : {
+      "code" : "am",
+      "continent" : "as",
+      "localName" : "Հայաստան",
+      "names" : {
+        "de" : "Armenien",
+        "en" : "Armenia",
+        "es" : "Armenia",
+        "fr" : "Arménie",
+        "it" : "Armenia",
+        "ru" : "Армения"
+      },
+      "string" : "🇦🇲",
+      "tags" : "Hayastan",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Armenia"
+    },
+    "ao" : {
+      "code" : "ao",
+      "continent" : "af",
+      "localName" : "Angola",
+      "names" : {
+        "de" : "Angola",
+        "en" : "Angola",
+        "es" : "Angola",
+        "fr" : "Angola",
+        "it" : "Angola",
+        "ru" : "Ангола"
+      },
+      "string" : "🇦🇴",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Angola"
+    },
+    "aq" : {
+      "code" : "aq",
+      "continent" : "an",
+      "localName" : "Antarctica",
+      "names" : {
+        "de" : "Antarktis",
+        "en" : "Antarctica",
+        "es" : "Antártida",
+        "fr" : "Antarctique",
+        "it" : "Antartide",
+        "ru" : "Антарктида"
+      },
+      "string" : "🇦🇶",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Antarctica"
+    },
+    "ar" : {
+      "code" : "ar",
+      "continent" : "sa",
+      "localName" : "Argentina",
+      "names" : {
+        "de" : "Argentinien",
+        "en" : "Argentina",
+        "es" : "Argentina",
+        "fr" : "Argentine",
+        "it" : "Argentina",
+        "ru" : "Аргентина"
+      },
+      "string" : "🇦🇷",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Argentina"
+    },
+    "as" : {
+      "code" : "as",
+      "continent" : "po",
+      "localName" : "American Samoa",
+      "names" : {
+        "de" : "Amerikanisch-Samoa",
+        "en" : "American Samoa",
+        "es" : "Samoa Americana",
+        "fr" : "Samoa américaines",
+        "it" : "Samoa Americane",
+        "ru" : "Американское Самоа"
+      },
+      "string" : "🇦🇸",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/American_Samoa"
+    },
+    "at" : {
+      "code" : "at",
+      "continent" : "eu",
+      "localName" : "Österreich",
+      "names" : {
+        "de" : "Österreich",
+        "en" : "Austria",
+        "es" : "Austria",
+        "fr" : "Autriche",
+        "it" : "Austria",
+        "ru" : "Австрия"
+      },
+      "string" : "🇦🇹",
+      "tags" : "Osterreich, Österreich",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Austria"
+    },
+    "au" : {
+      "code" : "au",
+      "continent" : "au",
+      "localName" : "Australia",
+      "names" : {
+        "de" : "Australien",
+        "en" : "Australia",
+        "es" : "Australia",
+        "fr" : "Australie",
+        "it" : "Australia",
+        "ru" : "Австралия"
+      },
+      "string" : "🇦🇺",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Australia"
+    },
+    "aw" : {
+      "code" : "aw",
+      "continent" : "ca",
+      "localName" : "Aruba",
+      "names" : {
+        "de" : "Aruba",
+        "en" : "Aruba",
+        "es" : "Aruba",
+        "fr" : "Aruba",
+        "it" : "Aruba",
+        "ru" : "Аруба"
+      },
+      "string" : "🇦🇼",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Aruba"
+    },
+    "ax" : {
+      "code" : "ax",
+      "continent" : "eu",
+      "localName" : "Åland",
+      "names" : {
+        "de" : "Ålandinseln",
+        "en" : "Åland Islands",
+        "es" : "Islas Åland",
+        "fr" : "Îles Åland",
+        "it" : "Isole Aland",
+        "ru" : "Аландские о-ва"
+      },
+      "string" : "🇦🇽",
+      "tags" : "",
+      "url" : ""
+    },
+    "az" : {
+      "code" : "az",
+      "continent" : "as",
+      "localName" : "Azərbaycan;Азәрбајҹан",
+      "names" : {
+        "de" : "Aserbaidschan",
+        "en" : "Azerbaijan",
+        "es" : "Azerbaiyán",
+        "fr" : "Azerbaïdjan",
+        "it" : "Azerbaigian",
+        "ru" : "Азербайджан"
+      },
+      "string" : "🇦🇿",
+      "tags" : "Azarbaycan",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Azerbaijan"
+    },
+    "ba" : {
+      "code" : "ba",
+      "continent" : "eu",
+      "localName" : "Босна и Херцеговина;Bosna i Hercegovina",
+      "names" : {
+        "de" : "Bosnien und Herzegowina",
+        "en" : "Bosnia & Herzegovina",
+        "es" : "Bosnia-Herzegovina",
+        "fr" : "Bosnie-Herzégovine",
+        "it" : "Bosnia-Erzegovina",
+        "ru" : "Босния и Герцеговина"
+      },
+      "string" : "🇧🇦",
+      "tags" : "Bosna i Hercegovina",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Bosnia_and_Herzegovina"
+    },
+    "bb" : {
+      "code" : "bb",
+      "continent" : "ca",
+      "localName" : "Barbados",
+      "names" : {
+        "de" : "Barbados",
+        "en" : "Barbados",
+        "es" : "Barbados",
+        "fr" : "Barbade",
+        "it" : "Barbados",
+        "ru" : "Барбадос"
+      },
+      "string" : "🇧🇧",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Barbados"
+    },
+    "bd" : {
+      "code" : "bd",
+      "continent" : "as",
+      "localName" : "বাংলাদেশ",
+      "names" : {
+        "de" : "Bangladesch",
+        "en" : "Bangladesh",
+        "es" : "Bangladés",
+        "fr" : "Bangladesh",
+        "it" : "Bangladesh",
+        "ru" : "Бангладеш"
+      },
+      "string" : "🇧🇩",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Bangladesh"
+    },
+    "be" : {
+      "code" : "be",
+      "continent" : "eu",
+      "localName" : "België;Belgique;Belgien",
+      "names" : {
+        "de" : "Belgien",
+        "en" : "Belgium",
+        "es" : "Bélgica",
+        "fr" : "Belgique",
+        "it" : "Belgio",
+        "ru" : "Бельгия"
+      },
+      "string" : "🇧🇪",
+      "tags" : "Belgie, Belgique",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Belgium"
+    },
+    "bf" : {
+      "code" : "bf",
+      "continent" : "af",
+      "localName" : "Burkina Faso",
+      "names" : {
+        "de" : "Burkina Faso",
+        "en" : "Burkina Faso",
+        "es" : "Burkina Faso",
+        "fr" : "Burkina Faso",
+        "it" : "Burkina Faso",
+        "ru" : "Буркина-Фасо"
+      },
+      "string" : "🇧🇫",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Burkina_Faso"
+    },
+    "bg" : {
+      "code" : "bg",
+      "continent" : "eu",
+      "localName" : "България",
+      "names" : {
+        "de" : "Bulgarien",
+        "en" : "Bulgaria",
+        "es" : "Bulgaria",
+        "fr" : "Bulgarie",
+        "it" : "Bulgaria",
+        "ru" : "Болгария"
+      },
+      "string" : "🇧🇬",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Bulgaria"
+    },
+    "bh" : {
+      "code" : "bh",
+      "continent" : "as",
+      "localName" : "البحرين",
+      "names" : {
+        "de" : "Bahrain",
+        "en" : "Bahrain",
+        "es" : "Baréin",
+        "fr" : "Bahreïn",
+        "it" : "Bahrein",
+        "ru" : "Бахрейн"
+      },
+      "string" : "🇧🇭",
+      "tags" : "Al Bahrayn",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Bahrain"
+    },
+    "bi" : {
+      "code" : "bi",
+      "continent" : "af",
+      "localName" : "Uburundi;Burundi",
+      "names" : {
+        "de" : "Burundi",
+        "en" : "Burundi",
+        "es" : "Burundi",
+        "fr" : "Burundi",
+        "it" : "Burundi",
+        "ru" : "Бурунди"
+      },
+      "string" : "🇧🇮",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Burundi"
+    },
+    "bj" : {
+      "code" : "bj",
+      "continent" : "af",
+      "localName" : "Bénin",
+      "names" : {
+        "de" : "Benin",
+        "en" : "Benin",
+        "es" : "Benín",
+        "fr" : "Bénin",
+        "it" : "Benin",
+        "ru" : "Бенин"
+      },
+      "string" : "🇧🇯",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Benin"
+    },
+    "bl" : {
+      "code" : "bl",
+      "continent" : "ca",
+      "localName" : "Saint-Barthélemy",
+      "names" : {
+        "de" : "St. Barthélemy",
+        "en" : "St. Barthélemy",
+        "es" : "San Bartolomé",
+        "fr" : "Saint-Barthélemy",
+        "it" : "Saint-Barthélemy",
+        "ru" : "Сен-Бартельми"
+      },
+      "string" : "🇧🇱",
+      "tags" : "",
+      "url" : ""
+    },
+    "bm" : {
+      "code" : "bm",
+      "continent" : "ao",
+      "localName" : "Bermuda",
+      "names" : {
+        "de" : "Bermuda",
+        "en" : "Bermuda",
+        "es" : "Bermudas",
+        "fr" : "Bermudes",
+        "it" : "Bermuda",
+        "ru" : "Бермудские о-ва"
+      },
+      "string" : "🇧🇲",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Bermuda"
+    },
+    "bn" : {
+      "code" : "bn",
+      "continent" : "as",
+      "localName" : "بروني;Brunei",
+      "names" : {
+        "de" : "Brunei Darussalam",
+        "en" : "Brunei",
+        "es" : "Brunéi",
+        "fr" : "Brunéi Darussalam",
+        "it" : "Brunei",
+        "ru" : "Бруней-Даруссалам"
+      },
+      "string" : "🇧🇳",
+      "tags" : "Darussalam",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Brunei"
+    },
+    "bo" : {
+      "code" : "bo",
+      "continent" : "sa",
+      "localName" : "Bolivia",
+      "names" : {
+        "de" : "Bolivien",
+        "en" : "Bolivia",
+        "es" : "Bolivia",
+        "fr" : "Bolivie",
+        "it" : "Bolivia",
+        "ru" : "Боливия"
+      },
+      "string" : "🇧🇴",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Bolivia"
+    },
+    "bq" : {
+      "code" : "bq",
+      "continent" : "ca",
+      "localName" : "Caribisch Nederland",
+      "names" : {
+        "de" : "Bonaire, Sint Eustatius und Saba",
+        "en" : "Caribbean Netherlands",
+        "es" : "Caribe neerlandés",
+        "fr" : "Pays-Bas caribéens",
+        "it" : "Caraibi Olandesi",
+        "ru" : "Бонэйр, Синт-Эстатиус и Саба"
+      },
+      "string" : "🇧🇶",
+      "tags" : "Bonaire, Eustatius, Saba, Sint",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Caribbean_Netherlands"
+    },
+    "br" : {
+      "code" : "br",
+      "continent" : "sa",
+      "localName" : "Brasil",
+      "names" : {
+        "de" : "Brasilien",
+        "en" : "Brazil",
+        "es" : "Brasil",
+        "fr" : "Brésil",
+        "it" : "Brasile",
+        "ru" : "Бразилия"
+      },
+      "string" : "🇧🇷",
+      "tags" : "Brasil",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Brazil"
+    },
+    "bs" : {
+      "code" : "bs",
+      "continent" : "ca",
+      "localName" : "Bahamas",
+      "names" : {
+        "de" : "Bahamas",
+        "en" : "Bahamas",
+        "es" : "Bahamas",
+        "fr" : "Bahamas",
+        "it" : "Bahamas",
+        "ru" : "Багамские о-ва"
+      },
+      "string" : "🇧🇸",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/The_Bahamas"
+    },
+    "bt" : {
+      "code" : "bt",
+      "continent" : "as",
+      "localName" : "འབྲུག",
+      "names" : {
+        "de" : "Bhutan",
+        "en" : "Bhutan",
+        "es" : "Bután",
+        "fr" : "Bhoutan",
+        "it" : "Bhutan",
+        "ru" : "Бутан"
+      },
+      "string" : "🇧🇹",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Bhutan"
+    },
+    "bv" : {
+      "code" : "bv",
+      "continent" : "ao",
+      "localName" : "Bouvetøya",
+      "names" : {
+        "de" : "Bouvetinsel",
+        "en" : "Bouvet Island",
+        "es" : "Isla Bouvet",
+        "fr" : "Île Bouvet",
+        "it" : "Isola Bouvet",
+        "ru" : "о-в Буве"
+      },
+      "string" : "🇧🇻",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Bouvet_Island"
+    },
+    "bw" : {
+      "code" : "bw",
+      "continent" : "af",
+      "localName" : "Botswana",
+      "names" : {
+        "de" : "Botsuana",
+        "en" : "Botswana",
+        "es" : "Botsuana",
+        "fr" : "Botswana",
+        "it" : "Botswana",
+        "ru" : "Ботсвана"
+      },
+      "string" : "🇧🇼",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Botswana"
+    },
+    "by" : {
+      "code" : "by",
+      "continent" : "eu",
+      "localName" : "Беларусь",
+      "names" : {
+        "de" : "Belarus",
+        "en" : "Belarus",
+        "es" : "Bielorrusia",
+        "fr" : "Biélorussie",
+        "it" : "Bielorussia",
+        "ru" : "Беларусь"
+      },
+      "string" : "🇧🇾",
+      "tags" : "Byelarus",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Belarus"
+    },
+    "bz" : {
+      "code" : "bz",
+      "continent" : "ce",
+      "localName" : "Belize",
+      "names" : {
+        "de" : "Belize",
+        "en" : "Belize",
+        "es" : "Belice",
+        "fr" : "Belize",
+        "it" : "Belize",
+        "ru" : "Белиз"
+      },
+      "string" : "🇧🇿",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Belize"
+    },
+    "ca" : {
+      "code" : "ca",
+      "continent" : "na",
+      "localName" : "Canada",
+      "names" : {
+        "de" : "Kanada",
+        "en" : "Canada",
+        "es" : "Canadá",
+        "fr" : "Canada",
+        "it" : "Canada",
+        "ru" : "Канада"
+      },
+      "string" : "🇨🇦",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Canada"
+    },
+    "cc" : {
+      "code" : "cc",
+      "continent" : "po",
+      "localName" : "Cocos (Keeling) Islands",
+      "names" : {
+        "de" : "Kokosinseln",
+        "en" : "Cocos Islands",
+        "es" : "Islas Cocos",
+        "fr" : "Îles Cocos",
+        "it" : "Isole Cocos",
+        "ru" : "Кокосовые о-ва"
+      },
+      "string" : "🇨🇨",
+      "tags" : "Keeling",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Cocos_(Keeling)_Islands"
+    },
+    "cd" : {
+      "code" : "cd",
+      "continent" : "af",
+      "localName" : "Congo-Kinshasa",
+      "names" : {
+        "de" : "Demokratische Republik Kongo",
+        "en" : "Democratic Republic Of The Congo",
+        "es" : "República Democrática del Congo",
+        "fr" : "Congo-Kinshasa",
+        "it" : "Congo - Kinshasa",
+        "ru" : "Конго - Киншаса"
+      },
+      "string" : "🇨🇩",
+      "tags" : "Kinshasa",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Democratic_Republic_of_the_Congo"
+    },
+    "cf" : {
+      "code" : "cf",
+      "continent" : "af",
+      "localName" : "Ködörösêse tî Bêafrîka;République centrafricaine",
+      "names" : {
+        "de" : "Zentralafrikanische Republik",
+        "en" : "Central African Republic",
+        "es" : "República Centroafricana",
+        "fr" : "République centrafricaine",
+        "it" : "Repubblica Centrafricana",
+        "ru" : "ЦАР"
+      },
+      "string" : "🇨🇫",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Central_African_Republic"
+    },
+    "cg" : {
+      "code" : "cg",
+      "continent" : "af",
+      "localName" : "Congo-Brazzaville",
+      "names" : {
+        "de" : "Republik Kongo",
+        "en" : "Republic Of The Congo",
+        "es" : "República del Congo",
+        "fr" : "Congo-Brazzaville",
+        "it" : "Congo-Brazzaville",
+        "ru" : "Конго - Браззавиль"
+      },
+      "string" : "🇨🇬",
+      "tags" : "Brazzaville",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Republic_of_the_Congo"
+    },
+    "ch" : {
+      "code" : "ch",
+      "continent" : "eu",
+      "localName" : "Suisse;Svizzera;Schwiiz;Schweiz",
+      "names" : {
+        "de" : "Schweiz",
+        "en" : "Switzerland",
+        "es" : "Suiza",
+        "fr" : "Suisse",
+        "it" : "Svizzera",
+        "ru" : "Швейцария"
+      },
+      "string" : "🇨🇭",
+      "tags" : "Swiss, Switzer",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Switzerland"
+    },
+    "ci" : {
+      "code" : "ci",
+      "continent" : "af",
+      "localName" : "Côte d’Ivoire",
+      "names" : {
+        "de" : "Côte d’Ivoire",
+        "en" : "Côte D’ivoire",
+        "es" : "Costa de Marfil",
+        "fr" : "Côte d’Ivoire",
+        "it" : "Costa d’Avorio",
+        "ru" : "Кот-д’Ивуар"
+      },
+      "string" : "🇨🇮",
+      "tags" : "Ivory Coast",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Ivory_Coast"
+    },
+    "ck" : {
+      "code" : "ck",
+      "continent" : "po",
+      "localName" : "Cook Islands",
+      "names" : {
+        "de" : "Cookinseln",
+        "en" : "Cook Islands",
+        "es" : "Islas Cook",
+        "fr" : "Îles Cook",
+        "it" : "Isole Cook",
+        "ru" : "о-ва Кука"
+      },
+      "string" : "🇨🇰",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Cook_Islands"
+    },
+    "cl" : {
+      "code" : "cl",
+      "continent" : "sa",
+      "localName" : "Chile",
+      "names" : {
+        "de" : "Chile",
+        "en" : "Chile",
+        "es" : "Chile",
+        "fr" : "Chili",
+        "it" : "Cile",
+        "ru" : "Чили"
+      },
+      "string" : "🇨🇱",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Chile"
+    },
+    "cm" : {
+      "code" : "cm",
+      "continent" : "af",
+      "localName" : "Cameroun;Cameroon",
+      "names" : {
+        "de" : "Kamerun",
+        "en" : "Cameroon",
+        "es" : "Camerún",
+        "fr" : "Cameroun",
+        "it" : "Camerun",
+        "ru" : "Камерун"
+      },
+      "string" : "🇨🇲",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Cameroon"
+    },
+    "cn" : {
+      "code" : "cn",
+      "continent" : "as",
+      "localName" : "中国",
+      "names" : {
+        "de" : "China",
+        "en" : "China",
+        "es" : "China",
+        "fr" : "Chine",
+        "it" : "Cina",
+        "ru" : "Китай"
+      },
+      "string" : "🇨🇳",
+      "tags" : "chinesisch, prc, zhong guo",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/China"
+    },
+    "co" : {
+      "code" : "co",
+      "continent" : "sa",
+      "localName" : "Colombia",
+      "names" : {
+        "de" : "Kolumbien",
+        "en" : "Colombia",
+        "es" : "Colombia",
+        "fr" : "Colombie",
+        "it" : "Colombia",
+        "ru" : "Колумбия"
+      },
+      "string" : "🇨🇴",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Colombia"
+    },
+    "cp" : {
+      "code" : "cp",
+      "continent" : "po",
+      "localName" : "Île Clipperton",
+      "names" : {
+        "de" : "Clipperton-Insel",
+        "en" : "Clipperton Island",
+        "es" : "Isla Clipperton",
+        "fr" : "Île Clipperton",
+        "it" : "Isola di Clipperton",
+        "ru" : "о-в Клиппертон"
+      },
+      "string" : "🇨🇵",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Clipperton_Island"
+    },
+    "cr" : {
+      "code" : "cr",
+      "continent" : "ce",
+      "localName" : "Costa Rica",
+      "names" : {
+        "de" : "Costa Rica",
+        "en" : "Costa Rica",
+        "es" : "Costa Rica",
+        "fr" : "Costa Rica",
+        "it" : "Costa Rica",
+        "ru" : "Коста-Рика"
+      },
+      "string" : "🇨🇷",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Costa_Rica"
+    },
+    "cu" : {
+      "code" : "cu",
+      "continent" : "ca",
+      "localName" : "Cuba",
+      "names" : {
+        "de" : "Kuba",
+        "en" : "Cuba",
+        "es" : "Cuba",
+        "fr" : "Cuba",
+        "it" : "Cuba",
+        "ru" : "Куба"
+      },
+      "string" : "🇨🇺",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Cuba"
+    },
+    "cv" : {
+      "code" : "cv",
+      "continent" : "ao",
+      "localName" : "Cabo Verde",
+      "names" : {
+        "de" : "Kap Verde",
+        "en" : "Cape Verde",
+        "es" : "Cabo Verde",
+        "fr" : "Cap-Vert",
+        "it" : "Capo Verde",
+        "ru" : "Кабо-Верде"
+      },
+      "string" : "🇨🇻",
+      "tags" : "Cabo Verde",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Cape_Verde"
+    },
+    "cw" : {
+      "code" : "cw",
+      "continent" : "ca",
+      "localName" : "Curaçao",
+      "names" : {
+        "de" : "Curaçao",
+        "en" : "Curaçao",
+        "es" : "Curazao",
+        "fr" : "Curaçao",
+        "it" : "Curaçao",
+        "ru" : "Кюрасао"
+      },
+      "string" : "🇨🇼",
+      "tags" : "",
+      "url" : ""
+    },
+    "cx" : {
+      "code" : "cx",
+      "continent" : "io",
+      "localName" : "Christmas Island",
+      "names" : {
+        "de" : "Weihnachtsinsel",
+        "en" : "Christmas Island",
+        "es" : "Isla de Navidad (Christmas)",
+        "fr" : "Île Christmas",
+        "it" : "Isola di Christmas",
+        "ru" : "о-в Рождества"
+      },
+      "string" : "🇨🇽",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Christmas_Island"
+    },
+    "cy" : {
+      "code" : "cy",
+      "continent" : "eu",
+      "localName" : "Κύπρος;Güney Kıbrıs Rum Kesimi",
+      "names" : {
+        "de" : "Zypern",
+        "en" : "Cyprus",
+        "es" : "Chipre",
+        "fr" : "Chypre",
+        "it" : "Cipro",
+        "ru" : "Кипр"
+      },
+      "string" : "🇨🇾",
+      "tags" : "Kibris, Kypros",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Cyprus"
+    },
+    "cz" : {
+      "code" : "cz",
+      "continent" : "eu",
+      "localName" : "Česká republika",
+      "names" : {
+        "de" : "Tschechische Republik",
+        "en" : "Czech Republic",
+        "es" : "República Checa",
+        "fr" : "République tchèque",
+        "it" : "Repubblica Ceca",
+        "ru" : "Чехия"
+      },
+      "string" : "🇨🇿",
+      "tags" : "Ceska Republika",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Czech_Republic"
+    },
+    "de" : {
+      "code" : "de",
+      "continent" : "eu",
+      "localName" : "Deutschland",
+      "names" : {
+        "de" : "Deutschland",
+        "en" : "Germany",
+        "es" : "Alemania",
+        "fr" : "Allemagne",
+        "it" : "Germania",
+        "ru" : "Германия"
+      },
+      "string" : "🇩🇪",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Germany"
+    },
+    "dg" : {
+      "code" : "dg",
+      "continent" : "io",
+      "localName" : "Diego Garcia",
+      "names" : {
+        "de" : "Diego Garcia",
+        "en" : "Diego Garcia",
+        "es" : "Diego García",
+        "fr" : "Diego Garcia",
+        "it" : "Diego Garcia",
+        "ru" : "Диего-Гарсия"
+      },
+      "string" : "🇩🇬",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Diego_Garcia"
+    },
+    "dj" : {
+      "code" : "dj",
+      "continent" : "af",
+      "localName" : "جيبوتي;Djibouti",
+      "names" : {
+        "de" : "Dschibuti",
+        "en" : "Djibouti",
+        "es" : "Yibuti",
+        "fr" : "Djibouti",
+        "it" : "Gibuti",
+        "ru" : "Джибути"
+      },
+      "string" : "🇩🇯",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Djibouti"
+    },
+    "dk" : {
+      "code" : "dk",
+      "continent" : "eu",
+      "localName" : "Danmark",
+      "names" : {
+        "de" : "Dänemark",
+        "en" : "Denmark",
+        "es" : "Dinamarca",
+        "fr" : "Danemark",
+        "it" : "Danimarca",
+        "ru" : "Дания"
+      },
+      "string" : "🇩🇰",
+      "tags" : "Danmark",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Denmark"
+    },
+    "dm" : {
+      "code" : "dm",
+      "continent" : "ca",
+      "localName" : "Dominica",
+      "names" : {
+        "de" : "Dominica",
+        "en" : "Dominica",
+        "es" : "Dominica",
+        "fr" : "Dominique",
+        "it" : "Dominica",
+        "ru" : "Доминика"
+      },
+      "string" : "🇩🇲",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Dominica"
+    },
+    "do" : {
+      "code" : "do",
+      "continent" : "ca",
+      "localName" : "República Dominicana",
+      "names" : {
+        "de" : "Dominikanische Republik",
+        "en" : "Dominican Republic",
+        "es" : "República Dominicana",
+        "fr" : "République dominicaine",
+        "it" : "Repubblica Dominicana",
+        "ru" : "Доминиканская Республика"
+      },
+      "string" : "🇩🇴",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Dominican_Republic"
+    },
+    "dz" : {
+      "code" : "dz",
+      "continent" : "af",
+      "localName" : "Algérie;الجزائر",
+      "names" : {
+        "de" : "Algerien",
+        "en" : "Algeria",
+        "es" : "Argelia",
+        "fr" : "Algérie",
+        "it" : "Algeria",
+        "ru" : "Алжир"
+      },
+      "string" : "🇩🇿",
+      "tags" : "Al jaza'ir, Al jazair",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Algeria"
+    },
+    "ea" : {
+      "code" : "ea",
+      "continent" : "eu",
+      "localName" : "Ceuta y Melilla",
+      "names" : {
+        "de" : "Ceuta und Melilla",
+        "en" : "Ceuta & Melilla",
+        "es" : "Ceuta y Melilla",
+        "fr" : "Ceuta et Melilla",
+        "it" : "Ceuta e Melilla",
+        "ru" : "Сеута и Мелилья"
+      },
+      "string" : "🇪🇦",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Ceuta"
+    },
+    "ec" : {
+      "code" : "ec",
+      "continent" : "sa",
+      "localName" : "Ecuador",
+      "names" : {
+        "de" : "Ecuador",
+        "en" : "Ecuador",
+        "es" : "Ecuador",
+        "fr" : "Équateur",
+        "it" : "Ecuador",
+        "ru" : "Эквадор"
+      },
+      "string" : "🇪🇨",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Ecuador"
+    },
+    "ee" : {
+      "code" : "ee",
+      "continent" : "eu",
+      "localName" : "Eesti",
+      "names" : {
+        "de" : "Estland",
+        "en" : "Estonia",
+        "es" : "Estonia",
+        "fr" : "Estonie",
+        "it" : "Estonia",
+        "ru" : "Эстония"
+      },
+      "string" : "🇪🇪",
+      "tags" : "Eesti vabariik",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Estonia"
+    },
+    "eg" : {
+      "code" : "eg",
+      "continent" : "af",
+      "localName" : "مصر",
+      "names" : {
+        "de" : "Ägypten",
+        "en" : "Egypt",
+        "es" : "Egipto",
+        "fr" : "Égypte",
+        "it" : "Egitto",
+        "ru" : "Египет"
+      },
+      "string" : "🇪🇬",
+      "tags" : "Misr",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Egypt"
+    },
+    "eh" : {
+      "code" : "eh",
+      "continent" : "af",
+      "localName" : "الصحراء الغربية",
+      "names" : {
+        "de" : "Westsahara",
+        "en" : "Western Sahara",
+        "es" : "Sáhara Occidental",
+        "fr" : "Sahara occidental",
+        "it" : "Sahara Occidentale",
+        "ru" : "Западная Сахара"
+      },
+      "string" : "🇪🇭",
+      "tags" : "Gharbiyah",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Western_Sahara"
+    },
+    "er" : {
+      "code" : "er",
+      "continent" : "af",
+      "localName" : "أريتريا;Eritrea",
+      "names" : {
+        "de" : "Eritrea",
+        "en" : "Eritrea",
+        "es" : "Eritrea",
+        "fr" : "Érythrée",
+        "it" : "Eritrea",
+        "ru" : "Эритрея"
+      },
+      "string" : "🇪🇷",
+      "tags" : "Hagere Ertra",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Eritrea"
+    },
+    "es" : {
+      "code" : "es",
+      "continent" : "eu",
+      "localName" : "España",
+      "names" : {
+        "de" : "Spanien",
+        "en" : "Spain",
+        "es" : "España",
+        "fr" : "Espagne",
+        "it" : "Spagna",
+        "ru" : "Испания"
+      },
+      "string" : "🇪🇸",
+      "tags" : "Espana, España",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Spain"
+    },
+    "et" : {
+      "code" : "et",
+      "continent" : "af",
+      "localName" : "ኢትዮጵያ",
+      "names" : {
+        "de" : "Äthiopien",
+        "en" : "Ethiopia",
+        "es" : "Etiopía",
+        "fr" : "Éthiopie",
+        "it" : "Etiopia",
+        "ru" : "Эфиопия"
+      },
+      "string" : "🇪🇹",
+      "tags" : "Ityop'iya, Ityopiya",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Ethiopia"
+    },
+    "eu" : {
+      "code" : "eu",
+      "continent" : "eu",
+      "localName" : "European Union",
+      "names" : {
+        "de" : "Europäische Union",
+        "en" : "European Union",
+        "es" : "Unión Europea",
+        "fr" : "Union européenne",
+        "it" : "Unione Europea",
+        "ru" : "Европейский союз"
+      },
+      "string" : "🇪🇺",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/European_Union"
+    },
+    "fi" : {
+      "code" : "fi",
+      "continent" : "eu",
+      "localName" : "Suomi;Finland",
+      "names" : {
+        "de" : "Finnland",
+        "en" : "Finland",
+        "es" : "Finlandia",
+        "fr" : "Finlande",
+        "it" : "Finlandia",
+        "ru" : "Финляндия"
+      },
+      "string" : "🇫🇮",
+      "tags" : "Fin, Suomen Tasavalta",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Finland"
+    },
+    "fj" : {
+      "code" : "fj",
+      "continent" : "po",
+      "localName" : "Fiji",
+      "names" : {
+        "de" : "Fidschi",
+        "en" : "Fiji",
+        "es" : "Fiyi",
+        "fr" : "Fidji",
+        "it" : "Figi",
+        "ru" : "Фиджи"
+      },
+      "string" : "🇫🇯",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Fiji"
+    },
+    "fk" : {
+      "code" : "fk",
+      "continent" : "ao",
+      "localName" : "Falkland Islands",
+      "names" : {
+        "de" : "Falklandinseln",
+        "en" : "Falkland Islands",
+        "es" : "Islas Malvinas",
+        "fr" : "Îles Malouines",
+        "it" : "Isole Falkland",
+        "ru" : "Фолклендские о-ва"
+      },
+      "string" : "🇫🇰",
+      "tags" : "Islas malvinas, Malvinas",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Falkland_Islands"
+    },
+    "fm" : {
+      "code" : "fm",
+      "continent" : "po",
+      "localName" : "Micronesia",
+      "names" : {
+        "de" : "Mikronesien",
+        "en" : "Micronesia",
+        "es" : "Micronesia",
+        "fr" : "États fédérés de Micronésie",
+        "it" : "Micronesia",
+        "ru" : "Микронезия"
+      },
+      "string" : "🇫🇲",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Micronesia"
+    },
+    "fo" : {
+      "code" : "fo",
+      "continent" : "eu",
+      "localName" : "Føroyar",
+      "names" : {
+        "de" : "Färöer",
+        "en" : "Faroe Islands",
+        "es" : "Islas Feroe",
+        "fr" : "Îles Féroé",
+        "it" : "Isole Faroe",
+        "ru" : "Фарерские о-ва"
+      },
+      "string" : "🇫🇴",
+      "tags" : "Foroyar",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Faroe_Islands"
+    },
+    "fr" : {
+      "code" : "fr",
+      "continent" : "eu",
+      "localName" : "France",
+      "names" : {
+        "de" : "Frankreich",
+        "en" : "France",
+        "es" : "Francia",
+        "fr" : "France",
+        "it" : "Francia",
+        "ru" : "Франция"
+      },
+      "string" : "🇫🇷",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/France"
+    },
+    "ga" : {
+      "code" : "ga",
+      "continent" : "af",
+      "localName" : "Gabon",
+      "names" : {
+        "de" : "Gabun",
+        "en" : "Gabon",
+        "es" : "Gabón",
+        "fr" : "Gabon",
+        "it" : "Gabon",
+        "ru" : "Габон"
+      },
+      "string" : "🇬🇦",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Gabon"
+    },
+    "gb" : {
+      "code" : "gb",
+      "continent" : "eu",
+      "localName" : "United Kingdom",
+      "names" : {
+        "de" : "Vereinigtes Königreich",
+        "en" : "United Kingdom",
+        "es" : "Reino Unido",
+        "fr" : "Royaume-Uni",
+        "it" : "Regno Unito",
+        "ru" : "Великобритания"
+      },
+      "string" : "🇬🇧",
+      "tags" : "Britain, England, Great Britain, Scotland, Union Jack, Wales",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/United_Kingdom"
+    },
+    "gb-eng" : {
+      "code" : "gb-eng",
+      "continent" : "eu",
+      "localName" : "England",
+      "names" : {
+        "de" : "England",
+        "en" : "England",
+        "es" : "Englandiiii",
+        "fr" : "Englandiiii",
+        "it" : "Englandiiii",
+        "ru" : "Englandiiii"
+      },
+      "string" : "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "tags" : "Britain, England, Great Britain",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/England"
+    },
+    "gb-sct" : {
+      "code" : "gb-sct",
+      "continent" : "eu",
+      "localName" : "Scotland",
+      "names" : {
+        "de" : "Scotland",
+        "en" : "Scotland",
+        "es" : "Scotlandiiii",
+        "fr" : "Scotlandiiii",
+        "it" : "Scotlandiiii",
+        "ru" : "Scotlandiiii"
+      },
+      "string" : "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+      "tags" : "Britain, Great Britain, Scotland",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Scotland"
+    },
+    "gb-wls" : {
+      "code" : "gb-wls",
+      "continent" : "eu",
+      "localName" : "Wales",
+      "names" : {
+        "de" : "Wales",
+        "en" : "Wales",
+        "es" : "Walesiiii",
+        "fr" : "Walesiiii",
+        "it" : "Walesiiii",
+        "ru" : "Walesiiii"
+      },
+      "string" : "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+      "tags" : "Britain, Great Britain, Wales",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Wales"
+    },
+    "gd" : {
+      "code" : "gd",
+      "continent" : "ca",
+      "localName" : "Grenada",
+      "names" : {
+        "de" : "Grenada",
+        "en" : "Grenada",
+        "es" : "Granada",
+        "fr" : "Grenade",
+        "it" : "Grenada",
+        "ru" : "Гренада"
+      },
+      "string" : "🇬🇩",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Grenada"
+    },
+    "ge" : {
+      "code" : "ge",
+      "continent" : "as",
+      "localName" : "საქართველო",
+      "names" : {
+        "de" : "Georgien",
+        "en" : "Georgia",
+        "es" : "Georgia",
+        "fr" : "Géorgie",
+        "it" : "Georgia",
+        "ru" : "Грузия"
+      },
+      "string" : "🇬🇪",
+      "tags" : "Sak'art'velo, Sakartvelo",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Georgia_(country)"
+    },
+    "gf" : {
+      "code" : "gf",
+      "continent" : "sa",
+      "localName" : "Guyane française",
+      "names" : {
+        "de" : "Französisch-Guayana",
+        "en" : "French Guiana",
+        "es" : "Guayana Francesa",
+        "fr" : "Guyane française",
+        "it" : "Guiana Francese",
+        "ru" : "Французская Гвиана"
+      },
+      "string" : "🇬🇫",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/French_Guiana"
+    },
+    "gg" : {
+      "code" : "gg",
+      "continent" : "eu",
+      "localName" : "Guernsey",
+      "names" : {
+        "de" : "Guernsey",
+        "en" : "Guernsey",
+        "es" : "Guernesey",
+        "fr" : "Guernesey",
+        "it" : "Guernsey",
+        "ru" : "Гернси"
+      },
+      "string" : "🇬🇬",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Guernsey"
+    },
+    "gh" : {
+      "code" : "gh",
+      "continent" : "af",
+      "localName" : "Ghana",
+      "names" : {
+        "de" : "Ghana",
+        "en" : "Ghana",
+        "es" : "Ghana",
+        "fr" : "Ghana",
+        "it" : "Ghana",
+        "ru" : "Гана"
+      },
+      "string" : "🇬🇭",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Ghana"
+    },
+    "gi" : {
+      "code" : "gi",
+      "continent" : "eu",
+      "localName" : "Gibraltar",
+      "names" : {
+        "de" : "Gibraltar",
+        "en" : "Gibraltar",
+        "es" : "Gibraltar",
+        "fr" : "Gibraltar",
+        "it" : "Gibilterra",
+        "ru" : "Гибралтар"
+      },
+      "string" : "🇬🇮",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Gibraltar"
+    },
+    "gl" : {
+      "code" : "gl",
+      "continent" : "na",
+      "localName" : "Kalaallit Nunaat",
+      "names" : {
+        "de" : "Grönland",
+        "en" : "Greenland",
+        "es" : "Groenlandia",
+        "fr" : "Groenland",
+        "it" : "Groenlandia",
+        "ru" : "Гренландия"
+      },
+      "string" : "🇬🇱",
+      "tags" : "Kalaallit Nunaat",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Greenland"
+    },
+    "gm" : {
+      "code" : "gm",
+      "continent" : "af",
+      "localName" : "Gambia",
+      "names" : {
+        "de" : "Gambia",
+        "en" : "Gambia",
+        "es" : "Gambia",
+        "fr" : "Gambie",
+        "it" : "Gambia",
+        "ru" : "Гамбия"
+      },
+      "string" : "🇬🇲",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/The_Gambia"
+    },
+    "gn" : {
+      "code" : "gn",
+      "continent" : "af",
+      "localName" : "Guinée",
+      "names" : {
+        "de" : "Guinea",
+        "en" : "Guinea",
+        "es" : "Guinea",
+        "fr" : "Guinée",
+        "it" : "Guinea",
+        "ru" : "Гвинея"
+      },
+      "string" : "🇬🇳",
+      "tags" : "Guinee",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Guinea"
+    },
+    "gp" : {
+      "code" : "gp",
+      "continent" : "ca",
+      "localName" : "Guadeloupe",
+      "names" : {
+        "de" : "Guadeloupe",
+        "en" : "Guadeloupe",
+        "es" : "Guadalupe",
+        "fr" : "Guadeloupe",
+        "it" : "Guadalupa",
+        "ru" : "Гваделупа"
+      },
+      "string" : "🇬🇵",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Guadeloupe"
+    },
+    "gq" : {
+      "code" : "gq",
+      "continent" : "af",
+      "localName" : "Guinea Ecuatorial;Guinée équatoriale;Guiné Equatorial",
+      "names" : {
+        "de" : "Äquatorialguinea",
+        "en" : "Equatorial Guinea",
+        "es" : "Guinea Ecuatorial",
+        "fr" : "Guinée équatoriale",
+        "it" : "Guinea Equatoriale",
+        "ru" : "Экваториальная Гвинея"
+      },
+      "string" : "🇬🇶",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Equatorial_Guinea"
+    },
+    "gr" : {
+      "code" : "gr",
+      "continent" : "eu",
+      "localName" : "Ελλάδα",
+      "names" : {
+        "de" : "Griechenland",
+        "en" : "Greece",
+        "es" : "Grecia",
+        "fr" : "Grèce",
+        "it" : "Grecia",
+        "ru" : "Греция"
+      },
+      "string" : "🇬🇷",
+      "tags" : "Ellada, Ellas",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Greece"
+    },
+    "gs" : {
+      "code" : "gs",
+      "continent" : "ao",
+      "localName" : "South Georgia & South Sandwich Islands",
+      "names" : {
+        "de" : "Südgeorgien und die Südlichen Sandwichinseln",
+        "en" : "South Georgia & South Sandwich Islands",
+        "es" : "Islas Georgia del Sur y Sandwich del Sur",
+        "fr" : "Géorgie du Sud et îles Sandwich du Sud",
+        "it" : "Georgia del Sud e isole Sandwich meridionali",
+        "ru" : "Южная Георгия и Южные Сандвичевы о-ва"
+      },
+      "string" : "🇬🇸",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/South_Georgia_and_the_South_Sandwich_Islands"
+    },
+    "gt" : {
+      "code" : "gt",
+      "continent" : "ce",
+      "localName" : "Guatemala",
+      "names" : {
+        "de" : "Guatemala",
+        "en" : "Guatemala",
+        "es" : "Guatemala",
+        "fr" : "Guatemala",
+        "it" : "Guatemala",
+        "ru" : "Гватемала"
+      },
+      "string" : "🇬🇹",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Guatemala"
+    },
+    "gu" : {
+      "code" : "gu",
+      "continent" : "po",
+      "localName" : "Guam",
+      "names" : {
+        "de" : "Guam",
+        "en" : "Guam",
+        "es" : "Guam",
+        "fr" : "Guam",
+        "it" : "Guam",
+        "ru" : "Гуам"
+      },
+      "string" : "🇬🇺",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Guam"
+    },
+    "gw" : {
+      "code" : "gw",
+      "continent" : "af",
+      "localName" : "Guiné-Bissau",
+      "names" : {
+        "de" : "Guinea-Bissau",
+        "en" : "Guinea-Bissau",
+        "es" : "Guinea-Bisáu",
+        "fr" : "Guinée-Bissau",
+        "it" : "Guinea-Bissau",
+        "ru" : "Гвинея-Бисау"
+      },
+      "string" : "🇬🇼",
+      "tags" : "Bissau, Guine, Guinea",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Guinea-Bissau"
+    },
+    "gy" : {
+      "code" : "gy",
+      "continent" : "sa",
+      "localName" : "Guyana",
+      "names" : {
+        "de" : "Guyana",
+        "en" : "Guyana",
+        "es" : "Guyana",
+        "fr" : "Guyana",
+        "it" : "Guyana",
+        "ru" : "Гайана"
+      },
+      "string" : "🇬🇾",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Guyana"
+    },
+    "hk" : {
+      "code" : "hk",
+      "continent" : "as",
+      "localName" : "Hong Kong SAR China;中華人民共和國香港特別行政區",
+      "names" : {
+        "de" : "Sonderverwaltungszone Hongkong",
+        "en" : "Hong Kong",
+        "es" : "RAE de Hong Kong (China)",
+        "fr" : "R.A.S. chinoise de Hong Kong",
+        "it" : "RAS di Hong Kong",
+        "ru" : "Гонконг (особый район)"
+      },
+      "string" : "🇭🇰",
+      "tags" : "Xianggang",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Hong_Kong"
+    },
+    "hm" : {
+      "code" : "hm",
+      "continent" : "io",
+      "localName" : "Heard & Mcdonald Islands",
+      "names" : {
+        "de" : "Heard- und McDonald-Inseln",
+        "en" : "Heard & Mcdonald Islands",
+        "es" : "Islas Heard y McDonald",
+        "fr" : "Îles Heard et McDonald",
+        "it" : "Isole Heard e McDonald",
+        "ru" : "о-ва Херд и Макдональд"
+      },
+      "string" : "🇭🇲",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Heard_Island_and_McDonald_Islands"
+    },
+    "hn" : {
+      "code" : "hn",
+      "continent" : "ce",
+      "localName" : "Honduras",
+      "names" : {
+        "de" : "Honduras",
+        "en" : "Honduras",
+        "es" : "Honduras",
+        "fr" : "Honduras",
+        "it" : "Honduras",
+        "ru" : "Гондурас"
+      },
+      "string" : "🇭🇳",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Honduras"
+    },
+    "hr" : {
+      "code" : "hr",
+      "continent" : "eu",
+      "localName" : "Hrvatska",
+      "names" : {
+        "de" : "Kroatien",
+        "en" : "Croatia",
+        "es" : "Croacia",
+        "fr" : "Croatie",
+        "it" : "Croazia",
+        "ru" : "Хорватия"
+      },
+      "string" : "🇭🇷",
+      "tags" : "Hrvatska",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Croatia"
+    },
+    "ht" : {
+      "code" : "ht",
+      "continent" : "ca",
+      "localName" : "Haïti;Haiti",
+      "names" : {
+        "de" : "Haiti",
+        "en" : "Haiti",
+        "es" : "Haití",
+        "fr" : "Haïti",
+        "it" : "Haiti",
+        "ru" : "Гаити"
+      },
+      "string" : "🇭🇹",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Haiti"
+    },
+    "hu" : {
+      "code" : "hu",
+      "continent" : "eu",
+      "localName" : "Magyarország",
+      "names" : {
+        "de" : "Ungarn",
+        "en" : "Hungary",
+        "es" : "Hungría",
+        "fr" : "Hongrie",
+        "it" : "Ungheria",
+        "ru" : "Венгрия"
+      },
+      "string" : "🇭🇺",
+      "tags" : "Magyarorszag",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Hungary"
+    },
+    "ic" : {
+      "code" : "ic",
+      "continent" : "eu",
+      "localName" : "islas Canarias",
+      "names" : {
+        "de" : "Kanarische Inseln",
+        "en" : "Canary Islands",
+        "es" : "islas Canarias",
+        "fr" : "Îles Canaries",
+        "it" : "Isole Canarie",
+        "ru" : "Канарские о-ва"
+      },
+      "string" : "🇮🇨",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Canary_Islands"
+    },
+    "id" : {
+      "code" : "id",
+      "continent" : "as",
+      "localName" : "Indonesia",
+      "names" : {
+        "de" : "Indonesien",
+        "en" : "Indonesia",
+        "es" : "Indonesia",
+        "fr" : "Indonésie",
+        "it" : "Indonesia",
+        "ru" : "Индонезия"
+      },
+      "string" : "🇮🇩",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Indonesia"
+    },
+    "ie" : {
+      "code" : "ie",
+      "continent" : "eu",
+      "localName" : "Éire;Ireland",
+      "names" : {
+        "de" : "Irland",
+        "en" : "Ireland",
+        "es" : "Irlanda",
+        "fr" : "Irlande",
+        "it" : "Irlanda",
+        "ru" : "Ирландия"
+      },
+      "string" : "🇮🇪",
+      "tags" : "Eire, Ire, Éire",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Ireland"
+    },
+    "il" : {
+      "code" : "il",
+      "continent" : "me",
+      "localName" : "إسرائيل;ישראל",
+      "names" : {
+        "de" : "Israel",
+        "en" : "Israel",
+        "es" : "Israel",
+        "fr" : "Israël",
+        "it" : "Israele",
+        "ru" : "Израиль"
+      },
+      "string" : "🇮🇱",
+      "tags" : "Yisra'el, Yisrael",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Israel"
+    },
+    "im" : {
+      "code" : "im",
+      "continent" : "eu",
+      "localName" : "Ellan Vannin;Isle of Man",
+      "names" : {
+        "de" : "Isle of Man",
+        "en" : "Isle Of Man",
+        "es" : "Isla de Man",
+        "fr" : "Île de Man",
+        "it" : "Isola di Man",
+        "ru" : "О-в Мэн"
+      },
+      "string" : "🇮🇲",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Isle_of_Man"
+    },
+    "in" : {
+      "code" : "in",
+      "continent" : "as",
+      "localName" : "भारत;India",
+      "names" : {
+        "de" : "Indien",
+        "en" : "India",
+        "es" : "India",
+        "fr" : "Inde",
+        "it" : "India",
+        "ru" : "Индия"
+      },
+      "string" : "🇮🇳",
+      "tags" : "Bharat",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/India"
+    },
+    "io" : {
+      "code" : "io",
+      "continent" : "io",
+      "localName" : "British Indian Ocean Territory",
+      "names" : {
+        "de" : "Britisches Territorium im Indischen Ozean",
+        "en" : "British Indian Ocean Territory",
+        "es" : "Territorio Británico del Océano Índico",
+        "fr" : "Territoire britannique de l’océan Indien",
+        "it" : "Territorio Britannico dell’Oceano Indiano",
+        "ru" : "Британская территория в Индийском океане"
+      },
+      "string" : "🇮🇴",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/British_Indian_Ocean_Territory"
+    },
+    "iq" : {
+      "code" : "iq",
+      "continent" : "me",
+      "localName" : "العراق",
+      "names" : {
+        "de" : "Irak",
+        "en" : "Iraq",
+        "es" : "Irak",
+        "fr" : "Irak",
+        "it" : "Iraq",
+        "ru" : "Ирак"
+      },
+      "string" : "🇮🇶",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Iraq"
+    },
+    "ir" : {
+      "code" : "ir",
+      "continent" : "me",
+      "localName" : "ایران",
+      "names" : {
+        "de" : "Iran",
+        "en" : "Iran",
+        "es" : "Irán",
+        "fr" : "Iran",
+        "it" : "Iran",
+        "ru" : "Иран"
+      },
+      "string" : "🇮🇷",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Iran"
+    },
+    "is" : {
+      "code" : "is",
+      "continent" : "eu",
+      "localName" : "Ísland",
+      "names" : {
+        "de" : "Island",
+        "en" : "Iceland",
+        "es" : "Islandia",
+        "fr" : "Islande",
+        "it" : "Islanda",
+        "ru" : "Исландия"
+      },
+      "string" : "🇮🇸",
+      "tags" : "Ice is, Lyoveldio is",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Iceland"
+    },
+    "it" : {
+      "code" : "it",
+      "continent" : "eu",
+      "localName" : "Italia",
+      "names" : {
+        "de" : "Italien",
+        "en" : "Italy",
+        "es" : "Italia",
+        "fr" : "Italie",
+        "it" : "Italia",
+        "ru" : "Италия"
+      },
+      "string" : "🇮🇹",
+      "tags" : "Italia",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Italy"
+    },
+    "je" : {
+      "code" : "je",
+      "continent" : "eu",
+      "localName" : "Jersey",
+      "names" : {
+        "de" : "Jersey",
+        "en" : "Jersey",
+        "es" : "Jersey",
+        "fr" : "Jersey",
+        "it" : "Jersey",
+        "ru" : "Джерси"
+      },
+      "string" : "🇯🇪",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Jersey"
+    },
+    "jm" : {
+      "code" : "jm",
+      "continent" : "ca",
+      "localName" : "Jamaica",
+      "names" : {
+        "de" : "Jamaika",
+        "en" : "Jamaica",
+        "es" : "Jamaica",
+        "fr" : "Jamaïque",
+        "it" : "Giamaica",
+        "ru" : "Ямайка"
+      },
+      "string" : "🇯🇲",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Jamaica"
+    },
+    "jo" : {
+      "code" : "jo",
+      "continent" : "me",
+      "localName" : "الأردن",
+      "names" : {
+        "de" : "Jordanien",
+        "en" : "Jordan",
+        "es" : "Jordania",
+        "fr" : "Jordanie",
+        "it" : "Giordania",
+        "ru" : "Иордания"
+      },
+      "string" : "🇯🇴",
+      "tags" : "Al Urdun",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Jordan"
+    },
+    "jp" : {
+      "code" : "jp",
+      "continent" : "as",
+      "localName" : "日本",
+      "names" : {
+        "de" : "Japan",
+        "en" : "Japan",
+        "es" : "Japón",
+        "fr" : "Japon",
+        "it" : "Giappone",
+        "ru" : "Япония"
+      },
+      "string" : "🇯🇵",
+      "tags" : "Nippon",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Japan"
+    },
+    "ke" : {
+      "code" : "ke",
+      "continent" : "af",
+      "localName" : "Kenya",
+      "names" : {
+        "de" : "Kenia",
+        "en" : "Kenya",
+        "es" : "Kenia",
+        "fr" : "Kenya",
+        "it" : "Kenya",
+        "ru" : "Кения"
+      },
+      "string" : "🇰🇪",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Kenya"
+    },
+    "kg" : {
+      "code" : "kg",
+      "continent" : "as",
+      "localName" : "Кыргызстан;Киргизия",
+      "names" : {
+        "de" : "Kirgisistan",
+        "en" : "Kyrgyzstan",
+        "es" : "Kirguistán",
+        "fr" : "Kirghizistan",
+        "it" : "Kirghizistan",
+        "ru" : "Киргизия"
+      },
+      "string" : "🇰🇬",
+      "tags" : "Kyrgyz REspublikasy",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Kyrgyzstan"
+    },
+    "kh" : {
+      "code" : "kh",
+      "continent" : "as",
+      "localName" : "កម្ពុជា",
+      "names" : {
+        "de" : "Kambodscha",
+        "en" : "Cambodia",
+        "es" : "Camboya",
+        "fr" : "Cambodge",
+        "it" : "Cambogia",
+        "ru" : "Камбоджа"
+      },
+      "string" : "🇰🇭",
+      "tags" : "Kampuchea",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Cambodia"
+    },
+    "ki" : {
+      "code" : "ki",
+      "continent" : "po",
+      "localName" : "Kiribati",
+      "names" : {
+        "de" : "Kiribati",
+        "en" : "Kiribati",
+        "es" : "Kiribati",
+        "fr" : "Kiribati",
+        "it" : "Kiribati",
+        "ru" : "Кирибати"
+      },
+      "string" : "🇰🇮",
+      "tags" : "Kiribas",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Kiribati"
+    },
+    "km" : {
+      "code" : "km",
+      "continent" : "io",
+      "localName" : "جزر القمر;Comoros;Comores",
+      "names" : {
+        "de" : "Komoren",
+        "en" : "Comoros",
+        "es" : "Comoras",
+        "fr" : "Comores",
+        "it" : "Comore",
+        "ru" : "Коморские о-ва"
+      },
+      "string" : "🇰🇲",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Comoros"
+    },
+    "kn" : {
+      "code" : "kn",
+      "continent" : "ca",
+      "localName" : "St. Kitts & Nevis",
+      "names" : {
+        "de" : "St. Kitts und Nevis",
+        "en" : "St. Kitts & Nevis",
+        "es" : "San Cristóbal y Nieves",
+        "fr" : "Saint-Christophe-et-Niévès",
+        "it" : "Saint Kitts e Nevis",
+        "ru" : "Сент-Китс и Невис"
+      },
+      "string" : "🇰🇳",
+      "tags" : "Saint",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Saint_Kitts"
+    },
+    "kp" : {
+      "code" : "kp",
+      "continent" : "as",
+      "localName" : "조선민주주의인민공화국",
+      "names" : {
+        "de" : "Nordkorea",
+        "en" : "North Korea",
+        "es" : "Corea del Norte",
+        "fr" : "Corée du Nord",
+        "it" : "Corea del Nord",
+        "ru" : "КНДР"
+      },
+      "string" : "🇰🇵",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/North_Korea"
+    },
+    "kr" : {
+      "code" : "kr",
+      "continent" : "as",
+      "localName" : "대한민국",
+      "names" : {
+        "de" : "Südkorea",
+        "en" : "South Korea",
+        "es" : "Corea del Sur",
+        "fr" : "Corée du Sud",
+        "it" : "Corea del Sud",
+        "ru" : "Республика Корея"
+      },
+      "string" : "🇰🇷",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/South_Korea"
+    },
+    "kw" : {
+      "code" : "kw",
+      "continent" : "me",
+      "localName" : "الكويت",
+      "names" : {
+        "de" : "Kuwait",
+        "en" : "Kuwait",
+        "es" : "Kuwait",
+        "fr" : "Koweït",
+        "it" : "Kuwait",
+        "ru" : "Кувейт"
+      },
+      "string" : "🇰🇼",
+      "tags" : "Al Kuwayt",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Kuwait"
+    },
+    "ky" : {
+      "code" : "ky",
+      "continent" : "ca",
+      "localName" : "Cayman Islands",
+      "names" : {
+        "de" : "Kaimaninseln",
+        "en" : "Cayman Islands",
+        "es" : "Islas Caimán",
+        "fr" : "Îles Caïmans",
+        "it" : "Isole Cayman",
+        "ru" : "Каймановы о-ва"
+      },
+      "string" : "🇰🇾",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Cayman_Islands"
+    },
+    "kz" : {
+      "code" : "kz",
+      "continent" : "as",
+      "localName" : "Казахстан;Қазақстан",
+      "names" : {
+        "de" : "Kasachstan",
+        "en" : "Kazakhstan",
+        "es" : "Kazajistán",
+        "fr" : "Kazakhstan",
+        "it" : "Kazakistan",
+        "ru" : "Казахстан"
+      },
+      "string" : "🇰🇿",
+      "tags" : "Qazaqstan",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Kazakhstan"
+    },
+    "la" : {
+      "code" : "la",
+      "continent" : "as",
+      "localName" : "ລາວ",
+      "names" : {
+        "de" : "Laos",
+        "en" : "Laos",
+        "es" : "Laos",
+        "fr" : "Laos",
+        "it" : "Laos",
+        "ru" : "Лаос"
+      },
+      "string" : "🇱🇦",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Laos"
+    },
+    "lb" : {
+      "code" : "lb",
+      "continent" : "me",
+      "localName" : "لبنان",
+      "names" : {
+        "de" : "Libanon",
+        "en" : "Lebanon",
+        "es" : "Líbano",
+        "fr" : "Liban",
+        "it" : "Libano",
+        "ru" : "Ливан"
+      },
+      "string" : "🇱🇧",
+      "tags" : "Lubnan",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Lebanon"
+    },
+    "lc" : {
+      "code" : "lc",
+      "continent" : "ca",
+      "localName" : "St. Lucia",
+      "names" : {
+        "de" : "St. Lucia",
+        "en" : "St. Lucia",
+        "es" : "Santa Lucía",
+        "fr" : "Sainte-Lucie",
+        "it" : "Saint Lucia",
+        "ru" : "Сент-Люсия"
+      },
+      "string" : "🇱🇨",
+      "tags" : "Saint",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Saint_Lucia"
+    },
+    "li" : {
+      "code" : "li",
+      "continent" : "eu",
+      "localName" : "Liechtenstein;Liächteschtäi",
+      "names" : {
+        "de" : "Liechtenstein",
+        "en" : "Liechtenstein",
+        "es" : "Liechtenstein",
+        "fr" : "Liechtenstein",
+        "it" : "Liechtenstein",
+        "ru" : "Лихтенштейн"
+      },
+      "string" : "🇱🇮",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Liechtenstein"
+    },
+    "lk" : {
+      "code" : "lk",
+      "continent" : "as",
+      "localName" : "இலங்கை;ශ්‍රී ලංකාව",
+      "names" : {
+        "de" : "Sri Lanka",
+        "en" : "Sri Lanka",
+        "es" : "Sri Lanka",
+        "fr" : "Sri Lanka",
+        "it" : "Sri Lanka",
+        "ru" : "Шри-Ланка"
+      },
+      "string" : "🇱🇰",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Sri_Lanka"
+    },
+    "lr" : {
+      "code" : "lr",
+      "continent" : "af",
+      "localName" : "Liberia",
+      "names" : {
+        "de" : "Liberia",
+        "en" : "Liberia",
+        "es" : "Liberia",
+        "fr" : "Libéria",
+        "it" : "Liberia",
+        "ru" : "Либерия"
+      },
+      "string" : "🇱🇷",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Liberia"
+    },
+    "ls" : {
+      "code" : "ls",
+      "continent" : "af",
+      "localName" : "Lesotho",
+      "names" : {
+        "de" : "Lesotho",
+        "en" : "Lesotho",
+        "es" : "Lesoto",
+        "fr" : "Lesotho",
+        "it" : "Lesotho",
+        "ru" : "Лесото"
+      },
+      "string" : "🇱🇸",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Lesotho"
+    },
+    "lt" : {
+      "code" : "lt",
+      "continent" : "eu",
+      "localName" : "Lietuva",
+      "names" : {
+        "de" : "Litauen",
+        "en" : "Lithuania",
+        "es" : "Lituania",
+        "fr" : "Lituanie",
+        "it" : "Lituania",
+        "ru" : "Литва"
+      },
+      "string" : "🇱🇹",
+      "tags" : "Lietuva",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Lithuania"
+    },
+    "lu" : {
+      "code" : "lu",
+      "continent" : "eu",
+      "localName" : "Luxemburg;Lëtzebuerg;Luxembourg",
+      "names" : {
+        "de" : "Luxemburg",
+        "en" : "Luxembourg",
+        "es" : "Luxemburgo",
+        "fr" : "Luxembourg",
+        "it" : "Lussemburgo",
+        "ru" : "Люксембург"
+      },
+      "string" : "🇱🇺",
+      "tags" : "Letzebuerg",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Luxembourg"
+    },
+    "lv" : {
+      "code" : "lv",
+      "continent" : "eu",
+      "localName" : "Latvija",
+      "names" : {
+        "de" : "Lettland",
+        "en" : "Latvia",
+        "es" : "Letonia",
+        "fr" : "Lettonie",
+        "it" : "Lettonia",
+        "ru" : "Латвия"
+      },
+      "string" : "🇱🇻",
+      "tags" : "Latvija",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Latvia"
+    },
+    "ly" : {
+      "code" : "ly",
+      "continent" : "af",
+      "localName" : "ليبيا",
+      "names" : {
+        "de" : "Libyen",
+        "en" : "Libya",
+        "es" : "Libia",
+        "fr" : "Libye",
+        "it" : "Libia",
+        "ru" : "Ливия"
+      },
+      "string" : "🇱🇾",
+      "tags" : "Libiyah",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Libya"
+    },
+    "ma" : {
+      "code" : "ma",
+      "continent" : "af",
+      "localName" : "Meṛṛuk;المغرب;Maroc",
+      "names" : {
+        "de" : "Marokko",
+        "en" : "Morocco",
+        "es" : "Marruecos",
+        "fr" : "Maroc",
+        "it" : "Marocco",
+        "ru" : "Марокко"
+      },
+      "string" : "🇲🇦",
+      "tags" : "Al Maghrib",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Morocco"
+    },
+    "mc" : {
+      "code" : "mc",
+      "continent" : "eu",
+      "localName" : "Monaco",
+      "names" : {
+        "de" : "Monaco",
+        "en" : "Monaco",
+        "es" : "Mónaco",
+        "fr" : "Monaco",
+        "it" : "Monaco",
+        "ru" : "Монако"
+      },
+      "string" : "🇲🇨",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Monaco"
+    },
+    "md" : {
+      "code" : "md",
+      "continent" : "eu",
+      "localName" : "Republica Moldova",
+      "names" : {
+        "de" : "Republik Moldau",
+        "en" : "Moldova",
+        "es" : "Moldavia",
+        "fr" : "Moldavie",
+        "it" : "Moldavia",
+        "ru" : "Молдова"
+      },
+      "string" : "🇲🇩",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Moldova"
+    },
+    "me" : {
+      "code" : "me",
+      "continent" : "eu",
+      "localName" : "Crna Gora",
+      "names" : {
+        "de" : "Montenegro",
+        "en" : "Montenegro",
+        "es" : "Montenegro",
+        "fr" : "Monténégro",
+        "it" : "Montenegro",
+        "ru" : "Черногория"
+      },
+      "string" : "🇲🇪",
+      "tags" : "Crna Gora",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Montenegro"
+    },
+    "mf" : {
+      "code" : "mf",
+      "continent" : "ca",
+      "localName" : "Saint-Martin",
+      "names" : {
+        "de" : "St. Martin",
+        "en" : "St. Martin",
+        "es" : "San Martín",
+        "fr" : "Saint-Martin",
+        "it" : "Saint Martin",
+        "ru" : "Сен-Мартен"
+      },
+      "string" : "🇲🇫",
+      "tags" : "Saint",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Saint_Martin"
+    },
+    "mg" : {
+      "code" : "mg",
+      "continent" : "af",
+      "localName" : "Madagasikara;Madagascar",
+      "names" : {
+        "de" : "Madagaskar",
+        "en" : "Madagascar",
+        "es" : "Madagascar",
+        "fr" : "Madagascar",
+        "it" : "Madagascar",
+        "ru" : "Мадагаскар"
+      },
+      "string" : "🇲🇬",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Madagascar"
+    },
+    "mh" : {
+      "code" : "mh",
+      "continent" : "po",
+      "localName" : "Marshall Islands",
+      "names" : {
+        "de" : "Marshallinseln",
+        "en" : "Marshall Islands",
+        "es" : "Islas Marshall",
+        "fr" : "Îles Marshall",
+        "it" : "Isole Marshall",
+        "ru" : "Маршалловы о-ва"
+      },
+      "string" : "🇲🇭",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Marshall_Islands"
+    },
+    "mk" : {
+      "code" : "mk",
+      "continent" : "eu",
+      "localName" : "Македонија",
+      "names" : {
+        "de" : "Mazedonien",
+        "en" : "Macedonia",
+        "es" : "Macedonia",
+        "fr" : "Macédoine",
+        "it" : "Repubblica di Macedonia",
+        "ru" : "Македония"
+      },
+      "string" : "🇲🇰",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Republic_of_Macedonia"
+    },
+    "ml" : {
+      "code" : "ml",
+      "continent" : "af",
+      "localName" : "Mali",
+      "names" : {
+        "de" : "Mali",
+        "en" : "Mali",
+        "es" : "Mali",
+        "fr" : "Mali",
+        "it" : "Mali",
+        "ru" : "Мали"
+      },
+      "string" : "🇲🇱",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Mali"
+    },
+    "mm" : {
+      "code" : "mm",
+      "continent" : "as",
+      "localName" : "မြန်မာ",
+      "names" : {
+        "de" : "Myanmar",
+        "en" : "Myanmar",
+        "es" : "Myanmar (Birmania)",
+        "fr" : "Myanmar",
+        "it" : "Myanmar (Birmania)",
+        "ru" : "Мьянма (Бирма)"
+      },
+      "string" : "🇲🇲",
+      "tags" : "Burma, Myanma Naingngandaw",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Myanmar"
+    },
+    "mn" : {
+      "code" : "mn",
+      "continent" : "as",
+      "localName" : "Монгол",
+      "names" : {
+        "de" : "Mongolei",
+        "en" : "Mongolia",
+        "es" : "Mongolia",
+        "fr" : "Mongolie",
+        "it" : "Mongolia",
+        "ru" : "Монголия"
+      },
+      "string" : "🇲🇳",
+      "tags" : "Mongol Uls",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Mongolia"
+    },
+    "mo" : {
+      "code" : "mo",
+      "continent" : "eu",
+      "localName" : "中華人民共和國澳門特別行政區;Macau, RAE da China",
+      "names" : {
+        "de" : "Sonderverwaltungsregion Macau",
+        "en" : "Macau",
+        "es" : "RAE de Macao (China)",
+        "fr" : "R.A.S. chinoise de Macao",
+        "it" : "RAS di Macao",
+        "ru" : "Макао (особый район)"
+      },
+      "string" : "🇲🇴",
+      "tags" : "Aomen, Macao",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Macau"
+    },
+    "mp" : {
+      "code" : "mp",
+      "continent" : "po",
+      "localName" : "Northern Mariana Islands",
+      "names" : {
+        "de" : "Nördliche Marianen",
+        "en" : "Northern Mariana Islands",
+        "es" : "Islas Marianas del Norte",
+        "fr" : "Îles Mariannes du Nord",
+        "it" : "Isole Marianne Settentrionali",
+        "ru" : "Северные Марианские о-ва"
+      },
+      "string" : "🇲🇵",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Northern_Mariana_Islands"
+    },
+    "mq" : {
+      "code" : "mq",
+      "continent" : "ca",
+      "localName" : "Martinique",
+      "names" : {
+        "de" : "Martinique",
+        "en" : "Martinique",
+        "es" : "Martinica",
+        "fr" : "Martinique",
+        "it" : "Martinica",
+        "ru" : "Мартиника"
+      },
+      "string" : "🇲🇶",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Martinique"
+    },
+    "mr" : {
+      "code" : "mr",
+      "continent" : "af",
+      "localName" : "موريتانيا",
+      "names" : {
+        "de" : "Mauretanien",
+        "en" : "Mauritania",
+        "es" : "Mauritania",
+        "fr" : "Mauritanie",
+        "it" : "Mauritania",
+        "ru" : "Мавритания"
+      },
+      "string" : "🇲🇷",
+      "tags" : "Muritaniyah",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Mauritania"
+    },
+    "ms" : {
+      "code" : "ms",
+      "continent" : "ca",
+      "localName" : "Montserrat",
+      "names" : {
+        "de" : "Montserrat",
+        "en" : "Montserrat",
+        "es" : "Montserrat",
+        "fr" : "Montserrat",
+        "it" : "Montserrat",
+        "ru" : "Монтсеррат"
+      },
+      "string" : "🇲🇸",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Montserrat"
+    },
+    "mt" : {
+      "code" : "mt",
+      "continent" : "eu",
+      "localName" : "Malta",
+      "names" : {
+        "de" : "Malta",
+        "en" : "Malta",
+        "es" : "Malta",
+        "fr" : "Malte",
+        "it" : "Malta",
+        "ru" : "Мальта"
+      },
+      "string" : "🇲🇹",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Malta"
+    },
+    "mu" : {
+      "code" : "mu",
+      "continent" : "io",
+      "localName" : "Mauritius;Maurice",
+      "names" : {
+        "de" : "Mauritius",
+        "en" : "Mauritius",
+        "es" : "Mauricio",
+        "fr" : "Maurice",
+        "it" : "Mauritius",
+        "ru" : "Маврикий"
+      },
+      "string" : "🇲🇺",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Mauritius"
+    },
+    "mv" : {
+      "code" : "mv",
+      "continent" : "io",
+      "localName" : "Maldives",
+      "names" : {
+        "de" : "Malediven",
+        "en" : "Maldives",
+        "es" : "Maldivas",
+        "fr" : "Maldives",
+        "it" : "Maldive",
+        "ru" : "Мальдивы"
+      },
+      "string" : "🇲🇻",
+      "tags" : "Dhivehi Raajje",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Maldives"
+    },
+    "mw" : {
+      "code" : "mw",
+      "continent" : "af",
+      "localName" : "Malawi",
+      "names" : {
+        "de" : "Malawi",
+        "en" : "Malawi",
+        "es" : "Malaui",
+        "fr" : "Malawi",
+        "it" : "Malawi",
+        "ru" : "Малави"
+      },
+      "string" : "🇲🇼",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Malawi"
+    },
+    "mx" : {
+      "code" : "mx",
+      "continent" : "ce",
+      "localName" : "México",
+      "names" : {
+        "de" : "Mexiko",
+        "en" : "Mexico",
+        "es" : "México",
+        "fr" : "Mexique",
+        "it" : "Messico",
+        "ru" : "Мексика"
+      },
+      "string" : "🇲🇽",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Mexico"
+    },
+    "my" : {
+      "code" : "my",
+      "continent" : "as",
+      "localName" : "Malaysia",
+      "names" : {
+        "de" : "Malaysia",
+        "en" : "Malaysia",
+        "es" : "Malasia",
+        "fr" : "Malaisie",
+        "it" : "Malesia",
+        "ru" : "Малайзия"
+      },
+      "string" : "🇲🇾",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Malaysia"
+    },
+    "mz" : {
+      "code" : "mz",
+      "continent" : "af",
+      "localName" : "Moçambique",
+      "names" : {
+        "de" : "Mosambik",
+        "en" : "Mozambique",
+        "es" : "Mozambique",
+        "fr" : "Mozambique",
+        "it" : "Mozambico",
+        "ru" : "Мозамбик"
+      },
+      "string" : "🇲🇿",
+      "tags" : "Mocambique",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Mozambique"
+    },
+    "na" : {
+      "code" : "na",
+      "continent" : "af",
+      "localName" : "Namibia",
+      "names" : {
+        "de" : "Namibia",
+        "en" : "Namibia",
+        "es" : "Namibia",
+        "fr" : "Namibie",
+        "it" : "Namibia",
+        "ru" : "Намибия"
+      },
+      "string" : "🇳🇦",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Namibia"
+    },
+    "nc" : {
+      "code" : "nc",
+      "continent" : "po",
+      "localName" : "Nouvelle-Calédonie",
+      "names" : {
+        "de" : "Neukaledonien",
+        "en" : "New Caledonia",
+        "es" : "Nueva Caledonia",
+        "fr" : "Nouvelle-Calédonie",
+        "it" : "Nuova Caledonia",
+        "ru" : "Новая Каледония"
+      },
+      "string" : "🇳🇨",
+      "tags" : "Caledonie, Calédonie, nouvelle",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/New_Caledonia"
+    },
+    "ne" : {
+      "code" : "ne",
+      "continent" : "af",
+      "localName" : "Niger",
+      "names" : {
+        "de" : "Niger",
+        "en" : "Niger",
+        "es" : "Níger",
+        "fr" : "Niger",
+        "it" : "Niger",
+        "ru" : "Нигер"
+      },
+      "string" : "🇳🇪",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Niger"
+    },
+    "nf" : {
+      "code" : "nf",
+      "continent" : "po",
+      "localName" : "Norfolk Island",
+      "names" : {
+        "de" : "Norfolkinsel",
+        "en" : "Norfolk Island",
+        "es" : "Isla Norfolk",
+        "fr" : "Île Norfolk",
+        "it" : "Isola Norfolk",
+        "ru" : "о-в Норфолк"
+      },
+      "string" : "🇳🇫",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Norfolk_Island"
+    },
+    "ng" : {
+      "code" : "ng",
+      "continent" : "af",
+      "localName" : "Orílẹ́ède Nàìjíríà;Nigeria",
+      "names" : {
+        "de" : "Nigeria",
+        "en" : "Nigeria",
+        "es" : "Nigeria",
+        "fr" : "Nigéria",
+        "it" : "Nigeria",
+        "ru" : "Нигерия"
+      },
+      "string" : "🇳🇬",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Nigeria"
+    },
+    "ni" : {
+      "code" : "ni",
+      "continent" : "ce",
+      "localName" : "Nicaragua",
+      "names" : {
+        "de" : "Nicaragua",
+        "en" : "Nicaragua",
+        "es" : "Nicaragua",
+        "fr" : "Nicaragua",
+        "it" : "Nicaragua",
+        "ru" : "Никарагуа"
+      },
+      "string" : "🇳🇮",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Nicaragua"
+    },
+    "nl" : {
+      "code" : "nl",
+      "continent" : "eu",
+      "localName" : "Nederland",
+      "names" : {
+        "de" : "Niederlande",
+        "en" : "Netherlands",
+        "es" : "Países Bajos",
+        "fr" : "Pays-Bas",
+        "it" : "Paesi Bassi",
+        "ru" : "Нидерланды"
+      },
+      "string" : "🇳🇱",
+      "tags" : "Holland, Neder",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Netherlands"
+    },
+    "no" : {
+      "code" : "no",
+      "continent" : "eu",
+      "localName" : "Noreg;Norge",
+      "names" : {
+        "de" : "Norwegen",
+        "en" : "Norway",
+        "es" : "Noruega",
+        "fr" : "Norvège",
+        "it" : "Norvegia",
+        "ru" : "Норвегия"
+      },
+      "string" : "🇳🇴",
+      "tags" : "Kein, Norge",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Norway"
+    },
+    "np" : {
+      "code" : "np",
+      "continent" : "as",
+      "localName" : "नेपाल",
+      "names" : {
+        "de" : "Nepal",
+        "en" : "Nepal",
+        "es" : "Nepal",
+        "fr" : "Népal",
+        "it" : "Nepal",
+        "ru" : "Непал"
+      },
+      "string" : "🇳🇵",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Nepal"
+    },
+    "nr" : {
+      "code" : "nr",
+      "continent" : "po",
+      "localName" : "Nauru",
+      "names" : {
+        "de" : "Nauru",
+        "en" : "Nauru",
+        "es" : "Nauru",
+        "fr" : "Nauru",
+        "it" : "Nauru",
+        "ru" : "Науру"
+      },
+      "string" : "🇳🇷",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Nauru"
+    },
+    "nu" : {
+      "code" : "nu",
+      "continent" : "po",
+      "localName" : "Niue",
+      "names" : {
+        "de" : "Niue",
+        "en" : "Niue",
+        "es" : "Niue",
+        "fr" : "Niue",
+        "it" : "Niue",
+        "ru" : "Ниуэ"
+      },
+      "string" : "🇳🇺",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Niue"
+    },
+    "nz" : {
+      "code" : "nz",
+      "continent" : "au",
+      "localName" : "New Zealand",
+      "names" : {
+        "de" : "Neuseeland",
+        "en" : "New Zealand",
+        "es" : "Nueva Zelanda",
+        "fr" : "Nouvelle-Zélande",
+        "it" : "Nuova Zelanda",
+        "ru" : "Новая Зеландия"
+      },
+      "string" : "🇳🇿",
+      "tags" : "Aotearoa",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/New_Zealand"
+    },
+    "om" : {
+      "code" : "om",
+      "continent" : "me",
+      "localName" : "عُمان",
+      "names" : {
+        "de" : "Oman",
+        "en" : "Oman",
+        "es" : "Omán",
+        "fr" : "Oman",
+        "it" : "Oman",
+        "ru" : "Оман"
+      },
+      "string" : "🇴🇲",
+      "tags" : "Saltanat Uman",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Oman"
+    },
+    "pa" : {
+      "code" : "pa",
+      "continent" : "ce",
+      "localName" : "Panamá",
+      "names" : {
+        "de" : "Panama",
+        "en" : "Panama",
+        "es" : "Panamá",
+        "fr" : "Panama",
+        "it" : "Panamá",
+        "ru" : "Панама"
+      },
+      "string" : "🇵🇦",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Panama"
+    },
+    "pe" : {
+      "code" : "pe",
+      "continent" : "sa",
+      "localName" : "Perú",
+      "names" : {
+        "de" : "Peru",
+        "en" : "Peru",
+        "es" : "Perú",
+        "fr" : "Pérou",
+        "it" : "Perù",
+        "ru" : "Перу"
+      },
+      "string" : "🇵🇪",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Peru"
+    },
+    "pf" : {
+      "code" : "pf",
+      "continent" : "po",
+      "localName" : "Polynésie française;French Polynesia",
+      "names" : {
+        "de" : "Französisch-Polynesien",
+        "en" : "French Polynesia",
+        "es" : "Polinesia Francesa",
+        "fr" : "Polynésie française",
+        "it" : "Polinesia Francese",
+        "ru" : "Французская Полинезия"
+      },
+      "string" : "🇵🇫",
+      "tags" : "Polynesie Francaise, Polynésie Française",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/French_Polynesia"
+    },
+    "pg" : {
+      "code" : "pg",
+      "continent" : "au",
+      "localName" : "Papua New Guinea",
+      "names" : {
+        "de" : "Papua-Neuguinea",
+        "en" : "Papua New Guinea",
+        "es" : "Papúa Nueva Guinea",
+        "fr" : "Papouasie-Nouvelle-Guinée",
+        "it" : "Papua Nuova Guinea",
+        "ru" : "Папуа – Новая Гвинея"
+      },
+      "string" : "🇵🇬",
+      "tags" : "Papua Niu Gini",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Papua_New_Guinea"
+    },
+    "ph" : {
+      "code" : "ph",
+      "continent" : "as",
+      "localName" : "Pilipinas;Philippines",
+      "names" : {
+        "de" : "Philippinen",
+        "en" : "Philippines",
+        "es" : "Filipinas",
+        "fr" : "Philippines",
+        "it" : "Filippine",
+        "ru" : "Филиппины"
+      },
+      "string" : "🇵🇭",
+      "tags" : "Pilipinas",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Philippines"
+    },
+    "pk" : {
+      "code" : "pk",
+      "continent" : "as",
+      "localName" : "Pakistan;پاکستان",
+      "names" : {
+        "de" : "Pakistan",
+        "en" : "Pakistan",
+        "es" : "Pakistán",
+        "fr" : "Pakistan",
+        "it" : "Pakistan",
+        "ru" : "Пакистан"
+      },
+      "string" : "🇵🇰",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Pakistan"
+    },
+    "pl" : {
+      "code" : "pl",
+      "continent" : "eu",
+      "localName" : "Polska",
+      "names" : {
+        "de" : "Polen",
+        "en" : "Poland",
+        "es" : "Polonia",
+        "fr" : "Pologne",
+        "it" : "Polonia",
+        "ru" : "Польша"
+      },
+      "string" : "🇵🇱",
+      "tags" : "Polska",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Poland"
+    },
+    "pm" : {
+      "code" : "pm",
+      "continent" : "ao",
+      "localName" : "Saint-Pierre-et-Miquelon",
+      "names" : {
+        "de" : "St. Pierre und Miquelon",
+        "en" : "St. Pierre & Miquelon",
+        "es" : "San Pedro y Miquelón",
+        "fr" : "Saint-Pierre-et-Miquelon",
+        "it" : "Saint Pierre e Miquelon",
+        "ru" : "Сен-Пьер и Микелон"
+      },
+      "string" : "🇵🇲",
+      "tags" : "Saint",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Saint_Pierre_and_Miquelon"
+    },
+    "pn" : {
+      "code" : "pn",
+      "continent" : "po",
+      "localName" : "Pitcairn Islands",
+      "names" : {
+        "de" : "Pitcairninseln",
+        "en" : "Pitcairn Islands",
+        "es" : "Islas Pitcairn",
+        "fr" : "Îles Pitcairn",
+        "it" : "Isole Pitcairn",
+        "ru" : "Питкерн"
+      },
+      "string" : "🇵🇳",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Pitcairn_Islands"
+    },
+    "pr" : {
+      "code" : "pr",
+      "continent" : "ca",
+      "localName" : "Puerto Rico",
+      "names" : {
+        "de" : "Puerto Rico",
+        "en" : "Puerto Rico",
+        "es" : "Puerto Rico",
+        "fr" : "Porto Rico",
+        "it" : "Portorico",
+        "ru" : "Пуэрто-Рико"
+      },
+      "string" : "🇵🇷",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Puerto_Rico"
+    },
+    "ps" : {
+      "code" : "ps",
+      "continent" : "me",
+      "localName" : "الأراضي الفلسطينية",
+      "names" : {
+        "de" : "Palästinensische Autonomiegebiete",
+        "en" : "Palestinian Territories",
+        "es" : "Territorios Palestinos",
+        "fr" : "Territoires palestiniens",
+        "it" : "Territori palestinesi",
+        "ru" : "Палестинские территории"
+      },
+      "string" : "🇵🇸",
+      "tags" : "Palestine",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Palestinian_territories"
+    },
+    "pt" : {
+      "code" : "pt",
+      "continent" : "eu",
+      "localName" : "Portugal",
+      "names" : {
+        "de" : "Portugal",
+        "en" : "Portugal",
+        "es" : "Portugal",
+        "fr" : "Portugal",
+        "it" : "Portogallo",
+        "ru" : "Португалия"
+      },
+      "string" : "🇵🇹",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Portugal"
+    },
+    "pw" : {
+      "code" : "pw",
+      "continent" : "po",
+      "localName" : "Palau",
+      "names" : {
+        "de" : "Palau",
+        "en" : "Palau",
+        "es" : "Palau",
+        "fr" : "Palaos",
+        "it" : "Palau",
+        "ru" : "Палау"
+      },
+      "string" : "🇵🇼",
+      "tags" : "Belau",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Palau"
+    },
+    "py" : {
+      "code" : "py",
+      "continent" : "sa",
+      "localName" : "Paraguay",
+      "names" : {
+        "de" : "Paraguay",
+        "en" : "Paraguay",
+        "es" : "Paraguay",
+        "fr" : "Paraguay",
+        "it" : "Paraguay",
+        "ru" : "Парагвай"
+      },
+      "string" : "🇵🇾",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Paraguay"
+    },
+    "qa" : {
+      "code" : "qa",
+      "continent" : "me",
+      "localName" : "قطر",
+      "names" : {
+        "de" : "Katar",
+        "en" : "Qatar",
+        "es" : "Catar",
+        "fr" : "Qatar",
+        "it" : "Qatar",
+        "ru" : "Катар"
+      },
+      "string" : "🇶🇦",
+      "tags" : "Dawlat Qatar",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Qatar"
+    },
+    "re" : {
+      "code" : "re",
+      "continent" : "io",
+      "localName" : "La Réunion",
+      "names" : {
+        "de" : "Réunion",
+        "en" : "Réunion",
+        "es" : "Reunión",
+        "fr" : "La Réunion",
+        "it" : "Réunion",
+        "ru" : "Реюньон"
+      },
+      "string" : "🇷🇪",
+      "tags" : "Reunion",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/R%C3%A9union"
+    },
+    "ro" : {
+      "code" : "ro",
+      "continent" : "eu",
+      "localName" : "România",
+      "names" : {
+        "de" : "Rumänien",
+        "en" : "Romania",
+        "es" : "Rumanía",
+        "fr" : "Roumanie",
+        "it" : "Romania",
+        "ru" : "Румыния"
+      },
+      "string" : "🇷🇴",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Romania"
+    },
+    "rs" : {
+      "code" : "rs",
+      "continent" : "eu",
+      "localName" : "Srbija;Србија",
+      "names" : {
+        "de" : "Serbien",
+        "en" : "Serbia",
+        "es" : "Serbia",
+        "fr" : "Serbie",
+        "it" : "Serbia",
+        "ru" : "Сербия"
+      },
+      "string" : "🇷🇸",
+      "tags" : "Srbija",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Serbia"
+    },
+    "ru" : {
+      "code" : "ru",
+      "continent" : "as",
+      "localName" : "Россия",
+      "names" : {
+        "de" : "Russland",
+        "en" : "Russia",
+        "es" : "Rusia",
+        "fr" : "Russie",
+        "it" : "Federazione Russa",
+        "ru" : "Россия"
+      },
+      "string" : "🇷🇺",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Russia"
+    },
+    "rw" : {
+      "code" : "rw",
+      "continent" : "af",
+      "localName" : "Rwanda",
+      "names" : {
+        "de" : "Ruanda",
+        "en" : "Rwanda",
+        "es" : "Ruanda",
+        "fr" : "Rwanda",
+        "it" : "Ruanda",
+        "ru" : "Руанда"
+      },
+      "string" : "🇷🇼",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Rwanda"
+    },
+    "sa" : {
+      "code" : "sa",
+      "continent" : "me",
+      "localName" : "المملكة العربية السعودية",
+      "names" : {
+        "de" : "Saudi-Arabien",
+        "en" : "Saudi Arabia",
+        "es" : "Arabia Saudí",
+        "fr" : "Arabie saoudite",
+        "it" : "Arabia Saudita",
+        "ru" : "Саудовская Аравия"
+      },
+      "string" : "🇸🇦",
+      "tags" : "Al Arabiyah As Suudiyah",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Saudi_Arabia"
+    },
+    "sb" : {
+      "code" : "sb",
+      "continent" : "po",
+      "localName" : "Solomon Islands",
+      "names" : {
+        "de" : "Salomonen",
+        "en" : "Solomon Islands",
+        "es" : "Islas Salomón",
+        "fr" : "Îles Salomon",
+        "it" : "Isole Solomon",
+        "ru" : "Соломоновы о-ва"
+      },
+      "string" : "🇸🇧",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Solomon_Islands"
+    },
+    "sc" : {
+      "code" : "sc",
+      "continent" : "io",
+      "localName" : "Seychelles",
+      "names" : {
+        "de" : "Seychellen",
+        "en" : "Seychelles",
+        "es" : "Seychelles",
+        "fr" : "Seychelles",
+        "it" : "Seychelles",
+        "ru" : "Сейшельские о-ва"
+      },
+      "string" : "🇸🇨",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Seychelles"
+    },
+    "sd" : {
+      "code" : "sd",
+      "continent" : "af",
+      "localName" : "السودان;Sudan",
+      "names" : {
+        "de" : "Sudan",
+        "en" : "Sudan",
+        "es" : "Sudán",
+        "fr" : "Soudan",
+        "it" : "Sudan",
+        "ru" : "Судан"
+      },
+      "string" : "🇸🇩",
+      "tags" : "As-Sudan",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Sudan"
+    },
+    "se" : {
+      "code" : "se",
+      "continent" : "eu",
+      "localName" : "Sverige",
+      "names" : {
+        "de" : "Schweden",
+        "en" : "Sweden",
+        "es" : "Suecia",
+        "fr" : "Suède",
+        "it" : "Svezia",
+        "ru" : "Швеция"
+      },
+      "string" : "🇸🇪",
+      "tags" : "Sverige",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Sweden"
+    },
+    "sg" : {
+      "code" : "sg",
+      "continent" : "as",
+      "localName" : "சிங்கப்பூர்;Singapore;新加坡;Singapura",
+      "names" : {
+        "de" : "Singapur",
+        "en" : "Singapore",
+        "es" : "Singapur",
+        "fr" : "Singapour",
+        "it" : "Singapore",
+        "ru" : "Сингапур"
+      },
+      "string" : "🇸🇬",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Singapore"
+    },
+    "sh" : {
+      "code" : "sh",
+      "continent" : "ao",
+      "localName" : "St. Helena",
+      "names" : {
+        "de" : "St. Helena",
+        "en" : "St. Helena",
+        "es" : "Santa Elena",
+        "fr" : "Sainte-Hélène",
+        "it" : "Sant’Elena",
+        "ru" : "О-в Св. Елены"
+      },
+      "string" : "🇸🇭",
+      "tags" : "Saint",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Saint_Helena"
+    },
+    "si" : {
+      "code" : "si",
+      "continent" : "eu",
+      "localName" : "Slovenija",
+      "names" : {
+        "de" : "Slowenien",
+        "en" : "Slovenia",
+        "es" : "Eslovenia",
+        "fr" : "Slovénie",
+        "it" : "Slovenia",
+        "ru" : "Словения"
+      },
+      "string" : "🇸🇮",
+      "tags" : "Slovenija",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Slovenia"
+    },
+    "sj" : {
+      "code" : "sj",
+      "continent" : "ao",
+      "localName" : "Svalbard og Jan Mayen",
+      "names" : {
+        "de" : "Svalbard und Jan Mayen",
+        "en" : "Svalbard & Jan Mayen",
+        "es" : "Svalbard y Jan Mayen",
+        "fr" : "Svalbard et Jan Mayen",
+        "it" : "Svalbard e Jan Mayen",
+        "ru" : "Шпицберген и Ян-Майен"
+      },
+      "string" : "🇸🇯",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Svalbard"
+    },
+    "sk" : {
+      "code" : "sk",
+      "continent" : "eu",
+      "localName" : "Slovensko",
+      "names" : {
+        "de" : "Slowakei",
+        "en" : "Slovakia",
+        "es" : "Eslovaquia",
+        "fr" : "Slovaquie",
+        "it" : "Slovacchia",
+        "ru" : "Словакия"
+      },
+      "string" : "🇸🇰",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Slovakia"
+    },
+    "sl" : {
+      "code" : "sl",
+      "continent" : "eu",
+      "localName" : "Sierra Leone",
+      "names" : {
+        "de" : "Sierra Leone",
+        "en" : "Sierra Leone",
+        "es" : "Sierra Leona",
+        "fr" : "Sierra Leone",
+        "it" : "Sierra Leone",
+        "ru" : "Сьерра-Леоне"
+      },
+      "string" : "🇸🇱",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Sierra_Leone"
+    },
+    "sm" : {
+      "code" : "sm",
+      "continent" : "eu",
+      "localName" : "San Marino",
+      "names" : {
+        "de" : "San Marino",
+        "en" : "San Marino",
+        "es" : "San Marino",
+        "fr" : "Saint-Marin",
+        "it" : "San Marino",
+        "ru" : "Сан-Марино"
+      },
+      "string" : "🇸🇲",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/San_Marino"
+    },
+    "sn" : {
+      "code" : "sn",
+      "continent" : "af",
+      "localName" : "Senegal;Sénégal",
+      "names" : {
+        "de" : "Senegal",
+        "en" : "Senegal",
+        "es" : "Senegal",
+        "fr" : "Sénégal",
+        "it" : "Senegal",
+        "ru" : "Сенегал"
+      },
+      "string" : "🇸🇳",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Senegal"
+    },
+    "so" : {
+      "code" : "so",
+      "continent" : "af",
+      "localName" : "الصومال;Soomaaliya",
+      "names" : {
+        "de" : "Somalia",
+        "en" : "Somalia",
+        "es" : "Somalia",
+        "fr" : "Somalie",
+        "it" : "Somalia",
+        "ru" : "Сомали"
+      },
+      "string" : "🇸🇴",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Somalia"
+    },
+    "sr" : {
+      "code" : "sr",
+      "continent" : "sa",
+      "localName" : "Suriname",
+      "names" : {
+        "de" : "Suriname",
+        "en" : "Suriname",
+        "es" : "Surinam",
+        "fr" : "Suriname",
+        "it" : "Suriname",
+        "ru" : "Суринам"
+      },
+      "string" : "🇸🇷",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Suriname"
+    },
+    "ss" : {
+      "code" : "ss",
+      "continent" : "af",
+      "localName" : "South Sudan",
+      "names" : {
+        "de" : "Südsudan",
+        "en" : "South Sudan",
+        "es" : "Sudán del Sur",
+        "fr" : "Soudan du Sud",
+        "it" : "Sudan del Sud",
+        "ru" : "Южный Судан"
+      },
+      "string" : "🇸🇸",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/South_Sudan"
+    },
+    "st" : {
+      "code" : "st",
+      "continent" : "af",
+      "localName" : "São Tomé e Príncipe",
+      "names" : {
+        "de" : "São Tomé und Príncipe",
+        "en" : "São Tomé & Príncipe",
+        "es" : "Santo Tomé y Príncipe",
+        "fr" : "Sao Tomé-et-Principe",
+        "it" : "São Tomé e Príncipe",
+        "ru" : "Сан-Томе и Принсипи"
+      },
+      "string" : "🇸🇹",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe"
+    },
+    "sv" : {
+      "code" : "sv",
+      "continent" : "ce",
+      "localName" : "El Salvador",
+      "names" : {
+        "de" : "El Salvador",
+        "en" : "El Salvador",
+        "es" : "El Salvador",
+        "fr" : "El Salvador",
+        "it" : "El Salvador",
+        "ru" : "Сальвадор"
+      },
+      "string" : "🇸🇻",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/El_Salvador"
+    },
+    "sx" : {
+      "code" : "sx",
+      "continent" : "ca",
+      "localName" : "Sint-Maarten;Sint Maarten",
+      "names" : {
+        "de" : "Sint Maarten",
+        "en" : "Sint Maarten",
+        "es" : "Sint Maarten",
+        "fr" : "Saint-Martin (partie néerlandaise)",
+        "it" : "Sint Maarten",
+        "ru" : "Синт-Мартен"
+      },
+      "string" : "🇸🇽",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Sint_Maarten"
+    },
+    "sy" : {
+      "code" : "sy",
+      "continent" : "me",
+      "localName" : "سوريا;Syrie",
+      "names" : {
+        "de" : "Syrien",
+        "en" : "Syria",
+        "es" : "Siria",
+        "fr" : "Syrie",
+        "it" : "Siria",
+        "ru" : "Сирия"
+      },
+      "string" : "🇸🇾",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Syria"
+    },
+    "sz" : {
+      "code" : "sz",
+      "continent" : "af",
+      "localName" : "Swaziland",
+      "names" : {
+        "de" : "Swasiland",
+        "en" : "Swaziland",
+        "es" : "Suazilandia",
+        "fr" : "Swaziland",
+        "it" : "Swaziland",
+        "ru" : "Свазиленд"
+      },
+      "string" : "🇸🇿",
+      "tags" : "Swazi Sz",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Swaziland"
+    },
+    "ta" : {
+      "code" : "ta",
+      "continent" : "ao",
+      "localName" : "Tristan Da Cunha",
+      "names" : {
+        "de" : "Tristan da Cunha",
+        "en" : "Tristan Da Cunha",
+        "es" : "Tristán da Cunha",
+        "fr" : "Tristan da Cunha",
+        "it" : "Tristan da Cunha",
+        "ru" : "Тристан-да-Кунья"
+      },
+      "string" : "🇹🇦",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Tristan_da_Cunha"
+    },
+    "tc" : {
+      "code" : "tc",
+      "continent" : "ca",
+      "localName" : "Turks & Caicos Islands",
+      "names" : {
+        "de" : "Turks- und Caicosinseln",
+        "en" : "Turks & Caicos Islands",
+        "es" : "Islas Turcas y Caicos",
+        "fr" : "Îles Turques-et-Caïques",
+        "it" : "Isole Turks e Caicos",
+        "ru" : "О-ва Тёркс и Кайкос"
+      },
+      "string" : "🇹🇨",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Turks_and_Caicos_Islands"
+    },
+    "td" : {
+      "code" : "td",
+      "continent" : "af",
+      "localName" : "تشاد;Tchad",
+      "names" : {
+        "de" : "Tschad",
+        "en" : "Chad",
+        "es" : "Chad",
+        "fr" : "Tchad",
+        "it" : "Ciad",
+        "ru" : "Чад"
+      },
+      "string" : "🇹🇩",
+      "tags" : "Tchad",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Chad"
+    },
+    "tf" : {
+      "code" : "tf",
+      "continent" : "po",
+      "localName" : "Terres australes françaises",
+      "names" : {
+        "de" : "Französische Süd- und Antarktisgebiete",
+        "en" : "French Southern Territories",
+        "es" : "Territorios Australes Franceses",
+        "fr" : "Terres australes françaises",
+        "it" : "Territori australi francesi",
+        "ru" : "Французские Южные Территории"
+      },
+      "string" : "🇹🇫",
+      "tags" : "Antarctic",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/French_Southern_and_Antarctic_Lands"
+    },
+    "tg" : {
+      "code" : "tg",
+      "continent" : "af",
+      "localName" : "Togo",
+      "names" : {
+        "de" : "Togo",
+        "en" : "Togo",
+        "es" : "Togo",
+        "fr" : "Togo",
+        "it" : "Togo",
+        "ru" : "Того"
+      },
+      "string" : "🇹🇬",
+      "tags" : "Republique Togolaise",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Togo"
+    },
+    "th" : {
+      "code" : "th",
+      "continent" : "as",
+      "localName" : "ไทย",
+      "names" : {
+        "de" : "Thailand",
+        "en" : "Thailand",
+        "es" : "Tailandia",
+        "fr" : "Thaïlande",
+        "it" : "Tailandia",
+        "ru" : "Таиланд"
+      },
+      "string" : "🇹🇭",
+      "tags" : "Prathet Thai",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Thailand"
+    },
+    "tj" : {
+      "code" : "tj",
+      "continent" : "as",
+      "localName" : "Тоҷикистон",
+      "names" : {
+        "de" : "Tadschikistan",
+        "en" : "Tajikistan",
+        "es" : "Tayikistán",
+        "fr" : "Tadjikistan",
+        "it" : "Tagikistan",
+        "ru" : "Таджикистан"
+      },
+      "string" : "🇹🇯",
+      "tags" : "Jumhurii Tojikiston",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Tajikistan"
+    },
+    "tk" : {
+      "code" : "tk",
+      "continent" : "po",
+      "localName" : "Tokelau",
+      "names" : {
+        "de" : "Tokelau",
+        "en" : "Tokelau",
+        "es" : "Tokelau",
+        "fr" : "Tokelau",
+        "it" : "Tokelau",
+        "ru" : "Токелау"
+      },
+      "string" : "🇹🇰",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Tokelau"
+    },
+    "tl" : {
+      "code" : "tl",
+      "continent" : "au",
+      "localName" : "Timor-Leste",
+      "names" : {
+        "de" : "Timor-Leste",
+        "en" : "Timor-Leste",
+        "es" : "Timor Oriental",
+        "fr" : "Timor oriental",
+        "it" : "Timor Est",
+        "ru" : "Восточный Тимор"
+      },
+      "string" : "🇹🇱",
+      "tags" : "East, East Timor",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/East_Timor"
+    },
+    "tm" : {
+      "code" : "tm",
+      "continent" : "as",
+      "localName" : "Türkmenistan",
+      "names" : {
+        "de" : "Turkmenistan",
+        "en" : "Turkmenistan",
+        "es" : "Turkmenistán",
+        "fr" : "Turkménistan",
+        "it" : "Turkmenistan",
+        "ru" : "Туркменистан"
+      },
+      "string" : "🇹🇲",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Turkmenistan"
+    },
+    "tn" : {
+      "code" : "tn",
+      "continent" : "af",
+      "localName" : "Tunisie;تونس",
+      "names" : {
+        "de" : "Tunesien",
+        "en" : "Tunisia",
+        "es" : "Túnez",
+        "fr" : "Tunisie",
+        "it" : "Tunisia",
+        "ru" : "Тунис"
+      },
+      "string" : "🇹🇳",
+      "tags" : "Tunis",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Tunisia"
+    },
+    "to" : {
+      "code" : "to",
+      "continent" : "po",
+      "localName" : "Tonga",
+      "names" : {
+        "de" : "Tonga",
+        "en" : "Tonga",
+        "es" : "Tonga",
+        "fr" : "Tonga",
+        "it" : "Tonga",
+        "ru" : "Тонга"
+      },
+      "string" : "🇹🇴",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Tonga"
+    },
+    "tr" : {
+      "code" : "tr",
+      "continent" : "eu",
+      "localName" : "Türkiye",
+      "names" : {
+        "de" : "Türkei",
+        "en" : "Turkey",
+        "es" : "Turquía",
+        "fr" : "Turquie",
+        "it" : "Turchia",
+        "ru" : "Турция"
+      },
+      "string" : "🇹🇷",
+      "tags" : "Turkiye",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Turkey"
+    },
+    "tt" : {
+      "code" : "tt",
+      "continent" : "ca",
+      "localName" : "Trinidad & Tobago",
+      "names" : {
+        "de" : "Trinidad und Tobago",
+        "en" : "Trinidad & Tobago",
+        "es" : "Trinidad y Tobago",
+        "fr" : "Trinité-et-Tobago",
+        "it" : "Trinidad e Tobago",
+        "ru" : "Тринидад и Тобаго"
+      },
+      "string" : "🇹🇹",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Trinidad_and_Tobago"
+    },
+    "tv" : {
+      "code" : "tv",
+      "continent" : "po",
+      "localName" : "Tuvalu",
+      "names" : {
+        "de" : "Tuvalu",
+        "en" : "Tuvalu",
+        "es" : "Tuvalu",
+        "fr" : "Tuvalu",
+        "it" : "Tuvalu",
+        "ru" : "Тувалу"
+      },
+      "string" : "🇹🇻",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Tuvalu"
+    },
+    "tw" : {
+      "code" : "tw",
+      "continent" : "as",
+      "localName" : "台灣",
+      "names" : {
+        "de" : "Taiwan",
+        "en" : "Taiwan",
+        "es" : "Taiwán",
+        "fr" : "Taïwan",
+        "it" : "Taiwan",
+        "ru" : "Тайвань"
+      },
+      "string" : "🇹🇼",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Taiwan"
+    },
+    "tz" : {
+      "code" : "tz",
+      "continent" : "af",
+      "localName" : "Tanzania",
+      "names" : {
+        "de" : "Tansania",
+        "en" : "Tanzania",
+        "es" : "Tanzania",
+        "fr" : "Tanzanie",
+        "it" : "Tanzania",
+        "ru" : "Танзания"
+      },
+      "string" : "🇹🇿",
+      "tags" : "",
+      "url" : "https:\/\/de.wikipedia.org\/wiki\/Tansania"
+    },
+    "ua" : {
+      "code" : "ua",
+      "continent" : "eu",
+      "localName" : "Україна;Украина",
+      "names" : {
+        "de" : "Ukraine",
+        "en" : "Ukraine",
+        "es" : "Ucrania",
+        "fr" : "Ukraine",
+        "it" : "Ucraina",
+        "ru" : "Украина"
+      },
+      "string" : "🇺🇦",
+      "tags" : "Ukrayina",
+      "url" : "https:\/\/de.wikipedia.org\/wiki\/Tansania"
+    },
+    "ug" : {
+      "code" : "ug",
+      "continent" : "af",
+      "localName" : "Uganda",
+      "names" : {
+        "de" : "Uganda",
+        "en" : "Uganda",
+        "es" : "Uganda",
+        "fr" : "Ouganda",
+        "it" : "Uganda",
+        "ru" : "Уганда"
+      },
+      "string" : "🇺🇬",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Uganda"
+    },
+    "um" : {
+      "code" : "um",
+      "continent" : "po",
+      "localName" : "U.S. Outlying Islands",
+      "names" : {
+        "de" : "Amerikanisch-Ozeanien",
+        "en" : "U.S. Outlying Islands",
+        "es" : "Islas menores alejadas de EE. UU.",
+        "fr" : "Îles mineures éloignées des É.-U.",
+        "it" : "Isole minori lontane dagli USA",
+        "ru" : "Внешние малые о-ва (США)"
+      },
+      "string" : "🇺🇲",
+      "tags" : "USA",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/United_States_Minor_Outlying_Islands"
+    },
+    "un" : {
+      "code" : "un",
+      "continent" : "-",
+      "localName" : "United Nations",
+      "names" : {
+        "de" : "Vereinte Nationen",
+        "en" : "United Nations",
+        "es" : "United Nations",
+        "fr" : "United Nations",
+        "it" : "United Nations",
+        "ru" : "United Nations"
+      },
+      "string" : "🇺🇳",
+      "tags" : "UN, United Nations",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/United_Nations"
+    },
+    "us" : {
+      "code" : "us",
+      "continent" : "na",
+      "localName" : "United States",
+      "names" : {
+        "de" : "Vereinigte Staaten",
+        "en" : "United States",
+        "es" : "Estados Unidos",
+        "fr" : "États-Unis",
+        "it" : "Stati Uniti",
+        "ru" : "Соединенные Штаты Америки"
+      },
+      "string" : "🇺🇸",
+      "tags" : "America, Stars and Stripes, USA",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/United_States"
+    },
+    "uy" : {
+      "code" : "uy",
+      "continent" : "sa",
+      "localName" : "Uruguay",
+      "names" : {
+        "de" : "Uruguay",
+        "en" : "Uruguay",
+        "es" : "Uruguay",
+        "fr" : "Uruguay",
+        "it" : "Uruguay",
+        "ru" : "Уругвай"
+      },
+      "string" : "🇺🇾",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Uruguay"
+    },
+    "uz" : {
+      "code" : "uz",
+      "continent" : "as",
+      "localName" : "Oʻzbekiston",
+      "names" : {
+        "de" : "Usbekistan",
+        "en" : "Uzbekistan",
+        "es" : "Uzbekistán",
+        "fr" : "Ouzbékistan",
+        "it" : "Uzbekistan",
+        "ru" : "Узбекистан"
+      },
+      "string" : "🇺🇿",
+      "tags" : "Uzbekiston Respublikasi",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Uzbekistan"
+    },
+    "va" : {
+      "code" : "va",
+      "continent" : "eu",
+      "localName" : "Civitas Vaticana",
+      "names" : {
+        "de" : "Vatikanstadt",
+        "en" : "Vatican City",
+        "es" : "Ciudad del Vaticano",
+        "fr" : "État de la Cité du Vatican",
+        "it" : "Città del Vaticano",
+        "ru" : "Ватикан"
+      },
+      "string" : "🇻🇦",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Vatican_City"
+    },
+    "vc" : {
+      "code" : "vc",
+      "continent" : "ca",
+      "localName" : "St. Vincent & Grenadines",
+      "names" : {
+        "de" : "St. Vincent und die Grenadinen",
+        "en" : "St. Vincent & Grenadines",
+        "es" : "San Vicente y las Granadinas",
+        "fr" : "Saint-Vincent-et-les-Grenadines",
+        "it" : "Saint Vincent e Grenadines",
+        "ru" : "Сент-Винсент и Гренадины"
+      },
+      "string" : "🇻🇨",
+      "tags" : "Saint",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Saint_Vincent_and_the_Grenadines"
+    },
+    "ve" : {
+      "code" : "ve",
+      "continent" : "sa",
+      "localName" : "Venezuela",
+      "names" : {
+        "de" : "Venezuela",
+        "en" : "Venezuela",
+        "es" : "Venezuela",
+        "fr" : "Venezuela",
+        "it" : "Venezuela",
+        "ru" : "Венесуэла"
+      },
+      "string" : "🇻🇪",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Venezuela"
+    },
+    "vg" : {
+      "code" : "vg",
+      "continent" : "ca",
+      "localName" : "British Virgin Islands",
+      "names" : {
+        "de" : "Britische Jungferninseln",
+        "en" : "British Virgin Islands",
+        "es" : "Islas Vírgenes Británicas",
+        "fr" : "Îles Vierges britanniques",
+        "it" : "Isole Vergini Britanniche",
+        "ru" : "Виргинские о-ва (Британские)"
+      },
+      "string" : "🇻🇬",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/British_Virgin_Islands"
+    },
+    "vi" : {
+      "code" : "vi",
+      "continent" : "ca",
+      "localName" : "U.S. Virgin Islands",
+      "names" : {
+        "de" : "Amerikanische Jungferninseln",
+        "en" : "U.S. Virgin Islands",
+        "es" : "Islas Vírgenes de EE. UU.",
+        "fr" : "Îles Vierges des États-Unis",
+        "it" : "Isole Vergini Americane",
+        "ru" : "Виргинские о-ва (США)"
+      },
+      "string" : "🇻🇮",
+      "tags" : "USA",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/United_States_Virgin_Islands"
+    },
+    "vn" : {
+      "code" : "vn",
+      "continent" : "as",
+      "localName" : "Việt Nam",
+      "names" : {
+        "de" : "Vietnam",
+        "en" : "Vietnam",
+        "es" : "Vietnam",
+        "fr" : "Vietnam",
+        "it" : "Vietnam",
+        "ru" : "Вьетнам"
+      },
+      "string" : "🇻🇳",
+      "tags" : "Viet Nam",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Vietnam"
+    },
+    "vu" : {
+      "code" : "vu",
+      "continent" : "po",
+      "localName" : "Vanuatu",
+      "names" : {
+        "de" : "Vanuatu",
+        "en" : "Vanuatu",
+        "es" : "Vanuatu",
+        "fr" : "Vanuatu",
+        "it" : "Vanuatu",
+        "ru" : "Вануату"
+      },
+      "string" : "🇻🇺",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Vanuatu"
+    },
+    "wf" : {
+      "code" : "wf",
+      "continent" : "po",
+      "localName" : "Wallis-et-Futuna",
+      "names" : {
+        "de" : "Wallis und Futuna",
+        "en" : "Wallis & Futuna",
+        "es" : "Wallis y Futuna",
+        "fr" : "Wallis-et-Futuna",
+        "it" : "Wallis e Futuna",
+        "ru" : "Уоллис и Футуна"
+      },
+      "string" : "🇼🇫",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Wallis_and_Futuna"
+    },
+    "ws" : {
+      "code" : "ws",
+      "continent" : "po",
+      "localName" : "Samoa",
+      "names" : {
+        "de" : "Samoa",
+        "en" : "Samoa",
+        "es" : "Samoa",
+        "fr" : "Samoa",
+        "it" : "Samoa",
+        "ru" : "Самоа"
+      },
+      "string" : "🇼🇸",
+      "tags" : "American Samoa",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Samoa"
+    },
+    "xk" : {
+      "code" : "xk",
+      "continent" : "eu",
+      "localName" : "Kosovë;Косово;Kosovo",
+      "names" : {
+        "de" : "Kosovo",
+        "en" : "Kosovo",
+        "es" : "Kosovo",
+        "fr" : "Kosovo",
+        "it" : "Kosovo",
+        "ru" : "Косово"
+      },
+      "string" : "🇽🇰",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Kosovo"
+    },
+    "ye" : {
+      "code" : "ye",
+      "continent" : "me",
+      "localName" : "اليمن",
+      "names" : {
+        "de" : "Jemen",
+        "en" : "Yemen",
+        "es" : "Yemen",
+        "fr" : "Yémen",
+        "it" : "Yemen",
+        "ru" : "Йемен"
+      },
+      "string" : "🇾🇪",
+      "tags" : "Al Yaman",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Yemen"
+    },
+    "yt" : {
+      "code" : "yt",
+      "continent" : "io",
+      "localName" : "Mayotte",
+      "names" : {
+        "de" : "Mayotte",
+        "en" : "Mayotte",
+        "es" : "Mayotte",
+        "fr" : "Mayotte",
+        "it" : "Mayotte",
+        "ru" : "Майотта"
+      },
+      "string" : "🇾🇹",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Mayotte"
+    },
+    "za" : {
+      "code" : "za",
+      "continent" : "af",
+      "localName" : "South Africa",
+      "names" : {
+        "de" : "Südafrika",
+        "en" : "South Africa",
+        "es" : "Sudáfrica",
+        "fr" : "Afrique du Sud",
+        "it" : "Sudafrica",
+        "ru" : "ЮАР"
+      },
+      "string" : "🇿🇦",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/South_Africa"
+    },
+    "zm" : {
+      "code" : "zm",
+      "continent" : "af",
+      "localName" : "Zambia",
+      "names" : {
+        "de" : "Sambia",
+        "en" : "Zambia",
+        "es" : "Zambia",
+        "fr" : "Zambie",
+        "it" : "Zambia",
+        "ru" : "Замбия"
+      },
+      "string" : "🇿🇲",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Zambia"
+    },
+    "zw" : {
+      "code" : "zw",
+      "continent" : "af",
+      "localName" : "Zimbabwe",
+      "names" : {
+        "de" : "Simbabwe",
+        "en" : "Zimbabwe",
+        "es" : "Zimbabue",
+        "fr" : "Zimbabwe",
+        "it" : "Zimbabwe",
+        "ru" : "Зимбабве"
+      },
+      "string" : "🇿🇼",
+      "tags" : "",
+      "url" : "https:\/\/en.wikipedia.org\/wiki\/Zimbabwe"
+    }
+  }
+}

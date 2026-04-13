@@ -1,0 +1,584 @@
+{
+  "hasLowercaseLetters" : false,
+  "height" : 5,
+  "letters" : {
+    "0x001a" : {
+      "char" : "0x1a",
+      "line1" : "FFF",
+      "line2" : "FFF",
+      "line3" : "FFF",
+      "line4" : "FFF",
+      "line5" : "FFF"
+    },
+    "0x0020" : {
+      "char" : " ",
+      "line1" : "   ",
+      "line2" : "   ",
+      "line3" : "   ",
+      "line4" : "   ",
+      "line5" : "   "
+    },
+    "0x0021" : {
+      "char" : "!",
+      "line1" : "F",
+      "line2" : "F",
+      "line3" : "F",
+      "line4" : " ",
+      "line5" : "F"
+    },
+    "0x0022" : {
+      "char" : "\"",
+      "line1" : "FF",
+      "line2" : "FF",
+      "line3" : "  ",
+      "line4" : "  ",
+      "line5" : "  "
+    },
+    "0x0023" : {
+      "char" : "#",
+      "line1" : "   ",
+      "line2" : "F F",
+      "line3" : "FFF",
+      "line4" : "F F",
+      "line5" : "   "
+    },
+    "0x0024" : {
+      "char" : "$",
+      "line1" : " F ",
+      "line2" : "FF ",
+      "line3" : " F ",
+      "line4" : " FF",
+      "line5" : " F "
+    },
+    "0x0025" : {
+      "char" : "%",
+      "line1" : "F F",
+      "line2" : "  F",
+      "line3" : " F ",
+      "line4" : "F  ",
+      "line5" : "F F"
+    },
+    "0x0026" : {
+      "char" : "&",
+      "line1" : " F ",
+      "line2" : "F  ",
+      "line3" : " F ",
+      "line4" : "F F",
+      "line5" : " FF"
+    },
+    "0x0027" : {
+      "char" : "'",
+      "line1" : "F",
+      "line2" : "F",
+      "line3" : " ",
+      "line4" : " ",
+      "line5" : " "
+    },
+    "0x0028" : {
+      "char" : "(",
+      "line1" : " F",
+      "line2" : "F ",
+      "line3" : "F ",
+      "line4" : "F ",
+      "line5" : " F"
+    },
+    "0x0029" : {
+      "char" : ")",
+      "line1" : "F ",
+      "line2" : " F",
+      "line3" : " F",
+      "line4" : " F",
+      "line5" : "F "
+    },
+    "0x002a" : {
+      "char" : "*",
+      "line1" : "   ",
+      "line2" : "F F",
+      "line3" : " F ",
+      "line4" : "F F",
+      "line5" : "   "
+    },
+    "0x002b" : {
+      "char" : "+",
+      "line1" : "   ",
+      "line2" : " F ",
+      "line3" : "FFF",
+      "line4" : " F ",
+      "line5" : "   "
+    },
+    "0x002c" : {
+      "char" : ",",
+      "line1" : " ",
+      "line2" : " ",
+      "line3" : " ",
+      "line4" : "F",
+      "line5" : "F"
+    },
+    "0x002d" : {
+      "char" : "-",
+      "line1" : "   ",
+      "line2" : "   ",
+      "line3" : "FFF",
+      "line4" : "   ",
+      "line5" : "   "
+    },
+    "0x002e" : {
+      "char" : ".",
+      "line1" : " ",
+      "line2" : " ",
+      "line3" : " ",
+      "line4" : " ",
+      "line5" : "F"
+    },
+    "0x002f" : {
+      "char" : "/",
+      "line1" : "   ",
+      "line2" : "  F",
+      "line3" : " F ",
+      "line4" : "F  ",
+      "line5" : "   "
+    },
+    "0x0030" : {
+      "char" : "0",
+      "line1" : "FFF",
+      "line2" : "F F",
+      "line3" : "F F",
+      "line4" : "F F",
+      "line5" : "FFF"
+    },
+    "0x0031" : {
+      "char" : "1",
+      "line1" : "  F",
+      "line2" : " FF",
+      "line3" : "F F",
+      "line4" : "  F",
+      "line5" : "  F"
+    },
+    "0x0032" : {
+      "char" : "2",
+      "line1" : "FFF",
+      "line2" : "  F",
+      "line3" : "FFF",
+      "line4" : "F  ",
+      "line5" : "FFF"
+    },
+    "0x0033" : {
+      "char" : "3",
+      "line1" : "FFF",
+      "line2" : "  F",
+      "line3" : "FFF",
+      "line4" : "  F",
+      "line5" : "FFF"
+    },
+    "0x0034" : {
+      "char" : "4",
+      "line1" : "F F",
+      "line2" : "F F",
+      "line3" : "FFF",
+      "line4" : "  F",
+      "line5" : "  F"
+    },
+    "0x0035" : {
+      "char" : "5",
+      "line1" : "FFF",
+      "line2" : "F  ",
+      "line3" : "FFF",
+      "line4" : "  F",
+      "line5" : "FFF"
+    },
+    "0x0036" : {
+      "char" : "6",
+      "line1" : "FFF",
+      "line2" : "F  ",
+      "line3" : "FFF",
+      "line4" : "F F",
+      "line5" : "FFF"
+    },
+    "0x0037" : {
+      "char" : "7",
+      "line1" : "FFF",
+      "line2" : "  F",
+      "line3" : "  F",
+      "line4" : "  F",
+      "line5" : "  F"
+    },
+    "0x0038" : {
+      "char" : "8",
+      "line1" : "FFF",
+      "line2" : "F F",
+      "line3" : "FFF",
+      "line4" : "F F",
+      "line5" : "FFF"
+    },
+    "0x0039" : {
+      "char" : "9",
+      "line1" : "FFF",
+      "line2" : "F F",
+      "line3" : "FFF",
+      "line4" : "  F",
+      "line5" : "FFF"
+    },
+    "0x003a" : {
+      "char" : ":",
+      "line1" : " ",
+      "line2" : "F",
+      "line3" : " ",
+      "line4" : "F",
+      "line5" : " "
+    },
+    "0x003b" : {
+      "char" : ";",
+      "line1" : " ",
+      "line2" : "F",
+      "line3" : " ",
+      "line4" : "F",
+      "line5" : "F"
+    },
+    "0x003c" : {
+      "char" : "<",
+      "line1" : "  F",
+      "line2" : " F ",
+      "line3" : "F  ",
+      "line4" : " F ",
+      "line5" : "  F"
+    },
+    "0x003d" : {
+      "char" : "=",
+      "line1" : "   ",
+      "line2" : "FFF",
+      "line3" : "   ",
+      "line4" : "FFF",
+      "line5" : "   "
+    },
+    "0x003e" : {
+      "char" : ">",
+      "line1" : "F  ",
+      "line2" : " F ",
+      "line3" : "  F",
+      "line4" : " F ",
+      "line5" : "F  "
+    },
+    "0x003f" : {
+      "char" : "?",
+      "line1" : "FFF",
+      "line2" : "  F",
+      "line3" : "FFF",
+      "line4" : "F  ",
+      "line5" : " F "
+    },
+    "0x0040" : {
+      "char" : "@",
+      "line1" : "FFF",
+      "line2" : "F  ",
+      "line3" : " FF",
+      "line4" : " FF",
+      "line5" : "   "
+    },
+    "0x0041" : {
+      "char" : "A",
+      "line1" : "FFF",
+      "line2" : "F F",
+      "line3" : "FFF",
+      "line4" : "F F",
+      "line5" : "F F"
+    },
+    "0x0042" : {
+      "char" : "B",
+      "line1" : "FFF",
+      "line2" : "F F",
+      "line3" : "FF ",
+      "line4" : "F F",
+      "line5" : "FFF"
+    },
+    "0x0043" : {
+      "char" : "C",
+      "line1" : "FFF",
+      "line2" : "F  ",
+      "line3" : "F  ",
+      "line4" : "F  ",
+      "line5" : "FFF"
+    },
+    "0x0044" : {
+      "char" : "D",
+      "line1" : "FF ",
+      "line2" : "F F",
+      "line3" : "F F",
+      "line4" : "F F",
+      "line5" : "FF "
+    },
+    "0x0045" : {
+      "char" : "E",
+      "line1" : "FFF",
+      "line2" : "F  ",
+      "line3" : "FFF",
+      "line4" : "F  ",
+      "line5" : "FFF"
+    },
+    "0x0046" : {
+      "char" : "F",
+      "line1" : "FFF",
+      "line2" : "F  ",
+      "line3" : "FFF",
+      "line4" : "F  ",
+      "line5" : "F  "
+    },
+    "0x0047" : {
+      "char" : "G",
+      "line1" : "FFF",
+      "line2" : "F  ",
+      "line3" : "FF ",
+      "line4" : "F F",
+      "line5" : "FFF"
+    },
+    "0x0048" : {
+      "char" : "H",
+      "line1" : "F F",
+      "line2" : "F F",
+      "line3" : "FFF",
+      "line4" : "F F",
+      "line5" : "F F"
+    },
+    "0x0049" : {
+      "char" : "I",
+      "line1" : "FFF",
+      "line2" : " F ",
+      "line3" : " F ",
+      "line4" : " F ",
+      "line5" : "FFF"
+    },
+    "0x004a" : {
+      "char" : "J",
+      "line1" : "  F",
+      "line2" : "  F",
+      "line3" : "  F",
+      "line4" : "F F",
+      "line5" : "FFF"
+    },
+    "0x004b" : {
+      "char" : "K",
+      "line1" : "F F",
+      "line2" : "F F",
+      "line3" : "FF ",
+      "line4" : "F F",
+      "line5" : "F F"
+    },
+    "0x004c" : {
+      "char" : "L",
+      "line1" : "F  ",
+      "line2" : "F  ",
+      "line3" : "F  ",
+      "line4" : "F  ",
+      "line5" : "FFF"
+    },
+    "0x004d" : {
+      "char" : "M",
+      "line1" : "F F",
+      "line2" : "FFF",
+      "line3" : "F F",
+      "line4" : "F F",
+      "line5" : "F F"
+    },
+    "0x004e" : {
+      "char" : "N",
+      "line1" : "F F",
+      "line2" : "FFF",
+      "line3" : "FFF",
+      "line4" : "F F",
+      "line5" : "F F"
+    },
+    "0x004f" : {
+      "char" : "O",
+      "line1" : "FFF",
+      "line2" : "F F",
+      "line3" : "F F",
+      "line4" : "F F",
+      "line5" : "FFF"
+    },
+    "0x0050" : {
+      "char" : "P",
+      "line1" : "FFF",
+      "line2" : "F F",
+      "line3" : "FFF",
+      "line4" : "F  ",
+      "line5" : "F  "
+    },
+    "0x0051" : {
+      "char" : "Q",
+      "line1" : "FFF",
+      "line2" : "F F",
+      "line3" : "F F",
+      "line4" : "FF ",
+      "line5" : "FFF"
+    },
+    "0x0052" : {
+      "char" : "R",
+      "line1" : "FFF",
+      "line2" : "F F",
+      "line3" : "F  ",
+      "line4" : "FF ",
+      "line5" : "F F"
+    },
+    "0x0053" : {
+      "char" : "S",
+      "line1" : "FFF",
+      "line2" : "F  ",
+      "line3" : "FFF",
+      "line4" : "  F",
+      "line5" : "FFF"
+    },
+    "0x0054" : {
+      "char" : "T",
+      "line1" : "FFF",
+      "line2" : " F ",
+      "line3" : " F ",
+      "line4" : " F ",
+      "line5" : " F "
+    },
+    "0x0055" : {
+      "char" : "U",
+      "line1" : "F F",
+      "line2" : "F F",
+      "line3" : "F F",
+      "line4" : "F F",
+      "line5" : "FFF"
+    },
+    "0x0056" : {
+      "char" : "V",
+      "line1" : "F F",
+      "line2" : "F F",
+      "line3" : "F F",
+      "line4" : "F F",
+      "line5" : " F "
+    },
+    "0x0057" : {
+      "char" : "W",
+      "line1" : "F F",
+      "line2" : "F F",
+      "line3" : "F F",
+      "line4" : "FFF",
+      "line5" : "F F"
+    },
+    "0x0058" : {
+      "char" : "X",
+      "line1" : "F F",
+      "line2" : "F F",
+      "line3" : " F ",
+      "line4" : "F F",
+      "line5" : "F F"
+    },
+    "0x0059" : {
+      "char" : "Y",
+      "line1" : "F F",
+      "line2" : "F F",
+      "line3" : "F F",
+      "line4" : " F ",
+      "line5" : " F "
+    },
+    "0x005a" : {
+      "char" : "Z",
+      "line1" : "FFF",
+      "line2" : "  F",
+      "line3" : " F ",
+      "line4" : "F  ",
+      "line5" : "FFF"
+    },
+    "0x005b" : {
+      "char" : "[",
+      "line1" : "FF",
+      "line2" : "F ",
+      "line3" : "F ",
+      "line4" : "F ",
+      "line5" : "FF"
+    },
+    "0x005c" : {
+      "char" : "\\",
+      "line1" : "F  ",
+      "line2" : "FF ",
+      "line3" : " F ",
+      "line4" : " FF",
+      "line5" : "  F"
+    },
+    "0x005d" : {
+      "char" : "]",
+      "line1" : "FF",
+      "line2" : " F",
+      "line3" : " F",
+      "line4" : " F",
+      "line5" : "FF"
+    },
+    "0x005e" : {
+      "char" : "^",
+      "line1" : " F ",
+      "line2" : "F F",
+      "line3" : "   ",
+      "line4" : "   ",
+      "line5" : "   "
+    },
+    "0x005f" : {
+      "char" : "_",
+      "line1" : "   ",
+      "line2" : "   ",
+      "line3" : "   ",
+      "line4" : "   ",
+      "line5" : "FFF"
+    },
+    "0x0060" : {
+      "char" : "`",
+      "line1" : "F ",
+      "line2" : " F",
+      "line3" : "  ",
+      "line4" : "  ",
+      "line5" : "  "
+    },
+    "0x007b" : {
+      "char" : "{",
+      "line1" : " FF",
+      "line2" : " F ",
+      "line3" : "F  ",
+      "line4" : " F ",
+      "line5" : " FF"
+    },
+    "0x007c" : {
+      "char" : "|",
+      "line1" : "F",
+      "line2" : "F",
+      "line3" : "F",
+      "line4" : "F",
+      "line5" : "F"
+    },
+    "0x007d" : {
+      "char" : "}",
+      "line1" : "FF ",
+      "line2" : " F ",
+      "line3" : "  F",
+      "line4" : " F ",
+      "line5" : "FF "
+    },
+    "0x007e" : {
+      "char" : "~",
+      "line1" : "FF ",
+      "line2" : " FF",
+      "line3" : "   ",
+      "line4" : "   ",
+      "line5" : "   "
+    },
+    "0x0080" : {
+      "char" : "0x80",
+      "line1" : "   ",
+      "line2" : "F F",
+      "line3" : "FFF",
+      "line4" : " F ",
+      "line5" : "   "
+    },
+    "0x2010" : {
+      "char" : "‐",
+      "line1" : "       ",
+      "line2" : "       ",
+      "line3" : "  FFF  ",
+      "line4" : "       ",
+      "line5" : "       "
+    }
+  },
+  "name" : "3by5SmallLetterFont"
+}
+

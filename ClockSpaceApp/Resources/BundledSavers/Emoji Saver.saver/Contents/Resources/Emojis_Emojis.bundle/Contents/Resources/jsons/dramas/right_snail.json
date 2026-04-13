@@ -1,0 +1,8 @@
+{
+  "actors" : "🐌,→,🐌,→",
+  "averageNumberOfRepetitions" : 50,
+  "code" : "right_snail",
+  "finishWhenMovedOffOfScreen" : true,
+  "spanFactor" : 3,
+  "speed" : "every1"
+}

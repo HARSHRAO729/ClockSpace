@@ -1,0 +1,6 @@
+{
+  "actors" : "♣️,♦️,♥️,♠️",
+  "averageNumberOfRepetitions" : 3,
+  "code" : "suits",
+  "speed" : "every2"
+}

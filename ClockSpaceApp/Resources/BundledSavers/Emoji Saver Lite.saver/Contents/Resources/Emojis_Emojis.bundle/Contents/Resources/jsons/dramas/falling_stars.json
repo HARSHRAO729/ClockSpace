@@ -1,0 +1,7 @@
+{
+  "actors" : "✨,↓",
+  "averageNumberOfRepetitions" : 100,
+  "code" : "falling_stars",
+  "finishWhenMovedOffOfScreen" : true,
+  "speed" : "every5Ticks"
+}

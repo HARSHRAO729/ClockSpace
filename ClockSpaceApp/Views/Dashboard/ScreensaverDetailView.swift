@@ -77,23 +77,31 @@ struct ScreensaverDetailView: View {
                     }
             } else {
                 ZStack {
-                    // Base static gradient
-                    gradient(for: screensaver)
-                    
-                    // Shifting Mesh Gradient Simulation
-                    MeshGradientView(tintColor: screensaver.category.tintColor)
-                    
-                    // "Scanline" light sweep
-                    Rectangle()
-                        .fill(
-                            LinearGradient(
-                                colors: [.clear, .white.opacity(0.05), .clear],
-                                startPoint: .top,
-                                endPoint: .bottom
+                    if screensaver.thumbnailURL != "placeholder",
+                       let nsImage = NSImage(named: screensaver.thumbnailURL) ?? NSImage(contentsOfFile: "/Users/harshrao/ClockSpace/scratch/all_previews/" + screensaver.thumbnailURL) {
+                        Image(nsImage: nsImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .ignoresSafeArea()
+                    } else {
+                        // Base static gradient
+                        gradient(for: screensaver)
+                        
+                        // Shifting Mesh Gradient Simulation
+                        MeshGradientView(tintColor: screensaver.category.tintColor)
+                        
+                        // "Scanline" light sweep
+                        Rectangle()
+                            .fill(
+                                LinearGradient(
+                                    colors: [.clear, .white.opacity(0.05), .clear],
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                )
                             )
-                        )
-                        .frame(height: 200)
-                        .offset(y: isAnimating ? boundsHeight : -boundsHeight)
+                            .frame(height: 200)
+                            .offset(y: isAnimating ? boundsHeight : -boundsHeight)
+                    }
                 }
             }
         }

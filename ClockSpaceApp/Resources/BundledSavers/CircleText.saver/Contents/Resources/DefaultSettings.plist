@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>text</key>
+		<string>running in circles...</string>
+		<key>speed</key>
+		<integer>50</integer>
+		<key>scale</key>
+		<integer>4000</integer>
+		<key>radius</key>
+		<integer>200</integer>
+		<key>x</key>
+		<integer>100</integer>
+		<key>y</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>please leave a message... </string>
+		<key>speed</key>
+		<integer>20</integer>
+		<key>scale</key>
+		<integer>2000</integer>
+		<key>radius</key>
+		<integer>50</integer>
+		<key>x</key>
+		<integer>-100</integer>
+		<key>y</key>
+		<integer>-100</integer>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>move your crawly dudes... </string>
+		<key>speed</key>
+		<integer>50</integer>
+		<key>scale</key>
+		<integer>3000</integer>
+		<key>radius</key>
+		<integer>100</integer>
+		<key>x</key>
+		<integer>-100</integer>
+		<key>y</key>
+		<integer>0</integer>
+	</dict>
+</array>
+</plist>

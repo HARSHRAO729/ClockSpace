@@ -1,0 +1,25 @@
+# Xcode
+#
+build/
+DerivedData/
+*.hmap
+*.ipa
+*.playground.xcworkspace
+xcuserdata/
+
+# Swift Package Manager
+#
+.build/
+.swiftpm/
+
+# OS X
+#
+.DS_Store
+*.swp
+*.lock
+
+# ClockSpace Specific
+/BundledSavers/
+# (Wait, if I want the 54 launchers to be saved, I SHOULD push them)
+# Actually, the user wants the 54 files in ClockSpaceApp/Resources/BundledSavers/ to be included.
+# So I won't ignore those.

@@ -1,0 +1,7 @@
+{
+  "actors" : "[🌳|🌴|🌵|🌲],w",
+  "averageNumberOfRepetitions" : 100,
+  "code" : "savanna",
+  "spanFactor" : 20,
+  "speed" : "every10"
+}

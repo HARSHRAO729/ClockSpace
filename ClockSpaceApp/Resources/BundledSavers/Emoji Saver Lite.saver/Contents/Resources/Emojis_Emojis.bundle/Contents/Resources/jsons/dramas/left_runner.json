@@ -1,0 +1,7 @@
+{
+  "actors" : "🚶,←,🏃,←",
+  "averageNumberOfRepetitions" : 50,
+  "code" : "left_runner",
+  "finishWhenMovedOffOfScreen" : true,
+  "speed" : "everyQuarter"
+}
