@@ -2,7 +2,9 @@
 //  ExploreView.swift
 //  ClockSpace
 //
-//  Placeholder for the Explore tab — curated discovery experience.
+//  Explore tab — curated discovery experience with
+//  "Discover All" alphabetical browsing, category filtering,
+//  and tag cloud navigation.
 //
 
 import SwiftUI
@@ -11,52 +13,54 @@ struct ExploreView: View {
     
     @EnvironmentObject var apiManager: APIManager
     @State private var selectedFilter: String? = "4K"
+    @State private var showDiscoverAll: Bool = false
     
     var body: some View {
         VStack(spacing: 0) {
-            VStack(spacing: 0) {
-                if let category = apiManager.selectedCategory {
-                    // ── Category Detail View ──
-                    categoryDetailView(for: category)
-                } else {
-                    // ── Standard Explore Content ──
-                    exploreHero
+            if showDiscoverAll {
+                // ── Discover All: Full Alphabetical Grid ──
+                discoverAllView
+            } else if let category = apiManager.selectedCategory {
+                // ── Category Detail View ──
+                categoryDetailView(for: category)
+            } else {
+                // ── Standard Explore Content ──
+                exploreHero
+                
+                VStack(spacing: CSTheme.Spacing.xxl) {
+                    // ── Tag Discovery Hub ──
+                    tagCloud
                     
-                    VStack(spacing: CSTheme.Spacing.xxl) {
-                        // ── Tag Discovery Hub ──
-                        tagCloud
+                    // ── Latest Wallpapers (4-Column Grid) ──
+                    exploreSection(
+                        title: "Latest Wallpapers",
+                        subtitle: "Browse the newest additions to our collection",
+                        items: apiManager.screensavers.filter { $0.isNew }
+                    )
+                    
+                    // ── Categories Grid ──
+                    VStack(alignment: .leading, spacing: CSTheme.Spacing.lg) {
+                        Text("Categories")
+                            .font(CSTheme.Font.sectionTitle)
+                            .foregroundColor(.white)
                         
-                        // ── Latest Wallpapers (3-Column Grid) ──
-                        exploreSection(
-                            title: "Latest Wallpapers",
-                            subtitle: "Browse the newest additions to our collection",
-                            items: apiManager.screensavers.filter { $0.isNew }
-                        )
-                        
-                        // ── Categories Grid ──
-                        VStack(alignment: .leading, spacing: CSTheme.Spacing.lg) {
-                            Text("Categories")
-                                .font(CSTheme.Font.sectionTitle)
-                                .foregroundColor(.white)
-                            
-                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
-                                ForEach(Category.allCases, id: \.self) { category in
-                                    Button(action: {
-                                        withAnimation(CSTheme.Animation.standard) {
-                                            apiManager.selectedCategory = category
-                                        }
-                                    }) {
-                                        categoryCard(for: category)
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
+                            ForEach(Category.allCases, id: \.self) { category in
+                                Button(action: {
+                                    withAnimation(CSTheme.Animation.standard) {
+                                        apiManager.selectedCategory = category
                                     }
-                                    .buttonStyle(.plain)
+                                }) {
+                                    categoryCard(for: category)
                                 }
+                                .buttonStyle(.plain)
                             }
                         }
                     }
-                    .padding(.horizontal, CSTheme.Spacing.xxl)
-                    .padding(.top, CSTheme.Spacing.xxl)
-                    .padding(.bottom, CSTheme.Spacing.xxxl)
                 }
+                .padding(.horizontal, CSTheme.Spacing.xxl)
+                .padding(.top, CSTheme.Spacing.xxl)
+                .padding(.bottom, CSTheme.Spacing.xxxl)
             }
         }
         .onAppear {
@@ -68,10 +72,67 @@ struct ExploreView: View {
         }
     }
     
-    private func categoryDetailView(for category: Category) -> some View {
-        VStack(alignment: .leading, spacing: CSTheme.Spacing.xxl) {
+    // MARK: - Discover All View (Alphabetical Grid)
+    
+    private var discoverAllView: some View {
+        VStack(alignment: .leading, spacing: CSTheme.Spacing.lg) {
             // Header with Back button
-            HStack(spacing: 20) {
+            HStack(spacing: 16) {
+                Button(action: {
+                    withAnimation(CSTheme.Animation.standard) {
+                        showDiscoverAll = false
+                    }
+                }) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "chevron.left")
+                        Text("Explore")
+                    }
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(CSTheme.accent)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .background(Capsule().fill(CSTheme.accent.opacity(0.1)))
+                }
+                .buttonStyle(.plain)
+                
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("All Screensavers")
+                        .font(.system(size: 28, weight: .bold))
+                        .foregroundColor(.white)
+                    Text("\(apiManager.screensavers.count) screensavers · Sorted A–Z")
+                        .font(CSTheme.Font.caption)
+                        .foregroundColor(CSTheme.textTertiary)
+                }
+                
+                Spacer()
+            }
+            .padding(.top, 20)
+            
+            // Alphabetical Grid — 4 columns, proper spacing
+            LazyVGrid(
+                columns: [
+                    GridItem(.flexible(), spacing: 16),
+                    GridItem(.flexible(), spacing: 16),
+                    GridItem(.flexible(), spacing: 16),
+                    GridItem(.flexible(), spacing: 16)
+                ],
+                spacing: 20
+            ) {
+                ForEach(apiManager.screensavers.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }) { saver in
+                    ScreensaverCard(screensaver: saver)
+                }
+            }
+        }
+        .padding(.horizontal, CSTheme.Spacing.xxl)
+        .padding(.bottom, 60)
+    }
+    
+    // MARK: - Category Detail View
+    
+    private func categoryDetailView(for category: Category) -> some View {
+        VStack(alignment: .leading, spacing: CSTheme.Spacing.lg) {
+            // Header with Back button
+            HStack(spacing: 16) {
                 Button(action: {
                     withAnimation(CSTheme.Animation.standard) {
                         apiManager.selectedCategory = nil
@@ -89,20 +150,34 @@ struct ExploreView: View {
                 }
                 .buttonStyle(.plain)
                 
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 2) {
                     Text(category.rawValue)
-                        .font(.system(size: 32, weight: .bold))
+                        .font(.system(size: 28, weight: .bold))
                         .foregroundColor(.white)
                     Text("Found \(apiManager.screensavers.filter { $0.category == category }.count) screensavers")
                         .font(CSTheme.Font.caption)
                         .foregroundColor(CSTheme.textTertiary)
                 }
+                
+                Spacer()
             }
-            .padding(.top, 40)
+            .padding(.top, 20)
             
-            // Grid
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
-                ForEach(apiManager.screensavers.filter { $0.category == category }) { saver in
+            // Grid — 4 columns, alphabetically sorted within category
+            LazyVGrid(
+                columns: [
+                    GridItem(.flexible(), spacing: 16),
+                    GridItem(.flexible(), spacing: 16),
+                    GridItem(.flexible(), spacing: 16),
+                    GridItem(.flexible(), spacing: 16)
+                ],
+                spacing: 20
+            ) {
+                ForEach(
+                    apiManager.screensavers
+                        .filter { $0.category == category }
+                        .sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
+                ) { saver in
                     ScreensaverCard(screensaver: saver)
                 }
             }
@@ -115,13 +190,12 @@ struct ExploreView: View {
     
     private var exploreHero: some View {
         ZStack {
-            // Illustrated background placeholder (Sonoma/Sequoia gradient style)
             LinearGradient(
                 colors: [Color(hex: 0x143D36), Color(hex: 0x0A201C)],
                 startPoint: .top,
                 endPoint: .bottom
             )
-            .frame(height: 380)
+            .frame(height: 340)
             .overlay(
                 Image(systemName: "leaf.fill")
                     .font(.system(size: 160))
@@ -142,8 +216,9 @@ struct ExploreView: View {
                     .lineSpacing(4)
                 
                 Button(action: {
-                    // Quick jump to all
-                    withAnimation { selectedFilter = "Dynamic" }
+                    withAnimation(CSTheme.Animation.standard) {
+                        showDiscoverAll = true
+                    }
                 }) {
                     HStack(spacing: 8) {
                         Image(systemName: "sparkles")
@@ -166,7 +241,6 @@ struct ExploreView: View {
     
     private var tagCloud: some View {
         VStack(alignment: .leading, spacing: 12) {
-            // Row 1: Resolutions & Format
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
                     tagPill("Retina")
@@ -176,7 +250,6 @@ struct ExploreView: View {
                 }
             }
             
-            // Row 2: Content categories
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
                     ForEach(Category.allCases.prefix(8), id: \.self) { cat in
@@ -190,7 +263,6 @@ struct ExploreView: View {
                 }
             }
             
-            // Row 3: Style tags
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
                     tagPill("Generative Art", isNew: true)
@@ -249,7 +321,15 @@ struct ExploreView: View {
                     .foregroundColor(CSTheme.textMuted)
             }
             
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
+            LazyVGrid(
+                columns: [
+                    GridItem(.flexible(), spacing: 16),
+                    GridItem(.flexible(), spacing: 16),
+                    GridItem(.flexible(), spacing: 16),
+                    GridItem(.flexible(), spacing: 16)
+                ],
+                spacing: 20
+            ) {
                 ForEach(items.prefix(8)) { saver in
                     ScreensaverCard(screensaver: saver)
                 }

@@ -57,6 +57,8 @@ enum CSConstants {
         static let windowDefaultHeight: CGFloat = 720
         static let windowMinWidth: CGFloat = 860
         static let windowMinHeight: CGFloat = 560
+        static let windowMaxWidth: CGFloat = 1100
+        static let windowMaxHeight: CGFloat = 720
         static let sidebarWidth: CGFloat = 220
     }
 }

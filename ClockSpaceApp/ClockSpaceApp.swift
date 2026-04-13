@@ -19,7 +19,9 @@ struct ClockSpaceApp: App {
                 .preferredColorScheme(.dark)
                 .frame(
                     minWidth: CSConstants.Layout.windowMinWidth,
-                    minHeight: CSConstants.Layout.windowMinHeight
+                    maxWidth: CSConstants.Layout.windowMaxWidth,
+                    minHeight: CSConstants.Layout.windowMinHeight,
+                    maxHeight: CSConstants.Layout.windowMaxHeight
                 )
         }
         .defaultSize(
@@ -27,5 +29,6 @@ struct ClockSpaceApp: App {
             height: CSConstants.Layout.windowDefaultHeight
         )
         .windowStyle(.hiddenTitleBar)
+        .windowResizability(.contentSize)
     }
 }

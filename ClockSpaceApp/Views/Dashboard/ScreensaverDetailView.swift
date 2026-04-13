@@ -2,8 +2,8 @@
 //  ScreensaverDetailView.swift
 //  ClockSpace
 //
-//  Immersive full-screen detail view for a screensaver.
-//  Simulates a live preview and provides the main Set actions.
+//  Immersive detail view for a screensaver.
+//  Bottom nav bar fixed to window edge, Wallspace-style.
 //
 
 import SwiftUI
@@ -31,46 +31,16 @@ struct ScreensaverDetailView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            // ── Live Preview Background (Full Screen) ──
+        ZStack(alignment: .bottom) {
+            // ── Live Preview Background ──
             livePreviewBackground
-                .ignoresSafeArea()
             
-            // ── Dedicated Close Button (Top Left) ──
-            Button(action: {
-                withAnimation(CSTheme.Animation.standard) {
-                    apiManager.detailedScreensaver = nil
-                }
-            }) {
-                HStack(spacing: 8) {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 14, weight: .bold))
-                    Text("Close Preview")
-                        .font(.system(size: 13, weight: .semibold))
-                }
-                .foregroundColor(.white)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 10)
-                .background(Capsule().fill(Color.black.opacity(0.6)).background(.ultraThinMaterial))
-                .overlay(Capsule().stroke(Color.white.opacity(0.2), lineWidth: 1))
-            }
-            .buttonStyle(.plain)
-            .padding(.top, 40) // Increased padding for better visibility
-            .padding(.leading, 40)
-            .zIndex(101) // Higher priority
-            .transition(.move(edge: .top).combined(with: .opacity))
-            
-            // ── Floating Action Pill (Bottom) ──
-            VStack {
-                Spacer()
-                
-                actionPill
-                    .padding(.bottom, 60) // Lift it up slightly
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .zIndex(102) // On top of close button even
+            // ── Fixed Bottom Nav Bar (Wallspace-Style) ──
+            bottomNavBar
+                .zIndex(100)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .clipped()
         .alert("Installation Error", isPresented: Binding(
             get: { manager.lastError != nil },
             set: { if !$0 { manager.lastError = nil } }
@@ -113,12 +83,10 @@ struct ScreensaverDetailView: View {
                             Image(nsImage: nsImage)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .ignoresSafeArea()
                         } else if let nsImage = NSImage(named: screensaver.thumbnailURL) {
                             Image(nsImage: nsImage)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .ignoresSafeArea()
                         } else {
                             fallbackBackground
                         }
@@ -128,6 +96,8 @@ struct ScreensaverDetailView: View {
                 }
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .clipped()
         .onAppear {
             withAnimation(.linear(duration: 5.0).repeatForever(autoreverses: false)) {
                 isAnimating = true
@@ -135,68 +105,68 @@ struct ScreensaverDetailView: View {
         }
     }
     
-    // MARK: - Action Pill
+    // MARK: - Bottom Nav Bar (Wallspace-Style, Fixed to Bottom Edge)
     
-    private var actionPill: some View {
-        HStack(spacing: CSTheme.Spacing.xl) {
+    private var bottomNavBar: some View {
+        HStack(spacing: 16) {
+            // Back Button
+            Button(action: {
+                withAnimation(CSTheme.Animation.standard) {
+                    apiManager.detailedScreensaver = nil
+                }
+            }) {
+                Image(systemName: "chevron.left")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(.white)
+                    .frame(width: 34, height: 34)
+                    .background(Circle().fill(Color.white.opacity(0.12)))
+            }
+            .buttonStyle(.plain)
             
-            // 1. Back Button & Title
-            HStack(spacing: CSTheme.Spacing.md) {
-                Button(action: {
-                    withAnimation(CSTheme.Animation.standard) {
-                        apiManager.detailedScreensaver = nil
-                    }
-                }) {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.white)
-                        .padding(10)
-                        .background(Circle().fill(Color.white.opacity(0.1)))
-                }
-                .buttonStyle(.plain)
+            // Title & Author
+            VStack(alignment: .leading, spacing: 1) {
+                Text(screensaver.name)
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(.white)
+                    .lineLimit(1)
                 
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(screensaver.name)
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(.white)
-                    
-                    Text("by \(screensaver.author)")
-                        .font(.system(size: 11, weight: .medium))
-                        .foregroundColor(CSTheme.textTertiary)
-                }
+                Text("by \(screensaver.author)")
+                    .font(.system(size: 11, weight: .medium))
+                    .foregroundColor(CSTheme.textTertiary)
             }
             
             Spacer()
             
-            // 2. Toolbar Actions
+            // Heart/Like Toggle
             Button(action: {
                 withAnimation(.spring()) {
                     apiManager.toggleLiked(screensaver)
                 }
             }) {
                 Image(systemName: apiManager.isLiked(screensaver) ? "heart.fill" : "heart")
-                    .font(.system(size: 20))
+                    .font(.system(size: 18))
                     .foregroundColor(apiManager.isLiked(screensaver) ? .red : .white)
+                    .frame(width: 34, height: 34)
+                    .background(Circle().fill(Color.white.opacity(0.12)))
             }
             .buttonStyle(.plain)
             
-            // 3. Set Wallpaper CTA
+            // Install / Apply CTA
             installButton
         }
-        .padding(.horizontal, 24)
-        .padding(.vertical, 16)
+        .padding(.horizontal, 20)
+        .padding(.vertical, 12)
         .background(
-            Capsule()
-                .fill(Color.black.opacity(0.5))
+            Rectangle()
+                .fill(Color.black.opacity(0.55))
                 .background(.ultraThinMaterial)
-                .clipShape(Capsule())
         )
         .overlay(
-            Capsule()
-                .stroke(Color.white.opacity(0.15), lineWidth: 1)
+            Rectangle()
+                .frame(height: 0.5)
+                .foregroundColor(Color.white.opacity(0.1)),
+            alignment: .top
         )
-        .padding(.horizontal, 40)
-        .shadow(color: .black.opacity(0.3), radius: 20, y: 10)
     }
     
     // MARK: - Install Button (Shared Logic)
@@ -211,10 +181,10 @@ struct ScreensaverDetailView: View {
                 }
             }) {
                 Text(screensaver.isPremium ? screensaver.formattedPrice : "Apply")
-                    .font(.system(size: 14, weight: .bold))
+                    .font(.system(size: 13, weight: .bold))
                     .foregroundColor(screensaver.isPremium ? .black : .white)
-                    .padding(.horizontal, CSTheme.Spacing.xl)
-                    .padding(.vertical, 14)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 10)
                     .background(
                         Capsule()
                             .fill(screensaver.isPremium ? CSTheme.premiumGold : CSTheme.accent)
@@ -223,22 +193,21 @@ struct ScreensaverDetailView: View {
             .buttonStyle(.plain)
             
         case .installing:
-            HStack(spacing: 8) {
+            HStack(spacing: 6) {
                 ProgressView()
                     .controlSize(.small)
                     .tint(.white)
                 
                 Text("Installing...")
-                    .font(.system(size: 14, weight: .bold))
+                    .font(.system(size: 13, weight: .bold))
                     .foregroundColor(.white)
             }
-            .padding(.horizontal, CSTheme.Spacing.xl)
-            .padding(.vertical, 14)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 10)
             .background(Capsule().fill(Color.white.opacity(0.2)))
             
         case .installed:
             Button(action: {
-                // Determine the exact filename from downloadURL if possible, otherwise fallback to name
                 let fileName: String
                 if screensaver.downloadURL.hasPrefix("local://") {
                     fileName = String(screensaver.downloadURL.dropFirst(8))
@@ -256,27 +225,25 @@ struct ScreensaverDetailView: View {
                 }
             }) {
                 Text("Open in Settings")
-                    .font(.system(size: 14, weight: .bold))
+                    .font(.system(size: 13, weight: .bold))
                     .foregroundColor(.white)
-                    .padding(.horizontal, CSTheme.Spacing.xl)
-                    .padding(.vertical, 14)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 10)
                     .background(Capsule().fill(CSTheme.surfaceElevated))
                     .overlay(Capsule().stroke(Color.white.opacity(0.2), lineWidth: 1))
             }
             .buttonStyle(.plain)
-
-
             
         case .active:
             HStack(spacing: 6) {
                 Image(systemName: "checkmark")
-                    .font(.system(size: 12, weight: .bold))
+                    .font(.system(size: 11, weight: .bold))
                 Text("Active")
-                    .font(.system(size: 14, weight: .bold))
+                    .font(.system(size: 13, weight: .bold))
             }
             .foregroundColor(CSTheme.accent)
-            .padding(.horizontal, CSTheme.Spacing.xl)
-            .padding(.vertical, 14)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 10)
             .background(Capsule().fill(CSTheme.accent.opacity(0.12)))
             .overlay(Capsule().stroke(CSTheme.accent.opacity(0.3), lineWidth: 1))
         }
@@ -284,13 +251,10 @@ struct ScreensaverDetailView: View {
     
     private var fallbackBackground: some View {
         ZStack {
-            // Base static gradient
             gradient(for: screensaver)
             
-            // Shifting Mesh Gradient Simulation
             MeshGradientView(tintColor: screensaver.category.tintColor)
             
-            // "Scanline" light sweep
             Rectangle()
                 .fill(
                     LinearGradient(
@@ -300,19 +264,11 @@ struct ScreensaverDetailView: View {
                     )
                 )
                 .frame(height: 200)
-                .offset(y: isAnimating ? boundsHeight : -boundsHeight)
+                .offset(y: isAnimating ? 400 : -400)
         }
     }
     
     // MARK: - Gradient Helper
-    
-    private var boundsWidth: CGFloat {
-        NSScreen.main?.frame.width ?? 1000
-    }
-    
-    private var boundsHeight: CGFloat {
-        NSScreen.main?.frame.height ?? 800
-    }
     
     private func gradient(for saver: Screensaver) -> LinearGradient {
         let gradients: [LinearGradient] = [
