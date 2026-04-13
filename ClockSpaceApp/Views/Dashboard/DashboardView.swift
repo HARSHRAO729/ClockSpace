@@ -107,16 +107,7 @@ struct DashboardView: View {
                     }
                     
                     // ── Most Popular (Horizontal) ──
-                    sectionHeader(title: "Most Popular", subtitle: "Trending screensavers loved by the community")
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: CSTheme.Spacing.lg) {
-                            ForEach(apiManager.screensavers.filter { $0.rank != nil }.sorted(by: { ($0.rank ?? 99) < ($1.rank ?? 99) })) { saver in
-                                ScreensaverCard(screensaver: saver)
-                                    .frame(width: 280)
-                            }
-                        }
-                    }
+                    // Removed "Most Popular" section as per user request to remove rankings/ratings
                     
                     // ── Categories (Grid) ──
                     sectionHeader(title: "Categories", subtitle: "Browse screensavers by category")

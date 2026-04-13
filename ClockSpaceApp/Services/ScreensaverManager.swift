@@ -338,8 +338,8 @@ final class ScreensaverManager: ObservableObject {
             return false
         }
         
-        // Use modern macOS Sonoma Deep Link Handoff
-        NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.Screen-Saver-Settings.extension")!)
+        // Use modern macOS Sonoma Deep Link Handoff to Wallpaper settings
+        NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.Wallpaper-Settings.extension")!)
         return true
     }
     
@@ -560,13 +560,13 @@ final class ScreensaverManager: ObservableObject {
                     NSColor(calibratedRed: 0.2, green: 0.6, blue: 0.8, alpha: 1.0),
                     NSColor(calibratedRed: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
                 ])
-                gradient?.draw(from: NSPoint(x: cx1, y: cy1), to: NSPoint(x: cx2, y: cy2), options: [.beforeStartingLocation, .afterEndingLocation])
+                gradient?.draw(from: NSPoint(x: cx1, y: cy1), to: NSPoint(x: cx2, y: cy2), options: [.drawsBeforeStartingLocation, .drawsAfterEndingLocation])
                 
-                let text = "NATURE"
-                let font = NSFont.systemFont(ofSize: 40, weight: .thin)
+                let text = "\(screensaver.name.uppercased())"
+                let font = NSFont.systemFont(ofSize: bounds.height * 0.05, weight: .thin)
                 let attrs: [NSAttributedString.Key: Any] = [.font: font, .foregroundColor: NSColor(white: 1.0, alpha: 0.5)]
                 let size = text.size(withAttributes: attrs)
-                text.draw(at: CGPoint(x: bounds.midX - size.width/2, y: 50), withAttributes: attrs)
+                text.draw(at: CGPoint(x: bounds.midX - size.width/2, y: bounds.height * 0.1), withAttributes: attrs)
             """
             
         case "generative":

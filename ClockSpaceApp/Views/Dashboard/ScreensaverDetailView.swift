@@ -15,6 +15,7 @@ struct ScreensaverDetailView: View {
     @StateObject private var manager = ScreensaverManager.shared
     
     @State private var isAnimating = false
+    @State private var player = AVPlayer()
     
     /// Derived install state
     private var installState: InstallState {
@@ -57,24 +58,43 @@ struct ScreensaverDetailView: View {
     
     private var livePreviewBackground: some View {
         Group {
-            ZStack {
-                // Base static gradient
-                gradient(for: screensaver)
-                
-                // Shifting Mesh Gradient Simulation
-                MeshGradientView(tintColor: screensaver.category.tintColor)
-                
-                // "Scanline" light sweep
-                Rectangle()
-                    .fill(
-                        LinearGradient(
-                            colors: [.clear, .white.opacity(0.05), .clear],
-                            startPoint: .top,
-                            endPoint: .bottom
+            if let urlStr = screensaver.previewURL, let url = URL(string: urlStr) {
+                VideoPlayer(player: player)
+                    .onAppear {
+                        let item = AVPlayerItem(url: url)
+                        player.replaceCurrentItem(with: item)
+                        player.isMuted = true
+                        player.play()
+                        
+                        NotificationCenter.default.addObserver(
+                            forName: .AVPlayerItemDidPlayToEndTime,
+                            object: item,
+                            queue: .main
+                        ) { _ in
+                            player.seek(to: .zero)
+                            player.play()
+                        }
+                    }
+            } else {
+                ZStack {
+                    // Base static gradient
+                    gradient(for: screensaver)
+                    
+                    // Shifting Mesh Gradient Simulation
+                    MeshGradientView(tintColor: screensaver.category.tintColor)
+                    
+                    // "Scanline" light sweep
+                    Rectangle()
+                        .fill(
+                            LinearGradient(
+                                colors: [.clear, .white.opacity(0.05), .clear],
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
                         )
-                    )
-                    .frame(height: 200)
-                    .offset(y: isAnimating ? boundsHeight : -boundsHeight)
+                        .frame(height: 200)
+                        .offset(y: isAnimating ? boundsHeight : -boundsHeight)
+                }
             }
         }
         .onAppear {
@@ -110,9 +130,6 @@ struct ScreensaverDetailView: View {
                         .foregroundColor(.white)
                     
                     HStack(spacing: 6) {
-                        Image(systemName: "display")
-                        Text(screensaver.resolution ?? "4K / Retina")
-                        Text("•")
                         Image(systemName: "person.fill")
                         Text(screensaver.author)
                     }
@@ -124,31 +141,16 @@ struct ScreensaverDetailView: View {
             Spacer()
             
             // 2. Toolbar Actions
-            HStack(spacing: CSTheme.Spacing.lg) {
-                Button(action: {}) {
-                    Image(systemName: "square.and.arrow.up")
-                        .font(.system(size: 18))
+            Button(action: {
+                withAnimation(.spring()) {
+                    apiManager.toggleLiked(screensaver)
                 }
-                .buttonStyle(.plain)
-                
-                Button(action: {}) {
-                    Image(systemName: "slider.horizontal.3")
-                        .font(.system(size: 18))
-                }
-                .buttonStyle(.plain)
-                
-                Button(action: {
-                    withAnimation(.spring()) {
-                        apiManager.toggleLiked(screensaver)
-                    }
-                }) {
-                    Image(systemName: apiManager.isLiked(screensaver) ? "heart.fill" : "heart")
-                        .font(.system(size: 20))
-                        .foregroundColor(apiManager.isLiked(screensaver) ? .red : .white)
-                }
-                .buttonStyle(.plain)
+            }) {
+                Image(systemName: apiManager.isLiked(screensaver) ? "heart.fill" : "heart")
+                    .font(.system(size: 20))
+                    .foregroundColor(apiManager.isLiked(screensaver) ? .red : .white)
             }
-            .foregroundColor(CSTheme.textMuted)
+            .buttonStyle(.plain)
             
             // 3. Set Wallpaper CTA
             installButton
@@ -180,7 +182,7 @@ struct ScreensaverDetailView: View {
                     await manager.installFromMarketplace(screensaver)
                 }
             }) {
-                Text(screensaver.isPremium ? screensaver.formattedPrice : "Open Preview")
+                Text(screensaver.isPremium ? screensaver.formattedPrice : "Apply")
                     .font(.system(size: 14, weight: .bold))
                     .foregroundColor(screensaver.isPremium ? .black : .white)
                     .padding(.horizontal, CSTheme.Spacing.xl)
@@ -198,7 +200,7 @@ struct ScreensaverDetailView: View {
                     .controlSize(.small)
                     .tint(.white)
                 
-                Text("Preparing...")
+                Text("Installing...")
                     .font(.system(size: 14, weight: .bold))
                     .foregroundColor(.white)
             }
@@ -217,7 +219,7 @@ struct ScreensaverDetailView: View {
                     manager.lastError = ScreensaverInstallError.unknown("Failed to open System Settings.")
                 }
             }) {
-                Text("Set in Settings")
+                Text("Open in Settings")
                     .font(.system(size: 14, weight: .bold))
                     .foregroundColor(.white)
                     .padding(.horizontal, CSTheme.Spacing.xl)
@@ -226,6 +228,7 @@ struct ScreensaverDetailView: View {
                     .overlay(Capsule().stroke(Color.white.opacity(0.2), lineWidth: 1))
             }
             .buttonStyle(.plain)
+
             
         case .active:
             HStack(spacing: 6) {

@@ -28,6 +28,7 @@ struct Screensaver: Identifiable, Codable, Hashable {
     let fileSize: String?     // "23MB"
     let isNew: Bool           // To show "NEW" badge
     let template: String?     // The code template to use (e.g., "matrix", "flip", "minimal")
+    let previewURL: String?   // URL to a video preview
     
     /// Formatted download count (e.g. "12.3K")
     var formattedDownloads: String {

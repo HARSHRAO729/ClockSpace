@@ -13,7 +13,7 @@ struct ExploreView: View {
     @State private var selectedFilter: String? = "4K"
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
+        VStack(spacing: 0) {
             VStack(spacing: 0) {
                 if let category = apiManager.selectedCategory {
                     // ── Category Detail View ──
@@ -56,6 +56,13 @@ struct ExploreView: View {
                     .padding(.horizontal, CSTheme.Spacing.xxl)
                     .padding(.top, CSTheme.Spacing.xxl)
                     .padding(.bottom, CSTheme.Spacing.xxxl)
+                }
+            }
+        }
+        .onAppear {
+            if apiManager.screensavers.isEmpty {
+                Task {
+                    _ = try? await apiManager.fetchScreensavers()
                 }
             }
         }
