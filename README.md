@@ -2,6 +2,9 @@
 
 **ClockSpace** is an elite, premium macOS application that completely redefines the screensaver experience. Built with a high-fidelity "Wallspace" design system, it bypasses standard Apple sandbox limitations using shell interoperations to deliver compiled, 60-FPS Quartz-rendered graphics straight to your lock screen.
 
+### 📢 Open Source Note
+**ClockSpace is a CivicEase (CVK) project.** We value open collaboration, but the brand, design language, and commercial rights are strictly reserved. This project is shared under the **PolyForm Noncommercial License 1.0.0**, which allows for personal, educational, and research use while prohibiting commercial application.
+
 ### 🚀 Key Features
 
 *   **Cinematic Marketplace UI**: A flawlessly crafted Glassmorphism and SwiftUI design system with horizontal carousels, dynamic grids, and a full-screen blur focus mode.
@@ -33,4 +36,7 @@ It handles exact `NSPrincipalClass` linking under the hood so Apple's ScreenSave
 4. Hit **Cmd + R** to run.
 
 ---
+### 🤝 Contributing
+We welcome community contributions specifically for the `Community/` folder. Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
 *Created by [HARSHRAO729](https://github.com/HARSHRAO729) & CivicEase Studios.*

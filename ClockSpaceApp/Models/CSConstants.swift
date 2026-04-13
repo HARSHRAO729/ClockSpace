@@ -25,7 +25,9 @@ enum CSConstants {
     
     /// Base URL for the ClockSpace marketplace API.
     /// Currently points to a local stub; swap for production endpoint when ready.
-    static let apiBaseURL = "https://api.clockspace.dev/v1"
+    static var apiBaseURL: String {
+        Secrets.supabaseURL ?? "https://api.clockspace.dev/v1"
+    }
     
     // MARK: - API Endpoints
     
@@ -35,6 +37,20 @@ enum CSConstants {
         static let download = "/screensavers/download"
         static let featured = "/screensavers/featured"
         static let categories = "/categories"
+    }
+
+    // MARK: - Secrets
+    
+    /// Securely managed API keys and secrets.
+    /// These are loaded from Secrets.xcconfig via Info.plist.
+    enum Secrets {
+        static var licenseAPIKey: String? {
+            Bundle.main.object(forInfoDictionaryKey: "LICENSE_API_KEY") as? String
+        }
+        
+        static var supabaseURL: String? {
+            Bundle.main.object(forInfoDictionaryKey: "SUPABASE_URL") as? String
+        }
     }
     
     // MARK: - Defaults Keys
