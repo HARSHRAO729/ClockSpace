@@ -35,8 +35,12 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
     static let shared = APIManager()
     
     private init() {
-        // Populate initially
-        self.screensavers = Self.mockScreensavers
+        // Force purge all local state for a fresh start as requested
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        UserDefaults.standard.synchronize()
+        
+        // Populate with empty catalog
+        self.screensavers = []
         loadLikedItems()
     }
     
@@ -147,7 +151,7 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
         return uuid
     }
     
-    // MARK: - Complete Screensaver Catalog (43 entries)
+    // MARK: - Complete Screensaver Catalog (Empty for Fresh Start)
     
-    private static let mockScreensavers: [Screensaver] = [
-        
+    private static let mockScreensavers: [Screensaver] = []
+}
