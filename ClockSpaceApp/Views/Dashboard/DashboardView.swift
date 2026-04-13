@@ -62,6 +62,8 @@ struct DashboardView: View {
             // ── Detailed Screensaver Overlay ──
             if let saver = apiManager.detailedScreensaver {
                 ScreensaverDetailView(screensaver: saver)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .ignoresSafeArea()
                     .transition(.opacity.combined(with: .scale(scale: 0.95)))
                     .zIndex(100) // Ensure it floats above everything
             }

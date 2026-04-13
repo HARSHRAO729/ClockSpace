@@ -31,16 +31,14 @@ struct ScreensaverDetailView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            // ── Live Preview Background ──
+        VStack(spacing: 0) {
+            // ── Live Preview fills remaining space ──
             livePreviewBackground
             
             // ── Fixed Bottom Nav Bar (Wallspace-Style) ──
             bottomNavBar
-                .zIndex(100)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .clipped()
+        .ignoresSafeArea()
         .alert("Installation Error", isPresented: Binding(
             get: { manager.lastError != nil },
             set: { if !$0 { manager.lastError = nil } }
