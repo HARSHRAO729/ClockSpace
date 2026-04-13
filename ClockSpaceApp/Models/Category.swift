@@ -21,6 +21,9 @@ enum Category: String, Codable, CaseIterable, Identifiable {
     case graphics = "Graphics"
     case other = "Other"
     case collections = "Collections"
+    case abstract = "Abstract"
+    case minimalist = "Minimalist"
+    case nature = "Nature"
     
     var id: String { rawValue }
     
@@ -37,6 +40,9 @@ enum Category: String, Codable, CaseIterable, Identifiable {
         case .graphics:      return "paintpalette.fill"
         case .other:         return "square.grid.3x3.fill"
         case .collections:   return "rectangle.stack.fill"
+        case .abstract:      return "waveform.path.ecg"
+        case .minimalist:    return "minus"
+        case .nature:        return "leaf.fill"
         }
     }
     
@@ -53,6 +59,9 @@ enum Category: String, Codable, CaseIterable, Identifiable {
         case .graphics:      return "Abstract and generative visuals"
         case .other:         return "Unique and uncategorized gems"
         case .collections:   return "Curated screensaver collections"
+        case .abstract:      return "Artistic and non-representational visuals"
+        case .minimalist:    return "Simple, clean, and understated designs"
+        case .nature:        return "Serene landscapes and organic elements"
         }
     }
     
@@ -69,6 +78,9 @@ enum Category: String, Codable, CaseIterable, Identifiable {
         case .graphics:      return Color(hex: 0x8B5CF6)   // violet-500
         case .other:         return Color(hex: 0xEC4899)   // pink-500
         case .collections:   return Color(hex: 0xFBBF24)   // yellow-400
+        case .abstract:      return Color(hex: 0xD946EF)   // fuchsia-500
+        case .minimalist:    return Color(hex: 0x94A3B8)   // slate-400
+        case .nature:        return Color(hex: 0x22C55E)   // green-500
         }
     }
 }
