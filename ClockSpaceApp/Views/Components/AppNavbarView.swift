@@ -24,7 +24,7 @@ struct AppNavbarView: View {
                 UserProfileView()
                 
                 VStack(alignment: .leading, spacing: 1) {
-                    Text("Antigravity")
+                    Text("ClockSpace")
                         .font(.system(size: 13, weight: .bold))
                         .foregroundColor(.white)
                     
