@@ -659,6 +659,77 @@ final class ScreensaverManager: ObservableObject {
                 }
             """
             
+        case "excuses":
+            extraState = """
+                private let excuses = [
+                    "It works on my machine.", "It's not a bug, it's a feature.", "It worked yesterday.",
+                    "I didn't touch that part of the code.", "Must be a browser issue.", "That's just a warning, not an error.",
+                    "It's a caching issue.", "The API must be down.", "Git must have messed it up.",
+                    "That bug was already there.", "I was just testing the limits of quantum computing.",
+                    "The code is in a mood today.", "I didn't know that was a requirement.", "It's a limitation of the technology.",
+                    "It's failing due to a last-minute change.", "The data must be corrupted.",
+                    "It's a problem with the third-party library.", "I was just trying to be clever.",
+                    "The specifications were ambiguous.", "I'm not sure what you did, but it's not my fault.",
+                    "The compiler is hallucinating.", "I thought I fixed that in the last commit.",
+                    "The documentation is lying.", "It's an edge case.", "I was following the standard.",
+                    "The server must be overloaded.", "I didn't think anyone would ever do that.",
+                    "It worked in the prototype.", "It's a race condition.", "My cat walked over the keyboard.",
+                    "The garbage collector hasn't visited yet.", "It's a design choice.", "I'm optimizing for developer happiness.",
+                    "The internet is broken.", "It was late and I was tired.", "I'll fix it in the next sprint.",
+                    "The QA team is finding bugs that don't exist.", "It's a feature request masquerading as a bug.",
+                    "The legacy code is haunted.", "I followed the tutorial exactly.", "The stack overflow answer was wrong.",
+                    "It's a cosmic ray issue.", "The hardware is incompatible.", "I'm just a junior developer.",
+                    "The senior dev said it was fine.", "It's a known issue that we won't fix.",
+                    "The user is using it wrong.", "It's an unpredictable side effect.", "I was just refactoring."
+                ]
+                private var currentExcuse = ""
+                private var lastChangeTime: TimeInterval = 0
+                private var opacity: CGFloat = 0
+                private var isFadingIn = true
+            """
+            drawImplementation = """
+                let currentTime = CACurrentMediaTime()
+                if currentExcuse.isEmpty || currentTime - lastChangeTime > 6.0 {
+                    currentExcuse = excuses.randomElement() ?? "Wait, what happened?"
+                    lastChangeTime = currentTime
+                    opacity = 0
+                    isFadingIn = true
+                }
+                
+                // Animate opacity
+                if isFadingIn {
+                    opacity += 0.02
+                    if opacity >= 1.0 { 
+                        opacity = 1.0
+                        if currentTime - lastChangeTime > 5.0 { isFadingIn = false }
+                    }
+                } else {
+                    opacity -= 0.02
+                    if opacity <= 0 { opacity = 0 }
+                }
+
+                NSColor.black.setFill()
+                rect.fill()
+                
+                let font = NSFont.monospacedSystemFont(ofSize: bounds.height * 0.045, weight: .medium)
+                let attrs: [NSAttributedString.Key: Any] = [
+                    .font: font,
+                    .foregroundColor: NSColor.white.withAlphaComponent(opacity)
+                ]
+                
+                let size = currentExcuse.size(withAttributes: attrs)
+                currentExcuse.draw(at: CGPoint(x: bounds.midX - size.width/2, y: bounds.midY - size.height/2), withAttributes: attrs)
+                
+                // Subtle attribution
+                let subAttrs: [NSAttributedString.Key: Any] = [
+                    .font: NSFont.systemFont(ofSize: 12, weight: .light),
+                    .foregroundColor: NSColor.white.withAlphaComponent(opacity * 0.3)
+                ]
+                let subText = "Developer Excuses • Native Fallback"
+                let subSize = subText.size(withAttributes: subAttrs)
+                subText.draw(at: CGPoint(x: bounds.midX - subSize.width/2, y: 50), withAttributes: subAttrs)
+            """
+
         default: // Sci-Fi HUD (Default)
             extraState = "private var rotation: CGFloat = 0"
             drawImplementation = """

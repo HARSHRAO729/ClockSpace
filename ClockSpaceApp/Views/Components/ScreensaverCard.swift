@@ -82,6 +82,13 @@ struct ScreensaverCard: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(height: 160)
                             .clipped()
+                    } else if let bundleURL = Bundle.main.url(forResource: resourceName, withExtension: ext, subdirectory: "Categories"),
+                              let nsImage = NSImage(contentsOf: bundleURL) {
+                        Image(nsImage: nsImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(height: 160)
+                            .clipped()
                     } else {
                         fallbackThumbnail
                     }
@@ -155,29 +162,33 @@ struct ScreensaverCard: View {
                 }
             }
             
-            HStack {
-                HStack(spacing: CSTheme.Spacing.xs) {
-                    ForEach(screensaver.tags.prefix(2), id: \.self) { tag in
+            HStack(spacing: 8) {
+                HStack(spacing: 4) {
+                    ForEach(screensaver.tags.prefix(1), id: \.self) { tag in
                         Text(tag)
                             .font(.system(size: 9, weight: .medium))
                             .foregroundColor(CSTheme.textTertiary)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 3)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
                             .overlay(Capsule().stroke(Color.white.opacity(0.1), lineWidth: 0.5))
+                            .lineLimit(1)
                     }
                 }
                 
-                Spacer()
+                Spacer(minLength: 20) // Minimum separation
                 
-                // One action primary indicator
                 HStack(spacing: 4) {
                     Text(manager.isInstalled(screensaver) ? "Open Settings" : "Apply")
                         .font(.system(size: 11, weight: .semibold))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                    
                     Image(systemName: "arrow.right")
                         .font(.system(size: 10, weight: .bold))
                 }
                 .foregroundColor(isHovering ? .white : CSTheme.textTertiary)
             }
+            .frame(minHeight: 24) // Ensure consistent footer height
         }
         .padding(CSTheme.Spacing.lg)
     }

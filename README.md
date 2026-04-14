@@ -1,42 +1,69 @@
 # 🌌 ClockSpace
 
-**ClockSpace** is an elite, premium macOS application that completely redefines the screensaver experience. Built with a high-fidelity "Wallspace" design system, it bypasses standard Apple sandbox limitations using shell interoperations to deliver compiled, 60-FPS Quartz-rendered graphics straight to your lock screen.
+**ClockSpace** is an elite, premium macOS application that completely redefines the screensaver experience. Built with the high-fidelity **CivicEase** design system, it delivers 60-FPS Quartz-rendered graphics straight to your lock screen.
 
-### 📢 Open Source Note
-**ClockSpace is a CivicEase (CVK) project.** We value open collaboration, but the brand, design language, and commercial rights are strictly reserved. This project is shared under the **PolyForm Noncommercial License 1.0.0**, which allows for personal, educational, and research use while prohibiting commercial application.
-
-### 🚀 Key Features
-
-*   **Cinematic Marketplace UI**: A flawlessly crafted Glassmorphism and SwiftUI design system with horizontal carousels, dynamic grids, and a full-screen blur focus mode.
-*   **Vast Community Catalog**: Includes over 54 high-quality community-sourced screensavers pre-bundled, ranging from Matrix digital rains to minimalist flip clocks and WatchOS styles.
-*   **Quartz Transformation Engine**: Features the ability to dynamically compile Swift UI and CoreGraphics code on-the-fly (`swiftc`) directly into executable `.saver` bundles.
-*   **Seamless Application Flow**: A streamlined "Apply" workflow that installs bundles to `~/Library/Screen Savers/` and triggers a deep link to macOS System Settings for instant activation.
-*   **Live Previews**: Dynamic, visual-first browsing experience with actual preview images from the catalog rendered in the dashboard and detail views.
-
-### 🛠️ Architecture
-
-*   **100% Native**: Built exclusively in SwiftUI for maximum macOS hardware acceleration.
-*   **Fail-Soft Deployment**: The `ScreensaverManager.swift` engine features bulletproof compilation error-catching, automatic class mangling (`@objc`), and a fallback-resilient application flow.
-*   **Secure Core**: Zero-auth architectural approach, relying on device `IOPlatformUUID` and keychain-secured license management instead of cumbersome logins.
-
-### 🕰️ Generating the Minimal Clock
-
-When you select "Install" from the ClockSpace application, the app generates raw Swift code, invokes your local macOS SDK path, and outputs a system-ready dynamic library:
-```swift
-swiftc -emit-library -o "Minimal Clock.saver/Contents/MacOS/Minimal Clock" source.swift -target arm64-apple-macosx14.4
-```
-It handles exact `NSPrincipalClass` linking under the hood so Apple's ScreenSaverEngine loads your code immediately, flawlessly bypassing the standard "Blue Whirlpool" placeholder.
-
-### 📦 Installation
-
-*(Development Version)*
-1. Clone the repository: `git clone https://github.com/HARSHRAO729/ClockSpace.git`
-2. Open `ClockSpace.xcodeproj` in Xcode.
-3. Ensure **App Sandbox** is disabled in Signing & Capabilities.
-4. Hit **Cmd + R** to run.
+[![Official Website](https://img.shields.io/badge/Website-clockspace.civicease.systems-blue?style=for-the-badge&logo=safari)](https://clockspace.civicease.systems)
+[![Status: Development](https://img.shields.io/badge/Status-Early_Production-orange?style=for-the-badge)](https://github.com/HARSHRAO729/ClockSpace)
 
 ---
-### 🤝 Contributing
-We welcome community contributions specifically for the `Community/` folder. Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-*Created by [HARSHRAO729](https://github.com/HARSHRAO729) & CivicEase Studios.*
+## ⚠️ Development Status & Disclaimer
+
+**ClockSpace is currently in its early production and active development phase.** 
+
+While we strive for excellence in architectural design and visual fidelity, users may encounter installation complexities, feature malfunctions, or occasional application instability. We deeply regret any inconvenience caused by these early-stage issues and are working tirelessly to refine the experience. 
+
+**Join the Journey**: We believe in the power of community! If you're a developer or designer passionate about redefining the macOS experience, we warmly invite you to join us as a contributor and help shape the future of ClockSpace.
+
+---
+
+## ✨ Visual Experience
+
+| Cinematic Previews | Community Favorites | Immersive Motion |
+| :---: | :---: | :---: |
+| ![Preview 1](ClockSpaceApp/Resources/Thumbnails/Preview1.gif) | ![Matrix](ClockSpaceApp/Resources/Thumbnails/github_matrix.gif) | ![Aerial](ClockSpaceApp/Resources/Thumbnails/Aerial.gif) |
+| *Fluid Transitions* | *Digital Rain* | *Cinematic Loops* |
+
+---
+
+## 🚀 Key Features
+
+*   **Cinematic Marketplace UI**: A flawlessly crafted Glassmorphism and SwiftUI design system with horizontal carousels, dynamic grids, and a full-screen blur focus mode.
+*   **Vast Community Catalog**: Over 54 high-quality community-sourced screensavers pre-bundled, ranging from Matrix digital rains to minimalist flip clocks.
+*   **Quartz Transformation Engine**: Dynamically compile Swift UI and CoreGraphics code on-the-fly (`swiftc`) directly into executable `.saver` bundles.
+*   **One-Click Application**: Streamlined workflow that installs bundles to `~/Library/Screen Savers/` and triggers instant system activation.
+
+---
+
+## 🛠️ Installation & Usage
+
+### Option 1: Run Without Xcode (Recommended)
+
+1.  **Download**: Obtain the latest pre-compiled `.dmg` or `.app` from the [GitHub Releases](https://github.com/HARSHRAO729/ClockSpace/releases) page.
+2.  **Launch**: Open the `ClockSpace.app`. You may need to right-click and select **Open** to bypass macOS gatekeeper for the first time.
+3.  **Terminal Shortcut**:
+    ```bash
+    # If the app is in your Applications folder
+    open /Applications/ClockSpace.app
+    ```
+
+### Option 2: Build from Source (Developers)
+
+1.  Clone the repository: `git clone https://github.com/HARSHRAO729/ClockSpace.git`
+2.  Open `ClockSpace.xcodeproj` in Xcode.
+3.  Ensure **App Sandbox** is disabled in *Signing & Capabilities*.
+4.  Hit **Cmd + R** to run.
+
+---
+
+## 📢 Open Source & Licensing
+
+**ClockSpace is a CivicEase (CVK) project.** 
+The brand, design language, and commercial rights are strictly reserved. This project is shared under the **PolyForm Noncommercial License 1.0.0**, which allows for personal, educational, and research use while prohibiting commercial application.
+
+---
+
+## 🤝 Contributing
+We welcome community contributions specifically for the `Community/` folder and UI refinements. Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+*Designed with ❤️ by [HARSHRAO729](https://github.com/HARSHRAO729) & CivicEase Studios.*
