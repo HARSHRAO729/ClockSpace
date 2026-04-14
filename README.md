@@ -66,4 +66,6 @@ The brand, design language, and commercial rights are strictly reserved. This pr
 ## 🤝 Contributing
 We welcome community contributions specifically for the `Community/` folder and UI refinements. Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-*Designed with ❤️ by [HARSHRAO729](https://github.com/HARSHRAO729) & CivicEase Studios.*
+For founders and maintainers: See [RELEASING.md](RELEASING.md) for instructions on building and publishing new versions.
+
+*Design with ❤️ by [HARSHRAO729](https://github.com/HARSHRAO729) & CivicEase Studios.*
