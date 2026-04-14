@@ -58,9 +58,9 @@ struct ExploreView: View {
                         }
                     }
                 }
-                .padding(.horizontal, CSTheme.Spacing.xxl)
-                .padding(.top, CSTheme.Spacing.xxl)
-                .padding(.bottom, CSTheme.Spacing.xxxl)
+                }
+                .padding(.top, CSTheme.Spacing.xl)
+                .padding(.bottom, 60)
             }
         }
         .onAppear {
@@ -106,7 +106,7 @@ struct ExploreView: View {
                 
                 Spacer()
             }
-            .padding(.top, 20)
+            .padding(.top, 8)
             
             // Alphabetical Grid — 4 columns, proper spacing
             LazyVGrid(
@@ -123,7 +123,7 @@ struct ExploreView: View {
                 }
             }
         }
-        .padding(.horizontal, CSTheme.Spacing.xxl)
+        }
         .padding(.bottom, 60)
     }
     
@@ -161,7 +161,7 @@ struct ExploreView: View {
                 
                 Spacer()
             }
-            .padding(.top, 20)
+            .padding(.top, 8)
             
             // Grid — 4 columns, alphabetically sorted within category
             LazyVGrid(
@@ -182,7 +182,6 @@ struct ExploreView: View {
                 }
             }
         }
-        .padding(.horizontal, CSTheme.Spacing.xxl)
         .padding(.bottom, 60)
     }
     

@@ -84,9 +84,9 @@ struct LibraryView: View {
                 }
             }
         }
-        .padding(.horizontal, CSTheme.Spacing.xxl)
+        }
         .padding(.top, CSTheme.Spacing.xl)
-        .padding(.bottom, CSTheme.Spacing.xxxl)
+        .padding(.bottom, 60)
     }
     
     private var emptySavedState: some View {
