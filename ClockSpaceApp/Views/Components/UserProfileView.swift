@@ -10,25 +10,16 @@ struct UserProfileView: View {
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            // Avatar Background
-            Circle()
-                .fill(
-                    LinearGradient(
-                        colors: [CSTheme.accent, CSTheme.civicEase],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
+            // Logo Image
+            Image("ClockSpace")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
                 .frame(width: 32, height: 32)
+                .clipShape(Circle())
                 .overlay(
                     Circle()
-                        .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                        .stroke(Color.white.opacity(0.15), lineWidth: 1)
                 )
-            
-            // User Icon
-            Image(systemName: "person.fill")
-                .font(.system(size: 16, weight: .bold))
-                .foregroundColor(.white)
             
             // Online Status Dot
             Circle()
