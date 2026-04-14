@@ -61,9 +61,9 @@ struct LibraryView: View {
             }
             
             // ── Saved Wallpapers Section ──
-            let likedScreensavers = apiManager.screensavers.filter { apiManager.isLiked($0) }
-            
             VStack(alignment: .leading, spacing: CSTheme.Spacing.lg) {
+                let likedScreensavers = apiManager.screensavers.filter { apiManager.isLiked($0) }
+                
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Saved Wallpapers")
                         .font(CSTheme.Font.sectionTitle)
@@ -83,7 +83,6 @@ struct LibraryView: View {
                     }
                 }
             }
-        }
         }
         .padding(.top, CSTheme.Spacing.xl)
         .padding(.bottom, 60)

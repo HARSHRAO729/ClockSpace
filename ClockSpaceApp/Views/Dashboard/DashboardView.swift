@@ -36,20 +36,21 @@ struct DashboardView: View {
                     mainTabContent
                         .padding(.horizontal, 24)
                         .padding(.top, 20) // Spacing below navbar
-                        .padding(.bottom, 40)
+                        .padding(.bottom, 100) // Added more bottom padding for scroll comfort
                 }
             }
             .blur(radius: isSearchPresented ? 20 : 0)
             .scaleEffect(isSearchPresented ? 0.98 : 1.0)
             .animation(CSTheme.Animation.standard, value: isSearchPresented)
             .safeAreaInset(edge: .top) {
-                FloatingNavbarView(
+                AppNavbarView(
                     selectedTab: $selectedTab,
                     isSearchPresented: $isSearchPresented,
                     showSettings: $showSettings,
                     showAdd: $showAdd
                 )
-                .opacity(isSearchPresented ? 0 : 1)
+                .opacity(isSearchPresented || apiManager.detailedScreensaver != nil ? 0 : 1)
+                .allowsHitTesting(!isSearchPresented && apiManager.detailedScreensaver == nil)
             }
             
             if isSearchPresented {
@@ -134,7 +135,6 @@ struct DashboardView: View {
                             categoryCard(for: category)
                         }
                     }
-                }
             }
             .padding(.top, CSTheme.Spacing.xl)
         }
@@ -170,14 +170,23 @@ struct DashboardView: View {
         }) {
             ZStack(alignment: .bottomLeading) {
                 // Background Image
-                // In a real app, these would be in Assets.xcassets. 
-                // For this environment, we use the generated images.
-                Image(category.imageName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(height: 160)
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .clipped()
+                Group {
+                    if let bundleURL = Bundle.main.url(forResource: category.imageName, withExtension: "png", subdirectory: "Categories"),
+                       let nsImage = NSImage(contentsOf: bundleURL) {
+                        Image(nsImage: nsImage)
+                            .resizable()
+                    } else if let nsImage = NSImage(named: category.imageName) {
+                        Image(nsImage: nsImage)
+                            .resizable()
+                    } else {
+                        category.tintColor.opacity(0.15)
+                    }
+                }
+                .aspectRatio(contentMode: .fill)
+                .frame(height: 160)
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .clipped()
+                .contentShape(Rectangle())
                 
                 // Overlay Gradient for readability
                 LinearGradient(

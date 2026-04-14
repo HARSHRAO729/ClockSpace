@@ -30,22 +30,31 @@ struct ScreensaverDetailView: View {
         }
     }
     
-        ZStack {
-            // ── Background Media ──
-            livePreviewBackground
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color.black)
-                .ignoresSafeArea()
-            
-            // ── Floating Controls ──
-            VStack {
-                Spacer()
+    var body: some View {
+        GeometryReader { geo in
+            ZStack {
+                // ── Background Media (Forced Immersion) ──
+                livePreviewBackground
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .background(Color.black)
+                    .clipped() // Prevent bleeding into window corners
+                    .ignoresSafeArea()
                 
-                floatingPillBar
-                    .padding(.horizontal, 40)
-                    .padding(.bottom, 36)
+                // ── Floating Bottom Action BarOverlay (Persistently Top-Level) ──
+                VStack {
+                    Spacer()
+                    
+                    floatingPillBar
+                        .frame(height: 60)
+                        .frame(maxWidth: 600)
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 40)
+                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                }
+                .zIndex(999) // Ensure it's above any preview content globally
             }
         }
+        .navigationTitle("")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .alert("Installation Error", isPresented: Binding(
             get: { manager.lastError != nil },
@@ -60,7 +69,7 @@ struct ScreensaverDetailView: View {
     // MARK: - Floating Pill Bar (Wallspace Style)
     
     private var floatingPillBar: some View {
-        HStack(spacing: 16) {
+        HStack(spacing: 20) {
             // Back Button
             Button(action: {
                 withAnimation(CSTheme.Animation.standard) {
@@ -68,17 +77,17 @@ struct ScreensaverDetailView: View {
                 }
             }) {
                 Image(systemName: "chevron.left")
-                    .font(.system(size: 15, weight: .semibold))
+                    .font(.system(size: 14, weight: .bold))
                     .foregroundColor(.white)
-                    .frame(width: 36, height: 36)
-                    .background(Circle().fill(Color.white.opacity(0.15)))
+                    .frame(width: 32, height: 32)
+                    .background(Circle().fill(Color.white.opacity(0.1)))
             }
             .buttonStyle(.plain)
             
             // Title & Author
             VStack(alignment: .leading, spacing: 1) {
                 Text(screensaver.name)
-                    .font(.system(size: 14, weight: .bold))
+                    .font(.system(size: 15, weight: .bold))
                     .foregroundColor(.white)
                     .lineLimit(1)
                 
@@ -95,6 +104,7 @@ struct ScreensaverDetailView: View {
                         .foregroundColor(.white.opacity(0.5))
                 }
             }
+            .padding(.leading, 10)
             
             Spacer()
             
@@ -236,21 +246,26 @@ struct ScreensaverDetailView: View {
     private var livePreviewBackground: some View {
         Group {
             if let urlStr = screensaver.previewURL, let url = URL(string: urlStr) {
-                VideoPlayer(player: player)
-                    .onAppear {
-                        let item = AVPlayerItem(url: url)
-                        player.replaceCurrentItem(with: item)
-                        player.isMuted = true
+                GeometryReader { innerGeo in
+                    VideoPlayer(player: player)
+                        .frame(width: innerGeo.size.width, height: innerGeo.size.height)
+                        .aspectRatio(contentMode: .fill)
+                        .scaleEffect(1.1) // Slight overscan to ensure no gaps
+                }
+                .onAppear {
+                    let item = AVPlayerItem(url: url)
+                    player.replaceCurrentItem(with: item)
+                    player.isMuted = true
+                    player.play()
+                    
+                    NotificationCenter.default.addObserver(
+                        forName: .AVPlayerItemDidPlayToEndTime,
+                        object: item,
+                        queue: .main
+                    ) { _ in
+                        player.seek(to: .zero)
                         player.play()
-                        
-                        NotificationCenter.default.addObserver(
-                            forName: .AVPlayerItemDidPlayToEndTime,
-                            object: item,
-                            queue: .main
-                        ) { _ in
-                            player.seek(to: .zero)
-                            player.play()
-                        }
+                    }
                     }
             } else {
                 ZStack {
@@ -258,18 +273,25 @@ struct ScreensaverDetailView: View {
                         let resourceName = (screensaver.thumbnailURL as NSString).deletingPathExtension
                         let ext = (screensaver.thumbnailURL as NSString).pathExtension
                         
-                        if let bundleURL = Bundle.main.url(forResource: resourceName, withExtension: ext, subdirectory: "Thumbnails"),
-                           let nsImage = NSImage(contentsOf: bundleURL) {
-                            Image(nsImage: nsImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                        } else if let nsImage = NSImage(named: screensaver.thumbnailURL) {
-                            Image(nsImage: nsImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                        } else {
-                            fallbackBackground
+                        Group {
+                            if let bundleURL = Bundle.main.url(forResource: resourceName, withExtension: ext, subdirectory: "Thumbnails"),
+                               let nsImage = NSImage(contentsOf: bundleURL) {
+                                Image(nsImage: nsImage)
+                                    .resizable()
+                            } else if let nsImage = NSImage(named: screensaver.thumbnailURL) {
+                                Image(nsImage: nsImage)
+                                    .resizable()
+                            } else if let bundleURL = Bundle.main.url(forResource: resourceName, withExtension: ext, subdirectory: "Categories"),
+                                      let nsImage = NSImage(contentsOf: bundleURL) {
+                                Image(nsImage: nsImage)
+                                    .resizable()
+                            } else {
+                                fallbackBackground
+                            }
                         }
+                        .aspectRatio(contentMode: .fill)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .clipped()
                     } else {
                         fallbackBackground
                     }
