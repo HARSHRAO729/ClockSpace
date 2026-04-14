@@ -30,19 +30,23 @@ struct ScreensaverDetailView: View {
         }
     }
     
-    var body: some View {
-        livePreviewBackground
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.black)
-            .ignoresSafeArea()
-            .overlay(alignment: .bottom) {
+        ZStack {
+            // ── Background Media ──
+            livePreviewBackground
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.black)
+                .ignoresSafeArea()
+            
+            // ── Floating Controls ──
+            VStack {
+                Spacer()
+                
                 floatingPillBar
                     .padding(.horizontal, 40)
-                    .padding(.bottom, 48)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                    .padding(.bottom, 36)
             }
-            .frame(width: CSConstants.Layout.windowMaxWidth, height: CSConstants.Layout.windowMaxHeight)
-            .clipped()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .alert("Installation Error", isPresented: Binding(
             get: { manager.lastError != nil },
             set: { if !$0 { manager.lastError = nil } }
@@ -154,17 +158,17 @@ struct ScreensaverDetailView: View {
         case .ready:
             Button(action: {
                 Task {
-                    await manager.installFromMarketplace(screensaver)
-                }
-            }) {
-                Text(screensaver.isPremium ? screensaver.formattedPrice : "Apply")
+                await manager.installFromMarketplace(screensaver)
+            }
+        }) {
+            Text("Apply")
                     .font(.system(size: 13, weight: .bold))
                     .foregroundColor(screensaver.isPremium ? .black : .white)
                     .padding(.horizontal, 24)
                     .padding(.vertical, 10)
                     .background(
                         Capsule()
-                            .fill(screensaver.isPremium ? CSTheme.premiumGold : CSTheme.accent)
+                            .fill(CSTheme.accent)
                     )
             }
             .buttonStyle(.plain)

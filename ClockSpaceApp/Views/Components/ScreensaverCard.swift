@@ -90,9 +90,6 @@ struct ScreensaverCard: View {
                 fallbackThumbnail
             }
             
-            // Overlapping badge (Wallspace style)
-            badgeOverlay
-                .offset(x: -4, y: -4)
             
             // Heart/Like Toggle (Quick Action)
             HStack {
@@ -132,31 +129,6 @@ struct ScreensaverCard: View {
         )
     }
     
-    // MARK: - Badge
-    
-    @ViewBuilder
-    private var badgeOverlay: some View {
-        if screensaver.isPremium {
-            vibrantBadge(text: "PREMIUM", icon: "crown.fill", bg: CSTheme.premiumGold, fg: .black)
-        } else {
-            vibrantBadge(text: "FREE", icon: "gift.fill", bg: screensaver.category.tintColor, fg: .white)
-        }
-    }
-    
-    private func vibrantBadge(text: String, icon: String, bg: Color, fg: Color) -> some View {
-        HStack(spacing: 3) {
-            Image(systemName: icon)
-                .font(.system(size: 8, weight: .bold))
-            Text(text)
-                .font(.system(size: 8, weight: .heavy))
-                .tracking(0.6)
-        }
-        .foregroundColor(fg)
-        .padding(.horizontal, 8)
-        .padding(.vertical, 4)
-        .background(Capsule().fill(bg))
-        .shadow(color: bg.opacity(0.4), radius: 8, y: 2)
-    }
     
     // MARK: - Info Section
     

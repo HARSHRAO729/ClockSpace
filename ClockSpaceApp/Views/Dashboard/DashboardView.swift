@@ -31,42 +31,38 @@ struct DashboardView: View {
                 .ignoresSafeArea()
             
             // ── Routed content based on selectedTab ──
-            Group {
-                switch selectedTab {
-                case .home:
-                    homeContent
-                case .explore:
-                    exploreContent
-                case .library:
-                    libraryContent
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: 0) {
+                    mainTabContent
+                        .padding(.horizontal, 24)
+                        .padding(.top, 20) // Spacing below navbar
+                        .padding(.bottom, 40)
                 }
             }
             .blur(radius: isSearchPresented ? 20 : 0)
             .scaleEffect(isSearchPresented ? 0.98 : 1.0)
             .animation(CSTheme.Animation.standard, value: isSearchPresented)
-            
-            // ── Floating top nav bar (always visible) ──
-            TopNavBar(
-                selectedTab: $selectedTab,
-                isSearchPresented: $isSearchPresented,
-                showSettings: $showSettings,
-                showAdd: $showAdd
-            )
-            .zIndex(10)
-            .opacity(isSearchPresented ? 0 : 1)
+            .safeAreaInset(edge: .top) {
+                FloatingNavbarView(
+                    selectedTab: $selectedTab,
+                    isSearchPresented: $isSearchPresented,
+                    showSettings: $showSettings,
+                    showAdd: $showAdd
+                )
+                .opacity(isSearchPresented ? 0 : 1)
+            }
             
             if isSearchPresented {
                 searchOverlay
                     .transition(.opacity)
+                    .zIndex(200)
             }
             
             // ── Detailed Screensaver Overlay ──
             if let saver = apiManager.detailedScreensaver {
                 ScreensaverDetailView(screensaver: saver)
-                    .frame(width: CSConstants.Layout.windowMaxWidth, height: CSConstants.Layout.windowMaxHeight)
-                    .clipped()
                     .transition(.opacity.combined(with: .scale(scale: 0.95)))
-                    .zIndex(100)
+                    .zIndex(300)
             }
         }
         // ── Sheet Presentations ──
@@ -85,39 +81,47 @@ struct DashboardView: View {
         }
     }
     
+    @ViewBuilder
+    private var mainTabContent: some View {
+        switch selectedTab {
+        case .home:
+            homeContent
+        case .explore:
+            ExploreView()
+        case .library:
+            LibraryView()
+        }
+    }
+    
     // MARK: - Home Tab Content
     
     private var homeContent: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack(spacing: 0) {
-                // Spacer for floating navbar height
-                Color.clear.frame(height: 70)
-                
-                // ── Hero section with fading gradient ──
-                HeroView(featuredScreensavers: featuredItems)
-                    .frame(height: 480)
-                    .mask(
-                        LinearGradient(
-                            colors: [.white, .white, .white, .white.opacity(0.3), .clear],
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
+        VStack(spacing: 0) {
+            // ── Hero section with fading gradient ──
+            HeroView(featuredScreensavers: featuredItems)
+                .frame(height: 480)
+                .mask(
+                    LinearGradient(
+                        colors: [.white, .white, .white, .white.opacity(0.3), .clear],
+                        startPoint: .top,
+                        endPoint: .bottom
                     )
-                    .clipped()
-                    .padding(.bottom, 40)
+                )
+                .clipped()
+                .padding(.bottom, 40)
+            
+            VStack(spacing: CSTheme.Spacing.xxl) {
+                // ── Latest Collection (Horizontal) ──
+                sectionHeader(title: "Latest Collection", subtitle: "Most recent community screensavers")
                 
-                VStack(spacing: CSTheme.Spacing.xxl) {
-                    // ── Latest Collection (Horizontal) ──
-                    sectionHeader(title: "Latest Collection", subtitle: "Most recent community screensavers")
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: CSTheme.Spacing.lg) {
-                            ForEach(apiManager.screensavers.filter { $0.isNew }) { saver in
-                                ScreensaverCard(screensaver: saver)
-                                    .frame(width: 280)
-                            }
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 20) {
+                        ForEach(apiManager.screensavers.filter { $0.isNew }) { saver in
+                            ScreensaverCard(screensaver: saver)
+                                .frame(width: 280)
                         }
                     }
+                }
                     
                     // ── Most Popular (Horizontal) ──
                     // Removed "Most Popular" section as per user request to remove rankings/ratings
@@ -125,16 +129,14 @@ struct DashboardView: View {
                     // ── Categories (Grid) ──
                     sectionHeader(title: "Categories", subtitle: "Browse screensavers by category")
                     
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
-                        ForEach(Category.allCases, id: \.self) { category in
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
+                        ForEach(Category.allCases.prefix(9), id: \.self) { category in
                             categoryCard(for: category)
                         }
                     }
                 }
-                .padding(.horizontal, CSTheme.Spacing.xxl)
-                .padding(.top, CSTheme.Spacing.xl)
-                .padding(.bottom, CSTheme.Spacing.xxxl)
             }
+            .padding(.top, CSTheme.Spacing.xl)
         }
     }
     
@@ -162,51 +164,49 @@ struct DashboardView: View {
     }
     
     private func categoryCard(for category: Category) -> some View {
-        ZStack {
-            // Background image placeholder with category specific color
-            RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
-                .fill(category.tintColor.opacity(0.15))
-                .frame(height: 140)
-            
-            // Text overlay
-            Text(category.rawValue)
-                .font(.system(size: 24, weight: .bold))
-                .foregroundColor(.white)
-                .shadow(color: .black.opacity(0.5), radius: 8)
-        }
-        .overlay(
-            RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
-                .stroke(Color.white.opacity(0.08), lineWidth: 0.5)
-        )
-        .onTapGesture {
+        Button(action: {
             apiManager.selectedCategory = category
             selectedTab = .explore
-        }
-    }
-    
-    // MARK: - Explore Tab Content
-    
-    private var exploreContent: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack(spacing: 0) {
-                Color.clear.frame(height: 70)
-                ExploreView()
-                    .frame(minHeight: 500)
+        }) {
+            ZStack(alignment: .bottomLeading) {
+                // Background Image
+                // In a real app, these would be in Assets.xcassets. 
+                // For this environment, we use the generated images.
+                Image(category.imageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(height: 160)
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .clipped()
+                
+                // Overlay Gradient for readability
+                LinearGradient(
+                    colors: [
+                        .black.opacity(0.8),
+                        .black.opacity(0.4),
+                        .clear
+                    ],
+                    startPoint: .bottom,
+                    endPoint: .top
+                )
+                .frame(height: 100)
+                
+                // Category Title
+                Text(category.rawValue)
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(.white)
+                    .padding(CSTheme.Spacing.lg)
             }
+            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .stroke(Color.white.opacity(0.1), lineWidth: 1)
+            )
         }
+        .buttonStyle(PlainButtonStyle())
+        .transition(.opacity)
     }
     
-    // MARK: - Library Tab Content
-    
-    private var libraryContent: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack(spacing: 0) {
-                Color.clear.frame(height: 70)
-                LibraryView()
-                    .frame(minHeight: 500)
-            }
-        }
-    }
     
     // MARK: - Background
     
