@@ -17,6 +17,21 @@ While we strive for excellence in architectural design and visual fidelity, user
 
 ---
 
+## 🚀 Installation & First Run
+
+Because **ClockSpace** is currently in early development and not yet signed with an Apple Developer Certificate, macOS will show a warning when you first open it. 
+
+### How to Open (macOS Gatekeeper)
+If you see the "Apple could not verify..." message:
+1. Open **System Settings** ⚙️ on your Mac.
+2. Go to **Privacy & Security**.
+3. Scroll down to the bottom where you see *"ClockSpace was blocked..."*
+4. Click **Open Anyway** and enter your password.
+
+*You only need to do this once per version!*
+
+---
+
 ## ✨ Visual Experience
 
 | Cinematic Previews | Community Favorites | Immersive Motion |
