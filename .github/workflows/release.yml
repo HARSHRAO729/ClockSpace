@@ -1,39 +1,26 @@
 name: Create Release
-
 on:
   push:
     tags:
       - 'v*'
-
 jobs:
   build:
     name: Build & Package
     runs-on: macos-15
-    
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode_16.0.app
-
-      - name: Build and Package
+      - uses: actions/checkout@v4
+      - name: Build
         run: |
+          xcodebuild -version
           chmod +x scripts/build_release.sh
           ./scripts/build_release.sh
         env:
           CODE_SIGNING_ALLOWED: NO
-
       - name: Create Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: ClockSpace.dmg
-          body: |
-            ## ClockSpace Release ${{ github.ref_name }}
-            
-            **Note**: This build is unsigned. Right-click and select "Open" to launch.
-          draft: false
-          prerelease: false
+          body: "ClockSpace Release ${{ github.ref_name }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
