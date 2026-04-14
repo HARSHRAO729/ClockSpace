@@ -9,6 +9,8 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
+      - name: Create Secrets
+        run: touch Secrets.xcconfig
       - name: Build
         run: |
           xcodebuild -version
