@@ -123,16 +123,6 @@ struct AppNavbarView: View {
                     navButton(icon: "slider.horizontal.3") {
                         showSettings = true
                     }
-                    
-                    // Add
-                    Button(action: { showAdd = true }) {
-                        Image(systemName: "plus")
-                            .font(.system(size: 16, weight: .semibold))
-                            .foregroundColor(.black)
-                            .padding(10)
-                            .background(Circle().fill(Color.white))
-                    }
-                    .buttonStyle(.plain)
                 }
             }
             .frame(width: 200, alignment: .trailing)
