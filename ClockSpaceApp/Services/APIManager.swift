@@ -155,6 +155,25 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
     
         private static let mockScreensavers: [Screensaver] = [
         Screensaver(
+            id: UUID(uuidString: "f0f0f0f0-f0f0-4f0f-8f0f-f0f0f0f0f0f0")!,
+            name: "Forever",
+            description: "A beautifully crafted, minimalist clock screensaver that evolves through colors and time. Designed for modern workspaces.",
+            category: .minimalist,
+            thumbnailURL: "Forever.png",
+            downloadURL: "local://forever-start-macos-screensaver.saver",
+            isPremium: false,
+            price: nil,
+            author: "Forever Design",
+            downloadCount: 42,
+            tags: ["minimalist", "clock", "modern", "color-fade"],
+            createdAt: Date(),
+            rank: 1,
+            resolution: "5K / Retina",
+            fileSize: "4.2 MB",
+            isNew: true,
+            template: "minimal"
+        ),
+        Screensaver(
             id: UUID(uuidString: "2df6cf54-7e84-5477-ab67-b4b4966924fc")!,
             name: "Aerial",
             description: "Locally installed screensaver from source.",
