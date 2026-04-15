@@ -35,23 +35,29 @@ struct DashboardView: View {
                 VStack(spacing: 0) {
                     mainTabContent
                         .padding(.horizontal, 24)
-                        .padding(.top, 20) // Spacing below navbar
-                        .padding(.bottom, 100) // Added more bottom padding for scroll comfort
+                        .padding(.top, 84) // Enforced spacing to clear the fixed navbar
+                        .padding(.bottom, 100)
                 }
             }
             .blur(radius: isSearchPresented ? 20 : 0)
             .scaleEffect(isSearchPresented ? 0.98 : 1.0)
             .animation(CSTheme.Animation.standard, value: isSearchPresented)
-            .safeAreaInset(edge: .top) {
-                AppNavbarView(
-                    selectedTab: $selectedTab,
-                    isSearchPresented: $isSearchPresented,
-                    showSettings: $showSettings,
-                    showAdd: $showAdd
-                )
-                .opacity(isSearchPresented || apiManager.detailedScreensaver != nil ? 0 : 1)
-                .allowsHitTesting(!isSearchPresented && apiManager.detailedScreensaver == nil)
-            }
+            
+            // ── Fixed Navigation Bar (Strict Containment) ──
+            AppNavbarView(
+                selectedTab: $selectedTab,
+                isSearchPresented: $isSearchPresented,
+                showSettings: $showSettings,
+                showAdd: $showAdd
+            )
+            .background(
+                Rectangle()
+                    .fill(.ultraThinMaterial)
+                    .ignoresSafeArea()
+            )
+            .opacity(isSearchPresented || apiManager.detailedScreensaver != nil ? 0 : 1)
+            .allowsHitTesting(!isSearchPresented && apiManager.detailedScreensaver == nil)
+            .zIndex(100) // Ensure it stays above content
             
             if isSearchPresented {
                 searchOverlay
@@ -100,7 +106,7 @@ struct DashboardView: View {
         VStack(spacing: 0) {
             // ── Hero section with fading gradient ──
             HeroView(featuredScreensavers: featuredItems)
-                .frame(height: 480)
+                .frame(height: 400)
                 .mask(
                     LinearGradient(
                         colors: [.white, .white, .white, .white.opacity(0.3), .clear],
@@ -109,7 +115,8 @@ struct DashboardView: View {
                     )
                 )
                 .clipped()
-                .padding(.bottom, 40)
+                .contentShape(Rectangle())
+                .padding(.bottom, 60) // Extra spacing for carousel overlap
             
             VStack(spacing: CSTheme.Spacing.xxl) {
                 // ── Latest Collection (Horizontal) ──

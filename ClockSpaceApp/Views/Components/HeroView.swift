@@ -91,11 +91,11 @@ struct HeroView: View {
                 Image(nsImage: nsImage)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(height: 480)
+                    .frame(height: 400)
                     .clipped()
             } else {
                 gradient(for: heroItem)
-                    .frame(height: 480)
+                    .frame(height: 400)
             }
             
             // Hero info overlay
@@ -158,14 +158,16 @@ struct HeroView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.leading, CSTheme.Spacing.xxl)
-            .padding(.bottom, 140)
+            .padding(.bottom, 100) // Reduced bottom padding to fit 400 height
         }
-        .frame(height: 480)
+        .frame(height: 400)
+        .clipped()
+        .contentShape(Rectangle())
     }
     
     private var heroPlaceholder: some View {
         CSTheme.surface
-            .frame(height: 480)
+            .frame(height: 400)
             .shimmer()
     }
     
