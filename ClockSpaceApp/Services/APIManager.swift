@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 /// Protocol for dependency injection and testability.
 protocol ScreensaverServiceProtocol {
@@ -31,14 +32,6 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
     @Published var playlists: [String] = ["Favorites"] // Mock playlists
     
     // MARK: - Singleton
-    
-    static let accent = Color(hex: 0x6366F1) // Indigo/Violet
-    static let accentGradient = LinearGradient(colors: [Color(hex: 0x6366F1), Color(hex: 0x8B5CF6)], startPoint: .topLeading, endPoint: .bottomTrailing)
-    static let civicEase = Color(hex: 0x4F46E5)
-    static let violet = Color(hex: 0xA855F7)
-    static let premiumGold = Color(hex: 0xF59E0B)
-    static let auroraGreen = Color(hex: 0x10B981)
-    static let cosmicRose = Color(hex: 0xEC4899)
     
     static let shared = APIManager()
     
@@ -1215,7 +1208,7 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
             thumbnailURL: "Flux.png",
             downloadURL: "local://flux.saver",
             isPremium: true,
-            price: "$4.99",
+            price: 4.99,
             author: "Abstractio",
             downloadCount: 1240,
             tags: ["organic", "motion", "meditative"],
@@ -1272,7 +1265,7 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
             thumbnailURL: "ZenGarden.png",
             downloadURL: "local://zen.saver",
             isPremium: true,
-            price: "$2.99",
+            price: 2.99,
             author: "FocusFirst",
             downloadCount: 3200,
             tags: ["calm", "focus", "minimal"],
@@ -1291,7 +1284,7 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
             thumbnailURL: "Prism.png",
             downloadURL: "local://prism.saver",
             isPremium: true,
-            price: "$5.99",
+            price: 5.99,
             author: "Optics",
             downloadCount: 1100,
             tags: ["light", "dynamic", "vibrant"],
@@ -1329,7 +1322,7 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
             thumbnailURL: "Circuitry.png",
             downloadURL: "local://circuitry.saver",
             isPremium: true,
-            price: "$3.99",
+            price: 3.99,
             author: "ByteBound",
             downloadCount: 4500,
             tags: ["tech", "lines", "fast"],
@@ -1367,7 +1360,7 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
             thumbnailURL: "Solar.png",
             downloadURL: "local://solar.saver",
             isPremium: true,
-            price: "$6.99",
+            price: 6.99,
             author: "AstroData",
             downloadCount: 950,
             tags: ["real-time", "sun", "science"],

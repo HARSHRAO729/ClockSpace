@@ -81,10 +81,29 @@ enum CSTheme {
         static let pill: CGFloat = 100
     }
     
+    // MARK: - Shadows
+    
+    enum Shadow {
+        static let glass = ShadowStyle(
+            color: Color.black.opacity(0.3),
+            radius: 24,
+            x: 0,
+            y: 8
+        )
+        
+        static let accentGlow = ShadowStyle(
+            color: CSTheme.accent.opacity(0.3),
+            radius: 16,
+            x: 0,
+            y: 4
+        )
+    }
+    
     // MARK: - Animation
     
     enum Animation {
         static let rapid = SwiftUI.Animation.easeInOut(duration: 0.1)
+        static let fast = rapid // Legacy alias
         static let standard = SwiftUI.Animation.easeInOut(duration: 0.25)
         static let smooth = SwiftUI.Animation.easeInOut(duration: 0.4)
         static let cinematic = SwiftUI.Animation.easeInOut(duration: 0.8)
@@ -104,6 +123,15 @@ enum CSTheme {
         static let caption = SwiftUI.Font.system(size: 12, weight: .medium, design: .default)
         static let micro = SwiftUI.Font.system(size: 10, weight: .heavy, design: .default)
     }
+}
+
+// MARK: - Shadow Style Container
+
+struct ShadowStyle {
+    let color: Color
+    let radius: CGFloat
+    let x: CGFloat
+    let y: CGFloat
 }
 
 // MARK: - Color Hex Initializer

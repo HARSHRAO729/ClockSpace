@@ -35,7 +35,7 @@ struct AppNavbarView: View {
             
             // ── Center: Perspectives or Title ──
             ZStack {
-                if let backAction = backAction {
+                if backAction != nil {
                     // Detail Mode Title
                     HStack(spacing: 12) {
                         Image(systemName: "sparkles")

@@ -1,0 +1,822 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project ClockSpace.xcodeproj -scheme ClockSpace -configuration Release -destination platform=macOS,arch=arm64 clean build
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+** CLEAN SUCCEEDED **
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'ClockSpace' in project 'ClockSpace' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.4.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: 1bbbd0f5828420622db069ff45867b63
+Build description path: /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/XCBuildData/1bbbd0f5828420622db069ff45867b63.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.4.sdk /Users/harshrao/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/macosx26.4-25E236-30f9ca8789b706f8bd3fc906a70d770f.sdkstatcache
+    cd /Users/harshrao/ClockSpace/ClockSpace.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.4.sdk -o /Users/harshrao/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/macosx26.4-25E236-30f9ca8789b706f8bd3fc906a70d770f.sdkstatcache
+
+CreateBuildDirectory /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products
+    cd /Users/harshrao/ClockSpace/ClockSpace.xcodeproj
+    builtin-create-build-directory /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products
+
+CreateBuildDirectory /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex
+    cd /Users/harshrao/ClockSpace/ClockSpace.xcodeproj
+    builtin-create-build-directory /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex
+
+CreateBuildDirectory /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release
+    cd /Users/harshrao/ClockSpace/ClockSpace.xcodeproj
+    builtin-create-build-directory /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release
+
+CreateBuildDirectory /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ExplicitPrecompiledModules
+    cd /Users/harshrao/ClockSpace/ClockSpace.xcodeproj
+    builtin-create-build-directory /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+CreateBuildDirectory /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+    cd /Users/harshrao/ClockSpace/ClockSpace.xcodeproj
+    builtin-create-build-directory /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+WriteAuxiliaryFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace-6d628641bb9dc915f4aa426a225489f5-VFS/all-product-headers.yaml
+    cd /Users/harshrao/ClockSpace/ClockSpace.xcodeproj
+    write-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace-6d628641bb9dc915f4aa426a225489f5-VFS/all-product-headers.yaml
+
+CreateBuildDirectory /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/EagerLinkingTBDs/Release
+    cd /Users/harshrao/ClockSpace/ClockSpace.xcodeproj
+    builtin-create-build-directory /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/EagerLinkingTBDs/Release
+
+WriteAuxiliaryFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/empty-ClockSpace.plist (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    write-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/empty-ClockSpace.plist
+
+WriteAuxiliaryFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace.hmap (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    write-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace.hmap
+
+WriteAuxiliaryFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-project-headers.hmap (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    write-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-project-headers.hmap
+
+WriteAuxiliaryFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-own-target-headers.hmap (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    write-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-own-target-headers.hmap
+
+WriteAuxiliaryFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace_const_extract_protocols.json (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    write-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.SwiftFileList (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    write-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.SwiftFileList
+
+WriteAuxiliaryFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.LinkFileList (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    write-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.LinkFileList
+
+WriteAuxiliaryFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace-OutputFileMap.json (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    write-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/DerivedSources/Entitlements.plist (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    write-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/DerivedSources/Entitlements.plist
+
+WriteAuxiliaryFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.SwiftConstValuesFileList (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    write-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace.DependencyStaticMetadataFileList (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    write-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace.DependencyMetadataFileList (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    write-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace.DependencyMetadataFileList
+
+WriteAuxiliaryFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-generated-files.hmap (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    write-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-generated-files.hmap
+
+WriteAuxiliaryFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-all-target-headers.hmap (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    write-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-all-target-headers.hmap
+
+WriteAuxiliaryFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-all-non-framework-target-headers.hmap (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    write-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-all-non-framework-target-headers.hmap
+
+MkDir /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /bin/mkdir -p /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+MkDir /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/MacOS (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /bin/mkdir -p /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/MacOS
+
+MkDir /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /bin/mkdir -p /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents
+
+MkDir /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /bin/mkdir -p /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app
+
+ProcessProductPackaging "" /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace.app.xcent (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    
+    Entitlements:
+    
+    {
+    "com.apple.security.get-task-allow" = 1;
+}
+    
+    builtin-productPackagingUtility -entitlements -format xml -o /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace.app.xcent
+
+ProcessProductPackagingDER /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace.app.xcent /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace.app.xcent.der (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /usr/bin/derq query -f xml -i /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace.app.xcent -o /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace.app.xcent.der --raw
+
+ProcessInfoPlistFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Info.plist /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/empty-ClockSpace.plist (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-infoPlistUtility /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/empty-ClockSpace.plist -producttype com.apple.product-type.application -genpkginfo /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Info.plist
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/time-saver.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/time-saver.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/time-saver.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/space_gophers_animated.gif /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/space_gophers_animated.gif (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/space_gophers_animated.gif /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/quickgif.gif /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/quickgif.gif (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/quickgif.gif /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/polar-clock.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/polar-clock.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/polar-clock.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/matrixgl.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/matrixgl.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/matrixgl.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/iScreenSaver.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/iScreenSaver.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/iScreenSaver.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/iOS\ Saver.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/iOS\ Saver.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/iOS\ Saver.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/github_matrix.gif /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/github_matrix.gif (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/github_matrix.gif /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/forever-stars-macos-screensaver.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/forever-stars-macos-screensaver.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/forever-stars-macos-screensaver.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/demo-paskysaver.gif /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/demo-paskysaver.gif (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/demo-paskysaver.gif /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Word\ Clock.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Word\ Clock.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Word\ Clock.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/WonderfulTools.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/WonderfulTools.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/WonderfulTools.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/WhatColourIsIt.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/WhatColourIsIt.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/WhatColourIsIt.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Web.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Web.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Web.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/WatchScreensaver.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/WatchScreensaver.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/WatchScreensaver.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Today.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Today.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Today.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Start\ Now.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Start\ Now.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Start\ Now.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/StarWarsScroll.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/StarWarsScroll.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/StarWarsScroll.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Solar\ Winds.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Solar\ Winds.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Solar\ Winds.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Secrets.xcconfig /Users/harshrao/ClockSpace/Secrets.xcconfig (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/Secrets.xcconfig /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Screenshot.gif.dms /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Screenshot.gif.dms (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Screenshot.gif.dms /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/ScreenMazer.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/ScreenMazer.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/ScreenMazer.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/ScreenMazer.gif /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/ScreenMazer.gif (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/ScreenMazer.gif /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Preview7.gif /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Preview7.gif (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Preview7.gif /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Preview4.gif /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Preview4.gif (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Preview4.gif /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Preview3.gif /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Preview3.gif (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Preview3.gif /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Preview2.gif /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Preview2.gif (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Preview2.gif /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Preview1.gif /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Preview1.gif (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Preview1.gif /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Predator.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Predator.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Predator.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/PongSaver.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/PongSaver.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/PongSaver.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Pasky-Saver.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Pasky-Saver.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Pasky-Saver.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/OneClock\ ScreenSaver.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/OneClock\ ScreenSaver.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/OneClock\ ScreenSaver.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/OneClock\ Flip\ Clock.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/OneClock\ Flip\ Clock.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/OneClock\ Flip\ Clock.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/OneClock\ Digital\ Clock.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/OneClock\ Digital\ Clock.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/OneClock\ Digital\ Clock.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/OneClock\ Dial\ Clock.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/OneClock\ Dial\ Clock.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/OneClock\ Dial\ Clock.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Octoscreen.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Octoscreen.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Octoscreen.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/October30.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/October30.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/October30.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/October30.gif /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/October30.gif (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/October30.gif /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/MusaicFM.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/MusaicFM.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/MusaicFM.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/MultiClock.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/MultiClock.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/MultiClock.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/MinimalClock.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/MinimalClock.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/MinimalClock.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Matrix.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Matrix.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Matrix.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Life\ Saver.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Life\ Saver.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Life\ Saver.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Last\ Statement.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Last\ Statement.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Last\ Statement.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/KPSaver.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/KPSaver.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/KPSaver.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Irvue\ Screensaver.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Irvue\ Screensaver.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Irvue\ Screensaver.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/HotShotsScreenSaver.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/HotShotsScreenSaver.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/HotShotsScreenSaver.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Grid\ Clock.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Grid\ Clock.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Grid\ Clock.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/GitHubMatrix.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/GitHubMatrix.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/GitHubMatrix.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Fruit.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Fruit.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Fruit.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/FractalClock.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/FractalClock.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/FractalClock.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Fliqlo.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Fliqlo.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Fliqlo.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Filigree.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Filigree.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Filigree.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Evangelion\ Clock.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Evangelion\ Clock.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Evangelion\ Clock.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Epoch\ Flip\ Clock.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Epoch\ Flip\ Clock.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Epoch\ Flip\ Clock.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Emoji\ Saver.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Emoji\ Saver.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Emoji\ Saver.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Emoji\ Saver\ Lite.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Emoji\ Saver\ Lite.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Emoji\ Saver\ Lite.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/ElectropaintOSX.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/ElectropaintOSX.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/ElectropaintOSX.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Ealain.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Ealain.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Ealain.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Developers-Excuses.jpg /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Developers-Excuses.jpg (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Developers-Excuses.jpg /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Developers\ Excuses.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Developers\ Excuses.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Developers\ Excuses.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/DeveloperExcuses.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/DeveloperExcuses.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/DeveloperExcuses.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Countdown.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Countdown.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Countdown.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Countdown.gif /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Countdown.gif (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Countdown.gif /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/ColorClockSaver.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/ColorClockSaver.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/ColorClockSaver.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/ClockOfClocks.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/ClockOfClocks.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/ClockOfClocks.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/CircleText.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/CircleText.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/CircleText.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Brooklyn.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Brooklyn.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Brooklyn.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Blue\ Screen\ Saver.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Blue\ Screen\ Saver.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Blue\ Screen\ Saver.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/AppIcon.icns /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/AppIcon.icns (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/AppIcon.icns /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Aerial.saver /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Aerial.saver (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/BundledSavers/Aerial.saver /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CpResource /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Aerial.gif /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Aerial.gif (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Aerial.gif /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources
+
+CopyPlistFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/SaverTemplate.plist /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Template/SaverTemplate.plist (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copyPlist --outdir /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources -- /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Template/SaverTemplate.plist
+
+CopyPlistFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Info.plist /Users/harshrao/ClockSpace/ClockSpaceApp/Info.plist (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copyPlist --outdir /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources -- /Users/harshrao/ClockSpace/ClockSpaceApp/Info.plist
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/starwarsscroll.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/starwarsscroll.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/starwarsscroll.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/starwarsscroll.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/predator-preview.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/predator-preview.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/predator-preview.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/predator-preview.png
+
+SwiftDriver ClockSpace normal arm64 com.apple.xcode.tools.swift.compiler (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name ClockSpace -O -whole-module-optimization @/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.SwiftFileList -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.4.sdk -target arm64-apple-macos15.0 -g -module-cache-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release -F /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release -emit-localized-strings -emit-localized-strings-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64 -c -num-threads 10 -Xcc -ivfsstatcache -Xcc /Users/harshrao/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/macosx26.4-25E236-30f9ca8789b706f8bd3fc906a70d770f.sdkstatcache -output-file-map /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace_const_extract_protocols.json -Xcc -iquote -Xcc /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-generated-files.hmap -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-own-target-headers.hmap -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-all-target-headers.hmap -Xcc -iquote -Xcc /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-project-headers.hmap -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/include -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/DerivedSources-normal/arm64 -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/DerivedSources/arm64 -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace-Swift.h -working-directory /Users/harshrao/ClockSpace -no-emit-module-separately-wmo
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/pongsaver-1.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/pongsaver-1.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/pongsaver-1.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/pongsaver-1.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/polarclock.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/polarclock.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/polarclock.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/polarclock.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/oneclock_flip.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/oneclock_flip.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/oneclock_flip.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/oneclock_flip.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/oneclock_digital.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/oneclock_digital.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/oneclock_digital.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/oneclock_digital.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/oneclock_dial.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/oneclock_dial.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/oneclock_dial.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/oneclock_dial.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/matrixgl.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/matrixgl.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/matrixgl.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/matrixgl.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/fractalclock-3.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/fractalclock-3.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/fractalclock-3.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/fractalclock-3.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/evangelion-clock-red.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/evangelion-clock-red.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/evangelion-clock-red.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/evangelion-clock-red.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/epochFlipClock.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/epochFlipClock.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/epochFlipClock.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/epochFlipClock.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_videogames.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_videogames.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_videogames.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_videogames.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_space.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_space.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_space.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_space.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_scifi.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_scifi.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_scifi.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_scifi.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_nature.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_nature.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_nature.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_nature.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_fantasy.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_fantasy.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_fantasy.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_fantasy.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_city.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_city.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_city.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_city.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_cats.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_cats.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_cats.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_cats.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_cars.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_cars.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_cars.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_cars.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_anime.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_anime.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Categories/cat_anime.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/cat_anime.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/WhatColourIsIt.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/WhatColourIsIt.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/WhatColourIsIt.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/WhatColourIsIt.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/OneClock-Screenshot-Preview.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/OneClock-Screenshot-Preview.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/OneClock-Screenshot-Preview.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/OneClock-Screenshot-Preview.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Octoscreen.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Octoscreen.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Octoscreen.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Octoscreen.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/MusaicFM.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/MusaicFM.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/MusaicFM.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/MusaicFM.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Irvue-Screensaver.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Irvue-Screensaver.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Irvue-Screensaver.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Irvue-Screensaver.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/GridClock.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/GridClock.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/GridClock.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/GridClock.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/FractalClock.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/FractalClock.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/FractalClock.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/FractalClock.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/ForeverStars.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/ForeverStars.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/ForeverStars.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/ForeverStars.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Dribbble-Screensaver.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Dribbble-Screensaver.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/Dribbble-Screensaver.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/Dribbble-Screensaver.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/ColorClockSaver.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/ColorClockSaver.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Thumbnails/ColorClockSaver.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/ColorClockSaver.png
+
+CopyPNGFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/ClockSpace.png /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/ClockSpace.png (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/usr/bin/copypng /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/ClockSpace.png /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources/ClockSpace.png
+
+SwiftDriver\ Compilation ClockSpace normal arm64 com.apple.xcode.tools.swift.compiler (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name ClockSpace -O -whole-module-optimization @/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.SwiftFileList -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.4.sdk -target arm64-apple-macos15.0 -g -module-cache-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release -F /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release -emit-localized-strings -emit-localized-strings-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64 -c -num-threads 10 -Xcc -ivfsstatcache -Xcc /Users/harshrao/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/macosx26.4-25E236-30f9ca8789b706f8bd3fc906a70d770f.sdkstatcache -output-file-map /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace_const_extract_protocols.json -Xcc -iquote -Xcc /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-generated-files.hmap -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-own-target-headers.hmap -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-all-target-headers.hmap -Xcc -iquote -Xcc /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-project-headers.hmap -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/include -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/DerivedSources-normal/arm64 -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/DerivedSources/arm64 -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace-Swift.h -working-directory /Users/harshrao/ClockSpace -no-emit-module-separately-wmo
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_float-2QW01FE20VWZZU2AFRE9D95XL.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_stdarg-3IOAS1U721FJT6A7ENZUFUS2E.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/ptrcheck-4CB406W9CBIUJPQ693ST02NIF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_stddef-D1OSSMRSAATVGBKS0QZ4S64H9.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_stdbool-84SF1H9YAA8JNJWPT5GG0VWF9.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/DeveloperToolsSupport-BGTV1WQN8G20TIZ95KF7NQDPK.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/ptrauth-6HHBVGXP4CGS6WKL57J5CSGIC.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_SwiftConcurrencyShims-BU0MHNF9CI6PMCVOBBIQ7ZWSX.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/SwiftShims-9RIK2I7IJ64ZY5ZL3B4XJSA6N.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_AvailabilityInternal-1U0Q0545MAEWM42M4MXWCOTPT.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_DarwinFoundation1-3THVIESQ3SQ49GEL6O8U8D5U.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_DarwinFoundation2-CB3N7Y9VS4OV9YUGUYHK8PHYO.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_limits-C7FJ6VMBPPG6V8TN6AG88BKQ0.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_tgmath-618K8L1XRB1DR4TQOLXDJU3SS.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_stdint-2PSDLEGDQ1PNXYHNZI5KS09T7.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/sys_types-4L6R6QOQQXADPFPJ6L668WAS8.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/OpenGL-3XU5RBBDH7LCR6OG5D9A627A9.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_stdatomic-5Q4OBB5X23XORODNVW65PZZSP.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/libDER-TKBS17YWQFVZT9ZCE94Z21GI.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_intrinsics-E2MU9NQAEVATRJ7P2IK6B3RWE.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_DarwinFoundation3-2KG7EWI6ZIQPC9NWDQ7LZE7O8.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_inttypes-EEV4ZRGHM3V3IKCL4CU661064.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Darwin-CRF1OY4CXT9VS3WUQ1D2A17R4.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/simd-EF9APQ6CYIE7OV1X3JM3IOTKW.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/launch-Y1PDIKKB5CJHBGDVPBLRK542.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/libkern-9CTEMYVSRZ7LIUQ9ZI749HHNT.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/MachO-APNYBVE1GI2NZ4TVSVW2D2ICJ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CUPS-1VD3UU954UGAXHPVKR1N2S1DJ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Spatial-6FKVVYKL1VWV9YWA5YMOBCLQ7.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/ObjectiveC-6GVCAAE920GLG6CIKK35IFO9C.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/os_object-D9QJ2UWBNWCZMX0ZT2BIKR3LD.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/os_workgroup-6M93QPK5X6N0NG5M0IXGUYP1D.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Dispatch-D1JGKP7AKXOH5ZXX5GOL6LAJH.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreFoundation-CAVOJTYZOYM6XP6HZL4B8P0I6.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/XPC-4BQJN2CV03XDJUN6ZY2HMPCU9.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/os-9CZU8DVWAHIAF45AM5M85FK6R.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreAudioTypes-584URGM4ZA0P1T1ORL23CRJU8.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CFNetwork-6ZLUEGBUPVU5XLMMCYFKNL792.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Security-1JO9RM82F7NE6HG76BJN92GY1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/IOKit-2EB8RXC9AFUI6MBMEKK8NOIAN.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/ColorSync-6NQZODRPD4FJCCTM1XQJ5TZIN.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreGraphics-2XKEHMB3HC62CVTP5978O6RQ5.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/DiskArbitration-BVSS9PD9L0T5W3ELTLO9IAGXF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreServices-BUO4J0VI2XT2JYU3VH5HN6HJV.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreText-6F2LAJWQNRRTC8PN0TR8M8F97.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/ImageIO-1RPLLWH0W116US42TMM2739IY.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Foundation-BUM3RRLUE42UNJU2KHA7ML1ZG.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/IOSurface-7NP7OF7RN83BQ02GCT4D9UTGI.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreMIDI-7LEMRTLBSCY7YL55IN16ESZ4N.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/ApplicationServices-ATJUVSLHKEUYQXPVQ3TBJ1M3U.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/UniformTypeIdentifiers-DM28CXD3F1KEG2VKKKIQ4HD07.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/DataDetection-17DV424TXLHMN4GK00QAVWG9Y.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreTransferable-CJQT9FU6HSQHSFET7D1HO99GJ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Symbols-BNDOED6P6ETRGJHGEZHB1WWBH.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreData-E3JP6ZRMHZVYWGNTWLRZIW3FC.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Accessibility-CN2FA0EBDCF31P6XLODB90KKY.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreAudio-CRCLWW7VK02JUDSJDYTIJU2Y.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/OSLog-56836DDM1MMM9Q66CMGGT53JU.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Metal-DZ31EPJTYJPS2N0I1R16KF8RZ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/MediaAccessibility-2QBL8A9IZSUU76BL8RYBUXVVE.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Carbon-9DOO7RS0VCH2MJM0UFB2NP9HC.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreVideo-C6Z0IOOAKSO9TKUDV9X2W20AC.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/AudioToolbox-7JTCPWYIF4A5H4NMOQFCNXNIH.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/QuartzCore-77N7VVP6YHOXJ86YNGSTOJUYU.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreMedia-CSHJKMLSNPZJ3KZYBU8MZYS9.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreImage-B794Q4OEJKZ9IW1CLNY4JJYM8.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/SwiftUICore-AYGCT3AHJROSJ2Z1QUSCO30ZE.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/AppKit-ECS3SJ9ACIDBP99G3LPM9YZ2R.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/AVFAudio-4LGD5PG4MB5FLMHV2ZHL8W65Y.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/MediaToolbox-BYEVKUGYM915BOID4GJ8KO5U1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/AVFoundation-5TRSYAUKXEWIDS95DDAQZAA5K.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/SwiftUI-CGRWW4H4N9U4QCAUHL0A8H125.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Cocoa-8P3Z5OLKWRFYOHH82PL6YA3CV.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/ScreenSaver-F1D7FQ58BHD29NGD2WW092OXL.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/AVKit-51XQHXHUM2SCJXMCQIIRDTGPX.pcm
+
+SwiftCompile normal arm64 Compiling\ GlassModifier.swift,\ ShimmerModifier.swift,\ Theme.swift,\ Category.swift,\ CSConstants.swift,\ NavTab.swift,\ Screensaver.swift,\ ClockSpaceSaverContent.swift,\ ClockSpaceSaverView.swift,\ APIManager.swift,\ LicenseManager.swift,\ ScreensaverManager.swift,\ AddScreensaverView.swift,\ AppNavbarView.swift,\ CategoryPills.swift,\ HeroView.swift,\ ScreensaverCard.swift,\ SearchBarView.swift,\ UserProfileView.swift,\ DashboardView.swift,\ ScreensaverDetailView.swift,\ SettingsView.swift,\ CategoryScreensView.swift,\ ExploreView.swift,\ LibraryView.swift,\ ClockSpaceApp.swift /Users/harshrao/ClockSpace/ClockSpaceApp/DesignSystem/GlassModifier.swift /Users/harshrao/ClockSpace/ClockSpaceApp/DesignSystem/ShimmerModifier.swift /Users/harshrao/ClockSpace/ClockSpaceApp/DesignSystem/Theme.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Models/Category.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Models/CSConstants.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Models/NavTab.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Models/Screensaver.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Template/ClockSpaceSaverContent.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Resources/Template/ClockSpaceSaverView.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Services/APIManager.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Services/LicenseManager.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Services/ScreensaverManager.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Views/Add/AddScreensaverView.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Views/Components/AppNavbarView.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Views/Components/CategoryPills.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Views/Components/HeroView.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Views/Components/ScreensaverCard.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Views/Components/SearchBarView.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Views/Components/UserProfileView.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Views/Dashboard/DashboardView.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Views/Dashboard/ScreensaverDetailView.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Views/Settings/SettingsView.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Views/Tabs/CategoryScreensView.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Views/Tabs/ExploreView.swift /Users/harshrao/ClockSpace/ClockSpaceApp/Views/Tabs/LibraryView.swift /Users/harshrao/ClockSpace/ClockSpaceApp/ClockSpaceApp.swift /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/UniformTypeIdentifiers.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/Swift.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/Symbols.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/Dispatch.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/System.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/CoreFoundation.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/OSLog.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/CoreTransferable.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/CoreAudio.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/ObjectiveC.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/AudioToolbox.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/DataDetection.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/CoreImage.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/_AVKit_SwiftUI.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/simd.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/SwiftUICore.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/CoreMedia.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/Observation.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/_Builtin_float.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/_StringProcessing.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/Synchronization.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/AVKit.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/Foundation.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/IOKit.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/_DarwinFoundation1.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/Spatial.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/_DarwinFoundation2.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/AVFoundation.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/SwiftUI.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/Darwin.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/Accessibility.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/QuartzCore.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/Metal.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/CoreGraphics.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/CoreData.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/MediaAccessibility.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/DeveloperToolsSupport.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/CoreVideo.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/_Concurrency.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/CoreMIDI.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/XPC.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/os.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/Combine.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/CoreText.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/_DarwinFoundation3.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/AppKit.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.4/AVFAudio.swiftmodule/arm64e-apple-macos.swiftmodule /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/MediaToolbox-BYEVKUGYM915BOID4GJ8KO5U1.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_stdatomic-5Q4OBB5X23XORODNVW65PZZSP.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/MachO-APNYBVE1GI2NZ4TVSVW2D2ICJ.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/DiskArbitration-BVSS9PD9L0T5W3ELTLO9IAGXF.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/os-9CZU8DVWAHIAF45AM5M85FK6R.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Darwin-CRF1OY4CXT9VS3WUQ1D2A17R4.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/QuartzCore-77N7VVP6YHOXJ86YNGSTOJUYU.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/IOSurface-7NP7OF7RN83BQ02GCT4D9UTGI.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_inttypes-EEV4ZRGHM3V3IKCL4CU661064.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/ptrcheck-4CB406W9CBIUJPQ693ST02NIF.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Accessibility-CN2FA0EBDCF31P6XLODB90KKY.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreVideo-C6Z0IOOAKSO9TKUDV9X2W20AC.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_stddef-D1OSSMRSAATVGBKS0QZ4S64H9.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/ApplicationServices-ATJUVSLHKEUYQXPVQ3TBJ1M3U.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreGraphics-2XKEHMB3HC62CVTP5978O6RQ5.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreImage-B794Q4OEJKZ9IW1CLNY4JJYM8.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_DarwinFoundation1-3THVIESQ3SQ49GEL6O8U8D5U.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CUPS-1VD3UU954UGAXHPVKR1N2S1DJ.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreAudioTypes-584URGM4ZA0P1T1ORL23CRJU8.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_DarwinFoundation2-CB3N7Y9VS4OV9YUGUYHK8PHYO.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/ImageIO-1RPLLWH0W116US42TMM2739IY.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/SwiftUI-CGRWW4H4N9U4QCAUHL0A8H125.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/ScreenSaver-F1D7FQ58BHD29NGD2WW092OXL.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreMedia-CSHJKMLSNPZJ3KZYBU8MZYS9.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/SwiftShims-9RIK2I7IJ64ZY5ZL3B4XJSA6N.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Security-1JO9RM82F7NE6HG76BJN92GY1.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_limits-C7FJ6VMBPPG6V8TN6AG88BKQ0.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_SwiftConcurrencyShims-BU0MHNF9CI6PMCVOBBIQ7ZWSX.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_intrinsics-E2MU9NQAEVATRJ7P2IK6B3RWE.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Foundation-BUM3RRLUE42UNJU2KHA7ML1ZG.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_stdarg-3IOAS1U721FJT6A7ENZUFUS2E.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/os_workgroup-6M93QPK5X6N0NG5M0IXGUYP1D.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_tgmath-618K8L1XRB1DR4TQOLXDJU3SS.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Cocoa-8P3Z5OLKWRFYOHH82PL6YA3CV.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_float-2QW01FE20VWZZU2AFRE9D95XL.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_stdbool-84SF1H9YAA8JNJWPT5GG0VWF9.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Metal-DZ31EPJTYJPS2N0I1R16KF8RZ.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/IOKit-2EB8RXC9AFUI6MBMEKK8NOIAN.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/launch-Y1PDIKKB5CJHBGDVPBLRK542.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/OpenGL-3XU5RBBDH7LCR6OG5D9A627A9.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/OSLog-56836DDM1MMM9Q66CMGGT53JU.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/DataDetection-17DV424TXLHMN4GK00QAVWG9Y.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/MediaAccessibility-2QBL8A9IZSUU76BL8RYBUXVVE.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/AVFoundation-5TRSYAUKXEWIDS95DDAQZAA5K.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreFoundation-CAVOJTYZOYM6XP6HZL4B8P0I6.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreData-E3JP6ZRMHZVYWGNTWLRZIW3FC.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreText-6F2LAJWQNRRTC8PN0TR8M8F97.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Dispatch-D1JGKP7AKXOH5ZXX5GOL6LAJH.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_DarwinFoundation3-2KG7EWI6ZIQPC9NWDQ7LZE7O8.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/AudioToolbox-7JTCPWYIF4A5H4NMOQFCNXNIH.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/UniformTypeIdentifiers-DM28CXD3F1KEG2VKKKIQ4HD07.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/AVFAudio-4LGD5PG4MB5FLMHV2ZHL8W65Y.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/SwiftUICore-AYGCT3AHJROSJ2Z1QUSCO30ZE.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/simd-EF9APQ6CYIE7OV1X3JM3IOTKW.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/ptrauth-6HHBVGXP4CGS6WKL57J5CSGIC.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/libkern-9CTEMYVSRZ7LIUQ9ZI749HHNT.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/AppKit-ECS3SJ9ACIDBP99G3LPM9YZ2R.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/libDER-TKBS17YWQFVZT9ZCE94Z21GI.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/sys_types-4L6R6QOQQXADPFPJ6L668WAS8.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/ObjectiveC-6GVCAAE920GLG6CIKK35IFO9C.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/os_object-D9QJ2UWBNWCZMX0ZT2BIKR3LD.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreAudio-CRCLWW7VK02JUDSJDYTIJU2Y.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Symbols-BNDOED6P6ETRGJHGEZHB1WWBH.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/DeveloperToolsSupport-BGTV1WQN8G20TIZ95KF7NQDPK.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreTransferable-CJQT9FU6HSQHSFET7D1HO99GJ.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreMIDI-7LEMRTLBSCY7YL55IN16ESZ4N.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_AvailabilityInternal-1U0Q0545MAEWM42M4MXWCOTPT.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Spatial-6FKVVYKL1VWV9YWA5YMOBCLQ7.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CFNetwork-6ZLUEGBUPVU5XLMMCYFKNL792.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/AVKit-51XQHXHUM2SCJXMCQIIRDTGPX.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreServices-BUO4J0VI2XT2JYU3VH5HN6HJV.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/ColorSync-6NQZODRPD4FJCCTM1XQJ5TZIN.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Carbon-9DOO7RS0VCH2MJM0UFB2NP9HC.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/XPC-4BQJN2CV03XDJUN6ZY2HMPCU9.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/_Builtin_stdint-2PSDLEGDQ1PNXYHNZI5KS09T7.pcm /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace-dependencies-1.json (in target 'ClockSpace' from project 'ClockSpace')
+
+CompileSwift normal arm64 (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    
+/Users/harshrao/ClockSpace/ClockSpaceApp/Views/Components/HeroView.swift:88:17: warning: initialization of immutable value 'nextIndex' was never used; consider replacing with assignment to '_' or removing it
+            let nextIndex = featuredScreensavers.isEmpty ? 0 : (currentIndex + 1) % featuredScreensavers.count
+            ~~~~^~~~~~~~~
+            _
+
+SwiftDriverJobDiscovery normal arm64 Compiling GlassModifier.swift, ShimmerModifier.swift, Theme.swift, Category.swift, CSConstants.swift, NavTab.swift, Screensaver.swift, ClockSpaceSaverContent.swift, ClockSpaceSaverView.swift, APIManager.swift, LicenseManager.swift, ScreensaverManager.swift, AddScreensaverView.swift, AppNavbarView.swift, CategoryPills.swift, HeroView.swift, ScreensaverCard.swift, SearchBarView.swift, UserProfileView.swift, DashboardView.swift, ScreensaverDetailView.swift, SettingsView.swift, CategoryScreensView.swift, ExploreView.swift, LibraryView.swift, ClockSpaceApp.swift (in target 'ClockSpace' from project 'ClockSpace')
+
+SwiftDriver\ Compilation\ Requirements ClockSpace normal arm64 com.apple.xcode.tools.swift.compiler (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name ClockSpace -O -whole-module-optimization @/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.SwiftFileList -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.4.sdk -target arm64-apple-macos15.0 -g -module-cache-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release -F /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release -emit-localized-strings -emit-localized-strings-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64 -c -num-threads 10 -Xcc -ivfsstatcache -Xcc /Users/harshrao/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/macosx26.4-25E236-30f9ca8789b706f8bd3fc906a70d770f.sdkstatcache -output-file-map /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace_const_extract_protocols.json -Xcc -iquote -Xcc /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-generated-files.hmap -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-own-target-headers.hmap -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-all-target-headers.hmap -Xcc -iquote -Xcc /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace-project-headers.hmap -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/include -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/DerivedSources-normal/arm64 -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/DerivedSources/arm64 -Xcc -I/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace-Swift.h -working-directory /Users/harshrao/ClockSpace -no-emit-module-separately-wmo
+
+SwiftMergeGeneratedHeaders /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/DerivedSources/ClockSpace-Swift.h /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace-Swift.h (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-swiftHeaderTool -arch arm64 /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace-Swift.h -o /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/DerivedSources/ClockSpace-Swift.h
+
+Copy /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.swiftmodule/arm64-apple-macos.swiftmodule /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.swiftmodule (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.swiftmodule /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.swiftmodule/arm64-apple-macos.swiftmodule
+
+Copy /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.swiftmodule/arm64-apple-macos.abi.json /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.abi.json (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.abi.json /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.swiftmodule/arm64-apple-macos.abi.json
+
+Copy /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.swiftmodule/arm64-apple-macos.swiftdoc /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.swiftdoc (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.swiftdoc /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.swiftmodule/arm64-apple-macos.swiftdoc
+
+Copy /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.swiftsourceinfo (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.swiftsourceinfo /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo
+
+Ld /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/MacOS/ClockSpace normal (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos15.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.4.sdk -Os -L/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/EagerLinkingTBDs/Release -L/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release -F/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/EagerLinkingTBDs/Release -F/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release -filelist /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @executable_path/../Frameworks -Xlinker -object_path_lto -Xlinker /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace_lto.o -Xlinker -dependency_info -Xlinker /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.swiftmodule @/Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace-linker-args.resp -Xlinker -no_adhoc_codesign -o /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/MacOS/ClockSpace
+
+CopySwiftLibs /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/MacOS/ClockSpace --scan-folder /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Frameworks --scan-folder /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/PlugIns --scan-folder /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Library/SystemExtensions --scan-folder /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Extensions --platform macosx --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os --back-deploy-swift-span
+
+ExtractAppIntentsMetadata (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name ClockSpace --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.4.sdk --xcode-version 17E192 --platform-family macOS --deployment-target 15.0 --bundle-identifier CivicEase.ClockSpace --output /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/Resources --target-triple arm64-apple-macos15.0 --binary-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/MacOS/ClockSpace --dependency-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace_dependency_info.dat --stringsdata-file /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.SwiftFileList --metadata-file-list /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace.DependencyMetadataFileList --static-metadata-file-list /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace.DependencyStaticMetadataFileList --swift-const-vals-list /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/Objects-normal/arm64/ClockSpace.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-04-15 20:43:33.299 appintentsmetadataprocessor[36331:588858] Starting appintentsmetadataprocessor export
+2026-04-15 20:43:33.303 appintentsmetadataprocessor[36331:588858] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+GenerateDSYMFile /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app.dSYM /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/MacOS/ClockSpace (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app/Contents/MacOS/ClockSpace -o /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app.dSYM
+
+CodeSign /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --entitlements /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Intermediates.noindex/ClockSpace.build/Release/ClockSpace.build/ClockSpace.app.xcent --timestamp\=none --generate-entitlement-der /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app
+
+RegisterExecutionPolicyException /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-RegisterExecutionPolicyException /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app
+
+Validate /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    builtin-validationUtility /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app -no-validate-extension -infoplist-subpath Contents/Info.plist
+
+Touch /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /usr/bin/touch -c /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app
+
+RegisterWithLaunchServices /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app (in target 'ClockSpace' from project 'ClockSpace')
+    cd /Users/harshrao/ClockSpace
+    /System/Library/Frameworks/CoreServices.framework/Versions/Current/Frameworks/LaunchServices.framework/Versions/Current/Support/lsregister -f -R -trusted /Users/harshrao/Library/Developer/Xcode/DerivedData/ClockSpace-ahrupoprmngjgcguuiopwiycwfpc/Build/Products/Release/ClockSpace.app
+
+** BUILD SUCCEEDED **
+
