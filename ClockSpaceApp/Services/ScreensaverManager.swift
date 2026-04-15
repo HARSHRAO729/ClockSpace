@@ -172,7 +172,10 @@ final class ScreensaverManager: ObservableObject {
                 }
                 
                 // Copy to Screen Savers directory
-                try installScreensaver(from: bundleURLResolved)
+                let destURL = try installScreensaver(from: bundleURLResolved)
+                
+                // Finalize installation (codesign + remove quarantine) to fix black screen
+                finalizeInstallation(at: destURL)
                 
                 // Mark as installed
                 installedIDs.insert(id)
@@ -306,7 +309,10 @@ final class ScreensaverManager: ObservableObject {
             try plistContent.write(to: plistURL, atomically: true, encoding: .utf8)
             
             // Install from the stub location
-            try installScreensaver(from: stubURL)
+            let destURL = try installScreensaver(from: stubURL)
+            
+            // Finalize installation (codesign + remove quarantine)
+            finalizeInstallation(at: destURL)
             
             // Mark as installed
             installedIDs.insert(id)
@@ -323,6 +329,28 @@ final class ScreensaverManager: ObservableObject {
         
         // Remove from "installing" state
         installingIDs.remove(id)
+    }
+    
+    /// Finalize the installation by removing quarantine attributes and ad-hoc codesigning.
+    /// This fixes the "black screen" issue and ensures settings are functional.
+    private func finalizeInstallation(at url: URL) {
+        let path = url.path
+        
+        // 1. Remove quarantine attribute recursively
+        let xattrProcess = Process()
+        xattrProcess.executableURL = URL(fileURLWithPath: "/usr/bin/xattr")
+        xattrProcess.arguments = ["-cr", path]
+        try? xattrProcess.run()
+        xattrProcess.waitUntilExit()
+        
+        // 2. Re-sign ad-hoc recursively to bypass Gatekeeper
+        let codesignProcess = Process()
+        codesignProcess.executableURL = URL(fileURLWithPath: "/usr/bin/codesign")
+        codesignProcess.arguments = ["--force", "--deep", "--sign", "-", path]
+        try? codesignProcess.run()
+        codesignProcess.waitUntilExit()
+        
+        print("Finalized installation for \(url.lastPathComponent)")
     }
     
     /// Uninstall a screensaver by removing it from ~/Library/Screen Savers/.
@@ -384,6 +412,8 @@ final class ScreensaverManager: ObservableObject {
         // This tries to set it in the background before showing the UI
         let script = """
         defaults -currentHost write com.apple.screensaver moduleDict -dict-add moduleName "\(name)" path "\(path)" type 0
+        defaults -currentHost write com.apple.screensaver moduleName -string "\(name)"
+        defaults -currentHost write com.apple.screensaver modulePath -string "\(path)"
         killall cfprefsd
         """
         

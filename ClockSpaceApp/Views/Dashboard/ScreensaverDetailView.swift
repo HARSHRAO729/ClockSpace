@@ -246,18 +246,27 @@ struct ScreensaverDetailView: View {
     
     private var livePreviewBackground: some View {
         Group {
-            if let urlStr = screensaver.previewURL, let url = URL(string: urlStr) {
-                GeometryReader { innerGeo in
-                    VideoPlayer(player: player)
+            if let previewURLString = screensaver.previewURL {
+                let resolvedURL: URL?
+                if previewURLString.hasPrefix("local://") {
+                    let path = String(previewURLString.dropFirst(8))
+                    resolvedURL = Bundle.main.resourceURL?.appendingPathComponent(path)
+                } else {
+                    resolvedURL = URL(string: previewURLString)
+                }
+                
+                if let url = resolvedURL {
+                    GeometryReader { innerGeo in
+                        VideoPlayer(player: player)
                         .frame(width: innerGeo.size.width, height: innerGeo.size.height)
                         .aspectRatio(contentMode: .fill)
                         .scaleEffect(1.1) // Slight overscan to ensure no gaps
                 }
-                .onAppear {
-                    let item = AVPlayerItem(url: url)
-                    player.replaceCurrentItem(with: item)
-                    player.isMuted = true
-                    player.play()
+                    .onAppear {
+                        let item = AVPlayerItem(url: url)
+                        player.replaceCurrentItem(with: item)
+                        player.isMuted = true
+                        player.play()
                     
                     NotificationCenter.default.addObserver(
                         forName: .AVPlayerItemDidPlayToEndTime,
