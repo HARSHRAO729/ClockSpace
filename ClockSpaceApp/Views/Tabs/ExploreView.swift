@@ -32,10 +32,10 @@ struct ExploreView: View {
             }
             randomizedPopular = filteredScreensavers.shuffled()
         }
-        .onChange(of: apiManager.screensavers) { _ in
+        .onChange(of: apiManager.screensavers) { _, _ in
             randomizedPopular = filteredScreensavers.shuffled()
         }
-        .onChange(of: apiManager.selectedCategory) { _ in
+        .onChange(of: apiManager.selectedCategory) { _, _ in
             randomizedPopular = filteredScreensavers.shuffled()
         }
     }

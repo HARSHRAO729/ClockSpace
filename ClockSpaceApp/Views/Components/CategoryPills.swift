@@ -19,10 +19,10 @@ struct CategoryPills: View {
             PillTag(
                 label: "All",
                 isSelected: selectedCategory == nil,
-                isHovered: hoveredCategory == nil && selectedCategory != nil ? false : hoveredCategory == nil,
+                isHovered: hoveredCategory == nil,
                 tintColor: CSTheme.accent
             ) {
-                withAnimation(CSTheme.Animation.standard) {
+                withAnimation(.easeInOut(duration: 0.2)) {
                     selectedCategory = nil
                 }
             }
@@ -39,9 +39,7 @@ struct CategoryPills: View {
                     }
                 }
                 .onHover { hovering in
-                    withAnimation(CSTheme.Animation.fast) {
-                        hoveredCategory = hovering ? category : nil
-                    }
+                    hoveredCategory = hovering ? category : nil
                 }
             }
             

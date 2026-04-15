@@ -81,8 +81,8 @@ struct HeroView: View {
         .frame(height: 400)
         .clipped()
         .contentShape(Rectangle())
-        .onChange(of: currentIndex) { newIndex in
-            _ = featuredScreensavers.isEmpty ? "" : featuredScreensavers[newIndex % featuredScreensavers.count].name
+        .onChange(of: currentIndex) { _, _ in
+            // Index changed
         }
         .onReceive(timer) { _ in
             let nextIndex = featuredScreensavers.isEmpty ? 0 : (currentIndex + 1) % featuredScreensavers.count

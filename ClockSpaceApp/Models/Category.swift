@@ -29,6 +29,7 @@ enum Category: String, Codable, CaseIterable, Identifiable {
     case abstract = "Abstract"
     case minimalist = "Minimalist"
     case collections = "Collections"
+    case tech = "Tech"
     case other = "Other"
     
     var id: String { rawValue }
@@ -45,6 +46,7 @@ enum Category: String, Codable, CaseIterable, Identifiable {
         case .sciFi: return "cat_scifi"
         case .fantasy: return "cat_fantasy"
         case .cats: return "cat_cats"
+        case .tech: return "cat_tech"
         default: return "cat_nature" // Fallback
         }
     }
@@ -71,6 +73,7 @@ enum Category: String, Codable, CaseIterable, Identifiable {
         case .city:          return "building.2.fill"
         case .fantasy:       return "wand.and.stars"
         case .cats:          return "pawprint.fill"
+        case .tech:          return "cpu"
         }
     }
     
@@ -96,6 +99,7 @@ enum Category: String, Codable, CaseIterable, Identifiable {
         case .city:          return "Urban landscapes and city lights"
         case .fantasy:       return "Epic fantasy worlds and characters"
         case .cats:          return "Feline friends and cozy scenes"
+        case .tech:          return "State-of-the-art technology and code"
         }
     }
     
@@ -121,6 +125,7 @@ enum Category: String, Codable, CaseIterable, Identifiable {
         case .city:          return Color(hex: 0x64748B)
         case .fantasy:       return Color(hex: 0x8B5CF6)
         case .cats:          return Color(hex: 0xF06292)
+        case .tech:          return Color(hex: 0x6366F1)
         }
     }
 }
