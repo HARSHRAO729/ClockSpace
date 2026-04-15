@@ -8,12 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		686EAD772F8D89AC00D1B7B6 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 686EAD762F8D89AC00D1B7B6 /* Secrets.xcconfig */; };
-		68B0E5FE2F8B1B2F00A63E1D /* forever-stars-macos-screensaver.saver in Resources */ = {isa = PBXBuildFile; fileRef = 68B0E5FF2F8B1B2F00A63E1D /* forever-stars-macos-screensaver.saver */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		686EAD762F8D89AC00D1B7B6 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
-		68B0E5FF2F8B1B2F00A63E1D /* forever-stars-macos-screensaver.saver */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = ClockSpaceApp/Resources/BundledSavers/forever-stars-macos-screensaver.saver; sourceTree = "<group>"; };
 		68B0E4FC2F8B1B2F00A63E1D /* ClockSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClockSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -85,7 +83,7 @@
 				ORGANIZATIONNAME = CivicEase;
 				TargetAttributes = {
 					68B0E4FB2F8B1B2F00A63E1D = {
-						CreatedOnToolsVersion = 26.4;
+						CreatedOnToolsVersion = 15.0;
 					};
 				};
 			};
@@ -113,7 +111,6 @@
 			isa = PBXResourcesBuildPhase;
 			files = (
 				686EAD772F8D89AC00D1B7B6 /* Secrets.xcconfig in Resources */,
-				68B0E5FE2F8B1B2F00A63E1D /* forever-stars-macos-screensaver.saver in Resources */,
 			);
 		};
 /* End PBXResourcesBuildPhase section */
@@ -239,7 +236,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 26.4;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
