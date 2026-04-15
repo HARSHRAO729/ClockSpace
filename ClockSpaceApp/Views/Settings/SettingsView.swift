@@ -18,99 +18,27 @@ struct SettingsView: View {
         ZStack(alignment: .topTrailing) {
             VStack(spacing: 0) {
                 // Header (App Name branding)
-                Text("wallspace")
+                Text("ClockSpace")
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(.white)
                     .padding(.top, 40)
                 
-                VStack(spacing: 48) {
-                    // ── Support Section ──
-                    VStack(alignment: .leading, spacing: 14) {
-                        Text("Join the Community")
-                            .font(.system(size: 13, weight: .medium))
-                            .foregroundColor(CSTheme.textTertiary)
-                        
-                        Button(action: {}) {
-                            HStack {
-                                Image(systemName: "bubble.left.fill")
-                                Text("Discord")
-                            }
-                            .font(.system(size: 13, weight: .semibold))
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 24)
-                            .padding(.vertical, 10)
-                            .background(
-                                Capsule().stroke(Color.white.opacity(0.15), lineWidth: 1)
-                            )
-                        }
-                        .buttonStyle(.plain)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                Spacer()
+                
+                VStack(spacing: 16) {
+                    Image(systemName: "clock.fill")
+                        .font(.system(size: 80))
+                        .foregroundColor(Color.white.opacity(0.1))
                     
-                    // ── Preferences Section ──
-                    VStack(alignment: .leading, spacing: 20) {
-                        Text("Preferences")
-                            .font(.system(size: 13, weight: .medium))
-                            .foregroundColor(CSTheme.textTertiary)
-                        
-                        VStack(spacing: 24) {
-                            toggleRow(title: "Start on Login", isOn: $startOnLogin)
-                            toggleRow(title: "Enable Lock Screen", isOn: $enableLockScreen)
-                            
-                            HStack {
-                                Text("Cache - 169 MB")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(.white)
-                                Spacer()
-                                Button(action: {}) {
-                                    Image(systemName: "trash")
-                                        .foregroundColor(CSTheme.textTertiary)
-                                }
-                                .buttonStyle(.plain)
-                            }
-                        }
-                    }
+                    Text("Coming Soon")
+                        .font(.system(size: 32, weight: .bold))
+                        .foregroundColor(.white)
                     
-                    // ── Earn / Affiliate Section ──
-                    VStack(alignment: .leading, spacing: 14) {
-                        HStack(spacing: 12) {
-                            Text("Earn with Wallspace")
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.white)
-                            
-                            Text("40%")
-                                .font(.system(size: 10, weight: .bold))
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 6)
-                                .padding(.vertical, 2)
-                                .background(Color.blue)
-                                .cornerRadius(4)
-                        }
-                        
-                        HStack(spacing: 6) {
-                            Text("wallspace.app/affiliate")
-                                .font(.system(size: 13))
-                                .foregroundColor(CSTheme.textTertiary)
-                            Image(systemName: "arrow.up.right")
-                                .font(.system(size: 10))
-                                .foregroundColor(CSTheme.textTertiary)
-                        }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    // ── License Status ──
-                    HStack {
-                        Text("Licence")
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(.white)
-                        Spacer()
-                        Text("Activated")
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(CSTheme.textTertiary)
-                    }
+                    Text("New settings and features are on their way.")
+                        .font(.system(size: 16))
+                        .foregroundColor(CSTheme.textTertiary)
                 }
-                .padding(.horizontal, 160)
-                .padding(.top, 60)
+                .padding(.bottom, 60)
                 
                 Spacer()
                 

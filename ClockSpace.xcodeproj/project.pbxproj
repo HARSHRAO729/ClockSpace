@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		686EAD772F8D89AC00D1B7B6 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 686EAD762F8D89AC00D1B7B6 /* Secrets.xcconfig */; };
+		68B0E5FE2F8B1B2F00A63E1D /* forever-stars-macos-screensaver.saver in Resources */ = {isa = PBXBuildFile; fileRef = 68B0E5FF2F8B1B2F00A63E1D /* forever-stars-macos-screensaver.saver */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		686EAD762F8D89AC00D1B7B6 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		68B0E5FF2F8B1B2F00A63E1D /* forever-stars-macos-screensaver.saver */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = ClockSpaceApp/Resources/BundledSavers/forever-stars-macos-screensaver.saver; sourceTree = "<group>"; };
 		68B0E4FC2F8B1B2F00A63E1D /* ClockSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClockSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 			isa = PBXResourcesBuildPhase;
 			files = (
 				686EAD772F8D89AC00D1B7B6 /* Secrets.xcconfig in Resources */,
+				68B0E5FE2F8B1B2F00A63E1D /* forever-stars-macos-screensaver.saver in Resources */,
 			);
 		};
 /* End PBXResourcesBuildPhase section */
@@ -253,7 +256,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -286,7 +289,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
