@@ -23,6 +23,7 @@ struct DashboardView: View {
     @State private var isSearchPresented: Bool = false
     @State private var showSettings: Bool = false
     @State private var showAdd: Bool = false
+    @State private var activeCategoryPage: Category? = nil
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -68,7 +69,8 @@ struct DashboardView: View {
             // ── Detailed Screensaver Overlay ──
             if let saver = apiManager.detailedScreensaver {
                 ScreensaverDetailView(screensaver: saver)
-                    .transition(.opacity.combined(with: .scale(scale: 0.95)))
+                    .transition(.opacity)
+                    .ignoresSafeArea()
                     .zIndex(300)
             }
         }
@@ -94,7 +96,21 @@ struct DashboardView: View {
         case .home:
             homeContent
         case .explore:
-            ExploreView()
+            if let category = activeCategoryPage {
+                CategoryScreensView(
+                    category: category,
+                    onBack: {
+                        activeCategoryPage = nil
+                        apiManager.selectedCategory = nil
+                    }
+                )
+            } else {
+                ExploreView(
+                    onCategoryTap: { category in
+                        activeCategoryPage = category
+                    }
+                )
+            }
         case .library:
             LibraryView()
         }
@@ -103,10 +119,11 @@ struct DashboardView: View {
     // MARK: - Home Tab Content
     
     private var homeContent: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 28) {
             // ── Hero section with fading gradient ──
             HeroView(featuredScreensavers: featuredItems)
                 .frame(height: 400)
+                .frame(maxWidth: .infinity)
                 .mask(
                     LinearGradient(
                         colors: [.white, .white, .white, .white.opacity(0.3), .clear],
@@ -116,32 +133,46 @@ struct DashboardView: View {
                 )
                 .clipped()
                 .contentShape(Rectangle())
-                .padding(.bottom, 60) // Extra spacing for carousel overlap
+                .padding(.bottom, 8)
             
-            VStack(spacing: CSTheme.Spacing.xxl) {
-                // ── Latest Collection (Horizontal) ──
-                sectionHeader(title: "Latest Collection", subtitle: "Most recent community screensavers")
+            VStack(spacing: 22) {
+                sectionHeader(title: "Latest Wallpapers", subtitle: "Browse the newest additions to our collection")
                 
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 20) {
-                        ForEach(apiManager.screensavers.filter { $0.isNew }) { saver in
+                LazyVGrid(
+                    columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())],
+                    spacing: 14
+                ) {
+                    ForEach(apiManager.screensavers.filter { $0.isNew }.prefix(6)) { saver in
                             ScreensaverCard(screensaver: saver)
-                                .frame(width: 280)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 186)
                         }
+                    }
+                .clipped()
+                .contentShape(Rectangle())
+                    
+                sectionHeader(title: "Discover Community Wallpapers", subtitle: "Random wallpapers to discover")
+                
+                LazyVGrid(
+                    columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())],
+                    spacing: 14
+                ) {
+                    ForEach(apiManager.screensavers.dropFirst(6).prefix(6)) { saver in
+                        ScreensaverCard(screensaver: saver)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 186)
                     }
                 }
                     
-                    // ── Most Popular (Horizontal) ──
-                    // Removed "Most Popular" section as per user request to remove rankings/ratings
+                sectionHeader(title: "Categories", subtitle: "Browse screensavers by category")
                     
-                    // ── Categories (Grid) ──
-                    sectionHeader(title: "Categories", subtitle: "Browse screensavers by category")
-                    
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
-                        ForEach(Category.allCases.prefix(9), id: \.self) { category in
-                            categoryCard(for: category)
-                        }
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 14) {
+                    ForEach(Category.allCases.prefix(9), id: \.self) { category in
+                        categoryCard(for: category)
                     }
+                    }
+                    .clipped()
+                    .contentShape(Rectangle())
             }
             .padding(.top, CSTheme.Spacing.xl)
         }
@@ -174,15 +205,12 @@ struct DashboardView: View {
         Button(action: {
             apiManager.selectedCategory = category
             selectedTab = .explore
+            activeCategoryPage = category
         }) {
             ZStack(alignment: .bottomLeading) {
                 // Background Image
                 Group {
-                    if let bundleURL = Bundle.main.url(forResource: category.imageName, withExtension: "png", subdirectory: "Categories"),
-                       let nsImage = NSImage(contentsOf: bundleURL) {
-                        Image(nsImage: nsImage)
-                            .resizable()
-                    } else if let nsImage = NSImage(named: category.imageName) {
+                    if let nsImage = categoryImage(for: category) {
                         Image(nsImage: nsImage)
                             .resizable()
                     } else {
@@ -221,6 +249,18 @@ struct DashboardView: View {
         }
         .buttonStyle(PlainButtonStyle())
         .transition(.opacity)
+    }
+    
+    private func categoryImage(for category: Category) -> NSImage? {
+        let baseName = category.imageName
+        let exts = ["png", "jpg", "jpeg", "webp"]
+        for ext in exts {
+            if let bundleURL = Bundle.main.url(forResource: baseName, withExtension: ext, subdirectory: "Categories"),
+               let nsImage = NSImage(contentsOf: bundleURL) {
+                return nsImage
+            }
+        }
+        return NSImage(named: baseName)
     }
     
     

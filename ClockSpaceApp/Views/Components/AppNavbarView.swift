@@ -25,17 +25,8 @@ struct AppNavbarView: View {
                 
                 VStack(alignment: .leading, spacing: 1) {
                     Text("ClockSpace")
-                        .font(.system(size: 13, weight: .bold))
+                        .font(.system(size: 15, weight: .bold)) // Slightly larger
                         .foregroundColor(.white)
-                    
-                    HStack(spacing: 4) {
-                        Circle()
-                            .fill(Color.green)
-                            .frame(width: 6, height: 6)
-                        Text("Online")
-                            .font(.system(size: 10, weight: .medium))
-                            .foregroundColor(CSTheme.textTertiary)
-                    }
                 }
             }
             .frame(width: 200, alignment: .leading)

@@ -17,17 +17,34 @@ struct ScreensaverCard: View {
     @State private var isHovering: Bool = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            // ── Thumbnail ──
+        ZStack {
             thumbnailView
-            
-            // ── Info ──
-            infoSection
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .frame(maxWidth: 280)
+        .frame(height: 186)
         .background(
             RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
                 .fill(CSTheme.surface.opacity(0.5))
         )
+        .clipShape(RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous))
+        // Overlays MUST be applied after sizing + clipping.
+        .overlay {
+            LinearGradient(colors: [.clear, .black.opacity(0.82)], startPoint: .top, endPoint: .bottom)
+                .opacity(isHovering ? 1 : 0)
+                .allowsHitTesting(false)
+        }
+        .overlay(alignment: .bottomLeading) {
+            hoverInfoSection
+                .opacity(isHovering ? 1 : 0)
+                .allowsHitTesting(false)
+        }
+        .overlay(alignment: .topTrailing) {
+            likeButton
+                .padding(10)
+                .opacity(isHovering ? 1 : 0)
+                .allowsHitTesting(isHovering)
+        }
         .overlay(
             RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
                 .stroke(
@@ -35,8 +52,7 @@ struct ScreensaverCard: View {
                     lineWidth: isHovering ? 1.0 : 0.5
                 )
         )
-        .clipShape(RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous))
-        .scaleEffect(isHovering ? 1.03 : 1.0)
+        .scaleEffect(isHovering ? 1.015 : 1.0)
         .shadow(
             color: isHovering ? screensaver.category.tintColor.opacity(0.15) : Color.black.opacity(0.2),
             radius: isHovering ? 24 : 12,
@@ -51,6 +67,9 @@ struct ScreensaverCard: View {
                 apiManager.detailedScreensaver = screensaver
             }
         }
+        .frame(minWidth: 0, maxWidth: .infinity)
+        .clipped()
+        .contentShape(Rectangle())
     }
     
     // MARK: - Thumbnail (16pt radius enforced)
@@ -61,7 +80,7 @@ struct ScreensaverCard: View {
             if isHovering, let urlStr = screensaver.previewURL, let url = URL(string: urlStr) {
                 VideoPlayer(player: AVPlayer(url: url))
                     .aspectRatio(contentMode: .fill)
-                    .frame(height: 160)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .clipped()
                     .onAppear {
                         // Silent autoplay
@@ -76,20 +95,20 @@ struct ScreensaverCard: View {
                         Image(nsImage: nsImage)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(height: 160)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .clipped()
                     } else if let nsImage = NSImage(named: screensaver.thumbnailURL) {
                         Image(nsImage: nsImage)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(height: 160)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .clipped()
                     } else if let bundleURL = Bundle.main.url(forResource: resourceName, withExtension: ext, subdirectory: "Categories"),
                               let nsImage = NSImage(contentsOf: bundleURL) {
                         Image(nsImage: nsImage)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(height: 160)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .clipped()
                     } else {
                         fallbackThumbnail
@@ -98,24 +117,6 @@ struct ScreensaverCard: View {
             } else {
                 fallbackThumbnail
             }
-            
-            
-            // Heart/Like Toggle (Quick Action)
-            HStack {
-                Spacer()
-                Button(action: {
-                    apiManager.toggleLiked(screensaver)
-                }) {
-                    Image(systemName: apiManager.isLiked(screensaver) ? "heart.fill" : "heart")
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(apiManager.isLiked(screensaver) ? .red : .white)
-                        .padding(10)
-                        .background(Circle().fill(Color.black.opacity(0.4)).background(.ultraThinMaterial))
-                }
-                .buttonStyle(.plain)
-                .padding(CSTheme.Spacing.sm)
-            }
-            
             // "NEW" Badge
             if screensaver.isNew {
                 Text("NEW")
@@ -128,11 +129,12 @@ struct ScreensaverCard: View {
                     .offset(y: 40)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .clipShape(
             UnevenRoundedRectangle(
                 topLeadingRadius: CSTheme.Radius.large,
-                bottomLeadingRadius: 0,
-                bottomTrailingRadius: 0,
+                bottomLeadingRadius: CSTheme.Radius.large,
+                bottomTrailingRadius: CSTheme.Radius.large,
                 topTrailingRadius: CSTheme.Radius.large
             )
         )
@@ -141,58 +143,35 @@ struct ScreensaverCard: View {
     
     // MARK: - Info Section
     
-    private var infoSection: some View {
+    private var hoverInfoSection: some View {
         VStack(alignment: .leading, spacing: CSTheme.Spacing.sm) {
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(screensaver.name)
-                        .font(.system(size: 15, weight: .semibold))
-                        .foregroundColor(.white)
-                        .lineLimit(1)
-                    
-                    Text("by \(screensaver.author)")
-                        .font(.system(size: 11, weight: .regular))
-                        .foregroundColor(CSTheme.textTertiary)
-                }
-                
-                Spacer()
-                
-                if manager.isInstalled(screensaver) {
-                    Image(systemName: "checkmark.seal.fill")
-                        .foregroundColor(CSTheme.accent)
-                        .font(.system(size: 16))
-                }
-            }
-            
-            HStack(spacing: 8) {
-                HStack(spacing: 4) {
-                    ForEach(screensaver.tags.prefix(1), id: \.self) { tag in
-                        Text(tag)
-                            .font(.system(size: 9, weight: .medium))
-                            .foregroundColor(CSTheme.textTertiary)
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 2)
-                            .overlay(Capsule().stroke(Color.white.opacity(0.1), lineWidth: 0.5))
-                            .lineLimit(1)
-                    }
-                }
-                
-                Spacer(minLength: 20) // Minimum separation
-                
-                HStack(spacing: 4) {
-                    Text(manager.isInstalled(screensaver) ? "Open Settings" : "Apply")
-                        .font(.system(size: 11, weight: .semibold))
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.8)
-                    
-                    Image(systemName: "arrow.right")
-                        .font(.system(size: 10, weight: .bold))
-                }
-                .foregroundColor(isHovering ? .white : CSTheme.textTertiary)
-            }
-            .frame(minHeight: 24) // Ensure consistent footer height
+            Text(screensaver.name)
+                .font(.system(size: 19, weight: .bold))
+                .foregroundColor(.white)
+                .lineLimit(2)
+                .minimumScaleFactor(0.8)
+                .fixedSize(horizontal: false, vertical: true)
+            Text("by \(screensaver.author)")
+                .font(.system(size: 11, weight: .medium))
+                .foregroundColor(.white.opacity(0.72))
+                .lineLimit(1)
         }
-        .padding(CSTheme.Spacing.lg)
+        .padding(.horizontal, 14)
+        .padding(.bottom, 12)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.trailing, 44) // keep clear of like button
+    }
+    
+    private var likeButton: some View {
+        Button(action: {
+            apiManager.toggleLiked(screensaver)
+        }) {
+            Image(systemName: apiManager.isLiked(screensaver) ? "heart.fill" : "heart")
+                .font(.system(size: 18, weight: .bold))
+                .foregroundColor(apiManager.isLiked(screensaver) ? .red : .white)
+                .padding(10)
+        }
+        .buttonStyle(.plain)
     }
     
     // MARK: - Gradient Generator
@@ -222,6 +201,6 @@ struct ScreensaverCard: View {
             }
             .foregroundColor(.white.opacity(0.3))
         }
-        .frame(height: 160)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

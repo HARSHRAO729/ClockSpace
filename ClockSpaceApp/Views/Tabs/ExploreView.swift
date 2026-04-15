@@ -6,106 +6,190 @@
 import SwiftUI
 
 struct ExploreView: View {
-    
     @EnvironmentObject var apiManager: APIManager
+    var onCategoryTap: ((Category) -> Void)? = nil
     @State private var selectedFilter: String? = "4K"
-    
+    @State private var randomizedPopular: [Screensaver] = []
+
+    private var filteredScreensavers: [Screensaver] {
+        apiManager.screensavers.filter { saver in
+            guard let selected = apiManager.selectedCategory else { return true }
+            return saver.category == selected
+        }
+    }
+
     var body: some View {
-        ScrollViewReader { proxy in
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: 0) {
-                    
-                    // ── Latest Collection (Top) ──
-                    VStack(alignment: .leading, spacing: CSTheme.Spacing.lg) {
-                        HStack(alignment: .bottom) {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("Latest Collection")
-                                    .font(CSTheme.Font.sectionTitle)
-                                    .foregroundColor(.white)
-                                Text("The newest community additions, refreshed daily")
-                                    .font(CSTheme.Font.caption)
-                                    .foregroundColor(CSTheme.textTertiary)
-                            }
-                            Spacer()
-                        }
-                        
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 20) {
-                                ForEach(apiManager.screensavers.filter { $0.isNew }.prefix(8)) { saver in
-                                    ScreensaverCard(screensaver: saver)
-                                        .frame(width: 280)
-                                }
-                            }
-                        }
-                    }
-                    .padding(.top, CSTheme.Spacing.xl)
-                    .id("latest-collection")
-                    
-                    // ── Category Filter Bar ──
-                    VStack(alignment: .leading, spacing: CSTheme.Spacing.md) {
-                        categoryFilterBar
-                    }
-                    .padding(.top, 40)
-                    .id("category-filter")
-                    
-                    // ── Filtered Grid ──
-                    VStack(alignment: .leading, spacing: CSTheme.Spacing.lg) {
-                        let filtered = apiManager.screensavers.filter { saver in
-                            if let selected = apiManager.selectedCategory {
-                                return saver.category == selected
-                            }
-                            return true
-                        }
-                        
-                        if filtered.isEmpty {
-                            emptyState
-                        } else {
-                            LazyVGrid(
-                                columns: [
-                                    GridItem(.flexible(), spacing: 20),
-                                    GridItem(.flexible(), spacing: 20),
-                                    GridItem(.flexible(), spacing: 20),
-                                    GridItem(.flexible(), spacing: 20)
-                                ],
-                                spacing: 24
-                            ) {
-                                ForEach(filtered) { saver in
-                                    ScreensaverCard(screensaver: saver)
-                                }
-                            }
-                        }
-                    }
-                    .padding(.top, 24)
-                    .padding(.bottom, 120)
-                }
-                .onChange(of: apiManager.selectedCategory) { category in
-                    if category != nil {
-                        withAnimation(CSTheme.Animation.standard) {
-                            proxy.scrollTo("category-filter", anchor: .top)
-                        }
-                    }
+        VStack(spacing: 28) {
+            exploreHeroSection
+            latestWallpapersSection
+            discoverCommunitySection
+            categoriesSection
+            mostPopularSection
+        }
+        .task {
+            if apiManager.screensavers.isEmpty {
+                _ = try? await apiManager.fetchScreensavers()
+            }
+            randomizedPopular = filteredScreensavers.shuffled()
+        }
+        .onChange(of: apiManager.screensavers) { _ in
+            randomizedPopular = filteredScreensavers.shuffled()
+        }
+        .onChange(of: apiManager.selectedCategory) { _ in
+            randomizedPopular = filteredScreensavers.shuffled()
+        }
+    }
+    
+    private var exploreHeroSection: some View {
+        ZStack {
+            Group {
+                if let hero = apiManager.screensavers.first,
+                   hero.thumbnailURL != "placeholder",
+                   let nsImage = NSImage(named: hero.thumbnailURL) ?? NSImage(contentsOfFile: "/Users/harshrao/ClockSpace/scratch/all_previews/" + hero.thumbnailURL) {
+                    Image(nsImage: nsImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                } else {
+                    LinearGradient(colors: [CSTheme.civicEase.opacity(0.65), CSTheme.backgroundPrimary], startPoint: .top, endPoint: .bottom)
                 }
             }
+            .frame(height: 220)
+            .clipped()
+            
+            LinearGradient(colors: [.black.opacity(0.45), .black.opacity(0.65)], startPoint: .top, endPoint: .bottom)
+            
+            VStack(spacing: 12) {
+                Text("Explore")
+                    .font(.system(size: 48, weight: .bold))
+                    .foregroundColor(.white)
+                Text("Discover community screensavers curated for your setup.")
+                    .font(CSTheme.Font.body)
+                    .foregroundColor(.white.opacity(0.8))
+                Button("Discord Coming Soon") {}
+                    .buttonStyle(.borderedProminent)
+                    .tint(CSTheme.accent)
+            }
         }
-        .onAppear {
-            if apiManager.screensavers.isEmpty {
-                Task {
-                    _ = try? await apiManager.fetchScreensavers()
+        .frame(height: 220)
+        .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 22, style: .continuous).stroke(Color.white.opacity(0.1), lineWidth: 1))
+        .clipped()
+        .contentShape(Rectangle())
+    }
+    
+    private var latestWallpapersSection: some View {
+        sectionBlock(
+            title: "Latest Wallpapers",
+            subtitle: "Browse the newest additions to our collection",
+            items: apiManager.screensavers.filter { $0.isNew }.prefix(6).map { $0 }
+        )
+    }
+    
+    private var discoverCommunitySection: some View {
+        sectionBlock(
+            title: "Discover Community Wallpapers",
+            subtitle: "Random wallpapers to discover",
+            items: Array(filteredScreensavers.prefix(6))
+        )
+    }
+    
+    private var categoriesSection: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Categories")
+                .font(CSTheme.Font.sectionTitle)
+                .foregroundColor(.white)
+            Text("Browse wallpapers by category")
+                .font(CSTheme.Font.caption)
+                .foregroundColor(CSTheme.textTertiary)
+            
+            LazyVGrid(
+                columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())],
+                spacing: 14
+            ) {
+                ForEach(Category.allCases.prefix(9), id: \.self) { category in
+                    Button {
+                        apiManager.selectedCategory = category
+                        onCategoryTap?(category)
+                    } label: {
+                        ZStack(alignment: .bottomLeading) {
+                            Group {
+                                if let categoryImage = categoryPreviewImage(for: category) {
+                                    Image(nsImage: categoryImage)
+                                        .resizable()
+                                } else {
+                                    category.tintColor.opacity(0.2)
+                                }
+                            }
+                            .aspectRatio(contentMode: .fill)
+                            .frame(height: 136)
+                            .clipped()
+                            LinearGradient(colors: [.black.opacity(0.7), .clear], startPoint: .bottom, endPoint: .top)
+                            Text(category.rawValue)
+                                .font(.system(size: 38, weight: .bold))
+                                .foregroundColor(.white)
+                                .minimumScaleFactor(0.45)
+                                .lineLimit(2)
+                                .padding(12)
+                        }
+                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    }
+                    .buttonStyle(.plain)
                 }
             }
         }
     }
     
-    // MARK: - Category Filter Bar (High-End)
+    private var mostPopularSection: some View {
+        sectionBlock(
+            title: "Most Popular Wallpapers",
+            subtitle: "Trending wallpapers loved by the community",
+            items: randomizedPopular
+        )
+        .padding(.bottom, 120)
+    }
     
+    private func sectionBlock(title: String, subtitle: String, items: [Screensaver]) -> some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack(spacing: 6) {
+                Text(title)
+                    .font(CSTheme.Font.sectionTitle)
+                    .foregroundColor(.white)
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundColor(CSTheme.textMuted)
+            }
+            Text(subtitle)
+                .font(CSTheme.Font.caption)
+                .foregroundColor(CSTheme.textTertiary)
+            
+            if items.isEmpty {
+                emptyState
+            } else {
+                LazyVGrid(
+                    columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())],
+                    spacing: 14
+                ) {
+                    ForEach(items) { saver in
+                        ScreensaverCard(screensaver: saver)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 186)
+                    }
+                }
+            }
+        }
+    }
+
     private var categoryFilterBar: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 16) {
-                // All Category
-                filterPill(title: "All", icon: "square.grid.2x2", isSelected: apiManager.selectedCategory == nil) {
+                filterPill(
+                    title: "All",
+                    icon: "square.grid.2x2",
+                    isSelected: apiManager.selectedCategory == nil
+                ) {
                     apiManager.selectedCategory = nil
                 }
-                
+
                 ForEach(Category.allCases, id: \.self) { category in
                     filterPill(
                         title: category.rawValue,
@@ -119,9 +203,20 @@ struct ExploreView: View {
             }
             .padding(.vertical, 4)
         }
+        .background(
+            GeometryReader { geometry in
+                Color.clear
+            }
+        )
     }
-    
-    private func filterPill(title: String, icon: String, color: Color = .white, isSelected: Bool, action: @escaping () -> Void) -> some View {
+
+    private func filterPill(
+        title: String,
+        icon: String,
+        color: Color = .white,
+        isSelected: Bool,
+        action: @escaping () -> Void
+    ) -> some View {
         Button(action: {
             withAnimation(CSTheme.Animation.standard) {
                 action()
@@ -131,7 +226,7 @@ struct ExploreView: View {
                 Image(systemName: icon)
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(isSelected ? .white : color.opacity(0.8))
-                
+
                 Text(title)
                     .font(.system(size: 13, weight: .semibold))
                     .foregroundColor(isSelected ? .white : .white.opacity(0.7))
@@ -154,7 +249,7 @@ struct ExploreView: View {
         }
         .buttonStyle(.plain)
     }
-    
+
     private var emptyState: some View {
         VStack(spacing: 20) {
             Image(systemName: "sparkles")
@@ -166,5 +261,20 @@ struct ExploreView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 100)
+    }
+    
+    private func categoryPreviewImage(for category: Category) -> NSImage? {
+        let baseName = category.imageName
+        let exts = ["png", "jpg", "jpeg", "webp"]
+        for ext in exts {
+            if let url = Bundle.main.url(forResource: baseName, withExtension: ext, subdirectory: "Categories"),
+               let image = NSImage(contentsOf: url) {
+                return image
+            }
+        }
+        if let image = NSImage(named: baseName) {
+            return image
+        }
+        return nil
     }
 }

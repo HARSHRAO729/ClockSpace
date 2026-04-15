@@ -24,57 +24,68 @@ struct HeroView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            // ── Featured Hero Image (animated transition) ──
-            Group {
-                if let item = currentItem {
-                    heroImage(for: item)
-                        .id(item.id)
-                        .transition(.opacity.combined(with: .scale(scale: 1.05)))
-                } else {
-                    heroPlaceholder
+        GeometryReader { container in
+            ZStack(alignment: .bottom) {
+                // ── Featured Hero Image (animated transition) ──
+                Group {
+                    if let item = currentItem {
+                        heroImage(for: item, containerWidth: container.size.width)
+                            .id(item.id)
+                            .transition(.opacity)
+                    } else {
+                        heroPlaceholder
+                            .frame(width: container.size.width, height: 400)
+                    }
                 }
-            }
-            .animation(.easeInOut(duration: 1.2), value: currentIndex)
-            
-            // ── Overlapping Carousel (Selection Overlay) ──
-            VStack(alignment: .leading, spacing: CSTheme.Spacing.md) {
-                // Section label
-                Text("Wallspace's Pick")
-                    .font(.system(size: 14, weight: .bold))
-                    .foregroundColor(.white)
-                    .padding(.leading, CSTheme.Spacing.xxl)
+                .animation(.easeInOut(duration: 1.2), value: currentIndex)
                 
-                // Horizontal carousel
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: CSTheme.Spacing.md) {
-                        ForEach(Array(featuredScreensavers.prefix(6).enumerated()), id: \.offset) { index, saver in
-                            Button(action: {
-                                withAnimation(.easeInOut(duration: 0.8)) {
-                                    currentIndex = index
+                // ── Overlapping Carousel (Selection Overlay) ──
+                VStack(alignment: .leading, spacing: CSTheme.Spacing.md) {
+                    Text("Wallspace's Pick")
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(.leading, CSTheme.Spacing.xxl)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: CSTheme.Spacing.md) {
+                            ForEach(Array(featuredScreensavers.prefix(6).enumerated()), id: \.offset) { index, saver in
+                                Button(action: {
+                                    withAnimation(.easeInOut(duration: 0.8)) {
+                                        currentIndex = index
+                                    }
+                                }) {
+                                    FeaturedThumbnail(
+                                        screensaver: saver,
+                                        isHovered: hoveredCard == saver.id,
+                                        isActive: currentIndex == index
+                                    )
                                 }
-                            }) {
-                                FeaturedThumbnail(
-                                    screensaver: saver,
-                                    isHovered: hoveredCard == saver.id,
-                                    isActive: currentIndex == index
-                                )
-                            }
-                            .buttonStyle(.plain)
-                            .onHover { hovering in
-                                withAnimation(CSTheme.Animation.spring) {
-                                    hoveredCard = hovering ? saver.id : nil
+                                .buttonStyle(.plain)
+                                .onHover { hovering in
+                                    withAnimation(CSTheme.Animation.spring) {
+                                        hoveredCard = hovering ? saver.id : nil
+                                    }
                                 }
                             }
                         }
+                        .padding(.horizontal, CSTheme.Spacing.xxl)
+                        .padding(.bottom, CSTheme.Spacing.lg)
                     }
-                    .padding(.horizontal, CSTheme.Spacing.xxl)
-                    .padding(.bottom, CSTheme.Spacing.lg)
+                    .frame(width: container.size.width, alignment: .leading)
                 }
+                .frame(width: container.size.width, alignment: .leading)
+                .padding(.bottom, 8)
             }
-            .offset(y: 40) // Overlap the hero bottom edge
+            .frame(width: container.size.width, height: 400, alignment: .topLeading)
+        }
+        .frame(height: 400)
+        .clipped()
+        .contentShape(Rectangle())
+        .onChange(of: currentIndex) { newIndex in
+            _ = featuredScreensavers.isEmpty ? "" : featuredScreensavers[newIndex % featuredScreensavers.count].name
         }
         .onReceive(timer) { _ in
+            let nextIndex = featuredScreensavers.isEmpty ? 0 : (currentIndex + 1) % featuredScreensavers.count
             withAnimation(.easeInOut(duration: 1.2)) {
                 currentIndex = (currentIndex + 1) % featuredScreensavers.count
             }
@@ -83,7 +94,7 @@ struct HeroView: View {
     
     // MARK: - Hero Image
     
-    private func heroImage(for heroItem: Screensaver) -> some View {
+    private func heroImage(for heroItem: Screensaver, containerWidth: CGFloat) -> some View {
         ZStack {
             // Cinematic background (Image or gradient)
             if heroItem.thumbnailURL != "placeholder",
@@ -91,10 +102,12 @@ struct HeroView: View {
                 Image(nsImage: nsImage)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
+                    .frame(width: containerWidth)
                     .frame(height: 400)
                     .clipped()
             } else {
                 gradient(for: heroItem)
+                    .frame(width: containerWidth)
                     .frame(height: 400)
             }
             
@@ -107,6 +120,9 @@ struct HeroView: View {
                         .font(.system(size: 64, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
                         .shadow(color: .black.opacity(0.3), radius: 20)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.55)
+                        .frame(maxWidth: 760, alignment: .leading)
                     
                     Text(heroItem.category.rawValue.uppercased())
                         .font(.system(size: 14, weight: .semibold))
@@ -160,6 +176,7 @@ struct HeroView: View {
             .padding(.leading, CSTheme.Spacing.xxl)
             .padding(.bottom, 100) // Reduced bottom padding to fit 400 height
         }
+        .frame(width: containerWidth)
         .frame(height: 400)
         .clipped()
         .contentShape(Rectangle())
