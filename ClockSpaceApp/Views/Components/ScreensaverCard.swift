@@ -60,7 +60,9 @@ struct ScreensaverCard: View {
             // Live Preview Simulation (Animates on hover)
             if isHovering, let urlStr = screensaver.previewURL, let url = URL(string: urlStr) {
                 VideoPlayer(player: AVPlayer(url: url))
+                    .aspectRatio(contentMode: .fill)
                     .frame(height: 160)
+                    .clipped()
                     .onAppear {
                         // Silent autoplay
                     }
