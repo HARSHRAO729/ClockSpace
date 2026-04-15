@@ -1,6 +1,6 @@
 # 🌌 ClockSpace
 
-**ClockSpace** is an elite, premium macOS application that completely redefines the screensaver experience. Built with the high-fidelity **CivicEase** design system, it delivers 60-FPS Quartz-rendered graphics straight to your lock screen.
+**ClockSpace** is an elite, premium macOS application that completely redefines the screensaver experience. While the name pays homage to our roots, ClockSpace is a comprehensive marketplace for **all** genres of digital art—from nature vistas and abstract motion to sci-fi digital rain and minimalist clocks. Built with the high-fidelity **CivicEase** design system, it delivers 60-FPS Quartz-rendered graphics straight to your lock screen.
 
 [![Official Website](https://img.shields.io/badge/Website-clockspace.civicease.systems-blue?style=for-the-badge&logo=safari)](https://clockspace.civicease.systems)
 [![Status: Development](https://img.shields.io/badge/Status-Early_Production-orange?style=for-the-badge)](https://github.com/HARSHRAO729/ClockSpace)
