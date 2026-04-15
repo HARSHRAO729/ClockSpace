@@ -9,9 +9,14 @@
 
 ## ⚠️ Development Status & Disclaimer
 
-**ClockSpace is currently in its early production and active development phase.** 
+**ClockSpace is currently in its early production and active development phase (v0.25).** 
 
 While we strive for excellence in architectural design and visual fidelity, users may encounter installation complexities, feature malfunctions, or occasional application instability. We deeply regret any inconvenience caused by these early-stage issues and are working tirelessly to refine the experience. 
+
+### What's New in v0.25
+*   **✨ New Screensaver: Forever Stars**: A premium, minimalist clock that evolves through colors and time.
+*   **🧹 UI Polishing**: Cleaned up settings and removed experimental "Add" features based on user feedback.
+*   **🛠️ Bug Fixes**: Improved native bundle installation reliability.
 
 **Join the Journey**: We believe in the power of community! If you're a developer or designer passionate about redefining the macOS experience, we warmly invite you to join us as a contributor and help shape the future of ClockSpace.
 
