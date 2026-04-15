@@ -229,8 +229,7 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
             resolution: "Retina",
             fileSize: "Local",
             isNew: true,
-            template: "minimal",
-            previewURL: "local://BundledSavers/Brooklyn.saver/Contents/Resources/appleBits.mp4"
+            template: "minimal"
         ),
         Screensaver(
             id: UUID(uuidString: "4e9b2c06-a725-5257-b2e9-7159b9a8d22d")!,
