@@ -6,11 +6,19 @@
 //
 
 import SwiftUI
+import AppKit
 
 @main
 struct ClockSpaceApp: App {
     
     @StateObject private var apiManager = APIManager.shared
+    
+    init() {
+        // Set Dock Icon programatically if the image exists
+        if let image = NSImage(named: "ClockSpace") {
+            NSApplication.shared.applicationIconImage = image
+        }
+    }
     
     var body: some Scene {
         WindowGroup {

@@ -56,6 +56,7 @@ struct ScreensaverDetailView: View {
         }
         .navigationTitle("")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .ignoresSafeArea()
         .alert("Installation Error", isPresented: Binding(
             get: { manager.lastError != nil },
             set: { if !$0 { manager.lastError = nil } }
