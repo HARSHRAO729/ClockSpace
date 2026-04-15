@@ -2,60 +2,61 @@
 //  Theme.swift
 //  ClockSpace
 //
-//  Centralized design tokens for the ClockSpace glassmorphic dark-mode UI.
+//  Centralized design tokens for the ClockSpace premium glassmorphic dark-mode UI.
 //
 
 import SwiftUI
 
-/// ClockSpace design system — all visual tokens live here.
+/// ClockSpace design system — premium visual tokens.
 enum CSTheme {
     
-    // MARK: - Colors
+    // MARK: - Core Colors
     
-    /// Primary background — deepest layer (rich indigo-black)
-    static let backgroundPrimary = Color(hex: 0x0F0F23)
+    /// Primary background — deepest layer (rich cosmic indigo)
+    static let backgroundPrimary = Color(hex: 0x0A0A14)
     
-    /// Surface — cards, panels
-    static let surface = Color(hex: 0x1E1B4B)
+    /// Surface — cards, panels (glass base)
+    static let surface = Color(hex: 0x14142B)
     
     /// Surface elevated — raised elements, hover states
-    static let surfaceElevated = Color(hex: 0x1E293B)
+    static let surfaceElevated = Color(hex: 0x1E1E3F)
     
-    /// CTA / accent — actions, active states, badges
-    static let accent = Color(hex: 0x22C55E)
+    /// Brand Indigo (Primary Accent)
+    static let accent = Color(hex: 0x6366F1)
     
-    /// Accent dimmed — subtle accent usage (backgrounds, tags)
-    static let accentDimmed = Color(hex: 0x22C55E).opacity(0.15)
+    /// Brand Violet (Secondary Accent)
+    static let violet = Color(hex: 0x8B5CF6)
     
-    /// Primary text
+    /// Premium Gold (Luxury Tier)
+    static let premiumGold = Color(hex: 0xF59E0B)
+    
+    /// CivicEase Brand Color
+    static let civicEase = Color(hex: 0x4F46E5)
+    
+    // MARK: - Text Colors
+    
     static let textPrimary = Color(hex: 0xF8FAFC)
-    
-    /// Secondary / muted text
+    static let textSecondary = Color(hex: 0xE2E8F0)
     static let textMuted = Color(hex: 0x94A3B8)
-    
-    /// Tertiary text — timestamps, metadata
     static let textTertiary = Color(hex: 0x64748B)
     
-    /// Glass border
+    // MARK: - Semantic Colors
+    
+    static let success = Color(hex: 0x10B981)
+    static let danger = Color(hex: 0xEF4444)
+    static let warning = Color(hex: 0xF59E0B)
+    static let info = Color(hex: 0x3B82F6)
+    
+    // MARK: - Decoration
+    
+    static let divider = Color.white.opacity(0.08)
     static let glassBorder = Color.white.opacity(0.12)
     
-    /// Subtle divider
-    static let divider = Color.white.opacity(0.06)
-    
-    /// Danger / destructive actions
-    static let danger = Color(hex: 0xEF4444)
-    
-    /// Warning
-    static let warning = Color(hex: 0xF59E0B)
-    
-    /// Premium gold
-    static let premiumGold = Color(hex: 0xFBBF24)
-    
-    /// CivicEase brand indigo
-    static let civicEase = Color(hex: 0x4338CA)
-    
-    /// Violet accent for custom category
-    static let violet = Color(hex: 0x8B5CF6)
+    static let accentGradient = LinearGradient(
+        colors: [accent, violet],
+        startPoint: .topLeading,
+        endPoint: .bottomTrailing
+    )
     
     // MARK: - Spacing
     
@@ -63,84 +64,51 @@ enum CSTheme {
         static let xxs: CGFloat = 2
         static let xs: CGFloat = 4
         static let sm: CGFloat = 8
-        static let md: CGFloat = 12
-        static let lg: CGFloat = 16
-        static let xl: CGFloat = 24
-        static let xxl: CGFloat = 32
-        static let xxxl: CGFloat = 48
+        static let md: CGFloat = 16
+        static let lg: CGFloat = 20
+        static let xl: CGFloat = 32
+        static let xxl: CGFloat = 48
+        static let xxxl: CGFloat = 64
     }
     
     // MARK: - Corner Radius
     
     enum Radius {
         static let small: CGFloat = 8
-        static let medium: CGFloat = 12
-        static let large: CGFloat = 16
-        static let xl: CGFloat = 20
+        static let medium: CGFloat = 14
+        static let large: CGFloat = 24
+        static let xl: CGFloat = 32
         static let pill: CGFloat = 100
-    }
-    
-    // MARK: - Shadows
-    
-    enum Shadow {
-        /// Subtle drop shadow for glassmorphic cards
-        static let glass = ShadowStyle(
-            color: Color.black.opacity(0.3),
-            radius: 24,
-            x: 0,
-            y: 8
-        )
-        
-        /// Glow effect for accent-colored elements
-        static let accentGlow = ShadowStyle(
-            color: CSTheme.accent.opacity(0.3),
-            radius: 16,
-            x: 0,
-            y: 4
-        )
     }
     
     // MARK: - Animation
     
     enum Animation {
-        static let fast = SwiftUI.Animation.easeInOut(duration: 0.15)
+        static let rapid = SwiftUI.Animation.easeInOut(duration: 0.1)
         static let standard = SwiftUI.Animation.easeInOut(duration: 0.25)
-        static let slow = SwiftUI.Animation.easeInOut(duration: 0.4)
-        static let spring = SwiftUI.Animation.spring(response: 0.35, dampingFraction: 0.7)
+        static let smooth = SwiftUI.Animation.easeInOut(duration: 0.4)
+        static let cinematic = SwiftUI.Animation.easeInOut(duration: 0.8)
+        static let spring = SwiftUI.Animation.spring(response: 0.3, dampingFraction: 0.75)
     }
     
     // MARK: - Typography
     
     enum Font {
-        /// Massive hero title — SF Pro Display equivalent
-        static let heroTitle = SwiftUI.Font.system(size: 42, weight: .bold, design: .default)
-        /// Section titles
-        static let sectionTitle = SwiftUI.Font.system(size: 24, weight: .bold, design: .default)
-        static let largeTitle = SwiftUI.Font.system(size: 28, weight: .bold, design: .default)
+        static let heroTitle = SwiftUI.Font.system(size: 64, weight: .bold, design: .rounded)
+        static let sectionTitle = SwiftUI.Font.system(size: 28, weight: .bold, design: .rounded)
+        static let largeTitle = SwiftUI.Font.system(size: 32, weight: .bold, design: .default)
         static let title = SwiftUI.Font.system(size: 22, weight: .semibold, design: .default)
-        static let headline = SwiftUI.Font.system(size: 17, weight: .semibold, design: .default)
-        static let body = SwiftUI.Font.system(size: 14, weight: .regular, design: .default)
-        static let callout = SwiftUI.Font.system(size: 13, weight: .medium, design: .default)
-        static let caption = SwiftUI.Font.system(size: 11, weight: .regular, design: .default)
-        static let captionBold = SwiftUI.Font.system(size: 11, weight: .semibold, design: .default)
-        /// Tiny label — "by CivicEase" branding
-        static let micro = SwiftUI.Font.system(size: 9, weight: .medium, design: .default)
+        static let headline = SwiftUI.Font.system(size: 18, weight: .bold, design: .default)
+        static let body = SwiftUI.Font.system(size: 15, weight: .regular, design: .default)
+        static let callout = SwiftUI.Font.system(size: 13, weight: .semibold, design: .default)
+        static let caption = SwiftUI.Font.system(size: 12, weight: .medium, design: .default)
+        static let micro = SwiftUI.Font.system(size: 10, weight: .heavy, design: .default)
     }
-}
-
-// MARK: - Shadow Style Container
-
-struct ShadowStyle {
-    let color: Color
-    let radius: CGFloat
-    let x: CGFloat
-    let y: CGFloat
 }
 
 // MARK: - Color Hex Initializer
 
 extension Color {
-    /// Initialize a Color from a hex integer, e.g. `Color(hex: 0x0F172A)`
     init(hex: UInt, opacity: Double = 1.0) {
         self.init(
             .sRGB,
