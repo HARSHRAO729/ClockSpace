@@ -60,8 +60,8 @@ final class ScreensaverManager: ObservableObject {
     static let shared = ScreensaverManager()
     
     private init() {
-        // Force clear all installed ClockSpace screensavers on launch for a fresh start
-        clearAllInstalled()
+        // Scan for existing IDs on launch
+        scanInstalledScreensavers()
     }
     
     // MARK: - Installation Directory
@@ -139,6 +139,9 @@ final class ScreensaverManager: ObservableObject {
     func installFromMarketplace(_ screensaver: Screensaver) async {
         let id = screensaver.id
         
+        // Lightweight management: Delete previous ClockSpace savers before installing the new one
+        clearAllInstalled()
+        
         // Mark as installing (drives progress UI)
         installingIDs.insert(id)
         lastError = nil
@@ -195,7 +198,6 @@ final class ScreensaverManager: ObservableObject {
             
             // ── COMPILATION: Create a functional binary based on the selected template ──
             let swiftSource = generateSwiftSource(for: screensaver, className: saverName.replacingOccurrences(of: "-", with: "_"))
-""
             let sourceURL = tempDir.appendingPathComponent("\(saverName).swift")
             try swiftSource.write(to: sourceURL, atomically: true, encoding: .utf8)
             
@@ -204,7 +206,7 @@ final class ScreensaverManager: ObservableObject {
             try fileManager.createDirectory(at: binaryDir, withIntermediateDirectories: true)
             let binaryURL = binaryDir.appendingPathComponent("\(saverName)")
             
-            let compileCmd = "swiftc -emit-library -o \(binaryURL.path) \(sourceURL.path) -target arm64-apple-macosx14.4 -sdk $(xcrun --show-sdk-path)"
+            let compileCmd = "swiftc -emit-library -Xlinker -bundle -o \(binaryURL.path) \(sourceURL.path) -target arm64-apple-macosx14.4 -sdk $(xcrun --show-sdk-path) -framework ScreenSaver -framework AppKit -framework QuartzCore"
             
             let process = Process()
             process.executableURL = URL(fileURLWithPath: "/bin/zsh")
@@ -393,8 +395,11 @@ final class ScreensaverManager: ObservableObject {
         try? process.run()
         process.waitUntilExit()
 
-        // Use modern macOS Sonoma Deep Link Handoff to ScreenSaver settings
-        NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.ScreenSaver-Settings.extension")!)
+        // Use modern macOS Sonoma/Sequoia Deep Link Handoff to Wallpaper settings
+        // This is where modern screensaver selection lives
+        if let url = URL(string: "x-apple.systempreferences:com.apple.WallpaperSettings") {
+            NSWorkspace.shared.open(url)
+        }
         return true
     }
     
@@ -751,6 +756,7 @@ final class ScreensaverManager: ObservableObject {
         return """
         import ScreenSaver
         import AppKit
+        import QuartzCore
 
         @objc(\(className)View)
         class \(className)View: ScreenSaverView {
