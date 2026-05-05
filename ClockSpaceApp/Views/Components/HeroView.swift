@@ -85,7 +85,7 @@ struct HeroView: View {
             // Index changed
         }
         .onReceive(timer) { _ in
-            let nextIndex = featuredScreensavers.isEmpty ? 0 : (currentIndex + 1) % featuredScreensavers.count
+            guard !featuredScreensavers.isEmpty else { return }
             withAnimation(.easeInOut(duration: 1.2)) {
                 currentIndex = (currentIndex + 1) % featuredScreensavers.count
             }
@@ -97,8 +97,7 @@ struct HeroView: View {
     private func heroImage(for heroItem: Screensaver, containerWidth: CGFloat) -> some View {
         ZStack {
             // Cinematic background (Image or gradient)
-            if heroItem.thumbnailURL != "placeholder",
-               let nsImage = NSImage(named: heroItem.thumbnailURL) ?? NSImage(contentsOfFile: "/Users/harshrao/ClockSpace/scratch/all_previews/" + heroItem.thumbnailURL) {
+            if let nsImage = ThumbnailLoader.loadImage(named: heroItem.thumbnailURL) {
                 Image(nsImage: nsImage)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -106,7 +105,7 @@ struct HeroView: View {
                     .frame(height: 400)
                     .clipped()
             } else {
-                gradient(for: heroItem)
+                ScreensaverGradients.heroGradient(for: heroItem)
                     .frame(width: containerWidth)
                     .frame(height: 400)
             }
@@ -187,17 +186,6 @@ struct HeroView: View {
             .frame(height: 400)
             .shimmer()
     }
-    
-    private func gradient(for saver: Screensaver) -> LinearGradient {
-        let gradients: [LinearGradient] = [
-            LinearGradient(colors: [Color(hex: 0x1E1B4B), Color(hex: 0x312E81), Color(hex: 0x4338CA).opacity(0.4)], startPoint: .top, endPoint: .bottom),
-            LinearGradient(colors: [Color(hex: 0x064E3B), Color(hex: 0x065F46), Color(hex: 0x047857).opacity(0.4)], startPoint: .top, endPoint: .bottom),
-            LinearGradient(colors: [Color(hex: 0x7C2D12), Color(hex: 0x9A3412), Color(hex: 0xB45309).opacity(0.4)], startPoint: .top, endPoint: .bottom),
-            LinearGradient(colors: [Color(hex: 0x4C1D95), Color(hex: 0x5B21B6), Color(hex: 0x6D28D9).opacity(0.4)], startPoint: .top, endPoint: .bottom),
-        ]
-        let index = abs(saver.name.hashValue) % gradients.count
-        return gradients[index]
-    }
 }
 
 // MARK: - Featured Thumbnail
@@ -213,8 +201,7 @@ struct FeaturedThumbnail: View {
             // Thumbnail image
             ZStack(alignment: .topLeading) {
                 Group {
-                    if screensaver.thumbnailURL != "placeholder",
-                       let nsImage = NSImage(named: screensaver.thumbnailURL) ?? NSImage(contentsOfFile: "/Users/harshrao/ClockSpace/scratch/all_previews/" + screensaver.thumbnailURL) {
+                    if let nsImage = ThumbnailLoader.loadImage(named: screensaver.thumbnailURL) {
                         Image(nsImage: nsImage)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
