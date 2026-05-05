@@ -154,7 +154,7 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
     
     // MARK: - Screensaver Catalog Loading
     
-    private let remoteCatalogURL = URL(string: "https://raw.githubusercontent.com/harshrao/ClockSpace/main/catalog.json")
+    private let remoteCatalogURL = URL(string: "https://raw.githubusercontent.com/HARSHRAO729/ClockSpace/main/ClockSpaceApp/Resources/catalog.json")
     
     private func loadCatalog() async throws -> [Screensaver] {
         // 1. Try Remote First
