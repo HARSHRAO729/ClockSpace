@@ -200,30 +200,26 @@ struct ScreensaverDetailView: View {
             
         case .installed:
             Button(action: {
-                let fileName: String
-                if screensaver.downloadURL.hasPrefix("local://") {
-                    fileName = String(screensaver.downloadURL.dropFirst(8))
-                } else {
-                    let nameSlug = screensaver.name.replacingOccurrences(of: " ", with: "-").lowercased()
-                    fileName = "\(nameSlug).saver"
-                }
-                
-                let saverPath = manager.screenSaversDirectory.appendingPathComponent(fileName).path
-                let success = manager.applyScreensaver(name: screensaver.name, path: saverPath)
-                if !success {
-                    manager.lastError = ScreensaverInstallError.unknown("Failed to open System Settings.")
+                // Open System Settings → Screen Saver pane via NSWorkspace deep link.
+                // This replaces the unreliable `defaults write` shell approach.
+                if let url = URL(string: "x-apple.systempreferences:com.apple.ScreenSaver-Settings.extension") {
+                    NSWorkspace.shared.open(url)
                 }
             }) {
-                Text("Open in Settings")
-                    .font(.system(size: 13, weight: .bold))
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 10)
-                    .background(
-                        Capsule()
-                            .fill(CSTheme.surfaceElevated)
-                            .overlay(Capsule().stroke(Color.white.opacity(0.2), lineWidth: 1))
-                    )
+                HStack(spacing: 6) {
+                    Image(systemName: "arrow.up.forward.app")
+                        .font(.system(size: 11, weight: .bold))
+                    Text("Open in Settings")
+                        .font(.system(size: 13, weight: .bold))
+                }
+                .foregroundColor(.white)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 10)
+                .background(
+                    Capsule()
+                        .fill(CSTheme.surfaceElevated)
+                        .overlay(Capsule().stroke(Color.white.opacity(0.2), lineWidth: 1))
+                )
             }
             .buttonStyle(.plain)
             
@@ -270,29 +266,12 @@ struct ScreensaverDetailView: View {
                     }
             } else {
                 ZStack {
-                    if screensaver.thumbnailURL != "placeholder" {
-                        let resourceName = (screensaver.thumbnailURL as NSString).deletingPathExtension
-                        let ext = (screensaver.thumbnailURL as NSString).pathExtension
-                        
-                        Group {
-                            if let bundleURL = Bundle.main.url(forResource: resourceName, withExtension: ext, subdirectory: "Thumbnails"),
-                               let nsImage = NSImage(contentsOf: bundleURL) {
-                                Image(nsImage: nsImage)
-                                    .resizable()
-                            } else if let nsImage = NSImage(named: screensaver.thumbnailURL) {
-                                Image(nsImage: nsImage)
-                                    .resizable()
-                            } else if let bundleURL = Bundle.main.url(forResource: resourceName, withExtension: ext, subdirectory: "Categories"),
-                                      let nsImage = NSImage(contentsOf: bundleURL) {
-                                Image(nsImage: nsImage)
-                                    .resizable()
-                            } else {
-                                fallbackBackground
-                            }
-                        }
-                        .aspectRatio(contentMode: .fill)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .clipped()
+                    if let nsImage = ThumbnailLoader.loadImage(named: screensaver.thumbnailURL) {
+                        Image(nsImage: nsImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .clipped()
                     } else {
                         fallbackBackground
                     }
@@ -303,7 +282,7 @@ struct ScreensaverDetailView: View {
     
     private var fallbackBackground: some View {
         ZStack {
-            gradient(for: screensaver)
+            ScreensaverGradients.cardGradient(for: screensaver)
             
             MeshGradientView(tintColor: screensaver.category.tintColor)
             
@@ -325,20 +304,7 @@ struct ScreensaverDetailView: View {
         }
     }
     
-    // MARK: - Gradient Helper
-    
-    private func gradient(for saver: Screensaver) -> LinearGradient {
-        let gradients: [LinearGradient] = [
-            LinearGradient(colors: [Color(hex: 0x0F172A), Color(hex: 0x1E3A5F), Color(hex: 0x0F766E)], startPoint: .topLeading, endPoint: .bottomTrailing),
-            LinearGradient(colors: [Color(hex: 0x1A1A2E), Color(hex: 0x16213E), Color(hex: 0x0F3460)], startPoint: .top, endPoint: .bottom),
-            LinearGradient(colors: [Color(hex: 0x2D1B69), Color(hex: 0x11998E)], startPoint: .topLeading, endPoint: .bottomTrailing),
-            LinearGradient(colors: [Color(hex: 0x0F0C29), Color(hex: 0x302B63), Color(hex: 0x24243E)], startPoint: .topLeading, endPoint: .bottomTrailing),
-            LinearGradient(colors: [Color(hex: 0x1F1C2C), Color(hex: 0x928DAB)], startPoint: .bottom, endPoint: .top),
-            LinearGradient(colors: [Color(hex: 0x0D324D), Color(hex: 0x7F5A83)], startPoint: .topLeading, endPoint: .bottomTrailing),
-        ]
-        let index = abs(saver.name.hashValue) % gradients.count
-        return gradients[index]
-    }
+    // Gradient logic moved to ScreensaverGradients.cardGradient(for:)
 }
 
 // MARK: - Mesh Gradient Extracted Component

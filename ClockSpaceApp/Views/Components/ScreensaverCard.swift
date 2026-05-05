@@ -10,10 +10,47 @@
 import SwiftUI
 import AVKit
 
+// MARK: - Shared AVPlayer Cache
+
+/// Manages a single reusable AVPlayer to prevent memory leaks.
+/// Previous implementation created a new `AVPlayer(url:)` on every hover,
+/// leaking 30-60 MB per interaction. This cache reuses one player instance.
+private final class HoverPlayerCache: ObservableObject {
+    static let shared = HoverPlayerCache()
+    
+    @Published private(set) var player: AVPlayer?
+    @Published private(set) var activeURL: URL?
+    
+    private init() {}
+    
+    func play(url: URL) {
+        if activeURL == url { return }
+        
+        // Tear down previous
+        player?.pause()
+        player?.replaceCurrentItem(with: nil)
+        
+        let newPlayer = AVPlayer(url: url)
+        newPlayer.isMuted = true
+        newPlayer.play()
+        
+        self.player = newPlayer
+        self.activeURL = url
+    }
+    
+    func stop() {
+        player?.pause()
+        player?.replaceCurrentItem(with: nil)
+        player = nil
+        activeURL = nil
+    }
+}
+
 struct ScreensaverCard: View {
        let screensaver: Screensaver
     @EnvironmentObject var apiManager: APIManager
     @StateObject private var manager = ScreensaverManager.shared
+    @ObservedObject private var playerCache = HoverPlayerCache.shared
     @State private var isHovering: Bool = false
     
     var body: some View {
@@ -61,6 +98,11 @@ struct ScreensaverCard: View {
         .animation(CSTheme.Animation.spring, value: isHovering)
         .onHover { hovering in
             isHovering = hovering
+            if hovering, let urlStr = screensaver.previewURL, let url = URL(string: urlStr) {
+                playerCache.play(url: url)
+            } else if !hovering {
+                playerCache.stop()
+            }
         }
         .onTapGesture {
             withAnimation(CSTheme.Animation.standard) {
@@ -76,47 +118,26 @@ struct ScreensaverCard: View {
     
     private var thumbnailView: some View {
         ZStack(alignment: .topLeading) {
-            // Live Preview Simulation (Animates on hover)
-            if isHovering, let urlStr = screensaver.previewURL, let url = URL(string: urlStr) {
-                VideoPlayer(player: AVPlayer(url: url))
+            // Live Preview (uses shared cached player)
+            if isHovering,
+               let urlStr = screensaver.previewURL,
+               let url = URL(string: urlStr),
+               let player = playerCache.player,
+               playerCache.activeURL == url {
+                VideoPlayer(player: player)
                     .aspectRatio(contentMode: .fill)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .clipped()
-                    .onAppear {
-                        // Silent autoplay
-                    }
-            } else if screensaver.thumbnailURL != "placeholder" {
-                Group {
-                    let resourceName = (screensaver.thumbnailURL as NSString).deletingPathExtension
-                    let ext = (screensaver.thumbnailURL as NSString).pathExtension
-                    
-                    if let bundleURL = Bundle.main.url(forResource: resourceName, withExtension: ext, subdirectory: "Thumbnails"),
-                       let nsImage = NSImage(contentsOf: bundleURL) {
-                        Image(nsImage: nsImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .clipped()
-                    } else if let nsImage = NSImage(named: screensaver.thumbnailURL) {
-                        Image(nsImage: nsImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .clipped()
-                    } else if let bundleURL = Bundle.main.url(forResource: resourceName, withExtension: ext, subdirectory: "Categories"),
-                              let nsImage = NSImage(contentsOf: bundleURL) {
-                        Image(nsImage: nsImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .clipped()
-                    } else {
-                        fallbackThumbnail
-                    }
-                }
+            } else if let nsImage = ThumbnailLoader.loadImage(named: screensaver.thumbnailURL) {
+                Image(nsImage: nsImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .clipped()
             } else {
                 fallbackThumbnail
             }
+            
             // "NEW" Badge
             if screensaver.isNew {
                 Text("NEW")
@@ -174,24 +195,11 @@ struct ScreensaverCard: View {
         .buttonStyle(.plain)
     }
     
-    // MARK: - Gradient Generator
-    
-    private func gradient(for saver: Screensaver) -> LinearGradient {
-        let gradients: [LinearGradient] = [
-            LinearGradient(colors: [Color(hex: 0x0F172A), Color(hex: 0x1E3A5F), Color(hex: 0x0F766E)], startPoint: .topLeading, endPoint: .bottomTrailing),
-            LinearGradient(colors: [Color(hex: 0x1A1A2E), Color(hex: 0x16213E), Color(hex: 0x0F3460)], startPoint: .top, endPoint: .bottom),
-            LinearGradient(colors: [Color(hex: 0x2D1B69), Color(hex: 0x11998E)], startPoint: .topLeading, endPoint: .bottomTrailing),
-            LinearGradient(colors: [Color(hex: 0x0F0C29), Color(hex: 0x302B63), Color(hex: 0x24243E)], startPoint: .topLeading, endPoint: .bottomTrailing),
-            LinearGradient(colors: [Color(hex: 0x1F1C2C), Color(hex: 0x928DAB)], startPoint: .bottom, endPoint: .top),
-            LinearGradient(colors: [Color(hex: 0x0D324D), Color(hex: 0x7F5A83)], startPoint: .topLeading, endPoint: .bottomTrailing),
-        ]
-        let index = abs(saver.name.hashValue) % gradients.count
-        return gradients[index]
-    }
+    // MARK: - Fallback Thumbnail (uses shared gradient palette)
     
     private var fallbackThumbnail: some View {
         ZStack {
-            gradient(for: screensaver)
+            ScreensaverGradients.cardGradient(for: screensaver)
             VStack(spacing: 8) {
                 Image(systemName: screensaver.category.iconName)
                     .font(.system(size: 32))

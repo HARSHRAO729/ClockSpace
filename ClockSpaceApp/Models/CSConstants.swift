@@ -13,7 +13,7 @@ enum CSConstants {
     // MARK: - App Identity
     
     static let appName = "ClockSpace"
-    static let appVersion = "0.25"
+    static let appVersion = "2.7"
     static let buildNumber = "1"
     
     // MARK: - Bundle Identifiers
@@ -60,7 +60,7 @@ enum CSConstants {
         static let lastSyncDate = "cs_lastSyncDate"
         static let installedSaverIDs = "cs_installedSaverIDs"
         
-        // License — TODO: Migrate to Keychain for production
+        // License — SECURELY stored in Keychain, do not read via UserDefaults
         static let licenseKey = "cs_licenseKey"
         static let isProActivated = "cs_isProActivated"
         static let licenseTier = "cs_licenseTier"

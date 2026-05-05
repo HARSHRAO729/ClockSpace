@@ -44,8 +44,7 @@ struct ExploreView: View {
         ZStack {
             Group {
                 if let hero = apiManager.screensavers.first,
-                   hero.thumbnailURL != "placeholder",
-                   let nsImage = NSImage(named: hero.thumbnailURL) ?? NSImage(contentsOfFile: "/Users/harshrao/ClockSpace/scratch/all_previews/" + hero.thumbnailURL) {
+                   let nsImage = ThumbnailLoader.loadImage(named: hero.thumbnailURL) {
                     Image(nsImage: nsImage)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -113,7 +112,7 @@ struct ExploreView: View {
                     } label: {
                         ZStack(alignment: .bottomLeading) {
                             Group {
-                                if let categoryImage = categoryPreviewImage(for: category) {
+                                if let categoryImage = ThumbnailLoader.loadCategoryImage(for: category) {
                                     Image(nsImage: categoryImage)
                                         .resizable()
                                 } else {
@@ -263,18 +262,5 @@ struct ExploreView: View {
         .padding(.vertical, 100)
     }
     
-    private func categoryPreviewImage(for category: Category) -> NSImage? {
-        let baseName = category.imageName
-        let exts = ["png", "jpg", "jpeg", "webp"]
-        for ext in exts {
-            if let url = Bundle.main.url(forResource: baseName, withExtension: ext, subdirectory: "Categories"),
-               let image = NSImage(contentsOf: url) {
-                return image
-            }
-        }
-        if let image = NSImage(named: baseName) {
-            return image
-        }
-        return nil
-    }
+    // categoryPreviewImage logic moved to ThumbnailLoader.loadCategoryImage(for:)
 }

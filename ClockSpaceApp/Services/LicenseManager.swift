@@ -5,10 +5,9 @@
 //  Handles Pro tier license key validation against the CivicEase API.
 //  Manages the pro-unlock state and persists activation status.
 //
-//  NOTE: For MVP, license state is stored in UserDefaults.
-//  TODO: Migrate to Keychain (Security.framework) for production to prevent
-//  trivial tampering. Use SecItemAdd/SecItemCopyMatching with
-//  kSecClass: kSecClassGenericPassword and a service identifier.
+//  Security: License keys are stored in the macOS Keychain via
+//  KeychainService. Non-sensitive metadata (tier, activated flag)
+//  remains in UserDefaults.
 //
 
 import Foundation
@@ -54,7 +53,6 @@ final class LicenseManager: ObservableObject {
     // MARK: - Published State
     
     /// Whether the user has an active Pro license.
-    /// NOTE: Stored in UserDefaults for MVP. Migrate to Keychain for production.
     @Published var isPro: Bool = false
     
     /// The currently saved license key (masked for display).
@@ -187,37 +185,47 @@ final class LicenseManager: ObservableObject {
         tierName = "Free"
         expiresAt = nil
         
-        UserDefaults.standard.removeObject(forKey: CSConstants.DefaultsKey.licenseKey)
+        // Remove from Keychain (secure) and UserDefaults (metadata)
+        KeychainService.shared.delete(forKey: CSConstants.DefaultsKey.licenseKey)
         UserDefaults.standard.removeObject(forKey: CSConstants.DefaultsKey.isProActivated)
         UserDefaults.standard.removeObject(forKey: CSConstants.DefaultsKey.licenseTier)
     }
     
     // MARK: - Private Helpers
     
-    /// Activate Pro and persist to UserDefaults.
-    /// NOTE: Migrate to Keychain for production security.
+    private let keychain = KeychainService.shared
+    
+    /// Activate Pro and persist securely.
+    /// License key → Keychain (encrypted). Tier/flag → UserDefaults (non-sensitive).
     private func activatePro(key: String, tier: String?, expires: String?) {
         isPro = true
         tierName = tier?.capitalized ?? "Pro"
         expiresAt = expires
         maskedKey = maskKey(key)
         
-        // Persist — TODO: Use Keychain (SecItemAdd) for production
-        UserDefaults.standard.set(key, forKey: CSConstants.DefaultsKey.licenseKey)
+        // Secure storage for the key itself
+        try? keychain.save(key, forKey: CSConstants.DefaultsKey.licenseKey)
+        
+        // Non-sensitive metadata in UserDefaults
         UserDefaults.standard.set(true, forKey: CSConstants.DefaultsKey.isProActivated)
         UserDefaults.standard.set(tierName, forKey: CSConstants.DefaultsKey.licenseTier)
     }
     
     /// Load persisted pro state on launch.
     private func loadPersistedState() {
-        // NOTE: Read from Keychain in production instead of UserDefaults
         isPro = UserDefaults.standard.bool(forKey: CSConstants.DefaultsKey.isProActivated)
         
         if isPro {
             tierName = UserDefaults.standard.string(forKey: CSConstants.DefaultsKey.licenseTier) ?? "Pro"
             
-            if let savedKey = UserDefaults.standard.string(forKey: CSConstants.DefaultsKey.licenseKey) {
+            // Load key from Keychain (primary) or UserDefaults (migration)
+            if let savedKey = keychain.load(forKey: CSConstants.DefaultsKey.licenseKey) {
                 maskedKey = maskKey(savedKey)
+            } else if let legacyKey = UserDefaults.standard.string(forKey: CSConstants.DefaultsKey.licenseKey) {
+                // One-time migration: move from UserDefaults → Keychain
+                maskedKey = maskKey(legacyKey)
+                try? keychain.save(legacyKey, forKey: CSConstants.DefaultsKey.licenseKey)
+                UserDefaults.standard.removeObject(forKey: CSConstants.DefaultsKey.licenseKey)
             }
         }
     }
