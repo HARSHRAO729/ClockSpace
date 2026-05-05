@@ -13,7 +13,7 @@ enum CSConstants {
     // MARK: - App Identity
     
     static let appName = "ClockSpace"
-    static let appVersion = "2.7"
+    static let appVersion = "0.27"
     static let buildNumber = "1"
     
     // MARK: - Bundle Identifiers
