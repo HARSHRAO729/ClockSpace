@@ -1,6 +1,0 @@
-{
-  "actors" : "🐍,x",
-  "averageNumberOfRepetitions" : 600,
-  "code" : "snake",
-  "speed" : "everyTick"
-}

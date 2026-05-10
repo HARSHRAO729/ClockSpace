@@ -11,28 +11,53 @@ import SwiftUI
 /// Content-based category taxonomy for the screensaver marketplace.
 /// Matches the categories from the awesome-macos-screensavers repo.
 enum Category: String, Codable, CaseIterable, Identifiable {
-    case nature = "Nature"
-    case space = "Space"
-    case anime = "Anime"
-    case cars = "Cars"
-    case city = "City"
-    case videoGame = "Video Games"
-    case sciFi = "Sci-Fi"
-    case fantasy = "Fantasy"
-    case cats = "Cats"
-    case clocks = "Clocks"
-    case appleInspired = "Apple Inspired"
-    case retro = "Retro"
-    case aquarium = "Aquarium"
-    case developer = "Developer"
-    case graphics = "Graphics"
-    case abstract = "Abstract"
-    case minimalist = "Minimalist"
-    case collections = "Collections"
-    case tech = "Tech"
-    case other = "Other"
+    case nature
+    case space
+    case anime
+    case cars
+    case city
+    case videoGame = "videoGames"
+    case sciFi
+    case fantasy
+    case cats
+    case clocks
+    case appleInspired
+    case retro
+    case aquarium
+    case developer
+    case graphics
+    case abstract
+    case minimalist
+    case collections
+    case tech
+    case other
     
     var id: String { rawValue }
+    
+    var displayName: String {
+        switch self {
+        case .nature: return "Nature"
+        case .space: return "Space"
+        case .anime: return "Anime"
+        case .cars: return "Cars"
+        case .city: return "City"
+        case .videoGame: return "Video Games"
+        case .sciFi: return "Sci-Fi"
+        case .fantasy: return "Fantasy"
+        case .cats: return "Cats"
+        case .clocks: return "Clocks"
+        case .appleInspired: return "Apple Inspired"
+        case .retro: return "Retro"
+        case .aquarium: return "Aquarium"
+        case .developer: return "Developer"
+        case .graphics: return "Graphics"
+        case .abstract: return "Abstract"
+        case .minimalist: return "Minimalist"
+        case .collections: return "Collections"
+        case .tech: return "Tech"
+        case .other: return "Other"
+        }
+    }
     
     /// Image name for the category card in the dashboard.
     var imageName: String {

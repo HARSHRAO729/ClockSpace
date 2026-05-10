@@ -1,8 +1,0 @@
-{
-  "actors" : "👩🏽‍⚕️,👩🏽‍⚖️,👩🏽‍✈️,👩🏽‍🌾,👩🏽‍🍳,👩🏽‍🎓,👩🏽‍🎤,👩🏽‍🎨,👩🏽‍🏫,👩🏽‍🏭,👩🏽‍💻,👩🏽‍💼,👩🏽‍🔧,👩🏽‍🔬,👩🏽‍🚀,👩🏽‍🚒,👮🏽‍♀️,👷🏽‍♀️,🕵🏽‍♀️,👰🏽‍♀️,🤵🏽‍♀️",
-  "averageNumberOfRepetitions" : 3,
-  "code" : "professions_female",
-  "randomizeActors" : true,
-  "randomizeSkinTones" : true,
-  "speed" : "every1"
-}

@@ -25,6 +25,7 @@ enum ScreensaverInstallError: LocalizedError {
     case alreadyInstalled(String)
     case permissionDenied(String)
     case copyFailed(String)
+    case compilationFailed(String)
     case unknown(String)
     
     var errorDescription: String? {
@@ -39,6 +40,8 @@ enum ScreensaverInstallError: LocalizedError {
             return "Permission denied writing to \(path). Check System Settings > Privacy."
         case .copyFailed(let detail):
             return "Failed to copy screensaver: \(detail)"
+        case .compilationFailed(let detail):
+            return "Compilation failed: \(detail)"
         case .unknown(let detail):
             return "An unexpected error occurred: \(detail)"
         }
@@ -73,6 +76,12 @@ final class ScreensaverManager: ObservableObject {
     /// Last installation error, if any.
     @Published var lastError: ScreensaverInstallError?
     
+    /// Tracks if we have write access to ~/Library/Screen Savers/
+    @Published var hasPermission: Bool = true
+    
+    /// Success message for toast notifications
+    @Published var successMessage: String? = nil
+    
     // MARK: - Services
     
     private let fileSystem = FileSystemService.shared
@@ -84,6 +93,12 @@ final class ScreensaverManager: ObservableObject {
     
     private init() {
         loadPersistedIDs()
+        fileSystem.cleanUpLegacySavers() // Remove UUID-named remnants from previous bugs
+        checkPermission()
+    }
+    
+    func checkPermission() {
+        hasPermission = fileSystem.canWrite
     }
     
     // MARK: - Convenience Accessors (backward-compatible)
@@ -126,16 +141,31 @@ final class ScreensaverManager: ObservableObject {
             try fileSystem.preflight()
             
             // Delegate installation strategy to InstallerService
-            try await installer.install(screensaver)
+            let url = try await installer.install(screensaver)
+            
+            // Persist filename for future removal (so only ONE exists)
+            UserDefaults.standard.set(url.lastPathComponent, forKey: "cs_last_installed_file")
             
             // Mark as installed
             installedIDs.insert(id)
             persistInstalledIDs()
             
+            // Trigger success feedback
+            successMessage = "Success! Please activate \(screensaver.name) in System Settings."
+            
+            // Clear message after delay
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+                if self.successMessage?.contains(screensaver.name) == true {
+                    self.successMessage = nil
+                }
+            }
+            
         } catch let error as ScreensaverInstallError {
             lastError = error
+            AlertProvider.shared.showAlert(title: "Installation Failed", message: error.localizedDescription)
         } catch {
             lastError = .unknown(error.localizedDescription)
+            AlertProvider.shared.showError(error)
         }
         
         installingIDs.remove(id)
@@ -154,12 +184,21 @@ final class ScreensaverManager: ObservableObject {
         persistInstalledIDs()
     }
     
-    /// Remove all ClockSpace-related savers from the system.
+    /// Remove previous ClockSpace-related savers from the system.
     func clearAllInstalled() {
-        fileSystem.removeAllSavers()
+        // 1. Remove by filename tracked in UserDefaults
+        if let lastFile = UserDefaults.standard.string(forKey: "cs_last_installed_file") {
+            fileSystem.removeSaver(named: lastFile)
+        }
+        
+        // 2. Aggressive cleanup of legacy UUIDs
+        fileSystem.cleanUpLegacySavers()
+        
         installedIDs.removeAll()
         activeID = nil
         persistInstalledIDs()
+        
+        UserDefaults.standard.removeObject(forKey: "cs_last_installed_file")
     }
     
     // MARK: - Public API: State Queries
@@ -172,6 +211,24 @@ final class ScreensaverManager: ObservableObject {
     /// Check if a specific screensaver is currently being installed.
     func isInstalling(_ screensaver: Screensaver) -> Bool {
         installingIDs.contains(screensaver.id)
+    }
+    
+    /// Uninstall a screensaver.
+    func uninstall(_ screensaver: Screensaver) {
+        // If it was the last installed file, we know its name
+        if let lastFile = UserDefaults.standard.string(forKey: "cs_last_installed_file") {
+            try? fileSystem.uninstall(fileName: lastFile)
+            UserDefaults.standard.removeObject(forKey: "cs_last_installed_file")
+        }
+        
+        installedIDs.remove(screensaver.id)
+        if activeID == screensaver.id { activeID = nil }
+        persistInstalledIDs()
+    }
+    
+    /// Trigger the manual folder permission request.
+    func requestPermission() {
+        fileSystem.requestManualFolderAccess()
     }
     
     // MARK: - System Settings Handoff

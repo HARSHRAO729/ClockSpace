@@ -15,6 +15,7 @@ struct SettingsView: View {
     @Environment(\.openURL) var openURL
     @State private var installedCount: Int = 0
     @AppStorage("cs_checkForUpdates") private var checkForUpdates: Bool = true
+    @State private var showCredits: Bool = false
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -195,6 +196,46 @@ struct SettingsView: View {
                         .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white.opacity(0.1), lineWidth: 1))
                     }
                     
+                    // About Section
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Project")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(CSTheme.textSecondary)
+                        
+                        VStack(spacing: 0) {
+                            HStack {
+                                Text("About & Credits")
+                                    .font(.system(size: 14, weight: .medium))
+                                    .foregroundColor(.white)
+                                Spacer()
+                                Button("View Credits") {
+                                    showCredits = true
+                                }
+                                .buttonStyle(.plain)
+                                .foregroundColor(.blue)
+                                .font(.system(size: 13, weight: .medium))
+                            }
+                            .padding(.vertical, 12)
+                            
+                            Divider().background(Color.white.opacity(0.1))
+                            
+                            HStack {
+                                Text("Version")
+                                    .font(.system(size: 14, weight: .medium))
+                                    .foregroundColor(.white)
+                                Spacer()
+                                Text("0.50 (Open Source)")
+                                    .font(.system(size: 14, weight: .medium))
+                                    .foregroundColor(CSTheme.textSecondary)
+                            }
+                            .padding(.vertical, 12)
+                        }
+                        .padding(.horizontal, 16)
+                        .background(Color.white.opacity(0.05))
+                        .cornerRadius(8)
+                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white.opacity(0.1), lineWidth: 1))
+                    }
+                    
                     Spacer(minLength: 40)
                     
                     // Footer Links
@@ -226,6 +267,9 @@ struct SettingsView: View {
         .preferredColorScheme(.dark)
         .onAppear {
             installedCount = ScreensaverManager.shared.installedIDs.count
+        }
+        .sheet(isPresented: $showCredits) {
+            CreditsView()
         }
     }
     

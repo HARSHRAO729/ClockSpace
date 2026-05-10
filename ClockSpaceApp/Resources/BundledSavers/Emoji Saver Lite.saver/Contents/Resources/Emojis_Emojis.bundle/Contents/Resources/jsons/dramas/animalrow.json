@@ -1,6 +1,0 @@
-{
-  "actors" : "🐕,←,🐩,←,🐈,←,🐅,←,🐆,←,🦌,←,🐎,←,🐂,←,🐃,←,🐄,←,🦏,←,🐘,←,🐫,←,🐪,←,🐐,←,🐑,←,🐏,←,🐖,←,🐓,←,🦆,←,🐢,←,🐜,←",
-  "code" : "animalrow",
-  "finishWhenMovedOffOfScreen" : true,
-  "speed" : "everyQuarter"
-}

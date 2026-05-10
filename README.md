@@ -9,14 +9,16 @@
 
 ## ⚠️ Development Status & Disclaimer
 
-**ClockSpace is currently in its early production and active development phase (v0.25).** 
+**ClockSpace is currently in its early production and active development phase (v0.50).** 
 
 While we strive for excellence in architectural design and visual fidelity, users may encounter installation complexities, feature malfunctions, or occasional application instability. We deeply regret any inconvenience caused by these early-stage issues and are working tirelessly to refine the experience. 
 
-### What's New in v0.25
-*   **✨ New Screensaver: Forever Stars**: A premium, minimalist clock that evolves through colors and time.
-*   **🧹 UI Polishing**: Cleaned up settings and removed experimental "Add" features based on user feedback.
-*   **🛠️ Bug Fixes**: Improved native bundle installation reliability.
+### What's New in v0.50
+*   **🎨 Premium UI Overhaul**: Glassmorphism cards, 1.05x hover scale, live video previews, and dynamic "Apply" buttons on hover.
+*   **🏗️ MVVM Architecture**: Introduced `GalleryViewModel`, centralized `AlertProvider`, and clean separation of concerns.
+*   **🔧 Smart Installation Pipeline**: One-screensaver-at-a-time lifecycle, permission banners, success toast notifications, and deep-link to System Settings.
+*   **📦 Remote Thumbnails**: 3-tier cached thumbnail loading (memory → disk → network) for Firebase-hosted images.
+*   **🌍 Open Source Ready**: Added CONTRIBUTING.md, ROADMAP.md, in-app Credits page, and updated README.
 
 **Join the Journey**: We believe in the power of community! If you're a developer or designer passionate about redefining the macOS experience, we warmly invite you to join us as a contributor and help shape the future of ClockSpace.
 
@@ -83,9 +85,26 @@ The brand, design language, and commercial rights are strictly reserved. This pr
 
 ---
 
-## 🤝 Contributing
-We welcome community contributions specifically for the `Community/` folder and UI refinements. Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+## 🤝 Community & Growth
 
-For founders and maintainers: See [RELEASING.md](RELEASING.md) for instructions on building and publishing new versions.
+ClockSpace is an open-source project that thrives on community contribution. We have a clear vision for the future and welcome developers of all skill levels.
 
-*Design with ❤️ by [HARSHRAO729](https://github.com/HARSHRAO729) & CivicEase Studios.*
+*   **[Roadmap](ROADMAP.md)**: See what we're building next and where you can help.
+*   **[Contributing Guide](CONTRIBUTING.md)**: Learn how to set up the project and submit your first PR.
+*   **Good First Issues**: Check our issue tracker for tasks labeled `good-first-issue`.
+
+---
+
+## 📜 Credits & Curation
+
+ClockSpace is built on the shoulders of giants. We curate and showcase some of the best open-source screensavers ever made. 
+
+*   **Aerial**: Cinematic Apple TV screensavers by [John Coates](https://github.com/JohnCoates/Aerial).
+*   **Brooklyn**: Abstract Apple animations by [Pedro Carrasco](https://github.com/pedrocarrasco/Brooklyn).
+*   **Flurry**: Modern Quartz animations by [Thomas So](https://github.com/thomas-so/Flurry).
+
+*Check the in-app **Credits** page for a full list of projects and original repositories.*
+
+---
+
+*Design with ❤️ by [HARSHRAO729](https://github.com/HARSHRAO729) & the Open Source Community.*
