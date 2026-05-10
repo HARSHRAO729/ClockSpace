@@ -1,6 +1,6 @@
 require 'xcodeproj'
 
-project_path = '/Users/harshrao/ClockSpace/ClockSpace.xcodeproj'
+project_path = 'ClockSpace.xcodeproj'
 project = Xcodeproj::Project.open(project_path)
 
 # Find the target (assuming it's the main app target)

@@ -199,29 +199,43 @@ struct ScreensaverDetailView: View {
             .background(Capsule().fill(Color.white.opacity(0.2)))
             
         case .installed:
-            Button(action: {
-                // Open System Settings → Screen Saver pane via NSWorkspace deep link.
-                // This replaces the unreliable `defaults write` shell approach.
-                if let url = URL(string: "x-apple.systempreferences:com.apple.ScreenSaver-Settings.extension") {
-                    NSWorkspace.shared.open(url)
+            HStack(spacing: 12) {
+                Button(action: {
+                    if let url = URL(string: "x-apple.systempreferences:com.apple.ScreenSaver-Settings.extension") {
+                        NSWorkspace.shared.open(url)
+                    }
+                }) {
+                    HStack(spacing: 6) {
+                        Image(systemName: "arrow.up.forward.app")
+                            .font(.system(size: 11, weight: .bold))
+                        Text("Open Settings")
+                            .font(.system(size: 13, weight: .bold))
+                    }
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(
+                        Capsule()
+                            .fill(CSTheme.surfaceElevated)
+                            .overlay(Capsule().stroke(Color.white.opacity(0.2), lineWidth: 1))
+                    )
                 }
-            }) {
-                HStack(spacing: 6) {
-                    Image(systemName: "arrow.up.forward.app")
-                        .font(.system(size: 11, weight: .bold))
-                    Text("Open in Settings")
+                .buttonStyle(.plain)
+                
+                Button(action: {
+                    withAnimation {
+                        manager.uninstall(screensaver)
+                    }
+                }) {
+                    Image(systemName: "trash")
                         .font(.system(size: 13, weight: .bold))
+                        .foregroundColor(.white.opacity(0.6))
+                        .frame(width: 36, height: 36)
+                        .background(Circle().fill(Color.white.opacity(0.1)))
                 }
-                .foregroundColor(.white)
-                .padding(.horizontal, 20)
-                .padding(.vertical, 10)
-                .background(
-                    Capsule()
-                        .fill(CSTheme.surfaceElevated)
-                        .overlay(Capsule().stroke(Color.white.opacity(0.2), lineWidth: 1))
-                )
+                .buttonStyle(.plain)
+                .help("Uninstall screensaver")
             }
-            .buttonStyle(.plain)
             
         case .active:
             HStack(spacing: 6) {

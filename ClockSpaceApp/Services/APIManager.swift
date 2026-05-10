@@ -9,6 +9,8 @@
 import Foundation
 import Combine
 import SwiftUI
+import FirebaseFirestore
+import FirebaseStorage
 
 /// Protocol for dependency injection and testability.
 protocol ScreensaverServiceProtocol {
@@ -36,13 +38,18 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
     static let shared = APIManager()
     
     private init() {
-        // Force purge all local state for a fresh start as requested
-        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-        UserDefaults.standard.synchronize()
-        
         // Populate with empty catalog
         self.screensavers = []
         loadLikedItems()
+    }
+    
+    /// Static property for migration access
+    static var mockScreensavers: [Screensaver] {
+        guard let url = Bundle.main.url(forResource: "catalog", withExtension: "json"),
+              let data = try? Data(contentsOf: url) else { return [] }
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return (try? decoder.decode([Screensaver].self, from: data)) ?? []
     }
     
     func clearLikedItems() {
@@ -85,22 +92,35 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
         isLoading = true
         errorMessage = nil
         
-        let allSavers: [Screensaver]
         do {
-            allSavers = try await loadCatalog()
+            // 1. Fetch from Firebase
+            var allSavers = try await FirebaseService.shared.fetchScreensavers()
+            
+            // 2. Auto-Migrate if cloud is empty (first time launch)
+            if allSavers.isEmpty {
+                print("⚠️ No savers in cloud and migration didn't run. Using local mock data.")
+                allSavers = APIManager.mockScreensavers
+            }
+            
             self.screensavers = allSavers
-        } catch {
-            errorMessage = "Failed to load screensaver catalog: \(error.localizedDescription)"
             isLoading = false
-            throw error
-        }
-        
-        isLoading = false
-        
-        if let category = category {
-            return allSavers.filter { $0.category == category }
-        } else {
-            return allSavers
+            
+            if let category = category {
+                return allSavers.filter { $0.category == category }
+            } else {
+                return allSavers
+            }
+        } catch {
+            print("❌ Cloud fetch failed: \(error.localizedDescription). Falling back to local data.")
+            let localSavers = APIManager.mockScreensavers
+            self.screensavers = localSavers
+            isLoading = false
+            
+            if let category = category {
+                return localSavers.filter { $0.category == category }
+            } else {
+                return localSavers
+            }
         }
     }
     
@@ -109,7 +129,7 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
         isLoading = true
         errorMessage = nil
         
-        let allSavers = (try? await loadCatalog()) ?? self.screensavers
+        let allSavers = APIManager.mockScreensavers.isEmpty ? self.screensavers : APIManager.mockScreensavers
         
         let lowered = query.lowercased()
         let results = allSavers.filter { saver in
@@ -150,38 +170,6 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
             UInt8((lower >> 8) & 0xFF), UInt8(lower & 0xFF)
         ))
         return uuid
-    }
-    
-    // MARK: - Screensaver Catalog Loading
-    
-    private let remoteCatalogURL = URL(string: "https://raw.githubusercontent.com/HARSHRAO729/ClockSpace/main/ClockSpaceApp/Resources/catalog.json")
-    
-    private func loadCatalog() async throws -> [Screensaver] {
-        // 1. Try Remote First
-        if let url = remoteCatalogURL {
-            do {
-                let (data, response) = try await URLSession.shared.data(from: url)
-                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .iso8601
-                    let catalog = try decoder.decode([Screensaver].self, from: data)
-                    return catalog
-                }
-            } catch {
-                print("Remote catalog fetch failed, falling back to local: \(error)")
-            }
-        }
-        
-        // 2. Fallback to Local
-        guard let url = Bundle.main.url(forResource: "catalog", withExtension: "json") else {
-            print("Error: catalog.json not found in the app bundle.")
-            return []
-        }
-        
-        let data = try Data(contentsOf: url)
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        return try decoder.decode([Screensaver].self, from: data)
     }
 
 }

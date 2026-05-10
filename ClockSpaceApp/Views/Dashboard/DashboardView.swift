@@ -12,6 +12,9 @@ import SwiftUI
 struct DashboardView: View {
     
     @EnvironmentObject var apiManager: APIManager
+    @StateObject private var viewModel = GalleryViewModel()
+    @StateObject private var alertProvider = AlertProvider.shared
+    @StateObject private var manager = ScreensaverManager.shared
     
     // MARK: - Navigation State
     
@@ -43,6 +46,17 @@ struct DashboardView: View {
             .blur(radius: isSearchPresented ? 20 : 0)
             .scaleEffect(isSearchPresented ? 0.98 : 1.0)
             .animation(CSTheme.Animation.standard, value: isSearchPresented)
+            
+            // ── Success Toast ──
+            if let message = manager.successMessage {
+                VStack {
+                    Spacer()
+                    successToast(message: message)
+                        .padding(.bottom, 120)
+                }
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .zIndex(500)
+            }
             
             // ── Fixed Navigation Bar (Strict Containment) ──
             AppNavbarView(
@@ -88,6 +102,13 @@ struct DashboardView: View {
         .onChange(of: apiManager.selectedCategory) {
             Task { await loadScreensavers() }
         }
+        .alert(item: $alertProvider.currentAlert) { alert in
+            if let secondary = alert.secondaryButton {
+                return Alert(title: Text(alert.title), message: Text(alert.message), primaryButton: alert.primaryButton, secondaryButton: secondary)
+            } else {
+                return Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: alert.primaryButton)
+            }
+        }
     }
     
     @ViewBuilder
@@ -116,10 +137,16 @@ struct DashboardView: View {
         }
     }
     
+    
     // MARK: - Home Tab Content
     
     private var homeContent: some View {
         VStack(spacing: 28) {
+            // Permission Banner
+            if !manager.hasPermission {
+                permissionBanner
+            }
+            
             // ── Hero section with fading gradient ──
             HeroView(featuredScreensavers: featuredItems)
                 .frame(height: 400)
@@ -236,7 +263,7 @@ struct DashboardView: View {
                 .frame(height: 100)
                 
                 // Category Title
-                Text(category.rawValue)
+                Text(category.displayName)
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(.white)
                     .padding(CSTheme.Spacing.lg)
@@ -457,4 +484,74 @@ struct DashboardView: View {
             }
         }
     }
+    
+    private var permissionBanner: some View {
+        HStack(spacing: 16) {
+            Image(systemName: "lock.shield.fill")
+                .font(.system(size: 24))
+                .foregroundColor(.amber)
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Folder Access Required")
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundColor(.white)
+                Text("ClockSpace needs permission to manage your Screen Savers. This folder is usually protected by macOS.")
+                    .font(.system(size: 13))
+                    .foregroundColor(.white.opacity(0.7))
+            }
+            
+            Spacer()
+            
+            Button("Grant Access") {
+                manager.requestPermission()
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(CSTheme.accent)
+        }
+        .padding(20)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.amber.opacity(0.1))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.amber.opacity(0.3), lineWidth: 1)
+                )
+        )
+        .padding(.horizontal, 28)
+        .padding(.top, 10)
+    }
+    
+    private func successToast(message: String) -> some View {
+        HStack(spacing: 12) {
+            Image(systemName: "sparkles")
+                .foregroundColor(CSTheme.accent)
+            Text(message)
+                .font(.system(size: 13, weight: .bold))
+                .foregroundColor(.white)
+            
+            Button("Open Settings") {
+                if let url = URL(string: "x-apple.systempreferences:com.apple.ScreenSaver-Settings.extension") {
+                    NSWorkspace.shared.open(url)
+                }
+            }
+            .buttonStyle(.plain)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 4)
+            .background(Capsule().fill(Color.white.opacity(0.15)))
+            .foregroundColor(.white)
+            .font(.system(size: 11, weight: .bold))
+        }
+        .padding(.vertical, 12)
+        .padding(.horizontal, 20)
+        .background(
+            Capsule()
+                .fill(.ultraThinMaterial)
+                .overlay(Capsule().stroke(Color.white.opacity(0.2), lineWidth: 0.5))
+        )
+        .shadow(color: .black.opacity(0.3), radius: 10, y: 5)
+    }
+}
+
+extension Color {
+    static let amber = Color(red: 1.0, green: 0.75, blue: 0.0)
 }

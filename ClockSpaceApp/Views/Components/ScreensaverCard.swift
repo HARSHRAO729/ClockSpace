@@ -53,6 +53,7 @@ struct ScreensaverCard: View {
     @StateObject private var manager = ScreensaverManager.shared
     @ObservedObject private var playerCache = HoverPlayerCache.shared
     @State private var isHovering: Bool = false
+    @State private var thumbnailRefresh: UUID = UUID()
     
     var body: some View {
         ZStack {
@@ -61,21 +62,24 @@ struct ScreensaverCard: View {
         }
         .frame(maxWidth: 280)
         .frame(height: 186)
-        .background(
-            RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
-                .fill(CSTheme.surface.opacity(0.5))
-        )
-        .clipShape(RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous))
-        // Overlays MUST be applied after sizing + clipping.
+        .background(.ultraThinMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .overlay {
-            LinearGradient(colors: [.clear, .black.opacity(0.82)], startPoint: .top, endPoint: .bottom)
+            LinearGradient(colors: [.clear, .black.opacity(0.85)], startPoint: .top, endPoint: .bottom)
                 .opacity(isHovering ? 1 : 0)
                 .allowsHitTesting(false)
         }
-        .overlay(alignment: .bottomLeading) {
-            hoverInfoSection
-                .opacity(isHovering ? 1 : 0)
-                .allowsHitTesting(false)
+        .overlay(alignment: .bottom) {
+            if isHovering {
+                VStack(spacing: 8) {
+                    hoverInfoSection
+                    
+                    actionButton
+                        .padding(.horizontal, 14)
+                        .padding(.bottom, 12)
+                }
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
         }
         .overlay(alignment: .topTrailing) {
             likeButton
@@ -84,19 +88,16 @@ struct ScreensaverCard: View {
                 .allowsHitTesting(isHovering)
         }
         .overlay(
-            RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
-                .stroke(
-                    isHovering ? screensaver.category.tintColor.opacity(0.35) : Color.white.opacity(0.06),
-                    lineWidth: isHovering ? 1.0 : 0.5
-                )
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .stroke(Color.white.opacity(0.1), lineWidth: 0.5)
         )
-        .scaleEffect(isHovering ? 1.015 : 1.0)
+        .scaleEffect(isHovering ? 1.05 : 1.0)
         .shadow(
-            color: isHovering ? screensaver.category.tintColor.opacity(0.15) : Color.black.opacity(0.2),
-            radius: isHovering ? 24 : 12,
-            y: isHovering ? 10 : 4
+            color: Color.black.opacity(isHovering ? 0.4 : 0.2),
+            radius: isHovering ? 20 : 10,
+            y: isHovering ? 12 : 4
         )
-        .animation(CSTheme.Animation.spring, value: isHovering)
+        .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isHovering)
         .onHover { hovering in
             isHovering = hovering
             if hovering, let urlStr = screensaver.previewURL, let url = URL(string: urlStr) {
@@ -113,6 +114,49 @@ struct ScreensaverCard: View {
         .frame(minWidth: 0, maxWidth: .infinity)
         .clipped()
         .contentShape(Rectangle())
+        .id(thumbnailRefresh)
+        .onReceive(NotificationCenter.default.publisher(for: .thumbnailDidLoad)) { _ in
+            thumbnailRefresh = UUID()
+        }
+    }
+    
+    @ViewBuilder
+    private var actionButton: some View {
+        if manager.isInstalling(screensaver) {
+            HStack {
+                ProgressView()
+                    .controlSize(.small)
+                    .tint(.white)
+                Text("Installing...")
+                    .font(.system(size: 12, weight: .bold))
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 8)
+            .background(Capsule().fill(Color.white.opacity(0.2)))
+        } else if manager.isInstalled(screensaver) {
+            HStack {
+                Image(systemName: "checkmark")
+                Text("Installed")
+            }
+            .font(.system(size: 12, weight: .bold))
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 8)
+            .background(Capsule().fill(Color.green.opacity(0.2)))
+        } else {
+            Button(action: {
+                Task {
+                    await manager.installFromMarketplace(screensaver)
+                }
+            }) {
+                Text("Apply")
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundColor(.black)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
+                    .background(Capsule().fill(Color.white))
+            }
+            .buttonStyle(.plain)
+        }
     }
     
     // MARK: - Thumbnail (16pt radius enforced)

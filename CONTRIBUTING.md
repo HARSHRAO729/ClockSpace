@@ -1,26 +1,38 @@
-# Contributing to ClockSpace
+# Contributing to ClockSpace 🕰️
 
-Thank you for your interest in contributing to ClockSpace! We value community input and are excited to see what screensavers you can build.
+First off, thank you for considering contributing to ClockSpace! It's people like you who make the macOS ecosystem better for everyone.
 
-## Contribution Rules
+## 🚀 How Can I Help?
 
-To ensure the high quality and commercial security of ClockSpace, please follow these rules:
+### 1. Report Bugs
+Found a bug? Open an issue! Please include:
+*   Steps to reproduce.
+*   Your macOS version.
+*   Expected vs. Actual behavior.
 
-1.  **Minimalist Design System**: All UI contributions must follow the **CivicEase Minimalist Design System**. Keep it clean, premium, and focused on aesthetics.
-2.  **No Third-Party Libraries**: Do not add any third-party dependencies without prior approval from the maintainer. We aim to keep the core application lightweight and native.
-3.  **Community Folder**: All new screensavers contributed by the community should be placed in the `ClockSpaceApp/Resources/Community/` folder.
-4.  **License Compliance**: By contributing to this project, you agree that your contributions will be licensed under the same PolyForm Noncommercial License as the rest of the project.
+### 2. Suggest Features
+Have an idea for a "wow" feature? Open a feature request issue.
 
-## How to Submit
+### 3. Code Contributions
+1. Fork the repo.
+2. Create a branch (`feature/amazing-feature` or `fix/annoying-bug`).
+3. Follow the **MVVM architecture** (Views → ViewModels → Services).
+4. Keep the **CSTheme** consistent for UI/UX.
+5. Submit a Pull Request.
 
-1.  **Fork** the repository.
-2.  **Create a new branch** for your feature or screensaver.
-3.  **Commit** your changes with clear messages.
-4.  **Submit a Pull Request** to the `main` branch.
+## 🎨 UI/UX Guidelines
+ClockSpace aims for a "Premium Apple" look:
+*   Use `.ultraThinMaterial` for depth.
+*   Maintain `16pt` corner radius on cards.
+*   Ensure all interactions have smooth spring animations.
 
-## Governance
+## 🛠️ Development Setup
+1. Clone the repository.
+2. Open `ClockSpace.xcodeproj`.
+3. Ensure you have Xcode 15+ installed.
+4. Run the app on your Mac!
 
-As the maintainer, CivicEase is the final "Gatekeeper" of the code. All Pull Requests require at least one review and approval before merging. High-quality contributions may be featured in the Marketplace.
+## 📜 Code of Conduct
+Please be respectful and helpful. We follow the standard Contributor Covenant.
 
----
-*ClockSpace is a CivicEase project. All rights reserved.*
+Happy coding!

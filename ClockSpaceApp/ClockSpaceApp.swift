@@ -7,18 +7,27 @@
 
 import SwiftUI
 import AppKit
+import FirebaseCore
 
-@main
-struct ClockSpaceApp: App {
-    
-    @StateObject private var apiManager = APIManager.shared
-    
-    init() {
+class AppDelegate: NSObject, NSApplicationDelegate {
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        FirebaseApp.configure()
+        
         // Set Dock Icon programatically if the image exists
         if let image = NSImage(named: "ClockSpace") {
             NSApplication.shared.applicationIconImage = image
         }
     }
+}
+
+@main
+struct ClockSpaceApp: App {
+    
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
+    @StateObject private var apiManager = APIManager.shared
+    
+    // Initializer logic moved to AppDelegate
     
     var body: some Scene {
         WindowGroup {

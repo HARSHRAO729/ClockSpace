@@ -132,10 +132,11 @@ final class LicenseManager: ObservableObject {
         // validation locally. Any key starting with "CS-PRO-" is accepted.
         // Remove this block and uncomment the network call below for production.
         //
-        if trimmed.uppercased() == "CS-ADMIN-UNLIMITED-GLOBAL-2026" {
-            activatePro(key: trimmed, tier: "Admin", expires: "Never")
-            return true
-        }
+        // ── PRODUCTION: Use real API validation ──
+        // if trimmed.uppercased() == "CS-ADMIN-UNLIMITED-GLOBAL-2026" {
+        //     activatePro(key: trimmed, tier: "Admin", expires: "Never")
+        //     return true
+        // }
 
         let isValid = try await simulateValidation(key: trimmed)
         
