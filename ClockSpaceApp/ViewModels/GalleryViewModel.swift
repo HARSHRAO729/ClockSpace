@@ -22,11 +22,13 @@ final class GalleryViewModel: ObservableObject {
     
     // MARK: - Dependencies
     
-    private let api = APIManager.shared
-    private let manager = ScreensaverManager.shared
+    private let api: APIManager
+    private let manager: ScreensaverManager
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
+    init(api: APIManager = .shared, manager: ScreensaverManager = .shared) {
+        self.api = api
+        self.manager = manager
         setupBindings()
     }
     

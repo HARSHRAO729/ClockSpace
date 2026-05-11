@@ -26,20 +26,38 @@ struct ClockSpaceApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     @StateObject private var apiManager = APIManager.shared
-    
-    // Initializer logic moved to AppDelegate
+    @State private var isAppReady = false
     
     var body: some Scene {
         WindowGroup {
-            DashboardView()
-                .environmentObject(apiManager)
-                .preferredColorScheme(.dark)
-                .frame(
-                    minWidth: CSConstants.Layout.windowMinWidth,
-                    maxWidth: CSConstants.Layout.windowMaxWidth,
-                    minHeight: CSConstants.Layout.windowMinHeight,
-                    maxHeight: CSConstants.Layout.windowMaxHeight
-                )
+            ZStack {
+                if isAppReady {
+                    DashboardView()
+                        .environmentObject(apiManager)
+                        .transition(.opacity.combined(with: .scale(scale: 1.02)))
+                } else {
+                    LaunchView()
+                        .transition(.opacity)
+                }
+            }
+            .preferredColorScheme(.dark)
+            .frame(
+                minWidth: CSConstants.Layout.windowMinWidth,
+                maxWidth: CSConstants.Layout.windowMaxWidth,
+                minHeight: CSConstants.Layout.windowMinHeight,
+                maxHeight: CSConstants.Layout.windowMaxHeight
+            )
+            .task {
+                // Perform initial fetch
+                await apiManager.refreshCatalog()
+                
+                // Allow the splash screen to be seen for at least 2 seconds
+                try? await Task.sleep(nanoseconds: 2_000_000_000)
+                
+                withAnimation(.easeInOut(duration: 0.8)) {
+                    isAppReady = true
+                }
+            }
         }
         .defaultSize(
             width: CSConstants.Layout.windowDefaultWidth,

@@ -138,9 +138,14 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
             saver.tags.contains(where: { $0.lowercased().contains(lowered) })
         }
         
-        screensavers = results
+            screensavers = results
         isLoading = false
         return results
+    }
+
+    /// Refreshes the catalog by fetching from the cloud.
+    func refreshCatalog() async {
+        _ = try? await fetchScreensavers()
     }
     
     /// Stub: returns a placeholder file URL for the downloaded screensaver.
