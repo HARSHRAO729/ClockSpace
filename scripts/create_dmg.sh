@@ -53,6 +53,9 @@ if [ -f "$VOLUME_ICON" ]; then
     cp "$VOLUME_ICON" "$STAGING_DIR/.VolumeIcon.icns"
 fi
 
+# Clean up any potential AppleDouble metadata files that might show up in the DMG
+find "$STAGING_DIR" -name "._*" -depth -exec rm {} \;
+
 # 4. Create the temporary R/W Disk Image
 echo "📀 Creating temporary disk image..."
 # Increase size slightly for better layout control
@@ -84,7 +87,9 @@ tell application "Finder"
         set position of item "Applications" of container window to {445, 190}
         
         -- Hide the background folder if it's visible (though it should be hidden by prefix)
-        set visible of folder ".background" to false
+        try
+            set visible of folder ".background" to false
+        end try
         
         update without registering applications
         delay 2
