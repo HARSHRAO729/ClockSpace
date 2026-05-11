@@ -44,11 +44,9 @@ EXPORTED_APP="$EXPORT_PATH/$(basename "$APP_BUNDLE_PATH")"
 
 echo "✅ App exported to: $EXPORTED_APP"
 
-# 4. Create DMG
-echo "💿 Creating DMG..."
-if [ -f "$DMG_NAME" ]; then rm "$DMG_NAME"; fi
-
-hdiutil create -volname "$PROJECT_NAME" -srcfolder "$EXPORT_PATH" -ov -format UDZO "$DMG_NAME"
+# 4. Create Premium DMG
+echo "💿 Creating Premium DMG..."
+./scripts/create_dmg.sh
 
 echo "--------------------------------------------------"
 echo "🎉 Success! Created $DMG_NAME"

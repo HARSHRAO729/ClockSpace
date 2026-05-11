@@ -26,3 +26,4 @@ ClockSpaceApp/Resources/temp_migration/savers/
 # (Wait, if I want the 54 launchers to be saved, I SHOULD push them)
 # Actually, the user wants the 54 files in ClockSpaceApp/Resources/BundledSavers/ to be included.
 # So I won't ignore those.
+*.dmg
