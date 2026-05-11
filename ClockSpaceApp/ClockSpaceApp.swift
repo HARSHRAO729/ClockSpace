@@ -60,13 +60,14 @@ struct ClockSpaceApp: App {
                 maxHeight: CSConstants.Layout.windowMaxHeight
             )
             .task {
-                // Perform initial fetch
-                await apiManager.refreshCatalog()
+                // Perform initial fetch and minimum splash duration in parallel
+                async let fetch: () = apiManager.refreshCatalog()
+                async let wait: () = try? await Task.sleep(nanoseconds: 1_500_000_000) // 1.5s minimum
                 
-                // Allow the splash screen to be seen for at least 2 seconds
-                try? await Task.sleep(nanoseconds: 2_000_000_000)
+                // Wait for both to finish
+                _ = await (fetch, wait)
                 
-                withAnimation(.easeInOut(duration: 0.8)) {
+                withAnimation(.easeInOut(duration: 0.6)) {
                     isAppReady = true
                 }
             }
