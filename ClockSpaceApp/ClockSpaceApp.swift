@@ -27,7 +27,17 @@ struct ClockSpaceApp: App {
     @State private var isAppReady = false
     
     init() {
-        FirebaseApp.configure()
+        // Initialize Firebase
+        // We check if an app is already configured to prevent crashes during re-init
+        if FirebaseApp.app() == nil {
+            if let _ = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist") {
+                FirebaseApp.configure()
+                print("✅ Firebase configured successfully")
+            } else {
+                print("⚠️ Warning: GoogleService-Info.plist not found. Firebase features may be limited.")
+                // In a production app, you might want to show an alert, but let's not crash.
+            }
+        }
     }
     
     var body: some Scene {
