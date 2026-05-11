@@ -93,12 +93,32 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
         errorMessage = nil
         
         do {
-            // 1. Fetch from Firebase
-            var allSavers = try await FirebaseService.shared.fetchScreensavers()
+            // 1. Fetch from Firebase with a strict 5-second timeout
+            var allSavers: [Screensaver] = []
             
-            // 2. Auto-Migrate if cloud is empty (first time launch)
+            do {
+                allSavers = try await withThrowingTaskGroup(of: [Screensaver].self) { group in
+                    group.addTask {
+                        try await FirebaseService.shared.fetchScreensavers()
+                    }
+                    
+                    group.addTask {
+                        try await Task.sleep(nanoseconds: 5_000_000_000) // 5 seconds
+                        throw NSError(domain: "APIManager", code: 408, userInfo: [NSLocalizedDescriptionKey: "Firebase fetch timed out"])
+                    }
+                    
+                    let result = try await group.next()!
+                    group.cancelAll()
+                    return result
+                }
+            } catch {
+                print("⚠️ Firebase fetch error or timeout: \(error.localizedDescription)")
+                allSavers = []
+            }
+            
+            // 2. Auto-Migrate if cloud is empty (first time launch or timeout)
             if allSavers.isEmpty {
-                print("⚠️ No savers in cloud and migration didn't run. Using local mock data.")
+                print("💡 Using local fallback data (cloud empty or timed out).")
                 allSavers = APIManager.mockScreensavers
             }
             
