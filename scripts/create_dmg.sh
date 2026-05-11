@@ -35,7 +35,9 @@ fi
 
 # 2. Ad-hoc Code Signing (Required for M1/M2/M3)
 echo "🔐 Applying ad-hoc code signature..."
-codesign --force --deep --sign - --options runtime --entitlements ClockSpaceApp/ClockSpace.entitlements "$APP_BUNDLE"
+# Remove any existing signature first to avoid conflicts
+codesign --remove-signature "$APP_BUNDLE"
+codesign --force --deep --sign - --entitlements ClockSpaceApp/ClockSpace.entitlements "$APP_BUNDLE"
 
 # 3. Staging
 echo "📁 Staging files..."
@@ -53,8 +55,9 @@ fi
 
 # 4. Create the temporary R/W Disk Image
 echo "📀 Creating temporary disk image..."
+# Increase size slightly for better layout control
 hdiutil create -srcfolder "$STAGING_DIR" -volname "$VOL_NAME" -fs HFS+ \
-    -fsargs "-c c=64,a=16,e=16" -format UDRW -size 400m "$TEMP_DMG"
+    -fsargs "-c c=64,a=16,e=16" -format UDRW -size 500m "$TEMP_DMG"
 
 # 5. Mount and Configure Layout via AppleScript
 echo "🔧 Configuring DMG layout..."
@@ -72,15 +75,20 @@ tell application "Finder"
         set statusbar visible of container window to false
         set the bounds of container window to {400, 100, 1000, 500}
         set theViewOptions to the icon view options of container window
-        set icon size of theViewOptions to 120
+        set icon size of theViewOptions to 140
         set arrangement of theViewOptions to not arranged
         set background picture of theViewOptions to file ".background:background.png"
-        set position of item "$APP_NAME.app" of container window to {160, 200}
-        set position of item "Applications" of container window to {440, 200}
-        close
-        open
+        
+        -- Centering icons on the glows in the new background
+        set position of item "$APP_NAME.app" of container window to {155, 190}
+        set position of item "Applications" of container window to {445, 190}
+        
+        -- Hide the background folder if it's visible (though it should be hidden by prefix)
+        set visible of folder ".background" to false
+        
         update without registering applications
         delay 2
+        close
     end tell
 end tell
 EOF
@@ -109,3 +117,4 @@ rm -rf "$STAGING_DIR"
 echo "--------------------------------------------------"
 echo "🎉 Success! Created $FINAL_DMG"
 echo "--------------------------------------------------"
+
