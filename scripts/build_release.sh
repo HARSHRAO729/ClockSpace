@@ -19,12 +19,15 @@ rm -rf "$BUILD_DIR"
 mkdir -p "$BUILD_DIR"
 
 # 2. Archive the project
-echo "📦 Archiving project..."
+echo "📦 Archiving project (Universal binary)..."
 xcodebuild archive \
     -project "$PROJECT_NAME.xcodeproj" \
     -scheme "$SCHEME_NAME" \
     -configuration Release \
     -archivePath "$ARCHIVE_PATH" \
+    -destination "generic/platform=macOS" \
+    ARCHS="arm64 x86_64" \
+    ONLY_ACTIVE_ARCH=NO \
     -quiet
 
 # 3. Export the app

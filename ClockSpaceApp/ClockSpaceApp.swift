@@ -62,10 +62,11 @@ struct ClockSpaceApp: App {
             .task {
                 // Perform initial fetch and minimum splash duration in parallel
                 async let fetch: () = apiManager.refreshCatalog()
-                async let wait: () = try? await Task.sleep(nanoseconds: 1_500_000_000) // 1.5s minimum
+                async let wait: Void? = try? await Task.sleep(nanoseconds: 1_500_000_000) // 1.5s minimum
                 
                 // Wait for both to finish
-                _ = await (fetch, wait)
+                _ = await fetch
+                _ = await wait
                 
                 withAnimation(.easeInOut(duration: 0.6)) {
                     isAppReady = true
