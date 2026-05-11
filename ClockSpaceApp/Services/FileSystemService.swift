@@ -27,6 +27,11 @@ struct FileSystemService {
     
     /// The user's Screen Savers directory: ~/Library/Screen Savers/
     var screenSaversDirectory: URL {
+        #if os(macOS)
+        if let bookmarkedURL = restoreBookmark() {
+            return bookmarkedURL
+        }
+        #endif
         let home = fm.homeDirectoryForCurrentUser
         return home
             .appendingPathComponent("Library", isDirectory: true)
@@ -36,6 +41,11 @@ struct FileSystemService {
     /// Pre-flight check: can the app write to ~/Library/Screen Savers/?
     var canWrite: Bool {
         let dir = screenSaversDirectory
+        #if os(macOS)
+        let isScoped = dir.startAccessingSecurityScopedResource()
+        defer { if isScoped { dir.stopAccessingSecurityScopedResource() } }
+        #endif
+        
         if !fm.fileExists(atPath: dir.path) {
             return fm.isWritableFile(atPath: dir.deletingLastPathComponent().path)
         }
@@ -46,6 +56,11 @@ struct FileSystemService {
     /// - Throws: `ScreensaverInstallError.permissionDenied` if creation fails.
     func ensureDirectory() throws {
         let dir = screenSaversDirectory
+        #if os(macOS)
+        let isScoped = dir.startAccessingSecurityScopedResource()
+        defer { if isScoped { dir.stopAccessingSecurityScopedResource() } }
+        #endif
+
         guard !fm.fileExists(atPath: dir.path) else { return }
         do {
             try fm.createDirectory(at: dir, withIntermediateDirectories: true)
@@ -63,6 +78,9 @@ struct FileSystemService {
     }
     
     #if os(macOS)
+    /// Key for storing the security-scoped bookmark in UserDefaults.
+    private let bookmarkKey = "ScreenSaversFolderBookmark"
+
     /// Request the user to manually select the Screen Savers folder.
     /// This is a fallback for when write permissions are denied (e.g. Sandbox).
     func requestManualFolderAccess() {
@@ -70,16 +88,52 @@ struct FileSystemService {
         panel.canChooseFiles = false
         panel.canChooseDirectories = true
         panel.allowsMultipleSelection = false
-        panel.directoryURL = screenSaversDirectory.deletingLastPathComponent()
+        // Try to start at the real folder
+        panel.directoryURL = URL(fileURLWithPath: "/Users/\(NSUserName())/Library/Screen Savers")
         panel.message = "ClockSpace needs permission to manage your Screen Savers. Please select the 'Screen Savers' folder."
         panel.prompt = "Select Folder"
         
         panel.begin { response in
             if response == .OK, let url = panel.url {
                 print("User selected folder: \(url.path)")
-                // In a sandboxed app, we would save a security-scoped bookmark here.
+                self.persistBookmark(url: url)
             }
         }
+    }
+
+    /// Persist a security-scoped bookmark for the given URL.
+    private func persistBookmark(url: URL) {
+        do {
+            let bookmarkData = try url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
+            UserDefaults.standard.set(bookmarkData, forKey: bookmarkKey)
+            // Post notification to refresh UI/retry action
+            NotificationCenter.default.post(name: NSNotification.Name("FolderAccessGranted"), object: nil)
+        } catch {
+            print("❌ Failed to save bookmark: \(error.localizedDescription)")
+        }
+    }
+
+    /// Restore the security-scoped bookmark and return the URL.
+    func restoreBookmark() -> URL? {
+        guard let data = UserDefaults.standard.data(forKey: bookmarkKey) else { return nil }
+        var isStale = false
+        do {
+            let url = try URL(resolvingBookmarkData: data, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+            if isStale {
+                persistBookmark(url: url)
+            }
+            return url
+        } catch {
+            print("❌ Failed to restore bookmark: \(error.localizedDescription)")
+            return nil
+        }
+    }
+
+    /// Execute a block with security-scoped access if available.
+    func withSecurityScope<T>(at url: URL, perform block: () throws -> T) throws -> T {
+        let isScoped = url.startAccessingSecurityScopedResource()
+        defer { if isScoped { url.stopAccessingSecurityScopedResource() } }
+        return try block()
     }
     #endif
     
@@ -100,8 +154,18 @@ struct FileSystemService {
             throw ScreensaverInstallError.invalidBundle(source.lastPathComponent)
         }
         
-        let dest = screenSaversDirectory.appendingPathComponent(source.lastPathComponent)
+        let destDir = screenSaversDirectory
         
+        #if os(macOS)
+        return try withSecurityScope(at: destDir) {
+            try performCopy(from: source, to: destDir.appendingPathComponent(source.lastPathComponent))
+        }
+        #else
+        return try performCopy(from: source, to: destDir.appendingPathComponent(source.lastPathComponent))
+        #endif
+    }
+
+    private func performCopy(from source: URL, to dest: URL) throws -> URL {
         // Remove existing version if present
         if fm.fileExists(atPath: dest.path) {
             do {
@@ -125,14 +189,34 @@ struct FileSystemService {
     
     /// Remove a single .saver bundle by file name.
     func removeSaver(named fileName: String) {
-        let url = screenSaversDirectory.appendingPathComponent(fileName)
+        let destDir = screenSaversDirectory
+        #if os(macOS)
+        _ = try? withSecurityScope(at: destDir) {
+            let url = destDir.appendingPathComponent(fileName)
+            try fm.removeItem(at: url)
+        }
+        #else
+        let url = destDir.appendingPathComponent(fileName)
         try? fm.removeItem(at: url)
+        #endif
     }
     
     /// Remove ALL .saver bundles that appear to be managed by ClockSpace.
     func removeAllSavers() {
+        let destDir = screenSaversDirectory
+        
+        #if os(macOS)
+        _ = try? withSecurityScope(at: destDir) {
+            try performRemoveAll(in: destDir)
+        }
+        #else
+        try? performRemoveAll(in: destDir)
+        #endif
+    }
+
+    private func performRemoveAll(in dir: URL) throws {
         let contents = (try? fm.contentsOfDirectory(
-            at: screenSaversDirectory,
+            at: dir,
             includingPropertiesForKeys: nil
         )) ?? []
         
@@ -179,14 +263,21 @@ struct FileSystemService {
     
     /// Uninstall a screensaver by removing its bundle from the system directory.
     func uninstall(fileName: String) throws {
-        let url = screenSaversDirectory.appendingPathComponent(fileName)
-        guard fm.fileExists(atPath: url.path) else { return }
+        let destDir = screenSaversDirectory
         
-        do {
-            try fm.removeItem(at: url)
-        } catch {
-            throw ScreensaverInstallError.permissionDenied(url.path)
+        #if os(macOS)
+        try withSecurityScope(at: destDir) {
+            let url = destDir.appendingPathComponent(fileName)
+            if fm.fileExists(atPath: url.path) {
+                try fm.removeItem(at: url)
+            }
         }
+        #else
+        let url = destDir.appendingPathComponent(fileName)
+        if fm.fileExists(atPath: url.path) {
+            try fm.removeItem(at: url)
+        }
+        #endif
     }
     
     /// Clean up a temporary file/directory (best-effort).
