@@ -86,10 +86,7 @@ tell application "Finder"
         set position of item "$APP_NAME.app" of container window to {155, 190}
         set position of item "Applications" of container window to {445, 190}
         
-        -- Hide the background folder if it's visible (though it should be hidden by prefix)
-        try
-            set visible of folder ".background" to false
-        end try
+        -- No need to hide .background explicitly as the dot-prefix already hides it
         
         update without registering applications
         delay 2
