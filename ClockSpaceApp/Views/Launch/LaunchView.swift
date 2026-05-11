@@ -11,6 +11,15 @@ import SwiftUI
 struct LaunchView: View {
     @State private var isAnimating = false
     @State private var loadingProgress: Double = 0.0
+    @State private var loadingStatus = "Initializing..."
+    
+    let statuses = [
+        "Connecting to the universe of time...",
+        "Syncing cosmic marketplace...",
+        "Loading premium clock previews...",
+        "Preparing your workspace...",
+        "Finalizing connection..."
+    ]
     
     var body: some View {
         ZStack {
@@ -53,9 +62,11 @@ struct LaunchView: View {
                         .foregroundStyle(.white)
                         .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
                     
-                    Text("Connecting to the universe of time...")
-                        .font(.system(size: 14, weight: .medium))
+                    Text(loadingStatus)
+                        .font(.system(size: 14, weight: .medium, design: .monospaced))
                         .foregroundStyle(.white.opacity(0.7))
+                        .transition(.opacity.combined(with: .move(edge: .bottom)))
+                        .id(loadingStatus)
                 }
                 
                 // Progress Bar
@@ -101,12 +112,22 @@ struct LaunchView: View {
     }
     
     private func simulateProgress() {
+        var statusIndex = 0
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-            if loadingProgress < 0.9 {
+            if loadingProgress < 1.0 {
                 withAnimation(.linear(duration: 0.1)) {
-                    loadingProgress += 0.01
+                    loadingProgress += 0.005 // Slower, more deliberate progress
                 }
-            } else if loadingProgress >= 1.0 {
+                
+                // Update status text every ~15% progress
+                let newIndex = Int(loadingProgress * Double(statuses.count))
+                if newIndex != statusIndex && newIndex < statuses.count {
+                    statusIndex = newIndex
+                    withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+                        loadingStatus = statuses[statusIndex]
+                    }
+                }
+            } else {
                 timer.invalidate()
             }
         }

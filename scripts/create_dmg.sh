@@ -10,7 +10,7 @@ APP_NAME="ClockSpace"
 BUILD_DIR="./build"
 EXPORT_PATH="$BUILD_DIR/Export"
 APP_BUNDLE="$EXPORT_PATH/$APP_NAME.app"
-DMG_BACKGROUND="ClockSpaceApp/Resources/dmg_background.jpg"
+DMG_BACKGROUND="ClockSpaceApp/Resources/dmg_background_final.jpg"
 FINAL_DMG="ClockSpace.dmg"
 VOL_NAME="ClockSpace"
 
@@ -68,17 +68,17 @@ tell application "Finder"
         set toolbar visible of container window to false
         set statusbar visible of container window to false
         
-        -- Set window size and position (centered-ish on screen)
+        -- Set window size and position
         set the bounds of container window to {100, 100, 700, 500}
         
         set viewOptions to the icon view options of container window
-        set icon size of viewOptions to 128
+        set icon size of viewOptions to 100
         set arrangement of viewOptions to not arranged
         set background picture of viewOptions to file ".background:background.jpg"
         
-        -- Position the icons
-        set position of item "$APP_NAME.app" to {180, 230}
-        set position of item "Applications" to {420, 230}
+        -- Position the icons precisely over silhouettes
+        set position of item "$APP_NAME.app" to {150, 240}
+        set position of item "Applications" to {450, 240}
         
         update (every item)
         close

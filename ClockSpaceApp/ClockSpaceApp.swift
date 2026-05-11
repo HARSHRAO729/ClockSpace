@@ -11,8 +11,6 @@ import FirebaseCore
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
-        FirebaseApp.configure()
-        
         // Set Dock Icon programatically if the image exists
         if let image = NSImage(named: "ClockSpace") {
             NSApplication.shared.applicationIconImage = image
@@ -27,6 +25,10 @@ struct ClockSpaceApp: App {
     
     @StateObject private var apiManager = APIManager.shared
     @State private var isAppReady = false
+    
+    init() {
+        FirebaseApp.configure()
+    }
     
     var body: some Scene {
         WindowGroup {
