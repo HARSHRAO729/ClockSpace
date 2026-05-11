@@ -13,8 +13,8 @@ import FirebaseStorage
 final class FirebaseService {
     
     static let shared = FirebaseService()
-    private let db = Firestore.firestore()
-    private let storage = Storage.storage()
+    private lazy var db = Firestore.firestore()
+    private lazy var storage = Storage.storage()
     
     private init() {}
     
