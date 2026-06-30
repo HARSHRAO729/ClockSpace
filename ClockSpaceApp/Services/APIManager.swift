@@ -92,13 +92,19 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
         isLoading = true
         errorMessage = nil
         
-        // 1. Fetch from Firebase with a strict 5-second timeout
+        // 1. Fetch from Firebase with a strict 5-second timeout.
+        // We wrap the fetch in a detached Task so that if it hangs (e.g. Firestore SDK waiting for network),
+        // we can cancel the wait group and exit instantly without waiting for the non-cooperative query.
         var allSavers: [Screensaver] = []
+        
+        let fetchTask = Task {
+            try await FirebaseService.shared.fetchScreensavers()
+        }
         
         do {
             allSavers = try await withThrowingTaskGroup(of: [Screensaver].self) { group in
                 group.addTask {
-                    try await FirebaseService.shared.fetchScreensavers()
+                    try await fetchTask.value
                 }
                 
                 group.addTask {
