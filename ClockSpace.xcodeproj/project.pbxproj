@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 100;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,7 +14,6 @@
 		686227AE2FB10F0300BB7C61 /* FirebaseAnalyticsIdentitySupport in Frameworks */ = {isa = PBXBuildFile; productRef = 686227AD2FB10F0300BB7C61 /* FirebaseAnalyticsIdentitySupport */; };
 		686227B02FB10F0300BB7C61 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 686227AF2FB10F0300BB7C61 /* FirebaseAppCheck */; };
 		686227B22FB10F0300BB7C61 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 686227B12FB10F0300BB7C61 /* FirebaseAppDistribution-Beta */; };
-
 		686227B82FB10F0300BB7C61 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 686227B72FB10F0300BB7C61 /* FirebaseCore */; };
 		686227BA2FB10F0300BB7C61 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 686227B92FB10F0300BB7C61 /* FirebaseCrashlytics */; };
 		686227BC2FB10F0300BB7C61 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 686227BB2FB10F0300BB7C61 /* FirebaseDatabase */; };
@@ -312,7 +311,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.50;
+				MARKETING_VERSION = 0.55;
 				PRODUCT_BUNDLE_IDENTIFIER = CivicEase.ClockSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -345,7 +344,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.50;
+				MARKETING_VERSION = 0.55;
 				PRODUCT_BUNDLE_IDENTIFIER = CivicEase.ClockSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -382,7 +381,7 @@
 /* Begin XCRemoteSwiftPackageReference section */
 		686227A42FB10F0300BB7C61 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 12.13.0;
@@ -426,7 +425,6 @@
 			package = 686227A42FB10F0300BB7C61 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseAppDistribution-Beta";
 		};
-
 		686227B72FB10F0300BB7C61 /* FirebaseCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 686227A42FB10F0300BB7C61 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
