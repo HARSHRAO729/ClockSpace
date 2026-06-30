@@ -95,7 +95,7 @@ struct LaunchView: View {
                 
                 Spacer()
                 
-                Text("Version 0.50 Beta")
+                Text("Version 0.55 Beta")
                     .font(.caption)
                     .foregroundStyle(.white.opacity(0.4))
                     .padding(.bottom, 20)

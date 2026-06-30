@@ -18,7 +18,6 @@ final class InstallerService {
     static let shared = InstallerService()
     
     private let fileSystem = FileSystemService.shared
-    private let compiler = CompilerService.shared
     
     private init() {}
     
@@ -34,7 +33,7 @@ final class InstallerService {
         } else if screensaver.downloadURL.hasPrefix("https://") {
             return try await installRemoteDownloadedSaver(screensaver)
         } else {
-            return try await installCompiledSaver(screensaver)
+            throw ScreensaverInstallError.invalidBundle("No valid remote download URL found.")
         }
     }
     
@@ -58,26 +57,9 @@ final class InstallerService {
         return try fileSystem.copyToScreenSavers(from: bundleURL)
     }
     
-    /// Compile a screensaver from its template and install the result.
-    private func installCompiledSaver(_ screensaver: Screensaver) async throws -> URL {
-        // Simulate download latency for remote savers
-        try await Task.sleep(nanoseconds: 1_200_000_000)
-        
-        // Compile → returns temp .saver bundle URL
-        let compiledURL = try compiler.compile(screensaver)
-        
-        // Install from temp location
-        let installedURL = try fileSystem.copyToScreenSavers(from: compiledURL)
-        
-        // Clean up temp build artifact
-        fileSystem.cleanUp(compiledURL)
-        
-        return installedURL
-    }
-    
     private func installRemoteDownloadedSaver(_ screensaver: Screensaver) async throws -> URL {
         guard let url = URL(string: screensaver.downloadURL) else {
-            throw ScreensaverInstallError.compilationFailed("Invalid remote URL")
+            throw ScreensaverInstallError.copyFailed("Invalid remote URL")
         }
         
         let fm = FileManager.default
@@ -133,14 +115,26 @@ final class InstallerService {
             try fm.moveItem(at: downloadDest, to: finalSaverPath)
         }
         
-        // 3. Install to system
+        // 3. Codesign downloaded bundle to run locally
+        try? codesign(bundleURL: finalSaverPath)
+        
+        // 4. Install to system
         let installedURL = try fileSystem.copyToScreenSavers(from: finalSaverPath)
         
-        // 4. Cleanup
+        // 5. Cleanup
         try? fm.removeItem(at: downloadDest)
         try? fm.removeItem(at: extractionDir)
         try? fm.removeItem(at: finalSaverPath)
         
         return installedURL
+    }
+    
+    /// Ad-hoc codesign to satisfy Gatekeeper
+    private func codesign(bundleURL: URL) throws {
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/bin/zsh")
+        process.arguments = ["-c", "codesign --force --sign - \"\(bundleURL.path)\""]
+        try process.run()
+        process.waitUntilExit()
     }
 }

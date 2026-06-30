@@ -224,7 +224,7 @@ struct SettingsView: View {
                                     .font(.system(size: 14, weight: .medium))
                                     .foregroundColor(.white)
                                 Spacer()
-                                Text("0.50 (Open Source)")
+                                Text("0.55 (Open Source)")
                                     .font(.system(size: 14, weight: .medium))
                                     .foregroundColor(CSTheme.textSecondary)
                             }
