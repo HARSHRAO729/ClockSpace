@@ -27,3 +27,12 @@ ClockSpaceApp/Resources/temp_migration/savers/
 # Actually, the user wants the 54 files in ClockSpaceApp/Resources/BundledSavers/ to be included.
 # So I won't ignore those.
 *.dmg
+
+# Local staging for Cloudflare R2 asset migration (not committed)
+r2-upload/
+
+# Built saver bundles — rebuilt from source / uploaded to R2, never committed
+dist/
+
+# Python
+__pycache__/

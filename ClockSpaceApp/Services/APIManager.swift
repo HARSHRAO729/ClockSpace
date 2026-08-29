@@ -9,8 +9,6 @@
 import Foundation
 import Combine
 import SwiftUI
-import FirebaseFirestore
-import FirebaseStorage
 
 /// Protocol for dependency injection and testability.
 protocol ScreensaverServiceProtocol {
@@ -50,6 +48,29 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         return (try? decoder.decode([Screensaver].self, from: data)) ?? []
+    }
+
+    // MARK: - Remote Catalog (Cloudflare R2)
+
+    /// Public URL of the catalog hosted on Cloudflare R2. Replaces Firestore.
+    private static let catalogURL = URL(string: "https://pub-78f2a94f0b354729b9535c615d11e9a9.r2.dev/catalog.json")!
+
+    /// GETs the static catalog.json from the CDN. Returns [] on any failure so the
+    /// caller falls back to the bundled copy.
+    private static func fetchRemoteCatalog() async -> [Screensaver] {
+        var request = URLRequest(url: catalogURL)
+        request.timeoutInterval = 5
+        request.cachePolicy = .reloadRevalidatingCacheData
+        do {
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let http = response as? HTTPURLResponse, http.statusCode == 200 else { return [] }
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            return try decoder.decode([Screensaver].self, from: data)
+        } catch {
+            print("⚠️ Remote catalog fetch failed: \(error.localizedDescription). Falling back to bundled data.")
+            return []
+        }
     }
     
     func clearLikedItems() {
@@ -92,38 +113,14 @@ final class APIManager: ObservableObject, ScreensaverServiceProtocol {
         isLoading = true
         errorMessage = nil
         
-        // 1. Fetch from Firebase with a strict 5-second timeout.
-        // We wrap the fetch in a detached Task so that if it hangs (e.g. Firestore SDK waiting for network),
-        // we can cancel the wait group and exit instantly without waiting for the non-cooperative query.
-        var allSavers: [Screensaver] = []
-        
-        let fetchTask = Task {
-            try await FirebaseService.shared.fetchScreensavers()
-        }
-        
-        do {
-            allSavers = try await withThrowingTaskGroup(of: [Screensaver].self) { group in
-                group.addTask {
-                    try await fetchTask.value
-                }
-                
-                group.addTask {
-                    try await Task.sleep(nanoseconds: 5_000_000_000) // 5 seconds
-                    throw NSError(domain: "APIManager", code: 408, userInfo: [NSLocalizedDescriptionKey: "Firebase fetch timed out"])
-                }
-                
-                let result = try await group.next()!
-                group.cancelAll()
-                return result
-            }
-        } catch {
-            print("⚠️ Firebase fetch error or timeout: \(error.localizedDescription). Falling back to local data.")
-            allSavers = []
-        }
-        
-        // 2. Auto-Migrate if cloud is empty (first time launch or timeout)
+        // 1. Fetch the static catalog.json from the CDN (Cloudflare R2).
+        //    URLSession's own request timeout replaces the old manual race against
+        //    the non-cooperative Firestore SDK.
+        var allSavers = await Self.fetchRemoteCatalog()
+
+        // 2. Fall back to the catalog bundled in the app if the network fetch failed.
         if allSavers.isEmpty {
-            print("💡 Using local fallback data.")
+            print("💡 Using bundled catalog fallback.")
             allSavers = APIManager.mockScreensavers
         }
         
