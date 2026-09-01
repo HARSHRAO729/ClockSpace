@@ -31,9 +31,17 @@ jobs:
         with:
           files: ClockSpace.dmg
           body: |
-            ## ClockSpace Release ${{ github.ref_name }}
-            
-            **Note**: This build is unsigned. Right-click and select "Open" to launch.
+            ## ClockSpace ${{ github.ref_name }}
+
+            The first stable release of ClockSpace — a native macOS screensaver marketplace.
+
+            ### Highlights
+            - **20 screensavers that actually run on modern macOS (Apple Silicon)** — every one is a universal (arm64 + x86_64), signed build. Clocks, generative art, and more.
+            - **New cloud backend** — the catalog now streams from a fast, reliable CDN. The app stays lightweight and pulls each screensaver on demand.
+            - **Native Swift throughout** — including a brand-new native Word Clock.
+            - **Leaner, faster, cleaner** under the hood.
+
+            **Note**: This build is unsigned. Right-click the app and choose "Open" the first time to launch it.
           draft: false
           prerelease: false
         env:
