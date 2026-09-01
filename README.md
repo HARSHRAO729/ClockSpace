@@ -3,22 +3,21 @@
 **ClockSpace** is an elite, premium macOS application that completely redefines the screensaver experience. While the name pays homage to our roots, ClockSpace is a comprehensive marketplace for **all** genres of digital art—from nature vistas and abstract motion to sci-fi digital rain and minimalist clocks. Built with the high-fidelity **CivicEase** design system, it delivers 60-FPS Quartz-rendered graphics straight to your lock screen.
 
 [![Official Website](https://img.shields.io/badge/Website-clockspace.civicease.systems-blue?style=for-the-badge&logo=safari)](https://clockspace.civicease.systems)
-[![Status: Development](https://img.shields.io/badge/Status-Early_Production-orange?style=for-the-badge)](https://github.com/HARSHRAO729/ClockSpace)
+[![Status: v1.0](https://img.shields.io/badge/Status-v1.0_Stable-brightgreen?style=for-the-badge)](https://github.com/HARSHRAO729/ClockSpace/releases/latest)
 
 ---
 
-## ⚠️ Development Status & Disclaimer
+## ✅ Status
 
-**ClockSpace is currently in its early production and active development phase (v0.50).** 
+**ClockSpace v1.0 — the first stable release.** Every screensaver in the catalog is a native, universal (Apple Silicon + Intel), code-signed build that runs on modern macOS. The app stays lightweight and streams its catalog on demand from a fast CDN.
 
-While we strive for excellence in architectural design and visual fidelity, users may encounter installation complexities, feature malfunctions, or occasional application instability. We deeply regret any inconvenience caused by these early-stage issues and are working tirelessly to refine the experience. 
-
-### What's New in v0.50
-*   **🎨 Premium UI Overhaul**: Glassmorphism cards, 1.05x hover scale, live video previews, and dynamic "Apply" buttons on hover.
-*   **🏗️ MVVM Architecture**: Introduced `GalleryViewModel`, centralized `AlertProvider`, and clean separation of concerns.
-*   **🔧 Smart Installation Pipeline**: One-screensaver-at-a-time lifecycle, permission banners, success toast notifications, and deep-link to System Settings.
-*   **📦 Remote Thumbnails**: 3-tier cached thumbnail loading (memory → disk → network) for Firebase-hosted images.
-*   **🌍 Open Source Ready**: Added CONTRIBUTING.md, ROADMAP.md, in-app Credits page, and updated README.
+### What's New in v1.0
+*   **🖥️ 20 screensavers that actually run on modern macOS**: every one is a universal (arm64 + x86_64), signed build — clocks, generative art, and more.
+*   **☁️ New cloud backend**: the catalog now streams from a fast, reliable CDN (Cloudflare R2). The app pulls each screensaver on demand, so it stays small.
+*   **✨ Native Swift throughout**: including a brand-new native Word Clock.
+*   **🎨 Premium UI**: glassmorphism cards, hover scale, live previews, and dynamic "Apply" buttons, on a clean MVVM architecture.
+*   **🔧 Smart installation**: one-screensaver-at-a-time lifecycle, permission banners, success toasts, and deep-link to System Settings.
+*   **🧹 Leaner & cleaner**: smaller repository, faster builds, no legacy backend.
 
 **Join the Journey**: We believe in the power of community! If you're a developer or designer passionate about redefining the macOS experience, we warmly invite you to join us as a contributor and help shape the future of ClockSpace.
 
@@ -26,7 +25,7 @@ While we strive for excellence in architectural design and visual fidelity, user
 
 ## 🚀 Installation & First Run
 
-Because **ClockSpace** is currently in early development and not yet signed with an Apple Developer Certificate, macOS will show a warning when you first open it. 
+Because **ClockSpace** is not yet distributed with an Apple Developer Certificate, macOS will show a warning when you first open it. 
 
 ### How to Open (macOS Gatekeeper)
 If you see the "Apple could not verify..." message:
