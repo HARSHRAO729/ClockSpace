@@ -40,18 +40,18 @@ If you see the "Apple could not verify..." message:
 
 ## ✨ Visual Experience
 
-| Cinematic Previews | Community Favorites | Immersive Motion |
+| Word Clock | Matrix | Fractal Clock |
 | :---: | :---: | :---: |
-| ![Preview 1](ClockSpaceApp/Resources/Thumbnails/Preview1.gif) | ![Matrix](ClockSpaceApp/Resources/Thumbnails/github_matrix.gif) | ![Aerial](ClockSpaceApp/Resources/Thumbnails/Aerial.gif) |
-| *Fluid Transitions* | *Digital Rain* | *Cinematic Loops* |
+| ![Word Clock](https://pub-78f2a94f0b354729b9535c615d11e9a9.r2.dev/thumbnails/WordClock.png) | ![Matrix](https://pub-78f2a94f0b354729b9535c615d11e9a9.r2.dev/thumbnails/Matrix.png) | ![Fractal Clock](https://pub-78f2a94f0b354729b9535c615d11e9a9.r2.dev/thumbnails/FractalClock.png) |
+| *Words on a glowing grid* | *Digital rain* | *Generative clock hands* |
 
 ---
 
 ## 🚀 Key Features
 
 *   **Cinematic Marketplace UI**: A flawlessly crafted Glassmorphism and SwiftUI design system with horizontal carousels, dynamic grids, and a full-screen blur focus mode.
-*   **Vast Community Catalog**: Over 54 high-quality community-sourced screensavers pre-bundled, ranging from Matrix digital rains to minimalist flip clocks.
-*   **Quartz Transformation Engine**: Dynamically compile Swift UI and CoreGraphics code on-the-fly (`swiftc`) directly into executable `.saver` bundles.
+*   **Curated Catalog**: 20 hand-picked screensavers — each a native, universal (Apple Silicon + Intel), code-signed `.saver` — streamed on demand from a fast CDN, ranging from Matrix digital rain to minimalist clocks.
+*   **Native Swift Screensavers**: modernized open-source classics plus original native builds (like the Word Clock), all installed as standard macOS `.saver` bundles.
 *   **One-Click Application**: Streamlined workflow that installs bundles to `~/Library/Screen Savers/` and triggers instant system activation.
 
 ---
