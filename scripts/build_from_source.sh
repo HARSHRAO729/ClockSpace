@@ -1,7 +1,7 @@
 #!/bin/bash
 # Modernize + build an ORIGINAL open-source screensaver for current macOS.
 # Clones the upstream repo (if needed), forces a universal build (arm64 + x86_64)
-# with a modern deployment target, signs it, and drops the .saver in the out dir.
+# with a modern deployment target, signs it (ad hoc by default), and drops the .saver in the out dir.
 #
 # Usage: scripts/build_from_source.sh <github-owner/repo> [out-dir]
 # The upstream repo is the source of truth; we only override build settings.
@@ -44,6 +44,10 @@ rm -rf "$dst"; cp -R "$saver" "$dst"
 lic="$(find "$repo" -maxdepth 2 -iname 'license*' | head -1)"
 [ -n "$lic" ] && cp "$lic" "$OUT/$(basename "$saver" .saver).LICENSE" 2>/dev/null || true
 
-ID="$(security find-identity -v -p codesigning | grep -m1 'Apple Development' | awk -F'"' '{print $2}')"
-[ -n "$ID" ] && codesign --force --deep --timestamp=none -s "$ID" "$dst" >/dev/null 2>&1 || codesign --force --deep -s - "$dst" >/dev/null 2>&1
+# Ad hoc by default; SAVER_SIGN_ID signs with a specific identity instead.
+if [ -n "${SAVER_SIGN_ID:-}" ]; then
+  codesign --force --deep --timestamp=none -s "$SAVER_SIGN_ID" "$dst" >/dev/null 2>&1
+else
+  codesign --force --deep -s - "$dst" >/dev/null 2>&1
+fi
 echo "✅ $name → $(basename "$saver")  archs=$(lipo -archs "$dst/Contents/MacOS/"* 2>/dev/null | head -1)"

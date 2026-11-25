@@ -1,115 +1,92 @@
 #!/usr/bin/env python3
 """
-Audit every .saver.zip in ./r2-upload/savers/ for macOS 26 (Apple Silicon)
-compatibility. The dominant breakage on modern macOS is a screensaver bundle
-that has no arm64 slice (x86_64/i386 only) — it runs, if at all, under Rosetta's
-flaky legacyScreenSaver host. Secondary signals: missing/adhoc code signature.
+Audit every .saver.zip in the bucket folder (default: dist/r2-bucket/savers).
 
-Classification:
-  BROKEN  - no arm64 slice (won't run natively on Apple Silicon)
-  RISKY   - arm64 present but unsigned / adhoc-signed (Gatekeeper friction)
-  OK      - arm64 present and Developer-ID / valid signature
+Per bundle it reports CPU architectures, the signer, whether the signature
+verifies, and whether a LICENSE file ships in the zip.
 
-Outputs a table to stdout and a machine-readable r2-upload/_saver_audit.json.
+Status:
+  BROKEN  - no bundle, no arm64 code, or the signature fails `codesign --verify --deep --strict`
+  WARN    - works, but Apple Silicon only (no x86_64), or signed with a personal
+            "Apple Development" certificate (that embeds the developer's email)
+  OK      - everything else
+
+Usage:  python3 scripts/audit_savers.py [folder]
+Exit code is 1 if any bundle is BROKEN, so this can run in CI.
 """
-import glob, json, os, plistlib, subprocess, tempfile, zipfile
-
-SAVERS = "r2-upload/savers"
+import glob, os, plistlib, subprocess, sys, tempfile, zipfile
 
 
-def sh(cmd: list[str]) -> tuple[int, str]:
+def run(cmd):
     p = subprocess.run(cmd, capture_output=True, text=True)
-    return p.returncode, (p.stdout + p.stderr)
+    return p.returncode, p.stdout + p.stderr
 
 
-def find_bundle(root: str) -> str | None:
+def find_bundle(root):
     for dirpath, dirs, _ in os.walk(root):
+        dirs[:] = [d for d in dirs if d != "__MACOSX"]
         for d in dirs:
             if d.endswith(".saver"):
                 return os.path.join(dirpath, d)
     return None
 
 
-def audit_one(zip_path: str) -> dict:
-    name = os.path.basename(zip_path)
-    rec = {"zip": name, "status": "BROKEN", "archs": "", "signed": "", "minOS": "",
-           "principal": "", "version": "", "note": ""}
+def audit(zip_path):
+    rec = {"zip": os.path.basename(zip_path), "status": "BROKEN", "archs": "", "signer": "",
+           "license": "no", "notes": []}
     with tempfile.TemporaryDirectory() as tmp:
-        try:
-            with zipfile.ZipFile(zip_path) as z:
-                z.extractall(tmp)
-        except Exception as e:  # noqa: BLE001
-            rec["note"] = f"unzip failed: {e}"
-            return rec
+        subprocess.run(["ditto", "-xk", zip_path, tmp], check=False)
+        rec["license"] = "yes" if any(n.upper().startswith("LICENSE")
+                                      for n in zipfile.ZipFile(zip_path).namelist()) else "no"
         bundle = find_bundle(tmp)
         if not bundle:
-            rec["note"] = "no .saver bundle inside"
+            rec["notes"].append("no .saver bundle inside")
             return rec
-        info_path = os.path.join(bundle, "Contents", "Info.plist")
-        exe = None
         try:
-            info = plistlib.load(open(info_path, "rb"))
-            exe = info.get("CFBundleExecutable")
-            rec["principal"] = info.get("NSPrincipalClass", "")
-            rec["minOS"] = str(info.get("LSMinimumSystemVersion", ""))
-            rec["version"] = str(info.get("CFBundleShortVersionString", ""))
+            info = plistlib.load(open(os.path.join(bundle, "Contents", "Info.plist"), "rb"))
+            exe = os.path.join(bundle, "Contents", "MacOS", info["CFBundleExecutable"])
         except Exception as e:  # noqa: BLE001
-            rec["note"] = f"no Info.plist ({e}); "
-        binpath = os.path.join(bundle, "Contents", "MacOS", exe) if exe else None
-        if not binpath or not os.path.exists(binpath):
-            # fall back to whatever single file is in MacOS/
-            macos = os.path.join(bundle, "Contents", "MacOS")
-            files = os.listdir(macos) if os.path.isdir(macos) else []
-            binpath = os.path.join(macos, files[0]) if files else None
-        if not binpath or not os.path.exists(binpath):
-            rec["note"] += "no executable found"
+            rec["notes"].append(f"bad Info.plist ({e})")
             return rec
-        _, archs = sh(["lipo", "-archs", binpath])
+        _, archs = run(["lipo", "-archs", exe])
         rec["archs"] = archs.strip()
-        code, cs = sh(["codesign", "-dvv", binpath])
-        line = next((l for l in cs.splitlines() if l.startswith("Authority=")), "")
-        if "not signed" in cs or code != 0 and "code object is not signed" in cs:
-            rec["signed"] = "unsigned"
-        elif "adhoc" in cs.lower():
-            rec["signed"] = "adhoc"
-        elif line:
-            rec["signed"] = line.replace("Authority=", "")[:40]
-        else:
-            rec["signed"] = "unknown"
+        _, details = run(["codesign", "-dvv", bundle])
+        authority = next((l[len("Authority="):] for l in details.splitlines() if l.startswith("Authority=")), "")
+        rec["signer"] = authority.split(" (")[0] if authority else ("ad hoc" if "adhoc" in details else "unsigned")
+        verified = run(["codesign", "--verify", "--deep", "--strict", bundle])[0] == 0
 
-        has_arm = "arm64" in rec["archs"]
-        signed_ok = rec["signed"] not in ("unsigned", "adhoc", "unknown", "")
-        if not has_arm:
-            rec["status"] = "BROKEN"
-            rec["note"] += "no arm64 slice"
-        elif not signed_ok:
-            rec["status"] = "RISKY"
-            rec["note"] += "arm64 ok but signature weak"
-        else:
-            rec["status"] = "OK"
+        if "arm64" not in rec["archs"]:
+            rec["notes"].append("no arm64 code")
+        if not verified:
+            rec["notes"].append("signature does not verify")
+        if rec["notes"]:
+            return rec
+        rec["status"] = "OK"
+        if "x86_64" not in rec["archs"]:
+            rec["status"] = "WARN"
+            rec["notes"].append("Apple Silicon only")
+        if rec["signer"].startswith("Apple Development:"):
+            rec["status"] = "WARN"
+            rec["notes"].append("personal development certificate (contains an email)")
     return rec
 
 
-def main() -> int:
-    zips = sorted(glob.glob(os.path.join(SAVERS, "*.saver.zip")))
+def main():
+    folder = sys.argv[1] if len(sys.argv) > 1 else "dist/r2-bucket/savers"
+    zips = sorted(glob.glob(os.path.join(folder, "*.saver.zip")))
     if not zips:
-        print(f"no .saver.zip in {SAVERS}")
+        print(f"no .saver.zip in {folder}")
         return 1
-    results = [audit_one(z) for z in zips]
-    order = {"BROKEN": 0, "RISKY": 1, "OK": 2}
-    results.sort(key=lambda r: (order.get(r["status"], 3), r["zip"].lower()))
-    w = max(len(r["zip"]) for r in results)
-    print(f"\n{'STATUS':7} {'ARCHS':16} {'SIGNED':10} {'zip'.ljust(w)}  note")
-    print("-" * (7 + 16 + 10 + w + 12))
+    results = [audit(z) for z in zips]
+    print(f"{'STATUS':7} {'ARCHS':14} {'LIC':4} {'SIGNER':34} ZIP / NOTES")
     for r in results:
-        print(f"{r['status']:7} {r['archs'][:15]:16} {r['signed'][:9]:10} "
-              f"{r['zip'].ljust(w)}  {r['note']}")
+        signer = r["signer"].split(":")[0] if r["signer"].startswith("Apple Development:") else r["signer"]
+        print(f"{r['status']:7} {r['archs'][:13]:14} {r['license']:4} {signer[:33]:34} {r['zip']}  {'; '.join(r['notes'])}")
     counts = {}
     for r in results:
         counts[r["status"]] = counts.get(r["status"], 0) + 1
     print("\nSUMMARY:", counts)
-    json.dump(results, open(os.path.join("r2-upload", "_saver_audit.json"), "w"), indent=2)
-    return 0
+    return 1 if counts.get("BROKEN") else 0
 
 
 if __name__ == "__main__":
