@@ -12,7 +12,7 @@ VOL_NAME="ClockSpace"
 BUILD_DIR="./build"
 EXPORT_PATH="$BUILD_DIR/Export"
 APP_BUNDLE="$EXPORT_PATH/$APP_NAME.app"
-DMG_BACKGROUND_IMG="ClockSpaceApp/Resources/dmg_background_final.png"
+DMG_BACKGROUND_IMG="scripts/assets/dmg_background.tiff"   # made by make_dmg_background.swift
 VOLUME_ICON="ClockSpaceApp/Resources/AppIcon.icns"
 FINAL_DMG="ClockSpace.dmg"
 TEMP_DMG="$BUILD_DIR/temp.dmg"
@@ -37,7 +37,7 @@ fi
 echo "🔐 Applying ad-hoc code signature..."
 # Remove any existing signature first to avoid conflicts
 codesign --remove-signature "$APP_BUNDLE"
-codesign --force --deep --sign - --entitlements ClockSpaceApp/ClockSpace.entitlements "$APP_BUNDLE"
+codesign --force --deep --sign - "$APP_BUNDLE"
 
 # 3. Staging
 echo "📁 Staging files..."
@@ -46,7 +46,7 @@ ln -s /Applications "$STAGING_DIR/Applications"
 
 # Add background (hidden folder)
 mkdir -p "$STAGING_DIR/.background"
-cp "$DMG_BACKGROUND_IMG" "$STAGING_DIR/.background/background.png"
+cp "$DMG_BACKGROUND_IMG" "$STAGING_DIR/.background/background.tiff"
 
 # Add volume icon if it exists
 if [ -f "$VOLUME_ICON" ]; then
@@ -69,25 +69,25 @@ sleep 3
 
 # Use AppleScript to set the visual properties
 echo "🖥️ Applying visual styles..."
-osascript <<EOF
+# Finder scripting can be unavailable on build machines; the DMG still works without the layout.
+osascript <<EOF || echo "⚠️ Finder layout skipped; the DMG will use the default icon view."
 tell application "Finder"
     tell disk "$VOL_NAME"
         open
         set current view of container window to icon view
         set toolbar visible of container window to false
         set statusbar visible of container window to false
-        set the bounds of container window to {400, 100, 1000, 500}
+        -- 640 x 420 content (plus the title bar), matching the background image
+        set the bounds of container window to {400, 100, 1040, 548}
         set theViewOptions to the icon view options of container window
-        set icon size of theViewOptions to 140
+        set icon size of theViewOptions to 128
+        set text size of theViewOptions to 13
         set arrangement of theViewOptions to not arranged
-        set background picture of theViewOptions to file ".background:background.png"
+        set background picture of theViewOptions to file ".background:background.tiff"
         
-        -- Centering icons on the glows in the new background
-        set position of item "$APP_NAME.app" of container window to {155, 190}
-        set position of item "Applications" of container window to {445, 190}
-        
-        -- No need to hide .background explicitly as the dot-prefix already hides it
-        
+        -- Icon centres; must match make_dmg_background.swift
+        set position of item "$APP_NAME.app" of container window to {170, 190}
+        set position of item "Applications" of container window to {470, 190}
         update without registering applications
         delay 2
         close
