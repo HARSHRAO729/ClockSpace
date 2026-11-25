@@ -2,14 +2,12 @@
 //  Category.swift
 //  ClockSpace
 //
-//  Screensaver marketplace categories — content-based taxonomy matching
-//  the awesome-macos-screensavers community catalog.
+//  Screensaver categories used by the catalog.
 //
 
 import SwiftUI
 
-/// Content-based category taxonomy for the screensaver marketplace.
-/// Matches the categories from the awesome-macos-screensavers repo.
+/// Category values as they appear in catalog.json.
 enum Category: String, Codable, CaseIterable, Identifiable {
     case nature
     case space
@@ -33,6 +31,12 @@ enum Category: String, Codable, CaseIterable, Identifiable {
     case other
     
     var id: String { rawValue }
+
+    /// Unknown category names (e.g. from a newer catalog) become `.other`.
+    init(from decoder: Decoder) throws {
+        let raw = try decoder.singleValueContainer().decode(String.self)
+        self = Category(rawValue: raw) ?? .other
+    }
     
     var displayName: String {
         switch self {
@@ -59,24 +63,7 @@ enum Category: String, Codable, CaseIterable, Identifiable {
         }
     }
     
-    /// Image name for the category card in the dashboard.
-    var imageName: String {
-        switch self {
-        case .nature: return "cat_nature"
-        case .space: return "cat_space"
-        case .anime: return "cat_anime"
-        case .cars: return "cat_cars"
-        case .city: return "cat_city"
-        case .videoGame: return "cat_videogames"
-        case .sciFi: return "cat_scifi"
-        case .fantasy: return "cat_fantasy"
-        case .cats: return "cat_cats"
-        case .tech: return "cat_tech"
-        default: return "cat_nature" // Fallback
-        }
-    }
-    
-    /// SF Symbol name for sidebar navigation.
+    /// SF Symbol for the category tile.
     var iconName: String {
         switch self {
         case .clocks:        return "clock.fill"

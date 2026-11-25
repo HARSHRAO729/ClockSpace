@@ -1,5 +1,5 @@
 //
-//  AppAlert.swift
+//  AlertProvider.swift
 //  ClockSpace
 //
 //  Standardized alert model for the application.
@@ -34,8 +34,5 @@ final class AlertProvider: ObservableObject {
     func showAlert(title: String, message: String) {
         currentAlert = AppAlert(title: title, message: message)
     }
-    
-    func showError(_ error: Error) {
-        currentAlert = AppAlert(title: "Error", message: error.localizedDescription)
-    }
+
 }

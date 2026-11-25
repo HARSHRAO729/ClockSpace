@@ -2,124 +2,105 @@
 //  ScreensaverCard.swift
 //  ClockSpace
 //
-//  Elite screensaver card: 16pt radius, vibrant overlapping badge,
-//  stark white title, muted gray metadata. Install button wired to
-//  ScreensaverManager with Installing → Installed state transitions.
+//  A screensaver card. The name and author are always shown; hovering adds
+//  Install and the favourite heart. Click, Return or Space opens the detail
+//  view. VoiceOver reads it as one button with Install/Favourite actions.
 //
 
 import SwiftUI
-import AVKit
-import Combine
-
-// MARK: - Shared AVPlayer Cache
-
-/// Manages a single reusable AVPlayer to prevent memory leaks.
-/// Previous implementation created a new `AVPlayer(url:)` on every hover,
-/// leaking 30-60 MB per interaction. This cache reuses one player instance.
-private final class HoverPlayerCache: ObservableObject {
-    static let shared = HoverPlayerCache()
-    
-    @Published private(set) var player: AVPlayer?
-    @Published private(set) var activeURL: URL?
-    
-    private init() {}
-    
-    func play(url: URL) {
-        if activeURL == url { return }
-        
-        // Tear down previous
-        player?.pause()
-        player?.replaceCurrentItem(with: nil)
-        
-        let newPlayer = AVPlayer(url: url)
-        newPlayer.isMuted = true
-        newPlayer.play()
-        
-        self.player = newPlayer
-        self.activeURL = url
-    }
-    
-    func stop() {
-        player?.pause()
-        player?.replaceCurrentItem(with: nil)
-        player = nil
-        activeURL = nil
-    }
-}
 
 struct ScreensaverCard: View {
-       let screensaver: Screensaver
+    let screensaver: Screensaver
     @EnvironmentObject var apiManager: APIManager
-    @StateObject private var manager = ScreensaverManager.shared
-    @ObservedObject private var playerCache = HoverPlayerCache.shared
-    @State private var isHovering: Bool = false
-    @State private var thumbnailRefresh: UUID = UUID()
-    
+    @ObservedObject private var manager = ScreensaverManager.shared
+    @State private var isHovering = false
+
+    private var isLiked: Bool { apiManager.isLiked(screensaver) }
+
     var body: some View {
-        ZStack {
-            thumbnailView
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-        .frame(maxWidth: 280)
-        .frame(height: 186)
-        .background(.ultraThinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-        .overlay {
-            LinearGradient(colors: [.clear, .black.opacity(0.85)], startPoint: .top, endPoint: .bottom)
-                .opacity(isHovering ? 1 : 0)
-                .allowsHitTesting(false)
-        }
-        .overlay(alignment: .bottom) {
-            if isHovering {
-                VStack(spacing: 8) {
-                    hoverInfoSection
-                    
-                    actionButton
-                        .padding(.horizontal, 14)
-                        .padding(.bottom, 12)
-                }
-                .transition(.move(edge: .bottom).combined(with: .opacity))
+        // The grid decides the card's size; the picture only fills it (an
+        // aspect-fill image must never set the layout width, or cards overlap).
+        Color.clear
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .frame(height: 186)
+            .overlay { thumbnailView }
+            .overlay(alignment: .bottom) { infoBar }
+            .overlay(alignment: .topTrailing) {
+                likeButton
+                    .padding(8)
+                    .opacity(isHovering || isLiked ? 1 : 0)
+                    .allowsHitTesting(isHovering)
             }
-        }
-        .overlay(alignment: .topTrailing) {
-            likeButton
-                .padding(10)
-                .opacity(isHovering ? 1 : 0)
-                .allowsHitTesting(isHovering)
-        }
-        .overlay(
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .stroke(Color.white.opacity(0.1), lineWidth: 0.5)
-        )
-        .scaleEffect(isHovering ? 1.05 : 1.0)
-        .shadow(
-            color: Color.black.opacity(isHovering ? 0.4 : 0.2),
-            radius: isHovering ? 20 : 10,
-            y: isHovering ? 12 : 4
-        )
-        .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isHovering)
-        .onHover { hovering in
-            isHovering = hovering
-            if hovering, let urlStr = screensaver.previewURL, let url = URL(string: urlStr) {
-                playerCache.play(url: url)
-            } else if !hovering {
-                playerCache.stop()
+            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .stroke(Color.white.opacity(isHovering ? 0.25 : 0.1), lineWidth: isHovering ? 1 : 0.5)
+            )
+            .scaleEffect(isHovering ? 1.03 : 1.0)
+            .shadow(color: .black.opacity(isHovering ? 0.4 : 0.2), radius: isHovering ? 18 : 8, y: isHovering ? 10 : 4)
+            .animation(.spring(response: 0.3, dampingFraction: 0.75), value: isHovering)
+            .contentShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .onHover { isHovering = $0 }
+            .onTapGesture(perform: open)
+            .focusable()
+            .onKeyPress(.return) { open(); return .handled }
+            .onKeyPress(.space) { open(); return .handled }
+            // VoiceOver: one button per card, with the hover-only controls as actions.
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("\(screensaver.name) by \(screensaver.author)")
+            .accessibilityValue(statusText)
+            .accessibilityAddTraits(.isButton)
+            .accessibilityAction(.default, open)
+            .accessibilityAction(named: isLiked ? "Remove from favourites" : "Add to favourites") {
+                apiManager.toggleLiked(screensaver)
             }
-        }
-        .onTapGesture {
-            withAnimation(CSTheme.Animation.standard) {
-                apiManager.detailedScreensaver = screensaver
+            .accessibilityAction(named: "Install") {
+                guard !manager.isInstalled(screensaver), !manager.isBusy else { return }
+                Task { await manager.install(screensaver) }
             }
-        }
-        .frame(minWidth: 0, maxWidth: .infinity)
-        .clipped()
-        .contentShape(Rectangle())
-        .id(thumbnailRefresh)
-        .onReceive(NotificationCenter.default.publisher(for: .thumbnailDidLoad)) { _ in
-            thumbnailRefresh = UUID()
+    }
+
+    private func open() {
+        withAnimation(CSTheme.Animation.standard) {
+            apiManager.detailedScreensaver = screensaver
         }
     }
-    
+
+    private var statusText: String {
+        if manager.isInstalling(screensaver) { return "Installing" }
+        if manager.isInstalled(screensaver) { return "Installed" }
+        return screensaver.category.displayName
+    }
+
+    // MARK: - Name, author and hover actions
+
+    private var infoBar: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(screensaver.name)
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundColor(.white)
+                    .lineLimit(1)
+                Text(screensaver.author)
+                    .font(.system(size: 11, weight: .medium))
+                    .foregroundColor(.white.opacity(0.7))
+                    .lineLimit(1)
+            }
+            if isHovering {
+                actionButton
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
+        }
+        .padding(.horizontal, 14)
+        .padding(.top, 28)
+        .padding(.bottom, 12)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            LinearGradient(colors: [.clear, .black.opacity(isHovering ? 0.9 : 0.75)],
+                           startPoint: .top, endPoint: .bottom)
+        )
+    }
+
     @ViewBuilder
     private var actionButton: some View {
         if manager.isInstalling(screensaver) {
@@ -127,132 +108,76 @@ struct ScreensaverCard: View {
                 ProgressView()
                     .controlSize(.small)
                     .tint(.white)
-                Text("Installing...")
-                    .font(.system(size: 12, weight: .bold))
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 8)
-            .background(Capsule().fill(Color.white.opacity(0.2)))
-        } else if manager.isInstalled(screensaver) {
-            HStack {
-                Image(systemName: "checkmark")
-                Text("Installed")
+                Text("Installing…")
             }
             .font(.system(size: 12, weight: .bold))
+            .foregroundColor(.white)
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 8)
-            .background(Capsule().fill(Color.green.opacity(0.2)))
+            .padding(.vertical, 7)
+            .background(Capsule().fill(Color.white.opacity(0.2)))
+        } else if manager.isInstalled(screensaver) {
+            Label("Installed", systemImage: "checkmark")
+                .font(.system(size: 12, weight: .bold))
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 7)
+                .background(Capsule().fill(CSTheme.success.opacity(0.3)))
         } else {
-            Button(action: {
-                Task {
-                    await manager.installFromMarketplace(screensaver)
-                }
-            }) {
-                Text("Apply")
+            Button {
+                Task { await manager.install(screensaver) }
+            } label: {
+                Text("Install")
                     .font(.system(size: 12, weight: .bold))
                     .foregroundColor(.black)
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 8)
+                    .padding(.vertical, 7)
                     .background(Capsule().fill(Color.white))
             }
             .buttonStyle(.plain)
+            .disabled(manager.isBusy)
+            .opacity(manager.isBusy ? 0.5 : 1)
         }
     }
-    
-    // MARK: - Thumbnail (16pt radius enforced)
-    
+
+    private var likeButton: some View {
+        Button {
+            apiManager.toggleLiked(screensaver)
+        } label: {
+            Image(systemName: isLiked ? "heart.fill" : "heart")
+                .font(.system(size: 15, weight: .bold))
+                .foregroundColor(isLiked ? .red : .white)
+                .frame(width: 32, height: 32)
+                .background(Circle().fill(Color.black.opacity(0.35)))
+        }
+        .buttonStyle(.plain)
+    }
+
+    // MARK: - Picture
+
     private var thumbnailView: some View {
         ZStack(alignment: .topLeading) {
-            // Live Preview (uses shared cached player)
-            if isHovering,
-               let urlStr = screensaver.previewURL,
-               let url = URL(string: urlStr),
-               let player = playerCache.player,
-               playerCache.activeURL == url {
-                VideoPlayer(player: player)
-                    .aspectRatio(contentMode: .fill)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .clipped()
-            } else if let nsImage = ThumbnailLoader.loadImage(named: screensaver.thumbnailURL) {
-                Image(nsImage: nsImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .clipped()
-            } else {
-                fallbackThumbnail
-            }
-            
-            // "NEW" Badge
+            ThumbnailView(screensaver.thumbnailURL) { fallbackThumbnail }
+
             if screensaver.isNew {
                 Text("NEW")
                     .font(.system(size: 8, weight: .heavy))
                     .foregroundColor(.white)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
-                    .background(Capsule().fill(Color.blue))
+                    .background(Capsule().fill(CSTheme.accent))
                     .padding(CSTheme.Spacing.sm)
-                    .offset(y: 40)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .clipShape(
-            UnevenRoundedRectangle(
-                topLeadingRadius: CSTheme.Radius.large,
-                bottomLeadingRadius: CSTheme.Radius.large,
-                bottomTrailingRadius: CSTheme.Radius.large,
-                topTrailingRadius: CSTheme.Radius.large
-            )
-        )
     }
-    
-    
-    // MARK: - Info Section
-    
-    private var hoverInfoSection: some View {
-        VStack(alignment: .leading, spacing: CSTheme.Spacing.sm) {
-            Text(screensaver.name)
-                .font(.system(size: 19, weight: .bold))
-                .foregroundColor(.white)
-                .lineLimit(2)
-                .minimumScaleFactor(0.8)
-                .fixedSize(horizontal: false, vertical: true)
-            Text("by \(screensaver.author)")
-                .font(.system(size: 11, weight: .medium))
-                .foregroundColor(.white.opacity(0.72))
-                .lineLimit(1)
-        }
-        .padding(.horizontal, 14)
-        .padding(.bottom, 12)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.trailing, 44) // keep clear of like button
-    }
-    
-    private var likeButton: some View {
-        Button(action: {
-            apiManager.toggleLiked(screensaver)
-        }) {
-            Image(systemName: apiManager.isLiked(screensaver) ? "heart.fill" : "heart")
-                .font(.system(size: 18, weight: .bold))
-                .foregroundColor(apiManager.isLiked(screensaver) ? .red : .white)
-                .padding(10)
-        }
-        .buttonStyle(.plain)
-    }
-    
-    // MARK: - Fallback Thumbnail (uses shared gradient palette)
-    
+
     private var fallbackThumbnail: some View {
         ZStack {
             ScreensaverGradients.cardGradient(for: screensaver)
-            VStack(spacing: 8) {
-                Image(systemName: screensaver.category.iconName)
-                    .font(.system(size: 32))
-                Text(screensaver.category.rawValue.uppercased())
-                    .font(.system(size: 10, weight: .black))
-                    .tracking(2)
-            }
-            .foregroundColor(.white.opacity(0.3))
+            Image(systemName: screensaver.category.iconName)
+                .font(.system(size: 32))
+                .foregroundColor(.white.opacity(0.3))
+                .padding(.bottom, 30)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
