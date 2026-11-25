@@ -2,256 +2,178 @@
 //  HeroView.swift
 //  ClockSpace
 //
-//  Massive edge-to-edge featured hero with gradient fade-out and
-//  a horizontally scrolling "Featured" carousel overlapping the bottom edge.
+//  The Home banner: one featured screensaver at a time, with a strip of the
+//  featured set underneath. Rotates every 8 seconds unless Reduce Motion is on.
 //
 
 import SwiftUI
 import Combine
 
 struct HeroView: View {
-    
-    let featuredScreensavers: [Screensaver]
+
+    let items: [Screensaver]
+
     @EnvironmentObject var apiManager: APIManager
-    @State private var hoveredCard: UUID?
-    @State private var currentIndex: Int = 0
-    
-    let timer = Timer.publish(every: 8, on: .main, in: .common).autoconnect()
-    
-    var currentItem: Screensaver? {
-        guard !featuredScreensavers.isEmpty else { return nil }
-        return featuredScreensavers[currentIndex % featuredScreensavers.count]
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var index = 0
+    @State private var hovered: UUID?
+
+    private let timer = Timer.publish(every: 8, on: .main, in: .common).autoconnect()
+
+    private var current: Screensaver? {
+        items.isEmpty ? nil : items[index % items.count]
     }
-    
+
     var body: some View {
-        GeometryReader { container in
-            ZStack(alignment: .bottom) {
-                // ── Featured Hero Image (animated transition) ──
-                Group {
-                    if let item = currentItem {
-                        heroImage(for: item, containerWidth: container.size.width)
-                            .id(item.id)
-                            .transition(.opacity)
-                    } else {
-                        heroPlaceholder
-                            .frame(width: container.size.width, height: 400)
-                    }
-                }
-                .animation(.easeInOut(duration: 1.2), value: currentIndex)
-                
-                // ── Overlapping Carousel (Selection Overlay) ──
-                VStack(alignment: .leading, spacing: CSTheme.Spacing.md) {
-                    Text("Wallspace's Pick")
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(.white)
-                        .padding(.leading, CSTheme.Spacing.xxl)
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: CSTheme.Spacing.md) {
-                            ForEach(Array(featuredScreensavers.prefix(6).enumerated()), id: \.offset) { index, saver in
-                                Button(action: {
-                                    withAnimation(.easeInOut(duration: 0.8)) {
-                                        currentIndex = index
-                                    }
-                                }) {
-                                    FeaturedThumbnail(
-                                        screensaver: saver,
-                                        isHovered: hoveredCard == saver.id,
-                                        isActive: currentIndex == index
-                                    )
-                                }
-                                .buttonStyle(.plain)
-                                .onHover { hovering in
-                                    withAnimation(CSTheme.Animation.spring) {
-                                        hoveredCard = hovering ? saver.id : nil
-                                    }
-                                }
+        VStack(alignment: .leading, spacing: 16) {
+            if let item = current {
+                banner(for: item)
+                    .id(item.id)
+                    .transition(.opacity)
+            }
+
+            if items.count > 1 {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: CSTheme.Spacing.md) {
+                        ForEach(Array(items.enumerated()), id: \.element.id) { offset, saver in
+                            Button {
+                                withAnimation(.easeInOut(duration: 0.6)) { index = offset }
+                            } label: {
+                                FeaturedThumbnail(
+                                    screensaver: saver,
+                                    isHovered: hovered == saver.id,
+                                    isActive: saver.id == current?.id
+                                )
                             }
+                            .buttonStyle(.plain)
+                            .onHover { hovered = $0 ? saver.id : nil }
+                            .accessibilityLabel("Show \(saver.name)")
                         }
-                        .padding(.horizontal, CSTheme.Spacing.xxl)
-                        .padding(.bottom, CSTheme.Spacing.lg)
                     }
-                    .frame(width: container.size.width, alignment: .leading)
+                    .padding(.vertical, 6)
                 }
-                .frame(width: container.size.width, alignment: .leading)
-                .padding(.bottom, 8)
             }
-            .frame(width: container.size.width, height: 400, alignment: .topLeading)
         }
-        .frame(height: 400)
-        .clipped()
-        .contentShape(Rectangle())
-        .onChange(of: currentIndex) { _, _ in
-            // Index changed
-        }
+        .animation(.easeInOut(duration: 0.8), value: index)
         .onReceive(timer) { _ in
-            guard !featuredScreensavers.isEmpty else { return }
-            withAnimation(.easeInOut(duration: 1.2)) {
-                currentIndex = (currentIndex + 1) % featuredScreensavers.count
-            }
+            guard !reduceMotion, items.count > 1, apiManager.detailedScreensaver == nil else { return }
+            index = (index + 1) % items.count
         }
     }
-    
-    // MARK: - Hero Image
-    
-    private func heroImage(for heroItem: Screensaver, containerWidth: CGFloat) -> some View {
-        ZStack {
-            // Cinematic background (Image or gradient)
-            if let nsImage = ThumbnailLoader.loadImage(named: heroItem.thumbnailURL) {
-                Image(nsImage: nsImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: containerWidth)
-                    .frame(height: 400)
-                    .clipped()
-            } else {
-                ScreensaverGradients.heroGradient(for: heroItem)
-                    .frame(width: containerWidth)
-                    .frame(height: 400)
-            }
-            
-            // Hero info overlay
-            VStack(alignment: .leading, spacing: CSTheme.Spacing.md) {
-                Spacer()
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(heroItem.name)
-                        .font(.system(size: 64, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
-                        .shadow(color: .black.opacity(0.3), radius: 20)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.55)
-                        .frame(maxWidth: 760, alignment: .leading)
-                    
-                    Text(heroItem.category.rawValue.uppercased())
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(.white.opacity(0.6))
-                        .tracking(4)
-                        .padding(.top, -10)
-                        .shadow(color: .black.opacity(0.3), radius: 10)
-                    
-                    HStack(spacing: 12) {
-                        Text(heroItem.category.rawValue)
-                        Text(heroItem.resolution ?? "4K")
-                        Text(heroItem.fileSize ?? "Dynamic")
-                    }
+
+    // MARK: - Banner
+
+    private func banner(for item: Screensaver) -> some View {
+        ZStack(alignment: .bottomLeading) {
+            ThumbnailView(item.thumbnailURL) { ScreensaverGradients.heroGradient(for: item) }
+                .frame(maxWidth: .infinity)
+                .frame(height: 300)
+
+            LinearGradient(colors: [.clear, .black.opacity(0.85)], startPoint: .center, endPoint: .bottom)
+                .allowsHitTesting(false)
+
+            VStack(alignment: .leading, spacing: 10) {
+                Text("FEATURED")
+                    .font(.system(size: 11, weight: .bold))
+                    .tracking(2)
+                    .foregroundColor(.white.opacity(0.6))
+
+                Text(item.name)
+                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+
+                Text(details(for: item))
                     .font(.system(size: 13, weight: .medium))
-                    .foregroundColor(.white.opacity(0.8))
-                }
-                
-                HStack(spacing: 16) {
-                    Button(action: {
+                    .foregroundColor(.white.opacity(0.75))
+
+                HStack(spacing: 12) {
+                    Button {
                         withAnimation(CSTheme.Animation.standard) {
-                            apiManager.detailedScreensaver = heroItem
+                            apiManager.detailedScreensaver = item
                         }
-                    }) {
+                    } label: {
                         HStack(spacing: 8) {
                             Text("View Screensaver")
-                                .font(.system(size: 13, weight: .bold))
                             Image(systemName: "arrow.up.right")
-                                .font(.system(size: 12, weight: .bold))
                         }
+                        .font(.system(size: 13, weight: .bold))
                         .foregroundColor(.black)
-                        .padding(.horizontal, 28)
-                        .padding(.vertical, 14)
-                        .background(RoundedRectangle(cornerRadius: 30).fill(Color.white))
+                        .padding(.horizontal, 22)
+                        .padding(.vertical, 11)
+                        .background(Capsule().fill(Color.white))
                     }
                     .buttonStyle(.plain)
-                    
-                    Button(action: {
-                        apiManager.toggleLiked(heroItem)
-                    }) {
-                        Image(systemName: apiManager.isLiked(heroItem) ? "heart.fill" : "heart")
-                            .font(.system(size: 20))
-                            .foregroundColor(apiManager.isLiked(heroItem) ? .red : .white)
-                            .frame(width: 52, height: 52)
-                            .background(Circle().fill(Color.white.opacity(0.1)))
-                            .overlay(Circle().stroke(Color.white.opacity(0.1), lineWidth: 1))
+
+                    Button {
+                        apiManager.toggleLiked(item)
+                    } label: {
+                        Image(systemName: apiManager.isLiked(item) ? "heart.fill" : "heart")
+                            .font(.system(size: 16))
+                            .foregroundColor(apiManager.isLiked(item) ? .red : .white)
+                            .frame(width: 40, height: 40)
+                            .background(Circle().fill(Color.white.opacity(0.12)))
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel(apiManager.isLiked(item) ? "Remove from favourites" : "Add to favourites")
                 }
+                .padding(.top, 4)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.leading, CSTheme.Spacing.xxl)
-            .padding(.bottom, 100) // Reduced bottom padding to fit 400 height
+            .padding(28)
         }
-        .frame(width: containerWidth)
-        .frame(height: 400)
-        .clipped()
-        .contentShape(Rectangle())
+        .frame(height: 300)
+        .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 22, style: .continuous)
+                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+        )
     }
-    
-    private var heroPlaceholder: some View {
-        CSTheme.surface
-            .frame(height: 400)
-            .shimmer()
+
+    private func details(for item: Screensaver) -> String {
+        var parts = ["by \(item.author)", item.category.displayName]
+        if let size = item.fileSize { parts.append(size) }
+        return parts.joined(separator: " · ")
     }
 }
 
 // MARK: - Featured Thumbnail
 
 struct FeaturedThumbnail: View {
-    
+
     let screensaver: Screensaver
     let isHovered: Bool
     let isActive: Bool
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: CSTheme.Spacing.sm) {
-            // Thumbnail image
             ZStack(alignment: .topLeading) {
-                Group {
-                    if let nsImage = ThumbnailLoader.loadImage(named: screensaver.thumbnailURL) {
-                        Image(nsImage: nsImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 200, height: 130)
-                            .clipShape(RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous))
-                    } else {
-                        RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
-                            .fill(thumbnailGradient)
-                            .frame(width: 200, height: 130)
-                    }
-                }
+                ThumbnailView(screensaver.thumbnailURL) { ScreensaverGradients.cardGradient(for: screensaver) }
+                .frame(width: 180, height: 112)
+                .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                 .overlay(
-                    RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
-                        .stroke(isActive ? Color.white : Color.clear, lineWidth: 3)
+                    RoundedRectangle(cornerRadius: 14, style: .continuous)
+                        .stroke(isActive ? Color.white : Color.white.opacity(0.08), lineWidth: isActive ? 2 : 1)
                 )
-                
-                // Badge
-                badgeView
-                    .offset(x: -6, y: -6)
+
+                if screensaver.isNew {
+                    Text("NEW")
+                        .font(.system(size: 8, weight: .heavy))
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 3)
+                        .background(Capsule().fill(CSTheme.accent))
+                        .foregroundColor(.white)
+                        .padding(6)
+                }
             }
-            
+
             Text(screensaver.name)
                 .font(.system(size: 13, weight: .bold))
                 .foregroundColor(isActive ? .white : CSTheme.textMuted)
                 .lineLimit(1)
         }
-        .frame(width: 200)
-        .scaleEffect(isHovered ? 1.05 : (isActive ? 1.02 : 1.0))
-        .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isHovered || isActive)
-    }
-    
-    @ViewBuilder
-    private var badgeView: some View {
-        if screensaver.isPremium {
-            pillBadge(text: "PREMIUM", color: CSTheme.premiumGold, textColor: .black)
-        } else if screensaver.isNew {
-            pillBadge(text: "NEW", color: CSTheme.accent, textColor: .white)
-        }
-    }
-    
-    private func pillBadge(text: String, color: Color, textColor: Color) -> some View {
-        Text(text)
-            .font(.system(size: 8, weight: .heavy))
-            .padding(.horizontal, 8)
-            .padding(.vertical, 3)
-            .background(Capsule().fill(color))
-            .foregroundColor(textColor)
-    }
-    
-    private var thumbnailGradient: LinearGradient {
-        LinearGradient(colors: [Color.white.opacity(0.1), Color.white.opacity(0.05)], startPoint: .top, endPoint: .bottom)
+        .frame(width: 180)
+        .scaleEffect(isHovered ? 1.04 : 1.0)
+        .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isHovered)
     }
 }

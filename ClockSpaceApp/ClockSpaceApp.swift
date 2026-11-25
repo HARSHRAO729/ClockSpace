@@ -2,67 +2,84 @@
 //  ClockSpaceApp.swift
 //  ClockSpace
 //
-//  Main entry point for the ClockSpace marketplace dashboard.
+//  App entry point: one main window, the Settings window (⌘,) and the Go menu.
 //
 
 import SwiftUI
 import AppKit
 
-class AppDelegate: NSObject, NSApplicationDelegate {
-    func applicationDidFinishLaunching(_ notification: Notification) {
-        // Set Dock Icon programatically if the image exists
-        if let image = NSImage(named: "ClockSpace") {
-            NSApplication.shared.applicationIconImage = image
-        }
+final class AppDelegate: NSObject, NSApplicationDelegate {
+    /// ClockSpace is a single-window app: closing the window quits it.
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        true
     }
 }
 
 @main
 struct ClockSpaceApp: App {
-    
-    @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
+
+    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @StateObject private var apiManager = APIManager.shared
-    @State private var isAppReady = false
+    @StateObject private var navigation = NavigationModel()
 
     var body: some Scene {
-        WindowGroup {
-            ZStack {
-                if isAppReady {
-                    DashboardView()
-                        .environmentObject(apiManager)
-                        .transition(.opacity.combined(with: .scale(scale: 1.02)))
-                } else {
-                    LaunchView()
-                        .transition(.opacity)
+        // `Window` (not `WindowGroup`): one main window, no File › New Window.
+        Window("ClockSpace", id: "main") {
+            DashboardView()
+                .environmentObject(apiManager)
+                .environmentObject(navigation)
+                .preferredColorScheme(.dark)
+                .frame(width: CSConstants.Layout.contentWidth,
+                       height: CSConstants.Layout.contentHeight)
+                .task {
+                    // Tests run inside the app; keep them off the network.
+                    guard !CSConstants.isRunningTests else { return }
+                    // The saved catalog is already showing; this refreshes it from the CDN.
+                    await apiManager.refreshCatalog()
+                    // At most once a day, and only if enabled in Settings.
+                    await UpdateChecker.shared.checkAtLaunchIfDue()
                 }
-            }
-            .preferredColorScheme(.dark)
-            .frame(
-                minWidth: CSConstants.Layout.windowMinWidth,
-                maxWidth: CSConstants.Layout.windowMaxWidth,
-                minHeight: CSConstants.Layout.windowMinHeight,
-                maxHeight: CSConstants.Layout.windowMaxHeight
-            )
-            .task {
-                // Perform initial fetch and minimum splash duration in parallel
-                async let fetch: () = apiManager.refreshCatalog()
-                async let wait: Void? = try? await Task.sleep(nanoseconds: 1_500_000_000) // 1.5s minimum
-                
-                // Wait for both to finish
-                _ = await fetch
-                _ = await wait
-                
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    isAppReady = true
-                }
-            }
         }
-        .defaultSize(
-            width: CSConstants.Layout.windowDefaultWidth,
-            height: CSConstants.Layout.windowDefaultHeight
-        )
         .windowStyle(.hiddenTitleBar)
+        // Fixed size: the window takes exactly the content's size and cannot be resized.
         .windowResizability(.contentSize)
+        .commands {
+            GoCommands(navigation: navigation, apiManager: apiManager)
+        }
+
+        Settings {
+            SettingsView()
+                .environmentObject(apiManager)
+                .preferredColorScheme(.dark)
+        }
+    }
+}
+
+/// The Go menu: ⌘1 Home, ⌘2 Explore, ⌘3 Library, ⌘F Search.
+struct GoCommands: Commands {
+    @ObservedObject var navigation: NavigationModel
+    let apiManager: APIManager
+
+    var body: some Commands {
+        CommandMenu("Go") {
+            Button("Home") { show(.home) }
+                .keyboardShortcut("1", modifiers: .command)
+            Button("Explore") { show(.explore) }
+                .keyboardShortcut("2", modifiers: .command)
+            Button("Library") { show(.library) }
+                .keyboardShortcut("3", modifiers: .command)
+            Divider()
+            Button("Search…") {
+                apiManager.detailedScreensaver = nil
+                navigation.isSearchPresented = true
+            }
+            .keyboardShortcut("f", modifiers: .command)
+        }
+    }
+
+    private func show(_ tab: NavTab) {
+        apiManager.detailedScreensaver = nil
+        navigation.isSearchPresented = false
+        navigation.selectedTab = tab
     }
 }

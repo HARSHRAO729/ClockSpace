@@ -2,141 +2,112 @@
 //  LibraryView.swift
 //  ClockSpace
 //
-//  Placeholder for the Library tab — user's installed and saved screensavers.
+//  The Library tab: the installed screensaver and the user's favourites.
 //
 
 import SwiftUI
 
 struct LibraryView: View {
-    
+
     @EnvironmentObject var apiManager: APIManager
-    @State private var hoveredPlaylist: Int?
-    
+    @ObservedObject private var manager = ScreensaverManager.shared
+    @State private var confirmRemoveAll = false
+
+    private var favourites: [Screensaver] {
+        apiManager.alphabetical.filter { apiManager.isLiked($0) }
+    }
+
     var body: some View {
-        VStack(spacing: CSTheme.Spacing.xxl) {
-            // ── Wallpaper Playlists Section ──
-            VStack(alignment: .leading, spacing: CSTheme.Spacing.lg) {
-                HStack(alignment: .bottom) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Wallpaper Playlists")
-                            .font(CSTheme.Font.sectionTitle)
-                            .foregroundColor(.white)
-                        Text("Create playlists and auto-rotate your favorite screensavers")
-                            .font(CSTheme.Font.caption)
-                            .foregroundColor(CSTheme.textTertiary)
-                    }
-                    Spacer()
-                    Button("Clear all") {
-                        withAnimation {
-                            apiManager.clearLikedItems()
-                            ScreensaverManager.shared.clearAllInstalled()
-                        }
-                    }
-                        .font(.system(size: 11, weight: .medium))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                        .background(Color.red.opacity(0.1))
-                        .cornerRadius(6)
-                        .buttonStyle(.plain)
-                }
-                
-                HStack(spacing: CSTheme.Spacing.lg) {
-                    // Create Playlist Card
-                    createPlaylistCard
-                    
-                    // Existing Playlist Mock
-                    ForEach(apiManager.playlists, id: \.self) { playlist in
-                        playlistCard(title: playlist, color: Color.red.opacity(0.2))
-                    }
-                    
-                    if apiManager.playlists.isEmpty {
-                        Text("No playlists created.")
-                            .font(CSTheme.Font.caption)
-                            .foregroundColor(CSTheme.textTertiary)
-                    }
-                    
-                    Spacer()
-                }
-            }
-            
-            // ── Saved Wallpapers Section ──
-            VStack(alignment: .leading, spacing: CSTheme.Spacing.lg) {
-                let likedScreensavers = apiManager.screensavers.filter { apiManager.isLiked($0) }
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Saved Wallpapers")
-                        .font(CSTheme.Font.sectionTitle)
-                        .foregroundColor(.white)
-                    Text("Your collection of \(likedScreensavers.count) favorited screensavers")
-                        .font(CSTheme.Font.caption)
-                        .foregroundColor(CSTheme.textTertiary)
-                }
-                
-                if likedScreensavers.isEmpty {
-                    emptySavedState
-                } else {
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: CSTheme.Spacing.lg) {
-                        ForEach(likedScreensavers) { saver in
-                            ScreensaverCard(screensaver: saver)
-                        }
-                    }
-                }
-            }
+        VStack(alignment: .leading, spacing: 36) {
+            installedSection
+            favouritesSection
         }
-        .padding(.top, CSTheme.Spacing.xl)
+        .padding(.top, 8)
         .padding(.bottom, 60)
-    }
-    
-    private var emptySavedState: some View {
-        VStack(spacing: 20) {
-            Image(systemName: "heart.slash")
-                .font(.system(size: 40))
-                .foregroundColor(CSTheme.textTertiary)
-            Text("No saved wallpapers yet")
-                .font(CSTheme.Font.headline)
-                .foregroundColor(CSTheme.textMuted)
+        .confirmationDialog("Remove all favourites?", isPresented: $confirmRemoveAll) {
+            Button("Remove All", role: .destructive) {
+                withAnimation { apiManager.clearLikedItems() }
+            }
+        } message: {
+            Text("Installed screensavers are not affected.")
         }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 40)
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color.white.opacity(0.02)))
     }
-    
-    private var createPlaylistCard: some View {
-        VStack {
-            RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
-                .stroke(style: StrokeStyle(lineWidth: 1.5, dash: [4]))
-                .foregroundColor(Color.white.opacity(0.2))
-                .frame(width: 200, height: 130)
-                .overlay(
-                    HStack(spacing: 8) {
-                        Image(systemName: "plus")
-                        Text("Create Playlist")
+
+    // MARK: - Installed
+
+    private var installedSection: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            SectionHeader(title: "Installed", subtitle: "ClockSpace keeps one screensaver installed at a time")
+
+            if let record = manager.installed {
+                HStack(spacing: 16) {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 24))
+                        .foregroundColor(CSTheme.success)
+
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(record.name)
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(.white)
+                        Text("Click Open Settings and choose it in the screen saver list")
+                            .font(CSTheme.Font.caption)
+                            .foregroundColor(CSTheme.textMuted)
                     }
-                    .font(.system(size: 13, weight: .semibold))
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                    .background(Color.white.opacity(0.05))
-                    .cornerRadius(20)
+
+                    Spacer()
+
+                    if let saver = apiManager.screensavers.first(where: { $0.id == record.id }) {
+                        Button("Details") {
+                            withAnimation(CSTheme.Animation.standard) { apiManager.detailedScreensaver = saver }
+                        }
+                        .buttonStyle(.bordered)
+                    }
+                    Button("Open Settings") { manager.openScreenSaverSettings() }
+                        .buttonStyle(.borderedProminent)
+                        .tint(CSTheme.accent)
+                    Button("Uninstall", role: .destructive) {
+                        withAnimation { manager.uninstallCurrent() }
+                    }
+                    .buttonStyle(.bordered)
+                }
+                .padding(18)
+                .background(
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                        .fill(Color.white.opacity(0.04))
+                        .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .stroke(Color.white.opacity(0.08), lineWidth: 1))
                 )
+            } else {
+                EmptyStateView(symbol: "display",
+                               title: "Nothing installed",
+                               message: "Open any screensaver and click Install.")
+                    .background(RoundedRectangle(cornerRadius: 16).fill(Color.white.opacity(0.02)))
+            }
         }
     }
-    
-    private func playlistCard(title: String, color: Color) -> some View {
-        ZStack(alignment: .bottomLeading) {
-            RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
-                .fill(color)
-                .frame(width: 200, height: 130)
-            
-            Text(title)
-                .font(.system(size: 24, weight: .bold))
-                .foregroundColor(.white)
-                .padding(CSTheme.Spacing.md)
+
+    // MARK: - Favourites
+
+    private var favouritesSection: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack(alignment: .bottom) {
+                SectionHeader(
+                    title: "Favourites",
+                    subtitle: favourites.count == 1 ? "1 favourite screensaver" : "\(favourites.count) favourite screensavers")
+                if !favourites.isEmpty {
+                    Button("Remove All Favourites") { confirmRemoveAll = true }
+                        .buttonStyle(.bordered)
+                }
+            }
+
+            if favourites.isEmpty {
+                EmptyStateView(symbol: "heart",
+                               title: "No favourites yet",
+                               message: "Click the heart on any screensaver to save it here.")
+                    .background(RoundedRectangle(cornerRadius: 16).fill(Color.white.opacity(0.02)))
+            } else {
+                ScreensaverGrid(items: favourites)
+            }
         }
-        .overlay(
-            RoundedRectangle(cornerRadius: CSTheme.Radius.large, style: .continuous)
-                .stroke(Color.white.opacity(0.08), lineWidth: 0.5)
-        )
     }
 }

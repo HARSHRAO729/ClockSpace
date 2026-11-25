@@ -2,9 +2,7 @@
 //  ScreensaverGradients.swift
 //  ClockSpace
 //
-//  Shared gradient palette for screensaver cards, detail backgrounds,
-//  and hero views. Eliminates identical gradient arrays duplicated
-//  across ScreensaverCard, ScreensaverDetailView, and HeroView.
+//  Fallback gradients shown when a screensaver's picture isn't available.
 //
 
 import SwiftUI
@@ -36,15 +34,17 @@ enum ScreensaverGradients {
     
     // MARK: - Public API
     
-    /// Deterministic gradient for a screensaver based on its name hash.
+    /// Same gradient for the same screensaver on every launch.
+    /// (`hashValue` can't be used: Swift randomizes it per launch.)
     static func cardGradient(for screensaver: Screensaver) -> LinearGradient {
-        let index = abs(screensaver.name.hashValue) % cardPalette.count
-        return cardPalette[index]
+        cardPalette[stableIndex(screensaver.name, count: cardPalette.count)]
     }
-    
-    /// Deterministic hero gradient for a screensaver.
+
     static func heroGradient(for screensaver: Screensaver) -> LinearGradient {
-        let index = abs(screensaver.name.hashValue) % heroPalette.count
-        return heroPalette[index]
+        heroPalette[stableIndex(screensaver.name, count: heroPalette.count)]
+    }
+
+    private static func stableIndex(_ text: String, count: Int) -> Int {
+        Int(text.unicodeScalars.reduce(0) { ($0 &* 31 &+ UInt($1.value)) } % UInt(count))
     }
 }

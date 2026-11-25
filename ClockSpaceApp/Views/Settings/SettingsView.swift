@@ -2,287 +2,129 @@
 //  SettingsView.swift
 //  ClockSpace
 //
-//  Dark-mode settings sheet matching macOS utility app conventions.
+//  The Settings window (⌘,): General and Credits tabs.
 //
 
 import SwiftUI
+import AppKit
 
 struct SettingsView: View {
-    
-    @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var licenseManager: LicenseManager
-    @State private var startOnLogin: Bool = true
-    @Environment(\.openURL) var openURL
-    @State private var installedCount: Int = 0
-    @AppStorage("cs_checkForUpdates") private var checkForUpdates: Bool = true
-    @State private var showCredits: Bool = false
-    
     var body: some View {
-        ZStack(alignment: .topTrailing) {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 24) {
-                    // Header
-                    HStack {
-                        Image(systemName: "gear")
-                            .font(.system(size: 24))
-                        Text("Settings")
-                            .font(.system(size: 24, weight: .bold))
-                    }
-                    .foregroundColor(.white)
-                    .padding(.top, 40)
-                    .padding(.bottom, 8)
-                    
-                    // General Section
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("General")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(CSTheme.textSecondary)
-                        
-                        VStack(spacing: 0) {
-                            toggleRow(title: "Launch at Login", isOn: $startOnLogin)
-                            Divider().background(Color.white.opacity(0.1))
-                            toggleRow(title: "Check for Updates automatically", isOn: $checkForUpdates)
-                            Divider().background(Color.white.opacity(0.1))
-                            
-                            HStack {
-                                Text("Screensaver Directory")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(.white)
-                                Spacer()
-                                Button("Open in Finder") {
-                                    NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: FileSystemService.shared.screenSaversDirectory.path)
-                                }
-                                .buttonStyle(.plain)
-                                .foregroundColor(.blue)
-                                .font(.system(size: 13, weight: .medium))
-                            }
-                            .padding(.vertical, 12)
-                        }
-                        .padding(.horizontal, 16)
-                        .background(Color.white.opacity(0.05))
-                        .cornerRadius(8)
-                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white.opacity(0.1), lineWidth: 1))
-                    }
-                    
-                    // Appearance Section
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("Appearance")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(CSTheme.textSecondary)
-                        
-                        VStack(spacing: 0) {
-                            HStack {
-                                Text("Theme")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(.white)
-                                Spacer()
-                                Text("Dark")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(CSTheme.textSecondary)
-                            }
-                            .padding(.vertical, 12)
-                        }
-                        .padding(.horizontal, 16)
-                        .background(Color.white.opacity(0.05))
-                        .cornerRadius(8)
-                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white.opacity(0.1), lineWidth: 1))
-                    }
-                    
-                    // License Section
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("License")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(CSTheme.textSecondary)
-                        
-                        VStack(spacing: 0) {
-                            HStack {
-                                Text("Status")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(.white)
-                                Spacer()
-                                Text(licenseManager.isPro ? "\(licenseManager.tierName) Activated" : "Free Tier")
-                                    .font(.system(size: 14, weight: .bold))
-                                    .foregroundColor(licenseManager.isPro ? .green : CSTheme.textSecondary)
-                            }
-                            .padding(.vertical, 12)
-                            
-                            if licenseManager.isPro {
-                                Divider().background(Color.white.opacity(0.1))
-                                HStack {
-                                    Text("License Key")
-                                        .font(.system(size: 14, weight: .medium))
-                                        .foregroundColor(.white)
-                                    Spacer()
-                                    Text(licenseManager.maskedKey)
-                                        .font(.system(size: 14, weight: .medium))
-                                        .foregroundColor(CSTheme.textSecondary)
-                                }
-                                .padding(.vertical, 12)
-                            }
-                        }
-                        .padding(.horizontal, 16)
-                        .background(Color.white.opacity(0.05))
-                        .cornerRadius(8)
-                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white.opacity(0.1), lineWidth: 1))
-                    }
-                    
-                    // About Section
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("About")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(CSTheme.textSecondary)
-                        
-                        VStack(spacing: 0) {
-                            HStack {
-                                Text("Version")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(.white)
-                                Spacer()
-                                Text("v\(CSConstants.appVersion) (Build \(CSConstants.buildNumber))")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(CSTheme.textSecondary)
-                            }
-                            .padding(.vertical, 12)
-                            Divider().background(Color.white.opacity(0.1))
-                            
-                            HStack {
-                                Text("Installed Screensavers")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(.white)
-                                Spacer()
-                                Text("\(installedCount)")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(CSTheme.textSecondary)
-                            }
-                            .padding(.vertical, 12)
-                            Divider().background(Color.white.opacity(0.1))
-                            
-                            HStack {
-                                Text("GitHub Repository")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(.white)
-                                Spacer()
-                                Button("Open Repo") {
-                                    if let url = URL(string: "https://github.com/CivicEase/ClockSpace") {
-                                        openURL(url)
-                                    }
-                                }
-                                .buttonStyle(.plain)
-                                .foregroundColor(.blue)
-                                .font(.system(size: 13, weight: .medium))
-                            }
-                            .padding(.vertical, 12)
-                            Divider().background(Color.white.opacity(0.1))
-                            
-                            HStack {
-                                Text("License")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(.white)
-                                Spacer()
-                                Button("View License") {
-                                    if let url = URL(string: "https://github.com/CivicEase/ClockSpace/blob/main/LICENSE") {
-                                        openURL(url)
-                                    }
-                                }
-                                .buttonStyle(.plain)
-                                .foregroundColor(.blue)
-                                .font(.system(size: 13, weight: .medium))
-                            }
-                            .padding(.vertical, 12)
-                        }
-                        .padding(.horizontal, 16)
-                        .background(Color.white.opacity(0.05))
-                        .cornerRadius(8)
-                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white.opacity(0.1), lineWidth: 1))
-                    }
-                    
-                    // About Section
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("Project")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(CSTheme.textSecondary)
-                        
-                        VStack(spacing: 0) {
-                            HStack {
-                                Text("About & Credits")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(.white)
-                                Spacer()
-                                Button("View Credits") {
-                                    showCredits = true
-                                }
-                                .buttonStyle(.plain)
-                                .foregroundColor(.blue)
-                                .font(.system(size: 13, weight: .medium))
-                            }
-                            .padding(.vertical, 12)
-                            
-                            Divider().background(Color.white.opacity(0.1))
-                            
-                            HStack {
-                                Text("Version")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(.white)
-                                Spacer()
-                                Text("0.55 (Open Source)")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(CSTheme.textSecondary)
-                            }
-                            .padding(.vertical, 12)
-                        }
-                        .padding(.horizontal, 16)
-                        .background(Color.white.opacity(0.05))
-                        .cornerRadius(8)
-                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white.opacity(0.1), lineWidth: 1))
-                    }
-                    
-                    Spacer(minLength: 40)
-                    
-                    // Footer Links
-                    HStack(spacing: 32) {
-                        Button("Terms of Use") {}
-                        Button("Privacy Policy") {}
-                    }
-                    .font(.system(size: 11, weight: .medium))
-                    .foregroundColor(CSTheme.textTertiary)
-                    .buttonStyle(.plain)
-                    .frame(maxWidth: .infinity)
-                    .padding(.bottom, 24)
-                }
-                .padding(.horizontal, 60)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
-            // Close Action
-            Button(action: { dismiss() }) {
-                Image(systemName: "xmark")
-                    .font(.system(size: 14, weight: .bold))
-                    .foregroundColor(Color.white.opacity(0.4))
-                    .padding(32)
-            }
-            .buttonStyle(.plain)
-        }
-        .frame(width: 800, height: 600)
-        .background(CSTheme.backgroundPrimary)
-        .preferredColorScheme(.dark)
-        .onAppear {
-            installedCount = ScreensaverManager.shared.installedIDs.count
-        }
-        .sheet(isPresented: $showCredits) {
+        TabView {
+            GeneralSettingsView()
+                .tabItem { Label("General", systemImage: "gearshape") }
             CreditsView()
+                .tabItem { Label("Credits", systemImage: "heart") }
+        }
+        .frame(width: 520, height: 560)
+    }
+}
+
+// MARK: - General
+
+struct GeneralSettingsView: View {
+    @ObservedObject private var manager = ScreensaverManager.shared
+    @ObservedObject private var updates = UpdateChecker.shared
+
+    var body: some View {
+        Form {
+            Section("Screensaver") {
+                LabeledContent("Installed", value: manager.installed?.name ?? "None")
+                LabeledContent("Folder") {
+                    Button("Show in Finder") { showFolder() }
+                }
+                LabeledContent("Choose the active screensaver") {
+                    Button("Open System Settings") { manager.openScreenSaverSettings() }
+                }
+            }
+
+            Section("Updates") {
+                Toggle("Check for updates automatically", isOn: $updates.automaticChecks)
+                LabeledContent {
+                    Button("Check Now") { Task { await updates.check() } }
+                        .disabled(updates.status == .checking)
+                } label: {
+                    updateStatus
+                }
+                if case .available(let version, let url) = updates.status {
+                    Text(UpdateChecker.installSteps(version: version, current: updates.currentVersion))
+                        .font(.callout)
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Button("Download ClockSpace \(version)") { NSWorkspace.shared.open(url) }
+                        .buttonStyle(.borderedProminent)
+                }
+            }
+
+            Section("About") {
+                LabeledContent("Version", value: "\(CSConstants.appVersion) (\(CSConstants.buildNumber))")
+                LabeledContent("Source code") {
+                    Link("GitHub", destination: CSConstants.repoURL)
+                }
+                LabeledContent("Licence") {
+                    Link("PolyForm Noncommercial 1.0.0", destination: CSConstants.licenseURL)
+                }
+                LabeledContent("Terms and privacy") {
+                    HStack(spacing: 12) {
+                        Link("Terms of Use", destination: CSConstants.termsURL)
+                        Link("Privacy", destination: CSConstants.privacyURL)
+                    }
+                }
+            }
+        }
+        .formStyle(.grouped)
+    }
+
+    @ViewBuilder
+    private var updateStatus: some View {
+        switch updates.status {
+        case .idle: Text("Version \(updates.currentVersion)")
+        case .checking: Text("Checking…")
+        case .upToDate: Text("ClockSpace is up to date")
+        case .available(let version, _): Text("Version \(version) is available").foregroundStyle(CSTheme.accent)
+        case .failed(let message): Text(message).foregroundStyle(.secondary)
         }
     }
-    
-    private func toggleRow(title: String, isOn: Binding<Bool>) -> some View {
-        HStack {
-            Text(title)
-                .font(.system(size: 14, weight: .medium))
-                .foregroundColor(.white)
-            Spacer()
-            Toggle("", isOn: isOn)
-                .toggleStyle(.switch)
-                .scaleEffect(0.8)
-                .labelsHidden()
+
+    private func showFolder() {
+        let folder = FileSystemService.shared.screenSaversDirectory
+        if FileManager.default.fileExists(atPath: folder.path) {
+            NSWorkspace.shared.open(folder)
+        } else {
+            NSWorkspace.shared.open(folder.deletingLastPathComponent())
         }
+    }
+}
+
+// MARK: - Credits
+
+struct CreditsView: View {
+    @EnvironmentObject var apiManager: APIManager
+
+    var body: some View {
+        Form {
+            Section {
+                Text("Every screensaver in ClockSpace was made by the people below and belongs to them. ClockSpace only collects them in one place.")
+                    .foregroundStyle(.secondary)
+            }
+            Section("Screensavers") {
+                ForEach(apiManager.alphabetical) { saver in
+                    LabeledContent(saver.name) {
+                        HStack(spacing: 8) {
+                            Text(saver.author)
+                                .foregroundStyle(.secondary)
+                            if let source = saver.sourceURL, let url = URL(string: source) {
+                                Link(destination: url) {
+                                    Image(systemName: "arrow.up.right.square")
+                                }
+                                .help("Open the project page")
+                                .accessibilityLabel("Project page for \(saver.name)")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .formStyle(.grouped)
     }
 }

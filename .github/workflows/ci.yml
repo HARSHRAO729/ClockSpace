@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main, 'release/**']
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test and build
+    runs-on: macos-26
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      # The project needs Swift 6.2 or later (Xcode 26+).
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Show toolchain
+        run: xcodebuild -version
+
+      - name: Unit tests
+        run: |
+          xcodebuild test \
+            -project ClockSpace.xcodeproj \
+            -scheme ClockSpace \
+            -destination 'platform=macOS' \
+            -derivedDataPath build/DerivedData
+
+      - name: Universal Release build
+        run: |
+          xcodebuild build \
+            -project ClockSpace.xcodeproj \
+            -scheme ClockSpace \
+            -configuration Release \
+            -destination 'generic/platform=macOS' \
+            -derivedDataPath build/DerivedData \
+            ARCHS="arm64 x86_64" ONLY_ACTIVE_ARCH=NO \
+            -quiet
+
+      - name: Check the app bundle
+        run: scripts/check_bundle.sh build/DerivedData/Build/Products/Release/ClockSpace.app
+

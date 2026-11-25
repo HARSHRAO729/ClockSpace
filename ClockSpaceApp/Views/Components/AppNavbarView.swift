@@ -8,121 +8,70 @@ import SwiftUI
 struct AppNavbarView: View {
     @Binding var selectedTab: NavTab
     @Binding var isSearchPresented: Bool
-    @Binding var showSettings: Bool
-    @Binding var showAdd: Bool
-    
-    var backAction: (() -> Void)? = nil
-    
-    @EnvironmentObject var apiManager: APIManager
+
+    @Environment(\.openSettings) private var openSettings
     @Namespace private var namespace
-    @State private var hoveredTab: NavTab? = nil
-    
+
     var body: some View {
         HStack(spacing: 0) {
-            // ── Left: Profile & Context ──
+            // ── Left: Logo & name ──
             HStack(spacing: 12) {
-                UserProfileView()
-                
-                VStack(alignment: .leading, spacing: 1) {
-                    Text("ClockSpace")
-                        .font(.system(size: 15, weight: .bold)) // Slightly larger
-                        .foregroundColor(.white)
-                }
+                AppLogoView()
+
+                Text("ClockSpace")
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundColor(.white)
             }
             .frame(width: 200, alignment: .leading)
-            
+
             Spacer()
-            
-            // ── Center: Perspectives or Title ──
-            ZStack {
-                if backAction != nil {
-                    // Detail Mode Title
-                    HStack(spacing: 12) {
-                        Image(systemName: "sparkles")
-                            .font(.system(size: 14))
-                            .foregroundColor(CSTheme.accent)
-                        
-                        Text(apiManager.detailedScreensaver?.name ?? "Preview")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(.white)
-                    }
-                    .padding(.horizontal, 24)
-                    .padding(.vertical, 10)
-                    .background(
-                        Capsule()
-                            .fill(Color.white.opacity(0.08))
-                            .overlay(Capsule().stroke(Color.white.opacity(0.12), lineWidth: 0.5))
-                    )
-                } else {
-                    // Main Tabs
-                    HStack(spacing: 4) {
-                        ForEach(NavTab.allCases, id: \.self) { tab in
-                            Button(action: {
-                                withAnimation(CSTheme.Animation.standard) {
-                                    selectedTab = tab
+
+            // ── Center: Tabs ──
+            HStack(spacing: 4) {
+                ForEach(NavTab.allCases, id: \.self) { tab in
+                    Button(action: {
+                        withAnimation(CSTheme.Animation.standard) {
+                            selectedTab = tab
+                        }
+                    }) {
+                        Text(tab.rawValue)
+                            .font(.system(size: 13, weight: .semibold))
+                            .foregroundColor(selectedTab == tab ? .white : CSTheme.textMuted)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .background(
+                                ZStack {
+                                    if selectedTab == tab {
+                                        Capsule()
+                                            .fill(Color.white.opacity(0.12))
+                                            .matchedGeometryEffect(id: "tab", in: namespace)
+                                    }
                                 }
-                            }) {
-                                Text(tab.rawValue)
-                                    .font(.system(size: 13, weight: .semibold))
-                                    .foregroundColor(selectedTab == tab ? .white : CSTheme.textMuted)
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 8)
-                                    .background(
-                                        ZStack {
-                                            if selectedTab == tab {
-                                                Capsule()
-                                                    .fill(Color.white.opacity(0.12))
-                                                    .matchedGeometryEffect(id: "tab", in: namespace)
-                                            }
-                                        }
-                                    )
-                            }
-                            .buttonStyle(.plain)
-                        }
-                    }
-                    .padding(4)
-                    .background(
-                        Capsule()
-                            .fill(Color.black.opacity(0.3))
-                            .overlay(Capsule().stroke(Color.white.opacity(0.1), lineWidth: 0.5))
-                    )
-                }
-            }
-            
-            Spacer()
-            
-            // ── Right: Global Actions ──
-            HStack(spacing: 12) {
-                if let backAction = backAction {
-                    // Close Button
-                    Button(action: backAction) {
-                        HStack(spacing: 6) {
-                            Text("Close")
-                            Image(systemName: "xmark")
-                        }
-                        .font(.system(size: 12, weight: .bold))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 10)
-                        .background(
-                            Capsule()
-                                .fill(Color.white.opacity(0.1))
-                                .overlay(Capsule().stroke(Color.white.opacity(0.2), lineWidth: 1))
-                        )
+                            )
                     }
                     .buttonStyle(.plain)
-                } else {
-                    // Search
-                    navButton(icon: "magnifyingglass") {
-                        withAnimation(CSTheme.Animation.standard) {
-                            isSearchPresented.toggle()
-                        }
+                    .accessibilityAddTraits(selectedTab == tab ? .isSelected : [])
+                }
+            }
+            .padding(4)
+            .background(
+                Capsule()
+                    .fill(Color.black.opacity(0.3))
+                    .overlay(Capsule().stroke(Color.white.opacity(0.1), lineWidth: 0.5))
+            )
+
+            Spacer()
+
+            // ── Right: Global Actions ──
+            HStack(spacing: 12) {
+                navButton(icon: "magnifyingglass", label: "Search") {
+                    withAnimation(CSTheme.Animation.standard) {
+                        isSearchPresented.toggle()
                     }
-                    
-                    // Settings
-                    navButton(icon: "slider.horizontal.3") {
-                        showSettings = true
-                    }
+                }
+
+                navButton(icon: "gearshape", label: "Settings") {
+                    openSettings()
                 }
             }
             .frame(width: 200, alignment: .trailing)
@@ -140,8 +89,8 @@ struct AppNavbarView: View {
                 )
         )
     }
-    
-    private func navButton(icon: String, action: @escaping () -> Void) -> some View {
+
+    private func navButton(icon: String, label: String, action: @escaping () -> Void) -> some View {
         Button(action: action) {
             Image(systemName: icon)
                 .font(.system(size: 14, weight: .medium))
@@ -151,5 +100,7 @@ struct AppNavbarView: View {
                 .overlay(Circle().stroke(Color.white.opacity(0.1), lineWidth: 0.5))
         }
         .buttonStyle(.plain)
+        .help(label)
+        .accessibilityLabel(label)
     }
 }

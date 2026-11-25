@@ -1,80 +1,67 @@
 //
-//  Constants.swift
+//  CSConstants.swift
 //  ClockSpace
 //
-//  Shared constants used across both the App and Screen Saver targets.
+//  App-wide constants.
 //
 
 import Foundation
+import os
 
-/// App-wide constants shared between the Dashboard and Screen Saver targets.
 enum CSConstants {
-    
+
     // MARK: - App Identity
-    
-    static let appName = "ClockSpace"
-    static let appVersion = "0.55"
-    static let buildNumber = "55"
-    
-    // MARK: - Bundle Identifiers
-    
-    static let appBundleID = "CivicEase.ClockSpace"
-    static let saverBundleID = "com.clockspace.saver"
-    
-    // MARK: - API Configuration
-    
-    /// Base URL for the ClockSpace marketplace API.
-    /// Currently points to a local stub; swap for production endpoint when ready.
-    static var apiBaseURL: String {
-        Secrets.supabaseURL ?? "https://api.clockspace.dev/v1"
-    }
-    
-    // MARK: - API Endpoints
-    
-    enum Endpoint {
-        static let screensavers = "/screensavers"
-        static let search = "/screensavers/search"
-        static let download = "/screensavers/download"
-        static let featured = "/screensavers/featured"
-        static let categories = "/categories"
+
+    /// Marketing version from Info.plist (MARKETING_VERSION), e.g. "1.1.0".
+    static var appVersion: String {
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?"
     }
 
-    // MARK: - Secrets
-    
-    /// Securely managed API keys and secrets.
-    /// These are loaded from Secrets.xcconfig via Info.plist.
-    enum Secrets {
-        static var licenseAPIKey: String? {
-            Bundle.main.object(forInfoDictionaryKey: "LICENSE_API_KEY") as? String
-        }
-        
-        static var supabaseURL: String? {
-            Bundle.main.object(forInfoDictionaryKey: "SUPABASE_URL") as? String
-        }
+    /// Build number from Info.plist (CURRENT_PROJECT_VERSION), e.g. "110".
+    static var buildNumber: String {
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?"
     }
-    
-    // MARK: - Defaults Keys
-    
-    enum DefaultsKey {
-        static let selectedCategory = "cs_selectedCategory"
-        static let lastSyncDate = "cs_lastSyncDate"
-        static let installedSaverIDs = "cs_installedSaverIDs"
-        
-        // License — SECURELY stored in Keychain, do not read via UserDefaults
-        static let licenseKey = "cs_licenseKey"
-        static let isProActivated = "cs_isProActivated"
-        static let licenseTier = "cs_licenseTier"
-    }
-    
+
+    // MARK: - Hardware
+
+    /// True on Apple Silicon Macs, even when this process runs under Rosetta.
+    nonisolated static let isAppleSilicon: Bool = {
+        var value: Int32 = 0
+        var size = MemoryLayout<Int32>.size
+        return sysctlbyname("hw.optional.arm64", &value, &size, nil, 0) == 0 && value == 1
+    }()
+
+    /// True while the app is only hosting the unit tests (`xcodebuild test`).
+    static let isRunningTests = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+
+    // MARK: - CDN
+
+    /// Where catalog.json, savers/ and thumbnails/ are hosted (Cloudflare R2).
+    static let cdnBase = URL(string: "https://pub-78f2a94f0b354729b9535c615d11e9a9.r2.dev")!
+    static let catalogURL = cdnBase.appending(path: "catalog.json")
+
+    // MARK: - Project links
+
+    static let repoURL = URL(string: "https://github.com/HARSHRAO729/ClockSpace")!
+    static let licenseURL = repoURL.appending(path: "blob/main/LICENSE")
+    static let termsURL = repoURL.appending(path: "blob/main/TERMS.md")
+    static let privacyURL = repoURL.appending(path: "blob/main/PRIVACY.md")
+    /// GitHub's "latest release" (excludes drafts and pre-releases).
+    static let latestReleaseAPI = URL(string: "https://api.github.com/repos/HARSHRAO729/ClockSpace/releases/latest")!
+
+    // MARK: - Logging
+
+    /// Shared logger. View output in Console.app, filtered by subsystem.
+    static let log = Logger(subsystem: "CivicEase.ClockSpace", category: "app")
+
     // MARK: - Layout
-    
+
+    /// The main window has one fixed size by design: it cannot be resized
+    /// or made full screen. The layout is built for exactly this size.
     enum Layout {
-        static let windowDefaultWidth: CGFloat = 1100
-        static let windowDefaultHeight: CGFloat = 720
-        static let windowMinWidth: CGFloat = 860
-        static let windowMinHeight: CGFloat = 560
-        static let windowMaxWidth: CGFloat = 1100
-        static let windowMaxHeight: CGFloat = 720
-        static let sidebarWidth: CGFloat = 220
+        /// Whole window: 1100 × 720 (as in 1.0).
+        static let contentWidth: CGFloat = 1100
+        /// 720 minus the 32-pt hidden title bar the system adds above the content.
+        static let contentHeight: CGFloat = 688
     }
 }

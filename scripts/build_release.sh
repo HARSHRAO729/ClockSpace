@@ -47,6 +47,13 @@ EXPORTED_APP="$EXPORT_PATH/$(basename "$APP_BUNDLE_PATH")"
 
 echo "✅ App exported to: $EXPORTED_APP"
 
+# Refuse to package a bundle that is not universal, has leftovers, or (when
+# EXPECTED_VERSION is set, e.g. to the git tag) has the wrong version.
+if [ -n "${EXPECTED_VERSION:-}" ]; then
+    export EXPECTED_VERSION="${EXPECTED_VERSION#v}"
+fi
+./scripts/check_bundle.sh "$EXPORTED_APP"
+
 # 4. Create Premium DMG
 echo "💿 Creating Premium DMG..."
 ./scripts/create_dmg.sh

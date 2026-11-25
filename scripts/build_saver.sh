@@ -8,7 +8,8 @@
 #   scripts/build_saver.sh native-savers/WordClock/WordClockSaver.swift \
 #       WordClock WordClockView "Word Clock" space.clock.wordclock dist/savers
 #
-# Signs with SAVER_SIGN_ID if set, else the first Apple Development identity, else adhoc.
+# Signs ad hoc by default. Set SAVER_SIGN_ID to sign with a specific identity instead
+# (a personal "Apple Development" certificate would publish its email inside the bundle).
 set -euo pipefail
 
 SRC="$1"; MODULE="$2"; PRINCIPAL="$3"; DISPLAY="$4"; BUNDLE_ID="$5"; OUT="${6:-dist/savers}"
@@ -55,17 +56,13 @@ cat > "$BUNDLE/Contents/Info.plist" <<PLIST
 </dict></plist>
 PLIST
 
-# Sign: explicit id > Apple Development > adhoc
+# Sign: explicit SAVER_SIGN_ID, otherwise ad hoc
 SIGN_ID="${SAVER_SIGN_ID:-}"
-if [ -z "$SIGN_ID" ]; then
-  SIGN_ID="$(security find-identity -v -p codesigning 2>/dev/null \
-    | grep -m1 'Apple Development' | awk -F'"' '{print $2}')"
-fi
 if [ -n "$SIGN_ID" ]; then
   echo "▶ Signing with: $SIGN_ID"
   codesign --force --deep --timestamp=none -s "$SIGN_ID" "$BUNDLE"
 else
-  echo "▶ No identity found — adhoc signing"
+  echo "▶ Ad-hoc signing"
   codesign --force --deep -s - "$BUNDLE"
 fi
 
