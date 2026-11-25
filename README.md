@@ -53,7 +53,7 @@ If you made one of these screensavers and want it credited differently or remove
 
 ClockSpace is **source-available** under the [PolyForm Noncommercial License 1.0.0](LICENSE): you may use, study and change it for non-commercial purposes; commercial use is not permitted. The screensavers in the catalog are not covered by this licence (see above). Using the app also means agreeing to the [Terms](TERMS.md).
 
-Required Notice: Copyright CivicEase Studios. (https://civicease.com)
+Required Notice: Copyright CivicEase Studios. (https://civicease.systems)
 
 ## More
 
