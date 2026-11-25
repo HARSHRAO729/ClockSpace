@@ -1,38 +1,32 @@
 # Xcode
-#
 build/
 DerivedData/
+xcuserdata/
 *.hmap
 *.ipa
+*.profraw
 *.playground.xcworkspace
-xcuserdata/
 
 # Swift Package Manager
-#
 .build/
 .swiftpm/
 
-# OS X
-#
+# macOS
 .DS_Store
 *.swp
-*.lock
 
-# ClockSpace Specific
-/BundledSavers/
-Secrets.xcconfig
-GoogleService-Info.plist
-ClockSpaceApp/Resources/temp_migration/savers/
-# (Wait, if I want the 54 launchers to be saved, I SHOULD push them)
-# Actually, the user wants the 54 files in ClockSpaceApp/Resources/BundledSavers/ to be included.
-# So I won't ignore those.
+# Release output (attached to GitHub Releases, never committed)
 *.dmg
 
-# Local staging for Cloudflare R2 asset migration (not committed)
-r2-upload/
-
-# Built saver bundles — rebuilt from source / uploaded to R2, never committed
+# Built screensavers, screenshots and the R2 bucket staging folders
 dist/
+r2-upload/
+/BundledSavers/
+
+# Never commit secrets or service config (none are needed to build)
+*.xcconfig
+GoogleService-Info.plist
+.env
 
 # Python
 __pycache__/

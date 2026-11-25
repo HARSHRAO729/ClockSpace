@@ -1,109 +1,61 @@
-# 🌌 ClockSpace
+# ClockSpace
 
-**ClockSpace** is an elite, premium macOS application that completely redefines the screensaver experience. While the name pays homage to our roots, ClockSpace is a comprehensive marketplace for **all** genres of digital art—from nature vistas and abstract motion to sci-fi digital rain and minimalist clocks. Built with the high-fidelity **CivicEase** design system, it delivers 60-FPS Quartz-rendered graphics straight to your lock screen.
+A Mac app for finding and installing screensavers. Browse a curated catalog of clocks and animated art, pick one, and ClockSpace installs it into macOS for you.
 
-[![Official Website](https://img.shields.io/badge/Website-clockspace.civicease.systems-blue?style=for-the-badge&logo=safari)](https://clockspace.civicease.systems)
-[![Status: v1.0](https://img.shields.io/badge/Status-v1.0_Stable-brightgreen?style=for-the-badge)](https://github.com/HARSHRAO729/ClockSpace/releases/latest)
+[![Latest release](https://img.shields.io/github/v/release/HARSHRAO729/ClockSpace?label=download)](https://github.com/HARSHRAO729/ClockSpace/releases/latest)
+[![CI](https://github.com/HARSHRAO729/ClockSpace/actions/workflows/ci.yml/badge.svg)](https://github.com/HARSHRAO729/ClockSpace/actions/workflows/ci.yml)
+[![Licence: PolyForm Noncommercial](https://img.shields.io/badge/licence-PolyForm%20Noncommercial-blue)](LICENSE)
+[![Website](https://img.shields.io/badge/website-clockspace.civicease.systems-blue)](https://clockspace.civicease.systems)
 
----
-
-## ✅ Status
-
-**ClockSpace v1.0 — the first stable release.** Every screensaver in the catalog is a native, universal (Apple Silicon + Intel), code-signed build that runs on modern macOS. The app stays lightweight and streams its catalog on demand from a fast CDN.
-
-### What's New in v1.0
-*   **🖥️ 20 screensavers that actually run on modern macOS**: every one is a universal (arm64 + x86_64), signed build — clocks, generative art, and more.
-*   **☁️ New cloud backend**: the catalog now streams from a fast, reliable CDN (Cloudflare R2). The app pulls each screensaver on demand, so it stays small.
-*   **✨ Native Swift throughout**: including a brand-new native Word Clock.
-*   **🎨 Premium UI**: glassmorphism cards, hover scale, live previews, and dynamic "Apply" buttons, on a clean MVVM architecture.
-*   **🔧 Smart installation**: one-screensaver-at-a-time lifecycle, permission banners, success toasts, and deep-link to System Settings.
-*   **🧹 Leaner & cleaner**: smaller repository, faster builds, no legacy backend.
-
-**Join the Journey**: We believe in the power of community! If you're a developer or designer passionate about redefining the macOS experience, we warmly invite you to join us as a contributor and help shape the future of ClockSpace.
-
----
-
-## 🚀 Installation & First Run
-
-Because **ClockSpace** is not yet distributed with an Apple Developer Certificate, macOS will show a warning when you first open it. 
-
-### How to Open (macOS Gatekeeper)
-If you see the "Apple could not verify..." message:
-1. Open **System Settings** ⚙️ on your Mac.
-2. Go to **Privacy & Security**.
-3. Scroll down to the bottom where you see *"ClockSpace was blocked..."*
-4. Click **Open Anyway** and enter your password.
-
-*You only need to do this once per version!*
-
----
-
-## ✨ Visual Experience
-
-| Word Clock | Matrix | Fractal Clock |
+| Word Clock | Matrix | MultiClock |
 | :---: | :---: | :---: |
-| ![Word Clock](https://pub-78f2a94f0b354729b9535c615d11e9a9.r2.dev/thumbnails/WordClock.png) | ![Matrix](https://pub-78f2a94f0b354729b9535c615d11e9a9.r2.dev/thumbnails/Matrix.png) | ![Fractal Clock](https://pub-78f2a94f0b354729b9535c615d11e9a9.r2.dev/thumbnails/FractalClock.png) |
-| *Words on a glowing grid* | *Digital rain* | *Generative clock hands* |
+| ![Word Clock](https://pub-78f2a94f0b354729b9535c615d11e9a9.r2.dev/thumbnails/WordClock.png) | ![Matrix](https://pub-78f2a94f0b354729b9535c615d11e9a9.r2.dev/thumbnails/Matrix.png) | ![MultiClock](https://pub-78f2a94f0b354729b9535c615d11e9a9.r2.dev/thumbnails/MultiClock.png) |
 
----
+## What it does
 
-## 🚀 Key Features
+- **A catalog of 19 screensavers**: clocks, retro, sci-fi and more, sorted into categories, with search and favourites.
+- **One-click install** into `~/Library/Screen Savers`. Each download is checked against its published checksum and its code signature before anything on your Mac is touched.
+- **One at a time**: installing a new screensaver replaces the one ClockSpace installed before. Screensavers you installed yourself are left alone; if one has the same name, ClockSpace asks before replacing it.
+- **Works offline** with the last catalog it downloaded.
+- **Update check**: tells you when a new version of ClockSpace is out (you can turn this off in Settings).
+- **Apple Silicon and Intel**. Two screensavers only run on Apple Silicon and are hidden on Intel Macs.
+- **No accounts, no tracking**. See [PRIVACY.md](PRIVACY.md).
 
-*   **Cinematic Marketplace UI**: A flawlessly crafted Glassmorphism and SwiftUI design system with horizontal carousels, dynamic grids, and a full-screen blur focus mode.
-*   **Curated Catalog**: 20 hand-picked screensavers — each a native, universal (Apple Silicon + Intel), code-signed `.saver` — streamed on demand from a fast CDN, ranging from Matrix digital rain to minimalist clocks.
-*   **Native Swift Screensavers**: modernized open-source classics plus original native builds (like the Word Clock), all installed as standard macOS `.saver` bundles.
-*   **One-Click Application**: Streamlined workflow that installs bundles to `~/Library/Screen Savers/` and triggers instant system activation.
+macOS does not let apps choose the active screensaver. After installing, click **Open Settings**: ClockSpace opens the screen saver list in System Settings (Wallpaper › Screen Saver on macOS 26 and later), where you pick it.
 
----
+## Install
 
-## 🛠️ Installation & Usage
+Requires macOS 14 or later.
 
-### Option 1: Run Without Xcode (Recommended)
+1. Download `ClockSpace.dmg` from the [latest release](https://github.com/HARSHRAO729/ClockSpace/releases/latest).
+2. Open it and drag ClockSpace into Applications.
+3. ClockSpace isn't signed with an Apple Developer ID, so macOS blocks it the first time. Open **System Settings › Privacy & Security**, scroll down and click **Open Anyway**. You need to do this once per version.
 
-1.  **Download**: Obtain the latest pre-compiled `.dmg` or `.app` from the [GitHub Releases](https://github.com/HARSHRAO729/ClockSpace/releases) page.
-2.  **Launch**: Open the `ClockSpace.app`. You may need to right-click and select **Open** to bypass macOS gatekeeper for the first time.
-3.  **Terminal Shortcut**:
-    ```bash
-    # If the app is in your Applications folder
-    open /Applications/ClockSpace.app
-    ```
+## Build from source
 
-### Option 2: Build from Source (Developers)
+You need Xcode 26 or later. No keys or secret files are needed.
 
-1.  Clone the repository: `git clone https://github.com/HARSHRAO729/ClockSpace.git`
-2.  Open `ClockSpace.xcodeproj` in Xcode.
-3.  Ensure **App Sandbox** is disabled in *Signing & Capabilities*.
-4.  Hit **Cmd + R** to run.
+```bash
+git clone https://github.com/HARSHRAO729/ClockSpace.git
+cd ClockSpace
+open ClockSpace.xcodeproj
+```
 
----
+Press ⌘R to run and ⌘U to run the tests. See [CONTRIBUTING.md](CONTRIBUTING.md) for how the project is laid out and how to add a screensaver to the catalog.
 
-## 📢 Open Source & Licensing
+## Screensavers and credits
 
-**ClockSpace is a CivicEase (CVK) project.** 
-The brand, design language, and commercial rights are strictly reserved. This project is shared under the **PolyForm Noncommercial License 1.0.0**, which allows for personal, educational, and research use while prohibiting commercial application.
+Every screensaver belongs to its author and comes under its author's own terms. [THIRD_PARTY.md](THIRD_PARTY.md) lists each one with its source and licence, and the app shows the same list under Settings › Credits.
 
----
+If you made one of these screensavers and want it credited differently or removed, [open an issue](https://github.com/HARSHRAO729/ClockSpace/issues).
 
-## 🤝 Community & Growth
+## Licence
 
-ClockSpace is an open-source project that thrives on community contribution. We have a clear vision for the future and welcome developers of all skill levels.
+ClockSpace is **source-available** under the [PolyForm Noncommercial License 1.0.0](LICENSE): you may use, study and change it for non-commercial purposes; commercial use is not permitted. The screensavers in the catalog are not covered by this licence (see above). Using the app also means agreeing to the [Terms](TERMS.md).
 
-*   **[Roadmap](ROADMAP.md)**: See what we're building next and where you can help.
-*   **[Contributing Guide](CONTRIBUTING.md)**: Learn how to set up the project and submit your first PR.
-*   **Good First Issues**: Check our issue tracker for tasks labeled `good-first-issue`.
+Required Notice: Copyright CivicEase Studios. (https://civicease.com)
 
----
+## More
 
-## 📜 Credits & Curation
-
-ClockSpace is built on the shoulders of giants. We curate and showcase some of the best open-source screensavers ever made. 
-
-*   **Aerial**: Cinematic Apple TV screensavers by [John Coates](https://github.com/JohnCoates/Aerial).
-*   **Brooklyn**: Abstract Apple animations by [Pedro Carrasco](https://github.com/pedrocarrasco/Brooklyn).
-*   **Flurry**: Modern Quartz animations by [Thomas So](https://github.com/thomas-so/Flurry).
-
-*Check the in-app **Credits** page for a full list of projects and original repositories.*
-
----
-
-*Design with ❤️ by [HARSHRAO729](https://github.com/HARSHRAO729) & the Open Source Community.*
+- [ROADMAP.md](ROADMAP.md): what's next and what is deliberately left out.
+- [RELEASING.md](RELEASING.md): how a release is built and published.
